@@ -3,25 +3,28 @@
 
 
 
+ <div id="cover-header">
+       <br>
+      
+       <h1>Bright Works</h1>
+       
+         <p>
+           A work and bussiness promoting platform with powerful tools to adquire clients and manage your work all in one place; <br>
+           A better way to connect people with the fittest and most qualified for work they might need them.
+         </p>
 
-        <div>
-            <h1>Bright Works</h1>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga commodi sit accusamus tempore sint itaque sapiente, temporibus ipsum excepturi possimus distinctio asperiores. Quos distinctio fugiat esse mollitia illo explicabo libero!</p>
-        </div>
 
 
+       <router-link to="/login">
+          <button class="sombra roundify"> <i class="uil uil-user-check"></i> Sign in </button>
+       </router-link>
 
-        <div>
+       <router-link to="/signup">
+          <button class="sombra roundify"> Sign up <i class="uil uil-user-plus"></i> </button>
+       </router-link>
 
-            <router-link to="/login">
-            <a>Log In</a>
-            </router-link>
- <br>
- <br>
-            <router-link to="/signup">
-            <a>Sign Up</a>
-            </router-link>
-        </div>
+       <br>
+      </div>
 
     </div>
 </template>
