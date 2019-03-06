@@ -7,6 +7,7 @@ import firebase from 'firebase'
 Vue.config.productionTip = false
 
 
+
 const config = {
   apiKey: "AIzaSyA9ObQTACHCYQq6agn-B2hqjyj4d_bmhXk",
   authDomain: "brightworksvue.firebaseapp.com",
@@ -17,7 +18,11 @@ const config = {
 }
 firebase.initializeApp(config);
 
-new Vue({
-  router,
-  render: h => h(App),
-}).$mount('#app')
+
+
+    new Vue({
+      router,
+      render: h => h(App),
+    }).$mount('#app')
+    
+

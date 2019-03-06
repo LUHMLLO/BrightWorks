@@ -1,15 +1,15 @@
 <template>
-<div id="login">
+<div id="signup">
 
 
    <form>
-     <h1>Log in</h1>
+     <h1>Sign up</h1>
      <br>
      <input type="text" name="email" id="email" v-model="email" placeholder="email" required/>
      <br>
      <input type="password" name="password" id="password" v-model="password" placeholder="password" required/>
      <br><br>
-     <button v-on:click="logIn()">Sign in</button>
+     <button v-on:click="signUp()">Sign up</button>
    </form>
 
 </div>
@@ -20,7 +20,7 @@ import firebase from 'firebase'
 import Swal from 'sweetalert'
 
 export default {
-  name: "Login",
+  name: "Signup",
   data() {
     return {
       
@@ -34,13 +34,13 @@ export default {
   
   methods:{
 
-    logIn: function(){
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+    signUp: function(){
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          this.$router.replace('home') 
+              this.$router.replace('login')
         },
-        (err) =>{
-          Swal({ title: "Oops !", text: err.message, icon: "error"})
+        (err) => {
+          Swal({ title: "Oops !", text: err.message, icon: "error"});
         }
       );
     }
