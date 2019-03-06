@@ -8,6 +8,7 @@ import NotFound from "./components/intro/NotFound.vue"
 import Login from "./components/intro/Login.vue"
 import Signup from "./components/intro/Signup.vue"
 import Home from "./components/Home.vue"
+import Register from "./components/intro/Register.vue"
 
 
 Vue.use(Router)
@@ -41,6 +42,12 @@ let router = new Router({
         path: '/signup',
         name: 'Signup',
         component: Signup
+      },
+
+      {
+        path: '/register',
+        name: 'Register',
+        component: Register
       },
 
       {
