@@ -3,7 +3,7 @@
 
 
 
- <div id="cover-header">
+    <div id="cover-header">
        <br>
       
        <h1>Bright Works</h1>
@@ -16,15 +16,20 @@
 
 
        <router-link to="/login">
-          <button class="sombra roundify"> <i class="uil uil-user-check"></i> Sign in </button>
+          <button class="mdl-button"> <i class="uil uil-user-check"></i> Sign in </button>
        </router-link>
 
        <router-link to="/signup">
-          <button class="sombra roundify"> Sign up <i class="uil uil-user-plus"></i> </button>
+          <button class="mdl-button"> Sign up <i class="uil uil-user-plus"></i> </button>
        </router-link>
 
        <br>
       </div>
+
+
+
+
+
 
     </div>
 </template>
