@@ -8,31 +8,30 @@
            <div id="sidebar-drawer" class="mdl-layout__drawer sombra">
             <div class="mdl-navigation">
 
-
               <router-link to="/" class="mdl-navigation__link">
-               <i class="material-icons">home</i> <p>Home</p>
+               <i class='uil uil-bell'></i><p>inbox</p>
               </router-link>
               <br>
               <router-link to="/" class="mdl-navigation__link">
-               <i class="material-icons">account_box</i> <p>Perfil</p>
+               <i class='uil uil-home-alt'></i><p>home</p>
               </router-link>
               <br>
               <router-link to="/" class="mdl-navigation__link">
-               <i class="material-icons">markunread_mailbox</i> <p>Inbox</p>
+               <i class='uil uil-user'></i><p>Perfil</p>
               </router-link>
               <br>
               <router-link to="/" class="mdl-navigation__link"> 
-               <i class="material-icons">search</i> <p>Search</p>
+               <i class='uil uil-search-alt'></i><p>Search</p>
               </router-link>
 
             </div>
 
            </div>
 
-
             <main class="mdl-layout__content">
-              <router-view id="routerView" />
+                <router-view id="routerView" />
             </main>
+
 
 
         </div><!--sidebar-->
@@ -70,7 +69,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #202124;
+  background: #ffff;
 }
 #routerView{
   width:100%;
@@ -87,24 +87,28 @@ export default {
     margin:0;
     list-style: none;
     border:none;
+    background: #ffff;
   }
   #sidebar-drawer a{
     display: flex;
     justify-content: space-between;
+    color: #202124;
   }
   #sidebar-drawer i{
     display: inline-block;
     margin:auto 10px auto auto;
     align-self: middle;
     width:10%;
-    font-size:16px;
+    font-size:22px;
   }
   #sidebar-drawer p{
     display: inline-block;
     margin:auto auto auto 10px;
     align-self: middle;
     width: 90%;
+    font-size:16px;
   }
+
 
 .sombra{
   box-shadow: 0 0 10.3px rgba(0,0,0,0.1) !important;
