@@ -2,8 +2,6 @@
 <div id="home">
     <h1>Hi, Welcome home</h1>
     <h2>{{user.email}}</h2>
-
-    <button v-on:click="logout()">log me out</button>
 </div>
 </template>
 

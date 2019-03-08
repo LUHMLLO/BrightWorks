@@ -12,7 +12,7 @@
                <i class='uil uil-bell'></i><p>inbox</p>
               </router-link>
               <br>
-              <router-link to="/" class="mdl-navigation__link">
+              <router-link to="/home" class="mdl-navigation__link">
                <i class='uil uil-home-alt'></i><p>home</p>
               </router-link>
               <br>
@@ -23,6 +23,8 @@
               <router-link to="/" class="mdl-navigation__link"> 
                <i class='uil uil-search-alt'></i><p>Search</p>
               </router-link>
+
+              <button v-on:click="logout()">log me out</button>
 
             </div>
 
@@ -49,14 +51,28 @@
 
 
 <script>
+import firebase from 'firebase'
 
 export default {
   name: "app",
   data(){
     return{
+
+
       }
     },
-};
+
+
+       methods:{
+       logout: function(){
+           firebase.auth().signOut().then(() =>{
+               this.$router.replace('/')
+           })
+       }
+   },
+
+
+}
 </script>
 
 
@@ -71,6 +87,8 @@ export default {
   text-align: center;
   color: #202124;
   background: #ffff;
+  overscroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 #routerView{
   width:100%;
