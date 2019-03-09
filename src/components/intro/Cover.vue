@@ -108,13 +108,57 @@
 
 
 
-   <div class="">
-
+   <div style="background:black; padding:82px; width:100%; margin:22px auto 22px auto; color:white; align-content:center; justify-content:center;" class="mdl-shadow--3dp">
+     <p style="font-size:22px; width:70%; margin:auto; line-height:2.3em;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos alias asperiores quasi cupiditate, harum expedita vero in, quam fuga quia consequatur eveniet aliquam nulla accusantium voluptates! Quo perferendis doloribus quisquam?</p>
    </div>
 
 
 
+   
 
+
+
+
+
+
+
+   <div id="cover-cards">
+     <h4>Some fancy title here</h4> 
+     <div class="mdl-grid">
+
+
+
+      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+        <img src="https://cdn.dribbble.com/users/791530/screenshots/5660599/icons8_connection_lost_illustration.png">
+      </div> 
+      <div class="cover-cards-ps mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit inventore nobis vel enim illo, cupiditate mollitia consectetur ullam voluptates quisquam debitis officia dolorum a accusantium adipisci, ipsa officiis, nisi unde.</p>
+      </div>
+
+
+
+      <div class="cover-cards-ps mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, doloremque! Vel porro possimus excepturi illum. Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
+      </div>
+      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+        <img src="https://cdn.dribbble.com/users/412478/screenshots/3673636/creative_dribble-08.png">
+      </div> 
+      
+
+
+      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+        <img src="https://cdn.dribbble.com/users/2323077/screenshots/4625711/01_jira-illos.png">
+      </div> 
+      <div class="cover-cards-ps mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit animi quasi quisquam debitis saepe asperiores sunt dicta, labore magnam totam dolorum, eum sit corrupti. Nemo perspiciatis sequi aperiam eveniet ad?</p>
+      </div>
+
+
+
+
+
+     </div>
+   </div><!---cover cards ends here-->
 
 
 
@@ -148,7 +192,8 @@ export default {
            {img:'https://cdn.dribbble.com/users/21928/screenshots/4051365/screen_shot_2017-12-28_at_3.27.52_pm.png',name:'Plumbing'},
            {img:'https://cdn.dribbble.com/users/103909/screenshots/3671664/sensors-01.jpg',name:'Managing'},
            
-         ]
+         ],
+
 
     }
   }
@@ -193,30 +238,7 @@ export default {
 }
 
 
-#How-it-works-img{
-  border-radius: 8px;
-  overflow: hidden;
-}
 
-#How-it-works-img img{
-  width: 100%;
-  height: 100%;
-}
-#How-it-works-description{
-  display:flex;
-  justify-content: center;
-  align-content: middle;
-}
-#How-it-works-description p{
-  justify-self: center;
-  align-self: middle;
-  margin: auto;
-  display: inline-block;
-  font-size:22px;
-  line-height: 2.3rem;
-  text-align: justify;
-  padding:22px;
-}
 
 
 .service{
@@ -246,4 +268,32 @@ export default {
   align-self: middle;
   margin:auto;
 }
+
+
+#cover-cards{
+  padding:82px 22px;
+}
+#cover-cards h4{
+  padding:42px 22px;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+  margin:auto auto 52px auto;
+  align-self: middle;
+  width: 50%;
+}
+.cover-cards-ps{
+  display:flex;
+  justify-content: center;
+  align-content: middle;
+}
+#cover-cards p{
+  justify-self: center;
+  align-self: middle;
+  margin: auto;
+  display: inline-block;
+  font-size:22px;
+  line-height: 2.3rem;
+  text-align: justify;
+  padding:22px;
+}
+
 </style>

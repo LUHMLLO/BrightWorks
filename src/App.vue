@@ -98,11 +98,6 @@ export default {
   width:100%;
   margin:auto;
 }
-.mdl-layout__drawer-button{
-  background:#333;
-  border-radius:100%;
-  outline:none;
-}
 #sidebar-drawer{
     height: 100vh;
     position: fixed;
@@ -144,6 +139,14 @@ img{
   width: 100%;
   object-fit: cover;
   max-width: 100%;
+}
+
+
+
+.mdl-layout__drawer-button{
+  background:#333;
+  border-radius:100%;
+  outline:none;
 }
 .mdl-grid {
   justify-content: center;
