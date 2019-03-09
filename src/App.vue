@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-        <div id="sidebar" class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+        <div id="sidebar" class="mdl-layout mdl-js-layout mdl-layout--drawer">
      
 
 
@@ -25,6 +25,8 @@
               </router-link>
 
               <button v-on:click="logout()">log me out</button>
+
+           
 
             </div>
 
@@ -58,6 +60,7 @@ export default {
   data(){
     return{
 
+       user: firebase.auth().currentUser
 
       }
     },
@@ -89,10 +92,16 @@ export default {
   background: #ffff;
   overscroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 #routerView{
   width:100%;
   margin:auto;
+}
+.mdl-layout__drawer-button{
+  background:#333;
+  border-radius:100%;
+  outline:none;
 }
 #sidebar-drawer{
     height: 100vh;
@@ -130,5 +139,14 @@ export default {
 
 .sombra{
   box-shadow: 0 0 10.3px rgba(0,0,0,0.1) !important;
+}
+img{
+  width: 100%;
+  object-fit: cover;
+  max-width: 100%;
+}
+.mdl-grid {
+  justify-content: center;
+  align-content: middle;
 }
 </style>

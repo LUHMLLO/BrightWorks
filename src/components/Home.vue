@@ -6,25 +6,14 @@
 </template>
 
 <script>
-import firebase from 'firebase'
 export default {
     name: "Home",
     data(){
         return{
-            user: firebase.auth().currentUser
+           
+            
         }
     },
-
-   
-
-   methods:{
-       logout: function(){
-           firebase.auth().signOut().then(() =>{
-               this.$router.replace('/')
-           })
-       }
-   },
-
 
 }
 </script>
