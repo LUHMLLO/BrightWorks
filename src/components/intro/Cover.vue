@@ -169,6 +169,31 @@
 
 
 
+   <div id="cover-demo" class="mdl-grid">
+     <div id="cover-demo-window" class="mdl-cell  mdl-shadow--6dp">
+
+
+      <div id="cover-demo-window-sidebar">
+
+      </div><!--cover demo window sidebar-->
+
+
+      <div id="cover-demo-window-content">
+
+      </div><!--cover demo window content-->
+
+
+
+
+
+     </div>
+   </div><!--cover demo window ends here-->
+
+
+
+
+
+
 
 
 
@@ -205,7 +230,6 @@ export default {
 #cover-header {
   background: url("https://images.unsplash.com/photo-1551864605-74764bd3d836?ixlib=rb-1.2.1&auto");
   background-size: cover;
-  padding: 100px 10px;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -213,9 +237,11 @@ export default {
   align-content: middle;
   display: flex;
   justify-content: center;
+  height: 100vh;
+  padding:22px;
 }
 #cover-header-content {
-  margin: 200px auto 230px auto;
+  margin: auto  ;
   align-self: middle;
   color: white;
 }
@@ -225,14 +251,22 @@ export default {
   margin: 10px 10px;
 }
 
+
+
+
+#cover-tabs{
+  width: 100%;
+  min-height: 100vh;
+  padding:62px 0;
+}
 .mdl-tabs__tab-bar{
   border-bottom:none !important;
   border: none !important;
   width: 100%;
-  margin: 52px auto auto auto;
+  padding:22px 0;
 }
 #cover-tabs-content{
-  padding:52px;
+  padding:60px 32px;
   display: flex;
   justify-content: center;
 }
@@ -271,7 +305,7 @@ export default {
 
 
 #cover-cards{
-  padding:82px 22px;
+  padding:100px 22px 200px 22px;
 }
 #cover-cards h4{
   padding:42px 22px;
@@ -296,4 +330,24 @@ export default {
   padding:22px;
 }
 
+
+
+#cover-demo{
+  height: 100vh;
+  background: url('https://cdn.dribbble.com/users/63407/screenshots/5389952/dribbble_gap_geneome_invision.png');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
+}
+#cover-demo-window{
+  overflow: hidden;
+  min-height: 780px;
+  width:1080px;
+  background:white;
+  margin:auto;
+  align-self: middle;
+  justify-self: center;
+  border-radius: 10px;
+}
 </style>
