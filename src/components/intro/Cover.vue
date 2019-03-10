@@ -241,11 +241,11 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  box-shadow: inset 0 0 100px 900px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 100px 2200px rgba(0, 0, 0, 0.5);
   align-content: middle;
   display: flex;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   padding:22px;
 }
 #cover-header-content {
