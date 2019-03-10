@@ -173,7 +173,7 @@
      <div id="cover-demo-window" class="mdl-cell  mdl-shadow--6dp">
 
 
-      <div id="cover-demo-window-sidebar">
+      <div id="cover-demo-window-sidebar" class="mdl-shadow--2dp">
 
       </div><!--cover demo window sidebar-->
 
@@ -188,6 +188,14 @@
 
      </div>
    </div><!--cover demo window ends here-->
+
+
+
+
+
+
+
+
 
 
 
@@ -333,7 +341,7 @@ export default {
 
 
 #cover-demo{
-  height: 100vh;
+  min-height: 100vh;
   background: url('https://cdn.dribbble.com/users/63407/screenshots/5389952/dribbble_gap_geneome_invision.png');
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -349,5 +357,14 @@ export default {
   align-self: middle;
   justify-self: center;
   border-radius: 10px;
+  position: relative;
+}
+#cover-demo-window-sidebar{
+  width:16%;
+  height: 100%;
+  background:black;
+  position: absolute;
+  top:0;
+  left: 0;
 }
 </style>
