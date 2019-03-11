@@ -12,7 +12,7 @@ export default {
     data(){
         return{
            
-           user: firebase.auth().currentUser
+           user: firebase.auth().currentUser,
         }
     },
 
