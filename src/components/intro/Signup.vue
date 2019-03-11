@@ -3,7 +3,7 @@
 
 
    <form class="form-container">
-     <div class="form-box">
+     <div class="form-box" @submit.prevent>
        <h1>Sign up</h1>
 
       <div class="input-container">
@@ -53,9 +53,7 @@ export default {
 
     signUp: function(){
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-        (user) => {
-          this.$router.replace('login')
-           
+        (user) => {           
         },
         (err) => {
           Swal({ title: "Oops !", text: err.message, icon: "error"});

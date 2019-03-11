@@ -10,13 +10,14 @@ import Signup from "./components/intro/Signup.vue"
 import Home from "./components/Home.vue"
 import Register from "./components/intro/Register.vue"
 import Perfil from "./components/account/Perfil.vue"
-import Search from "./components/intro/Search.vue"
+import Search from "./components/Modules/Search.vue"
 
 
 Vue.use(Router)
 
 
 let router = new Router({
+    mode: 'history',
     routes:[
 
 
@@ -70,10 +71,7 @@ let router = new Router({
       {
         path: '/Perfil',
         name: 'Pefil',
-        component: Perfil,
-        meta:{
-          requiresAuth: true
-        }
+        component: Perfil
       },
 
       {
