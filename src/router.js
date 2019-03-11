@@ -10,6 +10,7 @@ import Signup from "./components/intro/Signup.vue"
 import Home from "./components/Home.vue"
 import Register from "./components/intro/Register.vue"
 import Perfil from "./components/account/Perfil.vue"
+import Search from "./components/intro/Search.vue"
 
 
 Vue.use(Router)
@@ -73,6 +74,12 @@ let router = new Router({
         meta:{
           requiresAuth: true
         }
+      },
+
+      {
+        path: '/search',
+        name: 'Search',
+        component: Search
       },
       
 

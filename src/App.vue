@@ -22,7 +22,7 @@
                <i class='uil uil-user'></i><p>Perfil</p>
               </router-link>
               <br>
-              <router-link to="/" class="mdl-navigation__link"> 
+              <router-link to="/search" class="mdl-navigation__link"> 
                <i class='uil uil-search-alt'></i><p>Search</p>
               </router-link>
 
