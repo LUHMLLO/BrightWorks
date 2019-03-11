@@ -108,9 +108,9 @@
 
 
 
-   <div style="background:black; padding:82px; width:100%; margin:22px auto 22px auto; color:white; align-content:center; justify-content:center;" class="mdl-shadow--3dp">
-     <p style="font-size:22px; width:70%; margin:auto; line-height:2.3em;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos alias asperiores quasi cupiditate, harum expedita vero in, quam fuga quia consequatur eveniet aliquam nulla accusantium voluptates! Quo perferendis doloribus quisquam?</p>
-   </div>
+   <div style="background:black; padding:22px 0px; width:100%; margin:22px auto; color:white; align-content:center; justify-content:center;">
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, inventore atque? Architecto dicta provident soluta explicabo facere sapiente similique ipsa facilis laudantium modi, necessitatibus minus, tempora temporibus nemo, quis distinctio!</p>
+    </div>
 
 
 

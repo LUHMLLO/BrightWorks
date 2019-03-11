@@ -53,7 +53,8 @@ export default {
 
     signUp: function(){
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-        (user) => {           
+        (user) => { 
+          Swal({ title: "Congrats !", text: "Your account has been created", icon: "success"});          
         },
         (err) => {
           Swal({ title: "Oops !", text: err.message, icon: "error"});
