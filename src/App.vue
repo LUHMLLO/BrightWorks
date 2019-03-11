@@ -2,8 +2,10 @@
   <div id="app">
 
         <div id="sidebar" class="mdl-layout mdl-js-layout mdl-layout--drawer">
-     
 
+           <!-- <div class="mdl-layout__header">
+              <div class="mdl-layout__header-row"></div>
+            </div>-->
 
            <div id="sidebar-drawer" class="mdl-layout__drawer sombra">
             <div class="mdl-navigation">
@@ -98,11 +100,6 @@ export default {
   width:100%;
   margin:auto;
 }
-.mdl-layout__drawer-button{
-  background:#333;
-  border-radius:100%;
-  outline:none;
-}
 #sidebar-drawer{
     height: 100vh;
     position: fixed;
@@ -145,8 +142,34 @@ img{
   object-fit: cover;
   max-width: 100%;
 }
+
+
+
+
+ 
+.mdl-layout__content::-webkit-scrollbar{
+  display:none;
+}
+
+
+
+.mdl-layout__drawer-button{
+  background:#333;
+  outline:none;
+  border-radius: 100%;
+  box-shadow: none !important;
+}
+.mdl-layout__header,.mdl-layout__header-row{
+  background:black;
+  min-height: 30px !important;
+  height: 30px !important;
+  box-shadow: none !important;
+}
 .mdl-grid {
   justify-content: center;
   align-content: middle;
 }
+
+
+
 </style>
