@@ -18,7 +18,7 @@
                <i class='uil uil-home-alt'></i><p>home</p>
               </router-link>
               <br>
-              <router-link to="/" class="mdl-navigation__link">
+              <router-link to="/perfil" class="mdl-navigation__link">
                <i class='uil uil-user'></i><p>Perfil</p>
               </router-link>
               <br>

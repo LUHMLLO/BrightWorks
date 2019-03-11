@@ -9,6 +9,7 @@ import Login from "./components/intro/Login.vue"
 import Signup from "./components/intro/Signup.vue"
 import Home from "./components/Home.vue"
 import Register from "./components/intro/Register.vue"
+import Perfil from "./components/account/Perfil.vue"
 
 
 Vue.use(Router)
@@ -21,10 +22,11 @@ let router = new Router({
 
 
       {
-          path: '*',
-          name: 'NotFound',
-          component: NotFound
+        path: '*',
+        name: 'NotFound',
+        component: NotFound
       },
+
 
       {
         path: '/',
@@ -32,11 +34,13 @@ let router = new Router({
         component: Cover
       },
 
+
       {
         path: '/login',
         name: 'Login',
         component: Login
       },
+
 
       {
         path: '/signup',
@@ -44,11 +48,13 @@ let router = new Router({
         component: Signup
       },
 
+
       {
         path: '/register',
         name: 'Register',
         component: Register
       },
+
 
       {
         path: '/home',
@@ -58,6 +64,17 @@ let router = new Router({
           requiresAuth: true
         }
       },
+
+
+      {
+        path: '/Perfil',
+        name: 'Pefil',
+        component: Perfil,
+        meta:{
+          requiresAuth: true
+        }
+      },
+      
 
 
 

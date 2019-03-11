@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(servicio, index) in servicios">
+                    <tr v-for="(servicio, index) in servicios" :key="index">
                         <td>{{ servicio.id }}</td>
                         <td>
                             <span v-if="formActualizar && idActualizar == index">

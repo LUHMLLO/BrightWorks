@@ -6,11 +6,13 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
     name: "Home",
     data(){
         return{
            
+           user: firebase.auth().currentUser,
             
         }
     },
