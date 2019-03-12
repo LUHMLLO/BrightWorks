@@ -4,8 +4,8 @@
     <input type="text" v-model="search" placeholder="Search title.."/>
         <label>Search title:</label>
   </div>
-  <div class="wrapper">
-    <div class="card" v-for="(post, index) in filteredList" :key="index">
+  <div class="wrapper mdl-grid">
+    <div class="card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" v-for="(post, index) in filteredList" :key="index">
       <a v-bind:href="post.link" target="_blank">
         <img v-bind:src="post.img"/>
         <small>posted by: {{ post.author }}</small>
