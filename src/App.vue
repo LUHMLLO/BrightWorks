@@ -56,6 +56,7 @@
 
 <script>
 import firebase from 'firebase'
+import mdl from 'material-design-lite'
 
 export default {
   name: "app",
@@ -75,6 +76,11 @@ export default {
            })
        }
    },
+   
+
+  mounted: function(){
+    componentHandler.upgradeAllRegistered();
+  }
 
 
 }
