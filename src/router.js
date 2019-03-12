@@ -11,6 +11,7 @@ import Home from "./components/Home.vue"
 import Register from "./components/Basics/Register.vue"
 import Perfil from "./components/Accounts/Perfil.vue"
 import Search from "./components/Modules/Search.vue"
+import Wizard from "./components/Basics/Wizard.vue"
 
 
 Vue.use(Router)
@@ -81,6 +82,15 @@ let router = new Router({
         path: '/search',
         name: 'Search',
         component: Search,
+        meta:{
+          requiresAuth: true
+        }
+      },
+
+      {
+        path: '/wizard',
+        name: 'Wizard',
+        component: Wizard,
         meta:{
           requiresAuth: true
         }

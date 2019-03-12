@@ -12,7 +12,9 @@
               </div>
 
 
-              <div></div>
+              <div>
+                  <h3>User name</h3>
+              </div>
 
 
               <div id="perfil-header-bar" class="">
@@ -60,7 +62,7 @@ export default {
        height: 200px;
        display: inline-block;
        align-self: middle;
-       margin: 62px auto 22px auto; 
+       margin: 62px auto auto auto; 
        overflow: hidden;
        object-fit: cover !important;
     }

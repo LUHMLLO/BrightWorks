@@ -1,32 +1,40 @@
 <template>
-<div id="signup">
+<div id="wizard">
 
 
    <form class="form-container" v-on:submit.prevent>
      <div class="form-box">
-       <h1>Sign up</h1>
-
-      <div class="input-container">
-        <i class='uil uil-envelope-alt'></i><input type="text" name="email" id="email" v-model="email" placeholder="email" required/> 
-      </div>
-      <div class="input-container">
-        <i class='uil uil-keyhole-square'></i><input type="password" name="password" id="password" v-model="password" placeholder="password" required/>
-      </div>
-
-
+       <h3>Welcome to Bright Works</h3>
+       <h6>Let's setup your account so you cant star surfing</h6>
        <br>
 
-       <button @click="signUp" class="mdl-button">Sign up</button>
+      <div class="input-container">
+        <i class='uil uil-user'></i><input type="text" name="name" id="name" v-model="email" placeholder="name" required/> 
+      </div>
+      <div class="input-container">
+        <i class='uil uil-mobile-android'></i><input type="text" name="phone" id="phone" v-model="password" placeholder="phone" required/>
+      </div>
+      <br><br>
+      <div class="mdl-grid">
+          <div class="account-type mdl-shadow--2dp mdl-button">
+              <i class='uil uil-shop'></i>
+              <p>Service</p>
+          </div>
+          <div class="account-type mdl-shadow--2dp mdl-button">
+              <i class='uil uil-shopping-basket'></i>
+              <p>Client</p>
+          </div>
+      </div>
+
 
        <br><br>
-    </div><!--fomr box -->
 
-    <div class="floaties">
-        <router-link to="/login">
-          <button class="mdl-button">I already have an account</button>
-        </router-link>
-    </div>
-     
+       <router-link to="/home">
+        <button class="mdl-button">finis setup</button>
+       </router-link>
+       <br>
+
+    </div><!--fomr box -->    
    </form>
 
 </div>
@@ -37,7 +45,7 @@ import firebase from 'firebase'
 import Swal from 'sweetalert'
 
 export default {
-  name: "Signup",
+  name: "Login",
   data() {
     return {
       
@@ -50,18 +58,6 @@ export default {
 
   
   methods:{
-    signUp: function(){
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-        (user) => { 
-          this.$router.replace("wizard");       
-        },
-        (err) => {
-          Swal({ title: "Oops !", text: err.message, icon: "error"});
-        }
-      );
-    }
-
-
 
   },
 
@@ -75,7 +71,7 @@ export default {
 
   
   form{
-    background: url("https://cdn.dribbble.com/users/63407/screenshots/5834137/dribbble_tea_haytruck.png");
+    background: url("https://cdn.dribbble.com/users/1803663/screenshots/5665285/home.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -130,15 +126,23 @@ export default {
   }
 
 
-   .floaties{
-     position:fixed;
-     top:0;
-     right:0;
-     background:white;
-     padding:22px;
-     border-radius: 10px;
-     margin: 50px 100px auto auto;
+
+   .account-type{
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-content: middle;
+       padding:32px;
+       margin:auto 10px auto 10px;
+       width:70px;
+       border-radius:5px;
+   }
+   .account-type i,p{
+       display: block;
+       margin:auto;
+       align-self: middle;
+       width:100%;
+       padding:5px 0px;
    }
 
 </style>
-
