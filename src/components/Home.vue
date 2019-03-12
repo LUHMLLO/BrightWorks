@@ -13,6 +13,7 @@ export default {
         return{
            
            user: firebase.auth().currentUser,
+           
         }
     },
 

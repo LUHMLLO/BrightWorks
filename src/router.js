@@ -3,13 +3,13 @@ import Router from 'vue-router'
 import firebase from 'firebase'
 
 
-import Cover from "./components/intro/Cover.vue"
-import NotFound from "./components/intro/NotFound.vue"
-import Login from "./components/intro/Login.vue"
-import Signup from "./components/intro/Signup.vue"
+import Cover from "./components/Basics/Cover.vue"
+import NotFound from "./components/Basics/NotFound.vue"
+import Login from "./components/Basics/Login.vue"
+import Signup from "./components/Basics/Signup.vue"
 import Home from "./components/Home.vue"
-import Register from "./components/intro/Register.vue"
-import Perfil from "./components/account/Perfil.vue"
+import Register from "./components/Basics/Register.vue"
+import Perfil from "./components/Accounts/Perfil.vue"
 import Search from "./components/Modules/Search.vue"
 
 
@@ -69,15 +69,21 @@ let router = new Router({
 
 
       {
-        path: '/Perfil',
+        path: '/perfil',
         name: 'Pefil',
-        component: Perfil
+        component: Perfil,
+        meta:{
+          requiresAuth: true
+        }
       },
 
       {
         path: '/search',
         name: 'Search',
-        component: Search
+        component: Search,
+        meta:{
+          requiresAuth: true
+        }
       },
       
 
