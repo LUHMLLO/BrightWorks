@@ -16,7 +16,7 @@
 
        <br>
 
-       <button v-on:click="logIn()" class="mdl-button">Sign in</button>
+       <button @click="logIn" class="mdl-button">Sign in</button>
        
        <br>
 
@@ -57,7 +57,8 @@ export default {
     logIn: function(){
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          this.$router.replace('home') 
+          this.$router.replace("home");
+          console.log(user.message);
         },
         (err) =>{
           Swal({ title: "Oops !", text: err.message, icon: "error"})

@@ -26,7 +26,7 @@
                <i class='uil uil-search-alt'></i><p>Search</p>
               </router-link>
 
-              <button v-on:click="logout()">log me out</button>
+              <button @click="logout">log me out</button>
 
            
 

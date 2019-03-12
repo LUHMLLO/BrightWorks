@@ -2,8 +2,8 @@
 <div id="signup">
 
 
-   <form class="form-container">
-     <div class="form-box" @submit.prevent>
+   <form class="form-container" v-on:submit.prevent>
+     <div class="form-box">
        <h1>Sign up</h1>
 
       <div class="input-container">
@@ -16,7 +16,7 @@
 
        <br>
 
-       <button v-on:click="signUp()" class="mdl-button">Sign up</button>
+       <button @click="signUp" class="mdl-button">Sign up</button>
 
        <br><br>
     </div><!--fomr box -->
@@ -50,11 +50,10 @@ export default {
 
   
   methods:{
-
     signUp: function(){
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
         (user) => { 
-          Swal({ title: "Congrats !", text: "Your account has been created", icon: "success"});          
+          this.$router.replace("home");       
         },
         (err) => {
           Swal({ title: "Oops !", text: err.message, icon: "error"});
