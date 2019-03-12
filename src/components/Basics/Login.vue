@@ -57,8 +57,9 @@ export default {
     logIn: function(){
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          this.$router.replace("home");
-          console.log(user.message);
+          Swal({ title: "Welcome back !" , text: "we miss you", icon: "success", button: "helloo!",}).then(() => {
+            this.$router.replace("home")
+          })
         },
         (err) =>{
           Swal({ title: "Oops !", text: err.message, icon: "error"})
