@@ -34,7 +34,10 @@
 
 <script>
 import firebase from 'firebase'
+const firebaseInit = require('../../firebaseInit.js')
+const db = firebase.firestore()
 import Swal from 'sweetalert'
+
 
 export default {
   name: "Signup",
@@ -43,6 +46,7 @@ export default {
       
       email:'',
       password:'',
+      name: 'im a testing name'
 
 
     }
@@ -51,12 +55,21 @@ export default {
   
   methods:{
     signUp: function(){
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-        (user) => { 
-          Swal({ title: "Congrats ! ", text: "Your account has been created", icon: "success", button: "let's goo!",}).then(() => {
-            this.$router.replace("wizard")
+      firebaseInit.auth.createUserWithEmailAndPassword(this.email, this.password).then(
+        (credentials) => { 
+
+
+          return db.collection('users').doc(credentials.user.uid).set({
+            name: this.name
+
+          }).then(() =>{
+              Swal({ title: "Congrats ! ", text: "Your account has been created", icon: "success", button: "let's goo!",}).then(() => {this.$router.replace("wizard")})
           })
-                 
+
+
+
+
+
         },
         (err) => {
           Swal({ title: "Oops !", text: err.message, icon: "error", button: "let's try again",});

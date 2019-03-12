@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import router from './router'
 import App from './App.vue'
-import firebase from 'firebase'
-import './firebaseInit'
+const firebase = require('./firebaseInit.js')
+
 
 
 Vue.config.productionTip = false
@@ -13,7 +13,7 @@ Vue.config.productionTip = false
 
 
 let app;
-firebase.auth().onAuthStateChanged(() => {
+firebase.auth.onAuthStateChanged(() => {
   if(!app){
     app = new Vue({
       router,
