@@ -40,7 +40,7 @@
 
 
 
-    <div id="cover-tabs">
+  <div id="cover-tabs">
 
       <div id="cover-tabs-nav">
         <button class="mdl-button" v-on:click="showTab1">How it Works</button>
@@ -49,14 +49,15 @@
       </div>
       <br>
       <br>
-
-
-
-
+    
+    <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
      <div id="cover-howitworks-tab" class="cover-tabs-section" v-if="isTab1Visible">
        <h3>how it works</h3>
      </div>
+    </transition>
 
+
+    <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
       <div id="cover-services-tab" class="cover-tabs-section" v-if="isTab2Visible">
             <div class="mdl-grid">
 
@@ -72,15 +73,20 @@
 
             </div>
       </div><!--tab ends here-->
+    </transition>
      
-    
+
+    <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
      <div id="cover-features-tab" class="cover-tabs-section" v-if="isTab3Visible">
        <h3>features</h3>
      </div>
+    </transition>
+
+    
 
 
 
-    </div><!-- cover tabs ends here -->
+  </div><!-- cover tabs ends here -->
 
 
 
@@ -300,7 +306,14 @@ export default {
 .cover-tabs-section{
   padding: 52px 22px;
 }
-
+.coverTabsAnim-leave-active{
+  transition: all 0s !important;
+  opacity: 0 !important;
+}
+.coverTabsAnim-leave-to{
+  transition: all 0s !important;
+  opacity: 0 !important;
+}
 
 
 
