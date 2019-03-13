@@ -1,51 +1,7 @@
 <template>
   <div id="app">
-
-        <div id="sidebar" class="mdl-layout mdl-js-layout mdl-layout--drawer">
-
-           <!-- <div class="mdl-layout__header">
-              <div class="mdl-layout__header-row"></div>
-            </div>-->
-
-           <div id="sidebar-drawer" class="mdl-layout__drawer sombra">
-            <div class="mdl-navigation">
-
-              <router-link to="/" class="mdl-navigation__link">
-               <i class='uil uil-bell'></i><p>inbox</p>
-              </router-link>
-              <br>
-              <router-link to="/home" class="mdl-navigation__link">
-               <i class='uil uil-home-alt'></i><p>home</p>
-              </router-link>
-              <br>
-              <router-link to="/perfil" class="mdl-navigation__link">
-               <i class='uil uil-user'></i><p>Perfil</p>
-              </router-link>
-              <br>
-              <router-link to="/search" class="mdl-navigation__link"> 
-               <i class='uil uil-search-alt'></i><p>Search</p>
-              </router-link>
-
-              <button v-on:click="logout">log me out</button>
-
-           
-
-            </div>
-
-           </div>
-
-            <main class="mdl-layout__content">
-                <router-view id="routerView" />
-            </main>
-
-
-
-        </div><!--sidebar-->
-
-      
-
-  
-  
+    <Nav/>
+    <router-view id="routerView" />
   </div>
 </template> 
 
@@ -57,17 +13,20 @@
 <script>
 import firebase from 'firebase'
 import mdl from 'material-design-lite'
+import Nav from './components/Nav/Nav.vue'
+
 
 export default {
   name: "app",
   data(){
     return{
 
-
-
       }
     },
 
+    components:{
+      Nav,
+    },
 
 
 
@@ -107,43 +66,13 @@ export default {
   overscroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
+  user-select: none;
+  transition: all 0.5s ease-in-out;
 }
 #routerView{
   width:100%;
   margin:auto;
 }
-#sidebar-drawer{
-    height: 100vh;
-    position: fixed;
-    top:0;
-    left: 0;
-    padding: 22px 0px;
-    text-align: left !important;
-    list-style-type: none;
-    margin:0;
-    list-style: none;
-    border:none;
-    background: #ffff;
-  }
-  #sidebar-drawer a{
-    display: flex;
-    justify-content: space-between;
-    color: #202124;
-  }
-  #sidebar-drawer i{
-    display: inline-block;
-    margin:auto 10px auto auto;
-    align-self: middle;
-    width:10%;
-    font-size:22px;
-  }
-  #sidebar-drawer p{
-    display: inline-block;
-    margin:auto auto auto 10px;
-    align-self: middle;
-    width: 90%;
-    font-size:16px;
-  }
 
 
 .sombra{
@@ -156,27 +85,6 @@ img{
 }
 
 
-
-
- 
-.mdl-layout__content::-webkit-scrollbar{
-  display:none;
-}
-
-
-
-.mdl-layout__drawer-button{
-  background:#333;
-  outline:none;
-  border-radius: 100%;
-  box-shadow: none !important;
-}
-.mdl-layout__header,.mdl-layout__header-row{
-  background:black;
-  min-height: 30px !important;
-  height: 30px !important;
-  box-shadow: none !important;
-}
 .mdl-grid {
   justify-content: center;
   align-content: middle;

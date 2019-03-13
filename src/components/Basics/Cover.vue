@@ -87,7 +87,6 @@
      
      
       <div class="mdl-tabs__panel" id="Features">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur porro ducimus repellat laudantium esse ipsam reiciendis quae alias, distinctio perferendis consectetur inventore quisquam recusandae quaerat consequuntur, ex impedit sint!</p>
       </div><!--tab ends here-->
 
 

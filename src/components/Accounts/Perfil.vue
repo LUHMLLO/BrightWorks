@@ -13,7 +13,7 @@
 
 
               <div>
-                  <h3>User name</h3>
+                  <h3>{{username}}</h3>
               </div>
 
 
@@ -32,20 +32,25 @@
 
 
 
+
+
+
+
+
+
 </div>
 </template>
 
 <script>
-import firebase from 'firebase'
+import firebase,{ firestore } from 'firebase'
 export default {
     name: "Perfil",
     data(){
         return{
-           
-           user: firebase.auth().currentUser,
+           username: 'im a user' ,
             
         }
-    },
+    }
 
 }
 </script>
