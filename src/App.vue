@@ -10,23 +10,23 @@
            <div id="sidebar-drawer" class="mdl-layout__drawer sombra">
             <div class="mdl-navigation">
 
-              <router-link to="/" class="mdl-navigation__link"  v-if="isLoggedIn">
+              <router-link to="/" class="mdl-navigation__link">
                <i class='uil uil-bell'></i><p>inbox</p>
               </router-link>
               <br>
-              <router-link to="/home" class="mdl-navigation__link"  v-if="isLoggedIn">
+              <router-link to="/home" class="mdl-navigation__link">
                <i class='uil uil-home-alt'></i><p>home</p>
               </router-link>
               <br>
-              <router-link to="/perfil" class="mdl-navigation__link"  v-if="isLoggedIn">
+              <router-link to="/perfil" class="mdl-navigation__link">
                <i class='uil uil-user'></i><p>Perfil</p>
               </router-link>
               <br>
-              <router-link to="/search" class="mdl-navigation__link"  v-if="isLoggedIn"> 
+              <router-link to="/search" class="mdl-navigation__link"> 
                <i class='uil uil-search-alt'></i><p>Search</p>
               </router-link>
 
-              <button v-on:click="logout" v-if="isLoggedIn">log me out</button>
+              <button v-on:click="logout">log me out</button>
 
            
 
@@ -63,7 +63,7 @@ export default {
   data(){
     return{
 
-       isLoggedIn: false,
+
 
       }
     },
@@ -86,11 +86,6 @@ export default {
 
   mounted: function(){
     componentHandler.upgradeAllRegistered();
-
-      if(firebase.auth().currentUser){
-        this.isLoggedIn = true
-        this.currentUser = firebase.auth().currentUser.email
-      }
   }
 
 
