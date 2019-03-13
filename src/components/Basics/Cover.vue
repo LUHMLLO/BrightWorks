@@ -40,34 +40,24 @@
 
 
 
-    <div id="cover-tabs" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div id="cover-tabs">
 
-
-      <div class="mdl-tabs__tab-bar">
-        <a href="#How-it-works" class="mdl-tabs__tab">How it Works</a>
-        <a href="#Services" class="mdl-tabs__tab is-active">Services</a>
-        <a href="#Features" class="mdl-tabs__tab">Features</a>
+      <div id="cover-tabs-nav">
+        <button class="mdl-button" v-on:click="showTab1">How it Works</button>
+        <button class="mdl-button" v-on:click="showTab2">Services</button>
+        <button class="mdl-button" v-on:click="showTab3">Features</button>
       </div>
-
-    <div id="cover-tabs-content">
-
-
-      <div class="mdl-tabs__panel" id="How-it-works">
-         <div class="mdl-grid">
-
-
-           <div class="how-it-works-item">
-
-           </div>
-           
-
-         </div>
-      </div><!--tab ends here-->
+      <br>
+      <br>
 
 
 
 
-      <div class="mdl-tabs__panel is-active" id="Services">
+     <div id="cover-howitworks-tab" class="cover-tabs-section" v-if="isTab1Visible">
+       <h3>how it works</h3>
+     </div>
+
+      <div id="cover-services-tab" class="cover-tabs-section" v-if="isTab2Visible">
             <div class="mdl-grid">
 
                 <div class="service" v-for="(service,servicesData) in services" :key="servicesData">
@@ -83,14 +73,13 @@
             </div>
       </div><!--tab ends here-->
      
-     
-     
-     
-      <div class="mdl-tabs__panel" id="Features">
-      </div><!--tab ends here-->
+    
+     <div id="cover-features-tab" class="cover-tabs-section" v-if="isTab3Visible">
+       <h3>features</h3>
+     </div>
 
 
-    </div><!---cover tabs content-->
+
     </div><!-- cover tabs ends here -->
 
 
@@ -130,25 +119,25 @@
       <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
         <img src="https://cdn.dribbble.com/users/791530/screenshots/5660599/icons8_connection_lost_illustration.png">
       </div> 
-      <div class="cover-cards-ps mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+      <div class="cover-cards-text mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit inventore nobis vel enim illo, cupiditate mollitia consectetur ullam voluptates quisquam debitis officia dolorum a accusantium adipisci, ipsa officiis, nisi unde.</p>
       </div>
 
 
 
-      <div class="cover-cards-ps mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+      <div class="cover-cards-text mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, doloremque! Vel porro possimus excepturi illum. Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
       </div>
-      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
         <img src="https://cdn.dribbble.com/users/412478/screenshots/3673636/creative_dribble-08.png">
       </div> 
       
 
 
-      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
         <img src="https://cdn.dribbble.com/users/2323077/screenshots/4625711/01_jira-illos.png">
       </div> 
-      <div class="cover-cards-ps mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+      <div class="cover-cards-text mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit animi quasi quisquam debitis saepe asperiores sunt dicta, labore magnam totam dolorum, eum sit corrupti. Nemo perspiciatis sequi aperiam eveniet ad?</p>
       </div>
 
@@ -213,6 +202,11 @@ export default {
   data() {
     return {
 
+
+        isTab1Visible: false,
+        isTab2Visible: true,
+        isTab3Visible: false,
+
          services:[
            {img:'https://cdn.dribbble.com/users/94074/screenshots/3647324/the_guardian__crop_.jpg',name:'Gardening'},
            {img:'https://cdn.dribbble.com/users/63407/screenshots/5462636/dribbble_taxi_cab_ride.png',name:'Rides'},
@@ -228,7 +222,33 @@ export default {
 
 
     }
-  }
+  },
+
+
+
+
+  methods:{
+    showTab1:function(){
+      this.isTab1Visible = true
+      this.isTab2Visible = false
+      this.isTab3Visible = false
+    },
+    showTab2:function(){
+      this.isTab1Visible = false
+      this.isTab2Visible = true
+      this.isTab3Visible = false
+    },
+    showTab3:function(){
+      this.isTab1Visible = false
+      this.isTab2Visible = false
+      this.isTab3Visible = true
+    },
+
+  },
+
+
+
+
 };
 </script>
 
@@ -264,18 +284,21 @@ export default {
 #cover-tabs{
   width: 100%;
   min-height: 100vh;
-  padding:62px 0;
+  padding:42px 0;
 }
-.mdl-tabs__tab-bar{
-  border-bottom:none !important;
-  border: none !important;
-  width: 100%;
-  padding:22px 0;
+#cover-tabs-nav{
+  width:100%;
+  margin:auto;
 }
-#cover-tabs-content{
-  padding:60px 32px;
-  display: flex;
-  justify-content: center;
+#cover-tabs-nav button{
+  border-radius: 100px;
+}
+
+.tab-active{
+  background: rgba(90, 90, 90, 0.1);
+}
+.cover-tabs-section{
+  padding: 52px 22px;
 }
 
 
@@ -321,7 +344,7 @@ export default {
   align-self: middle;
   width: 50%;
 }
-.cover-cards-ps{
+.cover-cards-text{
   display:flex;
   justify-content: center;
   align-content: middle;
@@ -333,7 +356,7 @@ export default {
   display: inline-block;
   font-size:22px;
   line-height: 2.3rem;
-  text-align: justify;
+  text-align: center;
   padding:22px;
 }
 
