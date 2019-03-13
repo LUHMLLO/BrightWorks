@@ -95,6 +95,7 @@ img{
 
 .mdl-button{
   text-decoration: none !important;
+  height: auto !important;
 }
 
 

@@ -12,18 +12,23 @@
               </div>
 
 
-              <div>
+              <div id="perfil-header-name">
                   <h3>{{username}}</h3>
               </div>
 
 
-              <div id="perfil-header-bar" class="">
-                  <a>timeline</a>
-                  <a>timeline</a>
-                  <a>timeline</a>
-                  <a>timeline</a>
-              </div>
 
+             <div id="perfil-bottom-row">
+                 
+                 <div id="perfil-header-bar" class="perfil-bottom-item">
+                     <button class="mdl-button">Timeline</button>
+                     <button class="mdl-button">About</button>
+                     <button class="mdl-button">Services</button>
+                     <button class="mdl-button">Help</button>
+                 </div>
+
+
+             </div><!--perfil bottom row -->
            </div><!---perfil header -->
 
 
@@ -31,6 +36,61 @@
 
 
 
+     
+           <div id="perfil-sections-container">
+
+                 
+                 
+
+
+
+
+           <div id="perfil-info" class="perfil-section">
+
+
+
+            <div id="perfil-info-welcome">
+                <div id="perfil-info-welcome-img">
+                    <img src="https://cdn.dribbble.com/users/1461762/screenshots/3826770/missing_summer.png">
+                </div>
+
+                <div id="perfil-info-welcome-text">
+                    <h3>Services Name goes here</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Praesentium aliquid neque vitae veritatis deserunt.
+                        Doloribus recusandae facilis at natus fugit asperiores unde molestias,
+                        aliquam tempore quasi suscipit accusamus incidunt modi?
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Debitis delectus, et voluptatibus aperiam odit ipsa eveniet
+                        ullam quae enim reprehenderit ratione, ipsam exercitationem.
+                        Aliquid soluta iste odit obcaecati voluptatibus suscipit.</p>
+
+
+
+                        <div id="perfil-info-welcome-details">
+                            <div class="perfil-info-welcome-detail">
+                                <i class='uil uil-location-point'></i><p>801 Plumb Branch Street Fairmont, WV 26554</p>
+                            </div><!--perfil info welcome detail-->
+                            <div class="perfil-info-welcome-detail">
+                                <i class='uil uil-phone'></i><p>801-123-26554</p>
+                            </div><!--perfil info welcome detail-->
+                            <div class="perfil-info-welcome-detail">
+                                <i class='uil uil-location-point'></i><p>801 Plumb Branch Street Fairmont, WV 26554</p>
+                            </div><!--perfil info welcome detail-->
+                            <div class="perfil-info-welcome-detail">
+                                <i class='uil uil-location-point'></i><p>801 Plumb Branch Street Fairmont, WV 26554</p>
+                            </div><!--perfil info welcome detail-->
+                            
+                        </div><!-- perfil info welcome details-->
+
+
+                </div>
+            </div><!---perfil info-welcome-->
+               
+
+
+
+           </div><!-- perfil info section-->
 
 
 
@@ -38,6 +98,28 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           </div><!--perfil-sections container-->
 </div>
 </template>
 
@@ -77,17 +159,146 @@ export default {
         object-fit: cover !important;
     }
 
-    #perfil-header-bar{
+    #perfil-header-name{
+        margin:22px auto;
+        width:100%;
+        justify-content: center;
+        align-content: center;
+        display: flex;
+    }
+    #perfil-header-name h3{
+        display: inline-block;
+        margin:auto;
+        align-self: middle;
+        justify-self: center;
+        padding:8px;
+    }
+
+
+
+
+    #perfil-bottom-row{
         width:100%;
         display: flex;
-        justify-content: center;
-        margin: 22px auto;
+        justify-content: space-between;
+        align-content: center;
     }
-    #perfil-header-bar a{
-        padding:22px;
-        margin: auto 12px auto 12px;
+
+    .perfil-bottom-item{
+        display: flex;
+        justify-content: center;
+        margin:auto;
+        align-self: middle;
+        justify-self: center;
+    }
+    
+    #perfil-header-bar{
+        padding: 22px 0;
+    }
+    #perfil-header-bar button{
         display: inline-block;
         align-self: middle;
-
+        margin: auto 8px auto 8px;
+        border-radius: 100px;
     }
+ 
+
+
+
+
+
+
+
+   
+
+
+   #perfil-sections-container{
+       padding:22px;
+       width:100%;
+       margin:100px auto auto auto;
+       justify-content: center;
+       align-content: center;
+   }
+   .perfil-section{
+       width:100%;
+       min-height: 100vh;
+       align-content: center;
+       justify-content: center;
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  #perfil-info-welcome{
+      width:100%;
+      padding:22px;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      text-align: left;
+  }
+  #perfil-info-welcome h3{
+      font-size:32px;
+      padding:22px;
+      margin: auto;
+      align-self: middle;
+      display: inline-block;
+  }
+  #perfil-info-welcome p{
+      font-size:22px;
+      text-align: justify;
+      padding:16px;
+      margin: auto;
+      align-self: middle;
+      display: inline-block;
+  }
+
+  #perfil-info-welcome-img{
+      width:800px;
+  }
+  #perfil-info-welcome-text{
+      padding:52px 32px;
+      width:1080px;
+  }
+
+
+  #perfil-info-welcome-details{
+      width:70%;
+  }
+  .perfil-info-welcome-detail{
+      display: flex;
+      justify-content: center;
+      align-content: middle;
+      text-align: left;
+      width: 400px;
+  }
+  .perfil-info-welcome-detail p,i{
+      font-size:14px !important;
+      display: inline-block;
+      align-self: middle;
+      margin:auto;
+      padding: 0 22px;
+  }
+  .perfil-info-welcome-detail p{
+      width:90%;
+  }
+  .perfil-info-welcome-detail i{
+      width:10%;
+  }
+
+
+
+
+
+
+
 </style>

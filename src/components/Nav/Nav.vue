@@ -23,15 +23,15 @@
               
 
               <router-link to="/home" class="mdl-button">
-               <i class='uil uil-home-alt'></i><p>home</p>
+               <i class='uil uil-home-alt' style="width:50%;"></i><p>home</p>
               </router-link>
 
               <router-link to="/perfil" class="mdl-button">
-               <i class='uil uil-user'></i><p>Perfil</p>
+               <i class='uil uil-user' style="width:50%;"></i><p>Perfil</p>
               </router-link>
               
               <router-link to="/search" class="mdl-button"> 
-               <i class='uil uil-search-alt'></i><p>Search</p>
+               <i class='uil uil-search-alt' style="width:50%;"></i><p>Search</p>
               </router-link>
 
         </div><!--sidebar-->
@@ -138,7 +138,7 @@ export default {
   }
   #sidebar a{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-content: middle;
     color: #202124;
     width:100%;
@@ -151,31 +151,35 @@ export default {
   }
   #sidebar i,p{
     display: inline-block;
-    margin:auto 5px auto 5px;
+    margin:auto;
     align-self: middle;
   }
   #sidebar p{
     font-size:16px;
-    padding: 0px 23px;
+    width:60%;
+    text-align: left;
   }
   #sidebar i{
-      font-size:22px;
+    font-size:22px;
   }
 
 
 
   #sidebar-route-buttons{
-      justify-content: space-between;
       width:100%;
       height: auto;
       margin:auto;
       background:rgba(200,200,200,0.1);
       border-radius: 100px;
-      align-content: center;
-      padding:10px 22px;
+      padding:10px 0px;
+      display: flex !important;
+      justify-content: space-between !important;
   }
   #sidebar-route-buttons i{
       cursor: pointer;
+      display: inline-block;
+      margin:auto;
+      align-self: middle;
   }
 
   #sidebar-header{
@@ -188,6 +192,8 @@ export default {
       width:100%;
       margin:auto;
       padding:22px 0px;
+      display: flex !important;
+      justify-content: space-between !important;
   }
   #sidebar-header-icons i{
       margin: auto 10px auto 10px;

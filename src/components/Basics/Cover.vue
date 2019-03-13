@@ -22,8 +22,7 @@
           <button class="mdl-button">Sign up</button>
         </router-link>
       </div>
-    </div>
-    <!--cover header ends herer--->
+    </div><!--cover header ends herer--->
 
 
 
@@ -209,6 +208,22 @@ export default {
     return {
 
 
+
+
+       coverSlideBackground:[
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5268088/farmhouse1.png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5301137/image.png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5570301/mountain_house-1200-x-1600.png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5188624/cape-mudge-lighthouse..png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5371625/lighthouse_bovbjerg-lighthouse.png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/6080532/kerala_paddy_field.png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/6149997/nature-3.png'},
+         {img:'https://cdn.dribbble.com/users/63407/screenshots/4828797/dribbble_tea_medows.png'},
+         {img:'https://cdn.dribbble.com/users/63407/screenshots/5877615/dribbble_india_stories_detail.png'},
+         {img:'https://cdn.dribbble.com/users/63407/screenshots/5095176/dribbble_lotus_pond.png'},
+       ],
+
+
         isTab1Visible: false,
         isTab2Visible: true,
         isTab3Visible: false,
@@ -225,6 +240,7 @@ export default {
            {img:'https://cdn.dribbble.com/users/103909/screenshots/3671664/sensors-01.jpg',name:'Managing'},
            
          ],
+
 
 
     }
@@ -261,7 +277,7 @@ export default {
 <style scoped>
 
 #cover-header {
-  background: url("https://images.unsplash.com/photo-1551864605-74764bd3d836?ixlib=rb-1.2.1&auto");
+  background: url("https://cdn.dribbble.com/users/1803663/screenshots/6080532/kerala_paddy_field.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
