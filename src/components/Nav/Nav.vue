@@ -141,12 +141,13 @@ export default {
     justify-content: center;
     align-content: middle;
     color: #202124;
-    width:80%;
+    width:100%;
     padding:12px 22px;
     border-radius: 8px;
     margin:22px auto 22px auto;
     cursor: pointer;
     position: relative;
+    height: auto;
   }
   #sidebar i,p{
     display: inline-block;
@@ -165,7 +166,8 @@ export default {
 
   #sidebar-route-buttons{
       justify-content: space-between;
-      width:80%;
+      width:100%;
+      height: auto;
       margin:auto;
       background:rgba(200,200,200,0.1);
       border-radius: 100px;
@@ -179,7 +181,7 @@ export default {
   #sidebar-header{
       width:100%;
       padding:22px 0px;
-      margin:auto;
+      margin: 22px auto 22px auto;
   }
 
   #sidebar-header-icons{
@@ -188,7 +190,7 @@ export default {
       padding:22px 0px;
   }
   #sidebar-header-icons i{
-      margin: auto 16px auto 16px;
+      margin: auto 10px auto 10px;
       padding:8px 14px;
       display: inline-block;
       align-self: middle;

@@ -102,9 +102,9 @@
 
 
 
-   <div style="background:black; padding:22px 0px; width:100%; margin:22px auto; color:white; align-content:center; justify-content:center;">
+   <div class="cover-text-random-divider">
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, inventore atque? Architecto dicta provident soluta explicabo facere sapiente similique ipsa facilis laudantium modi, necessitatibus minus, tempora temporibus nemo, quis distinctio!</p>
-    </div>
+   </div>
 
 
 
@@ -318,6 +318,28 @@ export default {
 
 
 
+.cover-text-random-divider{
+  width:100%;
+  border: solid thin black;
+  margin:auto;
+  background:black;
+  color:white;
+  padding:22px;
+  text-align: center;
+  min-height: 20vh;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.cover-text-random-divider p{
+  font-size:18px;
+  align-self: middle;
+  margin:auto;
+  justify-self: center;
+  width:80%;
+}
+
+
 .service{
   width: 230px;
   display: flex;
@@ -343,7 +365,7 @@ export default {
 .service-name{
   display: inline-block;
   align-self: middle;
-  margin:auto;
+  margin:16px auto auto auto;
 }
 
 

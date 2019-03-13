@@ -68,6 +68,9 @@ export default {
   scroll-behavior: smooth;
   user-select: none;
   transition: all 0.5s ease-in-out;
+  width:100%;
+  padding:0;
+  margin:0;
 }
 #routerView{
   width:100%;
@@ -89,6 +92,11 @@ img{
   justify-content: center;
   align-content: middle;
 }
+
+.mdl-button{
+  text-decoration: none !important;
+}
+
 
 
 
