@@ -40,6 +40,30 @@
 
                <div id="perfil-timeline" class="perfil-section" v-if="TimelineTab">
 
+
+                   <div id="perfil-timeline-action-bar">
+                       <button class="mdl-button" v-on:click="isPostInMaking = true" v-bind:class="{tabActive: isPostInMaking}">Make a post</button>
+                       <button class="mdl-button">im an action</button>
+                       <button class="mdl-button">im an action</button>
+                       <button class="mdl-button">im an action</button>
+                       <button class="mdl-button">im an action</button>
+                       <button class="mdl-button">im an action</button>
+                   </div>
+
+                   
+                <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                   <div id="perfil-timeline-make" v-if="isPostInMaking"> 
+                       <div id="perfil-timeline-make-buttonbar">
+                          <button id="perfil-timeline-make-leave" class="mdl-button"  v-on:click="isPostInMaking = false">leave</button>
+                          <button id="perfil-timeline-make-send" class="mdl-button"  v-on:click="isPostInMaking = false">send</button>                    
+                       </div>
+                       <quillEditor id="perfil-timeline-make-editor"/>
+                   </div><!---perfil timeline make-->
+                </transition>
+
+
+
+
                </div><!--perfil timeline section -->
 
 
@@ -123,9 +147,18 @@
 
 
 <script>
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+import { quillEditor } from 'vue-quill-editor'
+
+
 import firebase,{ firestore } from 'firebase'
 export default {
     name: "Perfil",
+    components:{
+        quillEditor
+    },
     data(){
         return{
            username: 'im a user' ,
@@ -133,6 +166,7 @@ export default {
            aboutTab: false,
            ServiceTab: false,
            HelpTab: false,
+           isPostInMaking: false,
 
         }
     },
@@ -268,15 +302,59 @@ export default {
        align-content: center;
        justify-content: center;
    }
-   .tabActive{
-       border:solid 0.5px rgba(87, 85, 217,0.2);
+
+
+
+
+
+
+
+ 
+
+
+
+  
+
+  #perfil-timeline-action-bar{
+      margin: -112px auto auto auto;
+      width:100%;
   }
-  #perfil-header-bar button:hover{
-      background: rgba(87, 85, 217,0.1);
+  #perfil-timeline-action-bar button{
+      margin: auto 22px auto 22px;
+      border-radius: 100px;
   }
-  #perfil-header-bar button:focus{
-      background: none
+
+
+  #perfil-timeline-make{
+      width:90%;
+      margin:14% auto;
+      position: fixed;
+      top:0;
+      left:0;
+      right:0;
+      box-shadow: 0 0 22000px 22000px rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.5);
   }
+  #perfil-timeline-make-editor{
+      background: white;
+  }
+  #perfil-timeline-make-buttonbar{
+      display: flex;
+      width:100%;
+      background: rgba(0,0,0,0.4);
+      justify-content: space-between;
+      padding:22px;
+  }
+  #perfil-timeline-make-leave{
+      border-radius:100px;
+      background: orangered;
+  }
+  #perfil-timeline-make-send{
+      border-radius:100px;
+      background: limegreen;
+  }
+
+
 
 
 

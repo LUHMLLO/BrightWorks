@@ -333,16 +333,6 @@ export default {
   border-radius: 100px;
   margin: auto 5px auto 5px;
 }
-#cover-tabs-nav button:hover{
-  background: rgba(87, 85, 217,0.1);
-}
-#cover-tabs-nav button:focus{
-  background: none
-}
-
-.tabActive{
-  border:solid 0.5px rgba(87, 85, 217,0.2);
-}
 .cover-tabs-section{
   padding: 52px 22px;
 }

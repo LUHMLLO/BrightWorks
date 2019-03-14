@@ -107,6 +107,34 @@ img{
 }
 
 
+  .tabActive{
+       border:solid 0.5px rgba(87, 85, 217,0.2);
+  }
+  .mdl-button:hover{
+      background: rgba(87, 85, 217,0.1) !important;
+  }
+  .mdl-button:focus{
+      background: none !important;
+  }
+
+  .swal-button{
+    outline: none !important;
+    border-radius:6px;
+  }
+  .swal-button.swal-button--confirm,.swal-button.swal-button--confirm:hover,.swal-button.swal-button--confirm:focus{
+    background: rgba(87, 85, 217,0.3) !important;
+    border: none !important;
+    outline:none !important;
+    color: #333;
+  }
+  .swal-button.swal-button--cancel,.swal-button.swal-button--cancel:hover,.swal-button.swal-button--cancel:focus{
+    background: rgba(255,100,100,0.1) !important;
+    border: none !important;
+    outline:none !important;
+    color: #333;
+  }
+  
+
 
 
 </style>
