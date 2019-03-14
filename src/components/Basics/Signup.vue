@@ -7,7 +7,7 @@
 
   
 
-    <div class="floaties">
+    <div class="floaties mdl-shadow--2dp">
         <router-link to="/login">
           <button class="mdl-button">I already have an account</button>
           <br>
@@ -23,7 +23,7 @@
 
 
    <div id="form01" class="form-container"  :class="{ 'hidden': !NotSignedUpYet }">
-     <div class="form-box">
+     <div class="form-box mdl-shadow--16dp">
        <h1>Sign up</h1>
 
       <div class="input-container">
@@ -52,7 +52,7 @@
 
 
    <div id="form02" class="form-container"  :class="{ 'hidden': NotSignedUpYet }">
-     <div class="form-box">
+     <div class="form-box mdl-shadow--16dp">
        <h3>Welcome to Bright Works</h3>
        <h6>Let's setup your account so you can go surf</h6>
        <br>
@@ -248,7 +248,8 @@ export default {
        align-content: middle;
        padding:32px;
        margin:auto 10px auto 10px;
-       width:70px;
+       width:130px;
+       height: auto;
        border-radius:5px;
    }
    .account-type i,p{

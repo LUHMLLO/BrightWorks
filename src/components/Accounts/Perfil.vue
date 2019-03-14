@@ -21,10 +21,10 @@
              <div id="perfil-bottom-row">
                  
                  <div id="perfil-header-bar" class="perfil-bottom-item">
-                     <button class="mdl-button">Timeline</button>
-                     <button class="mdl-button">About</button>
-                     <button class="mdl-button">Services</button>
-                     <button class="mdl-button">Help</button>
+                     <button class="mdl-button" v-on:click="showTimelineTab" v-bind:class="{ tabActive: TimelineTab }">Timeline</button>
+                     <button class="mdl-button" v-on:click="showAboutTab" v-bind:class="{ tabActive: aboutTab }">About</button>
+                     <button class="mdl-button" v-on:click="showServiceTab" v-bind:class="{ tabActive: ServiceTab }">Services</button>
+                     <button class="mdl-button" v-on:click="showHelpTab" v-bind:class="{ tabActive: HelpTab }">Help</button>
                  </div>
 
 
@@ -34,29 +34,29 @@
 
 
 
-
-
      
            <div id="perfil-sections-container">
 
+
+               <div id="perfil-timeline" class="perfil-section" v-if="TimelineTab">
+
+               </div><!--perfil timeline section -->
+
+
+
+
+
                  
-                 
+               <div id="perfil-info" class="perfil-section" v-if="aboutTab">
+                 <div id="perfil-info-welcome">
+                       
+                    <div id="perfil-info-welcome-img">
+                       <img src="https://cdn.dribbble.com/users/1461762/screenshots/3826770/missing_summer.png">
+                    </div>
 
-
-
-
-           <div id="perfil-info" class="perfil-section">
-
-
-
-            <div id="perfil-info-welcome">
-                <div id="perfil-info-welcome-img">
-                    <img src="https://cdn.dribbble.com/users/1461762/screenshots/3826770/missing_summer.png">
-                </div>
-
-                <div id="perfil-info-welcome-text">
-                    <h3>Services Name goes here</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <div id="perfil-info-welcome-text">
+                        <h3>Services Name goes here</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Praesentium aliquid neque vitae veritatis deserunt.
                         Doloribus recusandae facilis at natus fugit asperiores unde molestias,
                         aliquam tempore quasi suscipit accusamus incidunt modi?
@@ -84,13 +84,10 @@
                         </div><!-- perfil info welcome details-->
 
 
-                </div>
-            </div><!---perfil info-welcome-->
-               
+                    </div><!--perfil info welcome text-->
 
-
-
-           </div><!-- perfil info section-->
+                 </div><!---perfil info-welcome-->
+               </div><!-- perfil info section-->
 
 
 
@@ -123,6 +120,8 @@
 </div>
 </template>
 
+
+
 <script>
 import firebase,{ firestore } from 'firebase'
 export default {
@@ -130,12 +129,50 @@ export default {
     data(){
         return{
            username: 'im a user' ,
-            
+           TimelineTab: true,
+           aboutTab: false,
+           ServiceTab: false,
+           HelpTab: false,
+
         }
-    }
+    },
+    
+    methods:{
+
+        showTimelineTab: function(){
+           this.TimelineTab = true
+           this.aboutTab = false
+           this.ServiceTab = false
+           this.HelpTab = false
+        },
+        showAboutTab: function(){
+           this.TimelineTab = false
+           this.aboutTab = true
+           this.ServiceTab = false
+           this.HelpTab = false
+        },
+        showServiceTab: function(){
+           this.TimelineTab = false
+           this.aboutTab = false
+           this.ServiceTab = true
+           this.HelpTab = false
+        },
+        showHelpTab: function(){
+           this.TimelineTab = false
+           this.aboutTab = false
+           this.ServiceTab = false
+           this.HelpTab = true
+        },
+    },
 
 }
 </script>
+
+
+
+
+
+
 
 <style scoped>
 
@@ -201,7 +238,12 @@ export default {
         margin: auto 8px auto 8px;
         border-radius: 100px;
     }
- 
+    #perfil-header-bar button:hover{
+        background: rgba(87, 85, 217,0.1);
+    }
+    #perfil-header-bar button:focus{
+        background: none
+    }
 
 
 
@@ -213,20 +255,28 @@ export default {
 
 
    #perfil-sections-container{
-       padding:22px;
        width:100%;
        margin:100px auto auto auto;
        justify-content: center;
        align-content: center;
+       padding:0;
    }
    .perfil-section{
        width:100%;
        min-height: 100vh;
+       padding:62px 22px;
        align-content: center;
        justify-content: center;
    }
-
-
+   .tabActive{
+       border:solid 0.5px rgba(87, 85, 217,0.2);
+  }
+  #perfil-header-bar button:hover{
+      background: rgba(87, 85, 217,0.1);
+  }
+  #perfil-header-bar button:focus{
+      background: none
+  }
 
 
 

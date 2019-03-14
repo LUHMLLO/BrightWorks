@@ -77,6 +77,9 @@ export default {
   padding:0;
   margin:0;
 }
+body::-webkit-scrollbar{
+  display: none !important;
+}
 #routerView{
   width:100%;
   margin:auto;

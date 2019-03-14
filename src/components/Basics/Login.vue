@@ -3,7 +3,7 @@
 
 
    <form class="form-container" v-on:submit.prevent>
-     <div class="form-box">
+     <div class="form-box mdl-shadow--16dp">
        <h1>Log in</h1>
 
       <div class="input-container">
@@ -24,7 +24,7 @@
        <br><br>
     </div><!--fomr box -->
 
-    <div class="floaties">
+    <div class="floaties mdl-shadow--2dp">
         <router-link to="/signup">
           <button class="mdl-button">I dont have an account</button>
         </router-link>
