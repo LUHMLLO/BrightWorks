@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <Nav/>
-    <router-view id="routerView" />
+
+
+    <transition name="changePageAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
+      <router-view id="routerView" />
+    </transition>
+  
   </div>
 </template> 
 

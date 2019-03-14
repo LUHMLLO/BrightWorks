@@ -42,9 +42,9 @@
   <div id="cover-tabs">
 
       <div id="cover-tabs-nav">
-        <button class="mdl-button" v-on:click="showTab1">How it Works</button>
-        <button class="mdl-button" v-on:click="showTab2">Services</button>
-        <button class="mdl-button" v-on:click="showTab3">Features</button>
+        <button class="mdl-button" v-on:click="showTab1" v-bind:class="{ tabActive: isTab1Visible }">How it Works</button>
+        <button class="mdl-button" v-on:click="showTab2" v-bind:class="{ tabActive: isTab2Visible }">Services</button>
+        <button class="mdl-button" v-on:click="showTab3" v-bind:class="{ tabActive: isTab3Visible }">Features</button>
       </div>
       <br>
       <br>
@@ -77,8 +77,25 @@
 
     <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
      <div id="cover-features-tab" class="cover-tabs-section" v-if="isTab3Visible">
-       <h3>features</h3>
-     </div>
+       <div class="mdl-grid">
+
+
+           <div class="feature" v-for="(feature,featuresData) in features" :key="featuresData">
+             <div class="feature-img">
+               <img v-bind:src="feature.img">
+             </div><!---feature img-->
+
+             <div class="feature-content">
+               <h3>feature name</h3>
+               <div class="feature-text">
+                 <p>Lorem ipsum dolor sit amet  fuga distinctio neque laborum sit eos totam, deleniti minus obcaecati!</p>
+               </div>
+             </div>
+
+
+           </div><!---feature container -->
+       </div>
+     </div><!-- cover features tab ends here-->
     </transition>
 
     
@@ -210,7 +227,7 @@ export default {
 
 
 
-       coverSlideBackground:[
+       features:[
          {img:'https://cdn.dribbble.com/users/1803663/screenshots/5268088/farmhouse1.png'},
          {img:'https://cdn.dribbble.com/users/1803663/screenshots/5301137/image.png'},
          {img:'https://cdn.dribbble.com/users/1803663/screenshots/5570301/mountain_house-1200-x-1600.png'},
@@ -314,10 +331,17 @@ export default {
 }
 #cover-tabs-nav button{
   border-radius: 100px;
+  margin: auto 5px auto 5px;
+}
+#cover-tabs-nav button:hover{
+  background: rgba(87, 85, 217,0.1);
+}
+#cover-tabs-nav button:focus{
+  background: none
 }
 
-.tab-active{
-  background: rgba(90, 90, 90, 0.1);
+.tabActive{
+  border:solid 0.5px rgba(87, 85, 217,0.2);
 }
 .cover-tabs-section{
   padding: 52px 22px;
@@ -383,6 +407,47 @@ export default {
   align-self: middle;
   margin:16px auto auto auto;
 }
+
+
+
+ .feature{
+   display: flex;
+   width: 500px;
+   margin:32px;
+   justify-content: center;
+ }
+ .feature-img{
+   width:140px;
+   height: 140px;
+   overflow: hidden;
+   border-radius: 100px;
+   display: inline-block;
+   margin:auto;
+   align-self: middle;
+ }
+ .feature-img img{
+   width:100%;
+   height: 100%;
+ }
+ .feature-content{
+   width: 320px;
+   display: inline-block;
+   margin:auto;
+   align-self: middle;
+   text-align: left
+ }
+ .feature-content h3{
+   display: inline-block;
+   margin:auto;
+   align-self: middle;
+ }
+ .feature-text p{
+   font-size:13px;
+   display: inline-block;
+   margin:auto;
+   align-self: middle;
+ }
+
 
 
 #cover-cards{
