@@ -51,16 +51,59 @@
                    </div>
 
                    
-                <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                  <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
                    <div id="perfil-timeline-make" v-if="isPostInMaking"> 
                        <div id="perfil-timeline-make-buttonbar">
                           <button id="perfil-timeline-make-leave" class="mdl-button"  v-on:click="isPostInMaking = false">leave</button>
-                          <button id="perfil-timeline-make-send" class="mdl-button"  v-on:click="isPostInMaking = false">send</button>                    
-                       </div>
-                       <quillEditor id="perfil-timeline-make-editor"/>
+                          <button id="perfil-timeline-make-send" class="mdl-button"  v-on:click="addPost">send</button>
+                        </div>
+                       <quillEditor id="perfil-timeline-make-editor" v-model="postsContent"/>
                    </div><!---perfil timeline make-->
-                </transition>
+                  </transition>
 
+
+
+
+                    <div id="perfil-timeline-posts">
+                        <div class="perfil-timeline-post mdl-shadow--2dp" v-for="(post,timelinePostsData) in timelinePosts" :key="timelinePostsData">
+
+
+                            <div class="post-header">
+                                <div class="post-header-img">
+                                    <img src="https://cdn.dribbble.com/users/1461762/screenshots/3795063/google_material_illustration.png">
+                                </div>
+                                <div class="post-header-text">
+                                    <h5>user name</h5>
+                                    <small>time 10ms ago</small>
+                                </div>
+                            </div><!--post header-->
+
+
+
+                            <div class="post-content" v-html="post.content">
+                            </div><!--post content-->
+
+
+
+                            <div class="post-footer">
+                                <div class="post-footer-top">
+                                    <div class="post-footer-likes">
+                                        <i class='uil uil-thumbs-up'></i> <small>12 likes</small>
+                                    </div>
+                                    <div class="post-footer-comments">
+                                        <i class='uil uil-comment'></i> <small> 22 comments</small>
+                                    </div>
+                                </div><!--footer header-->
+
+
+                                <div class="post-footer-middle">
+                                    <input type="text" placeholder="leave a comment">
+                                </div><!--footer middle-->
+                            </div><!--post footer-->
+
+
+                        </div><!-- perfil timeline post-->
+                    </div><!--perfil timeline posts-->
 
 
 
@@ -168,6 +211,15 @@ export default {
            HelpTab: false,
            isPostInMaking: false,
 
+
+           postsContent:'',
+
+
+           timelinePosts:[
+               {content: 'hi, im a post, to make more like me hit on make a post button'},
+
+           ],
+
         }
     },
     
@@ -197,6 +249,15 @@ export default {
            this.ServiceTab = false
            this.HelpTab = true
         },
+
+
+         addPost() {
+            this.timelinePosts.push({content:this.postsContent});
+            this.postsContent = '';
+        },
+
+
+
     },
 
 }
@@ -343,7 +404,13 @@ export default {
       width:100%;
       background: rgba(0,0,0,0.4);
       justify-content: space-between;
+      margin:auto;
       padding:22px;
+  }
+  #perfil-timeline-make-buttonbar button{
+      margin:auto;
+      align-self: middle;
+      display: inline-block;
   }
   #perfil-timeline-make-leave{
       border-radius:100px;
@@ -353,6 +420,89 @@ export default {
       border-radius:100px;
       background: limegreen;
   }
+
+
+
+  #perfil-timeline-posts{
+      width:80%;
+      margin:100px auto auto auto;
+      padding:22px;
+  }
+  .perfil-timeline-post{
+      width:800px;
+      margin: auto auto 52px auto;
+      min-height: 100px;
+  }
+  .post-header{
+      width: 100%;
+      display: flex;
+      border-bottom: solid 0.5px rgba(0,0,0,0.2);
+      padding: 10px 0 10px 0;
+  }
+  .post-header-img{
+      width:80px;
+      height:80px;
+      border-radius: 100px;
+      overflow: hidden;
+      margin: auto;
+      align-self: middle;
+      display: inline-block;
+  }
+  .post-header-img img{
+      width:100%;
+      height: 100%;
+      object-fit: cover;
+  }
+  .post-header-text{
+      margin: auto;
+      align-self: middle;
+      display: inline-block;
+      text-align: left;
+      width:76%;
+  }
+  .post-header-text h5{
+      font-size:18px;
+  }
+  .post-header-text small{
+      font-size:12px;
+  }
+  .post-content{
+      padding:58px 26px;
+      text-align: left;
+  }
+  .post-footer{
+      width:100%;
+      border-top: solid 0.5px rgba(0,0,0,0.2);
+      padding: 22px 0;
+  }
+  .post-footer-top{
+      display: flex;
+      justify-content: space-between;
+      width:100%;
+      padding: 10px 0;
+  }
+  .post-footer-likes , .post-footer-comments{
+      display: flex;
+      justify-content: space-between;
+      margin:auto;
+      align-self: middle;
+  }
+  .post-footer-middle{
+      width:100%;
+      padding:22px 0;
+  }
+  .post-footer-middle input{
+      width:400px;
+      margin:auto;
+      padding:22px;
+      border:none;
+      border-bottom:solid thin rgba(0,0,0,0.4);
+      outline:none;
+  }
+
+
+
+
 
 
 
