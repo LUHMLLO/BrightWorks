@@ -1,11 +1,11 @@
 <template>
     <div id="services" class="container">
         <section class="form">
-            <form action="" class="text-cent">
-                <input v-model="nombre" @click="crearServicio" type="text" class="form-control" placeholder="Nombre">
-                <input v-model="descripcion" @click="crearServicio" type="text" class="form-control" placeholder="Descripcion">
+            <form aclass="text-cent" @submit.prevent>
+                <input v-model="nombre" type="text" class="form-control" placeholder="Nombre">
+                <input v-model="descripcion" type="text" class="form-control" placeholder="Descripcion">
                 <!-- Button to submit -->
-                <input @click="crearServico" type="button" value="Crear" class="btn btn-success">
+                <button v-on:click="crearServicio" class="mdl-btn">Crear</button>
             </form>
         </section>
 
@@ -39,7 +39,7 @@
                             </span>
                             <span v-else>
                                 <!-- Dato descripcion -->
-                                {{ paciente.descripcion }}
+                                {{ servicio.descripcion }}
                             </span>
                         </td>
                         <td>
