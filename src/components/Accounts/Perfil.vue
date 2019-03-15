@@ -161,8 +161,9 @@
 
 
 
-
-
+              <div id="perfil-services" class="perfil-section" v-if="ServiceTab">
+                  <Services/>
+              </div>
 
 
 
@@ -194,13 +195,15 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import { quillEditor } from 'vue-quill-editor'
+import Services from '../Modules/Services.vue'
 
 
 import firebase,{ firestore } from 'firebase'
 export default {
     name: "Perfil",
     components:{
-        quillEditor
+        quillEditor,
+        Services,
     },
     data(){
         return{

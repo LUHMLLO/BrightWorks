@@ -2,8 +2,8 @@
     <div id="services" class="container">
         <section class="form">
             <form action="" class="text-cent">
-                <input v-model="nombre" @keyup.enter="crearServicio" type="text" class="form-control" placeholder="Nombre">
-                <input v-model="descripcion" @keyup.enter="crearServicio" type="text" class="form-control" placeholder="Descripcion">
+                <input v-model="nombre" @click="crearServicio" type="text" class="form-control" placeholder="Nombre">
+                <input v-model="descripcion" @click="crearServicio" type="text" class="form-control" placeholder="Descripcion">
                 <!-- Button to submit -->
                 <input @click="crearServico" type="button" value="Crear" class="btn btn-success">
             </form>
@@ -62,7 +62,7 @@
 </template>
 <script>
 export default {
-    name: "services",
+    name: "Services",
     data(){
         return{
             nombre: '',
