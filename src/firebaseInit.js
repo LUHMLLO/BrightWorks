@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 require ('firebase/firestore')
 require ('firebase/auth')
 
@@ -30,6 +30,8 @@ const auth = firebase.auth()
 export {
     db,
     auth,
+    firebase,
+    firebaseApp,
 }
 
 export default firebaseApp.firestore()
