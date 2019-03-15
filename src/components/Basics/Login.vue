@@ -2,7 +2,7 @@
 <div id="login">
 
 
-   <form class="form-container" v-on:submit.prevent>
+   <form class="form-container" method="post" v-on:submit.prevent>
      <div class="form-box mdl-shadow--16dp">
        <h1>Log in</h1>
 
