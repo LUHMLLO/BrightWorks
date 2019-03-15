@@ -100,9 +100,9 @@
 </template>
 
 <script>
-import firebase from 'firebase'
 const firebaseInit = require('../../firebaseInit.js')
-const db = firebase.firestore()
+import db from '../../firebaseInit.js'
+
 import Swal from 'sweetalert'
 
 

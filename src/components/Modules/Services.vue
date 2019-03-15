@@ -21,7 +21,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(servicio, index) in servicios" :key="index">
-                        <td>{{ servicio.id }}</td>
+                        <td>aqui va el id?</td>
                         <td>
                             <span v-if="formActualizar && idActualizar == index">
                                 <!-- Formulario para actualizar -->
@@ -29,7 +29,7 @@
                             </span>
                             <span v-else>
                                 <!-- Dato nombre -->
-                                {{ servicio.nombre }}
+                                {{ servicio.name }}
                             </span>
                         </td>
                         <td>
@@ -39,7 +39,7 @@
                             </span>
                             <span v-else>
                                 <!-- Dato descripcion -->
-                                {{ servicio.descripcion }}
+                                {{ servicio.description }}
                             </span>
                         </td>
                         <td>
@@ -61,6 +61,8 @@
     </div>
 </template>
 <script>
+const firebaseInit = require('../../firebaseInit.js')
+import db from '../../firebaseInit.js'
 export default {
     name: "Services",
     data(){
@@ -76,14 +78,8 @@ export default {
     },
     methods:{
             crearServicio: function(){
-                this.servicios.push({
-                    id: + new Date(),
-                    nombre: this.nombre,
-                    descripcion: this.descripcion
-                });
-                // Vaciamos el formulario de añadir
-                this.nombre = '';
-                this.descripcion = '';
+              this.nombre = '';
+              this.descripcion = '';
             },
 
             verFormActualizar: function(servicio_id){
@@ -105,7 +101,21 @@ export default {
                 this.servicios[servicio_id].descripcion = this.descripcionActualizar;
             }
             
-        }
+        },
+
+    created(){
+        db.collection('services').get().then
+        (querySnapshot =>{
+            querySnapshot.forEach(doc => {
+                console.log(doc.data())
+                const data = {
+                    'name': doc.data().name,
+                    'description': doc.data().description
+                }
+                this.servicios.push(data)
+            })
+        })
+    },
     
 }
 </script>

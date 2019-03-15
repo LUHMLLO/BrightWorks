@@ -36,7 +36,9 @@
 </template>
 
 <script>
-const firebase = require('../../firebaseInit.js')
+const firebaseInit = require('../../firebaseInit.js')
+import db from '../../firebaseInit.js'
+
 import Swal from 'sweetalert'
 
 export default {

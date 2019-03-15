@@ -191,10 +191,14 @@
 
 
 <script>
+const firebaseInit = require('../../firebaseInit.js')
+import db from '../../firebaseInit.js'
+
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import { quillEditor } from 'vue-quill-editor'
+
 import Services from '../Modules/Services.vue'
 
 
@@ -207,7 +211,6 @@ export default {
     },
     data(){
         return{
-           username: 'im a user' ,
            TimelineTab: true,
            aboutTab: false,
            ServiceTab: false,
@@ -216,6 +219,8 @@ export default {
 
 
            postsContent:'',
+
+           
 
 
            timelinePosts:[
@@ -261,6 +266,16 @@ export default {
 
 
 
+    },
+
+
+    created(){
+        db.collection('users').doc(firebase.auth().currentUser.uid,).get().then
+        (querySnapshot => {
+            const data = {
+                username: doc.data().name,
+            }
+        })
     },
 
 }
