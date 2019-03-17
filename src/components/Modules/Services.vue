@@ -4,8 +4,11 @@
             <form aclass="text-cent" @submit.prevent>
                 <input v-model="nombre" type="text" class="form-control" placeholder="Nombre">
                 <input v-model="descripcion" type="text" class="form-control" placeholder="Descripcion">
+                <input v-model="tiempoEstimado" type="text" class="form-control" placeholder="tiempoEstimado">
+                <input v-model="costo" type="text" class="form-control" placeholder="costo">
+                <input v-model="horarioDisponible" type="text" class="form-control" placeholder="horarioDisponible">
                 <!-- Button to submit -->
-                <button v-on:click="crearServicio" class="mdl-btn">Crear</button>
+                <button v-on:click="crearServicio()" class="mdl-btn">Crear</button>
             </form>
         </section>
 
@@ -17,11 +20,14 @@
                         <th scope="col">id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripcion</th>
+                        <th scope="col">Tiempo Estimado</th>
+                        <th scope="col">costo</th>
+                        <th scope="col">horario disponible</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(servicio, index) in servicios" :key="index">
-                        <td>aqui va el id?</td>
+                        <td>{{servcio.id}}</td>
                         <td>
                             <span v-if="formActualizar && idActualizar == index">
                                 <!-- Formulario para actualizar -->
@@ -32,6 +38,7 @@
                                 {{ servicio.name }}
                             </span>
                         </td>
+
                         <td>
                             <span v-if="formActualizar && idActualizar == index">
                                 <!-- Formulario para actualizar -->
@@ -42,6 +49,40 @@
                                 {{ servicio.description }}
                             </span>
                         </td>
+
+                        <td>
+                            <span v-if="formActualizar && idActualizar == index">
+                                <!-- Formulario para actualizar -->
+                                <input v-model="tiempoEstimadoActualizar" type="text" class="form-control">
+                            </span>
+                            <span v-else>
+                                <!-- Dato descripcion -->
+                                {{ servicio.tiempoEstimado }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span v-if="formActualizar && idActualizar == index">
+                                <!-- Formulario para actualizar -->
+                                <input v-model="costoActualizar" type="text" class="form-control">
+                            </span>
+                            <span v-else>
+                                <!-- Dato descripcion -->
+                                {{ servicio.costo }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span v-if="formActualizar && idActualizar == index">
+                                <!-- Formulario para actualizar -->
+                                <input v-model="horarioDispoActualizar" type="text" class="form-control">
+                            </span>
+                            <span v-else>
+                                <!-- Dato descripcion -->
+                                {{ servicio.horarioDispo }}
+                            </span>
+                        </td>
+
                         <td>
                             <!-- Botón para guardar la información actualizada -->
                             <span v-if="formActualizar && idActualizar == index">
@@ -69,10 +110,16 @@ export default {
         return{
             nombre: '',
             descripcion:'',
+            tiempoEstimado: '',
+            costo:'',
+            horarioDispo:'',
             formActualizar: false,
             idActualizar: -1,
             nombreActualizar:'',
             descripcionActualizar:'',
+            tiempoEstimadoActualizar:'',
+            costoActualizar:'',
+            horarioDispoActualizar:'',
             servicios:[]
         }        
     },
