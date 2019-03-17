@@ -22,8 +22,7 @@
           <button class="mdl-button">Sign up</button>
         </router-link>
       </div>
-    </div>
-    <!--cover header ends herer--->
+    </div><!--cover header ends herer--->
 
 
 
@@ -40,34 +39,25 @@
 
 
 
-    <div id="cover-tabs" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+  <div id="cover-tabs">
 
-
-      <div class="mdl-tabs__tab-bar">
-        <a href="#How-it-works" class="mdl-tabs__tab">How it Works</a>
-        <a href="#Services" class="mdl-tabs__tab is-active">Services</a>
-        <a href="#Features" class="mdl-tabs__tab">Features</a>
+      <div id="cover-tabs-nav">
+        <button class="mdl-button" v-on:click="showTab1" v-bind:class="{ tabActive: isTab1Visible }">How it Works</button>
+        <button class="mdl-button" v-on:click="showTab2" v-bind:class="{ tabActive: isTab2Visible }">Services</button>
+        <button class="mdl-button" v-on:click="showTab3" v-bind:class="{ tabActive: isTab3Visible }">Features</button>
       </div>
-
-    <div id="cover-tabs-content">
-
-
-      <div class="mdl-tabs__panel" id="How-it-works">
-         <div class="mdl-grid">
-
-
-           <div class="how-it-works-item">
-
-           </div>
-           
-
-         </div>
-      </div><!--tab ends here-->
+      <br>
+      <br>
+    
+    <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
+     <div id="cover-howitworks-tab" class="cover-tabs-section" v-if="isTab1Visible">
+       <h3>how it works</h3>
+     </div>
+    </transition>
 
 
-
-
-      <div class="mdl-tabs__panel is-active" id="Services">
+    <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
+      <div id="cover-services-tab" class="cover-tabs-section" v-if="isTab2Visible">
             <div class="mdl-grid">
 
                 <div class="service" v-for="(service,servicesData) in services" :key="servicesData">
@@ -82,17 +72,37 @@
 
             </div>
       </div><!--tab ends here-->
+    </transition>
      
-     
-     
-     
-      <div class="mdl-tabs__panel" id="Features">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est pariatur porro ducimus repellat laudantium esse ipsam reiciendis quae alias, distinctio perferendis consectetur inventore quisquam recusandae quaerat consequuntur, ex impedit sint!</p>
-      </div><!--tab ends here-->
+
+    <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
+     <div id="cover-features-tab" class="cover-tabs-section" v-if="isTab3Visible">
+       <div class="mdl-grid">
 
 
-    </div><!---cover tabs content-->
-    </div><!-- cover tabs ends here -->
+           <div class="feature" v-for="(feature,featuresData) in features" :key="featuresData">
+             <div class="feature-img">
+               <img v-bind:src="feature.img">
+             </div><!---feature img-->
+
+             <div class="feature-content">
+               <h3>feature name</h3>
+               <div class="feature-text">
+                 <p>Lorem ipsum dolor sit amet  fuga distinctio neque laborum sit eos totam, deleniti minus obcaecati!</p>
+               </div>
+             </div>
+
+
+           </div><!---feature container -->
+       </div>
+     </div><!-- cover features tab ends here-->
+    </transition>
+
+    
+
+
+
+  </div><!-- cover tabs ends here -->
 
 
 
@@ -108,9 +118,9 @@
 
 
 
-   <div style="background:black; padding:22px 0px; width:100%; margin:22px auto; color:white; align-content:center; justify-content:center;">
+   <div class="cover-text-random-divider">
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, inventore atque? Architecto dicta provident soluta explicabo facere sapiente similique ipsa facilis laudantium modi, necessitatibus minus, tempora temporibus nemo, quis distinctio!</p>
-    </div>
+   </div>
 
 
 
@@ -131,25 +141,25 @@
       <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
         <img src="https://cdn.dribbble.com/users/791530/screenshots/5660599/icons8_connection_lost_illustration.png">
       </div> 
-      <div class="cover-cards-ps mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+      <div class="cover-cards-text mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit inventore nobis vel enim illo, cupiditate mollitia consectetur ullam voluptates quisquam debitis officia dolorum a accusantium adipisci, ipsa officiis, nisi unde.</p>
       </div>
 
 
 
-      <div class="cover-cards-ps mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+      <div class="cover-cards-text mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, doloremque! Vel porro possimus excepturi illum. Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
       </div>
-      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
         <img src="https://cdn.dribbble.com/users/412478/screenshots/3673636/creative_dribble-08.png">
       </div> 
       
 
 
-      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
         <img src="https://cdn.dribbble.com/users/2323077/screenshots/4625711/01_jira-illos.png">
       </div> 
-      <div class="cover-cards-ps mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
+      <div class="cover-cards-text mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit animi quasi quisquam debitis saepe asperiores sunt dicta, labore magnam totam dolorum, eum sit corrupti. Nemo perspiciatis sequi aperiam eveniet ad?</p>
       </div>
 
@@ -214,6 +224,27 @@ export default {
   data() {
     return {
 
+
+
+
+       features:[
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5268088/farmhouse1.png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5301137/image.png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5570301/mountain_house-1200-x-1600.png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5188624/cape-mudge-lighthouse..png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5371625/lighthouse_bovbjerg-lighthouse.png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/6080532/kerala_paddy_field.png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/6149997/nature-3.png'},
+         {img:'https://cdn.dribbble.com/users/63407/screenshots/4828797/dribbble_tea_medows.png'},
+         {img:'https://cdn.dribbble.com/users/63407/screenshots/5877615/dribbble_india_stories_detail.png'},
+         {img:'https://cdn.dribbble.com/users/63407/screenshots/5095176/dribbble_lotus_pond.png'},
+       ],
+
+
+        isTab1Visible: false,
+        isTab2Visible: true,
+        isTab3Visible: false,
+
          services:[
            {img:'https://cdn.dribbble.com/users/94074/screenshots/3647324/the_guardian__crop_.jpg',name:'Gardening'},
            {img:'https://cdn.dribbble.com/users/63407/screenshots/5462636/dribbble_taxi_cab_ride.png',name:'Rides'},
@@ -228,15 +259,42 @@ export default {
          ],
 
 
+
     }
-  }
+  },
+
+
+
+
+  methods:{
+    showTab1:function(){
+      this.isTab1Visible = true
+      this.isTab2Visible = false
+      this.isTab3Visible = false
+    },
+    showTab2:function(){
+      this.isTab1Visible = false
+      this.isTab2Visible = true
+      this.isTab3Visible = false
+    },
+    showTab3:function(){
+      this.isTab1Visible = false
+      this.isTab2Visible = false
+      this.isTab3Visible = true
+    },
+
+  },
+
+
+
+
 };
 </script>
 
 <style scoped>
 
 #cover-header {
-  background: url("https://images.unsplash.com/photo-1551864605-74764bd3d836?ixlib=rb-1.2.1&auto");
+  background: url("https://cdn.dribbble.com/users/1803663/screenshots/6080532/kerala_paddy_field.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -265,22 +323,51 @@ export default {
 #cover-tabs{
   width: 100%;
   min-height: 100vh;
-  padding:62px 0;
+  padding:42px 0;
 }
-.mdl-tabs__tab-bar{
-  border-bottom:none !important;
-  border: none !important;
-  width: 100%;
-  padding:22px 0;
+#cover-tabs-nav{
+  width:100%;
+  margin:auto;
 }
-#cover-tabs-content{
-  padding:60px 32px;
+#cover-tabs-nav button{
+  border-radius: 100px;
+  margin: auto 5px auto 5px;
+}
+.cover-tabs-section{
+  padding: 52px 22px;
+}
+.coverTabsAnim-leave-active{
+  transition: all 0s !important;
+  opacity: 0 !important;
+}
+.coverTabsAnim-leave-to{
+  transition: all 0s !important;
+  opacity: 0 !important;
+}
+
+
+
+
+.cover-text-random-divider{
+  width:100%;
+  border: solid thin black;
+  margin:auto;
+  background:black;
+  color:white;
+  padding:22px;
+  text-align: center;
+  min-height: 20vh;
   display: flex;
+  align-content: center;
   justify-content: center;
 }
-
-
-
+.cover-text-random-divider p{
+  font-size:18px;
+  align-self: middle;
+  margin:auto;
+  justify-self: center;
+  width:80%;
+}
 
 
 .service{
@@ -308,8 +395,49 @@ export default {
 .service-name{
   display: inline-block;
   align-self: middle;
-  margin:auto;
+  margin:16px auto auto auto;
 }
+
+
+
+ .feature{
+   display: flex;
+   width: 500px;
+   margin:32px;
+   justify-content: center;
+ }
+ .feature-img{
+   width:140px;
+   height: 140px;
+   overflow: hidden;
+   border-radius: 100px;
+   display: inline-block;
+   margin:auto;
+   align-self: middle;
+ }
+ .feature-img img{
+   width:100%;
+   height: 100%;
+ }
+ .feature-content{
+   width: 320px;
+   display: inline-block;
+   margin:auto;
+   align-self: middle;
+   text-align: left
+ }
+ .feature-content h3{
+   display: inline-block;
+   margin:auto;
+   align-self: middle;
+ }
+ .feature-text p{
+   font-size:13px;
+   display: inline-block;
+   margin:auto;
+   align-self: middle;
+ }
+
 
 
 #cover-cards{
@@ -322,7 +450,7 @@ export default {
   align-self: middle;
   width: 50%;
 }
-.cover-cards-ps{
+.cover-cards-text{
   display:flex;
   justify-content: center;
   align-content: middle;
@@ -334,7 +462,7 @@ export default {
   display: inline-block;
   font-size:22px;
   line-height: 2.3rem;
-  text-align: justify;
+  text-align: center;
   padding:22px;
 }
 

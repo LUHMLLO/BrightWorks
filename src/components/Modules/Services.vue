@@ -1,11 +1,11 @@
 <template>
     <div id="services" class="container">
         <section class="form">
-            <form action="" class="text-cent">
-                <input v-model="nombre" @keyup.enter="crearServicio" type="text" class="form-control" placeholder="Nombre">
-                <input v-model="descripcion" @keyup.enter="crearServicio" type="text" class="form-control" placeholder="Descripcion">
+            <form aclass="text-cent" @submit.prevent>
+                <input v-model="nombre" type="text" class="form-control" placeholder="Nombre">
+                <input v-model="descripcion" type="text" class="form-control" placeholder="Descripcion">
                 <!-- Button to submit -->
-                <input @click="crearServico" type="button" value="Crear" class="btn btn-success">
+                <button v-on:click="crearServicio" class="mdl-btn">Crear</button>
             </form>
         </section>
 
@@ -21,7 +21,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="(servicio, index) in servicios" :key="index">
-                        <td>{{ servicio.id }}</td>
+                        <td>aqui va el id?</td>
                         <td>
                             <span v-if="formActualizar && idActualizar == index">
                                 <!-- Formulario para actualizar -->
@@ -29,7 +29,7 @@
                             </span>
                             <span v-else>
                                 <!-- Dato nombre -->
-                                {{ servicio.nombre }}
+                                {{ servicio.name }}
                             </span>
                         </td>
                         <td>
@@ -39,7 +39,7 @@
                             </span>
                             <span v-else>
                                 <!-- Dato descripcion -->
-                                {{ paciente.descripcion }}
+                                {{ servicio.description }}
                             </span>
                         </td>
                         <td>
@@ -61,8 +61,10 @@
     </div>
 </template>
 <script>
+const firebaseInit = require('../../firebaseInit.js')
+import db from '../../firebaseInit.js'
 export default {
-    name: "services",
+    name: "Services",
     data(){
         return{
             nombre: '',
@@ -76,14 +78,8 @@ export default {
     },
     methods:{
             crearServicio: function(){
-                this.servicios.push({
-                    id: + new Date(),
-                    nombre: this.nombre,
-                    descripcion: this.descripcion
-                });
-                // Vaciamos el formulario de añadir
-                this.nombre = '';
-                this.descripcion = '';
+              this.nombre = '';
+              this.descripcion = '';
             },
 
             verFormActualizar: function(servicio_id){
@@ -105,7 +101,21 @@ export default {
                 this.servicios[servicio_id].descripcion = this.descripcionActualizar;
             }
             
-        }
+        },
+
+    created(){
+        db.collection('services').get().then
+        (querySnapshot =>{
+            querySnapshot.forEach(doc => {
+                console.log(doc.data())
+                const data = {
+                    'name': doc.data().name,
+                    'description': doc.data().description
+                }
+                this.servicios.push(data)
+            })
+        })
+    },
     
 }
 </script>

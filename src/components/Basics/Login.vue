@@ -2,8 +2,8 @@
 <div id="login">
 
 
-   <form class="form-container">
-     <div class="form-box">
+   <form class="form-container" method="post" v-on:submit.prevent>
+     <div class="form-box mdl-shadow--16dp">
        <h1>Log in</h1>
 
       <div class="input-container">
@@ -24,7 +24,7 @@
        <br><br>
     </div><!--fomr box -->
 
-    <div class="floaties">
+    <div class="floaties mdl-shadow--2dp">
         <router-link to="/signup">
           <button class="mdl-button">I dont have an account</button>
         </router-link>
@@ -36,7 +36,9 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+const firebaseInit = require('../../firebaseInit.js')
+import db from '../../firebaseInit.js'
+
 import Swal from 'sweetalert'
 
 export default {
@@ -55,10 +57,11 @@ export default {
   methods:{
 
     logIn: function(){
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+      firebaseInit.auth.signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          this.$router.replace("home");
-          console.log(user.message);
+          Swal({ title: "Welcome back !" , text: "we miss you", icon: "success", button: "helloo!",}).then(() => {
+            this.$router.replace("home")
+          })
         },
         (err) =>{
           Swal({ title: "Oops !", text: err.message, icon: "error"})
