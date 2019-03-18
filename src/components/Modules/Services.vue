@@ -8,7 +8,7 @@
                 <input v-model="costo" type="text" class="form-control" placeholder="costo">
                 <input v-model="horarioDisponible" type="text" class="form-control" placeholder="horarioDisponible">
                 <!-- Button to submit -->
-                <button v-on:click="crearServicio()" class="mdl-btn">Crear</button>
+                <button v-on:click="crearServicio" class="mdl-btn">Crear</button>
             </form>
         </section>
 
@@ -112,7 +112,7 @@ export default {
             descripcion:'',
             tiempoEstimado: '',
             costo:'',
-            horarioDispo:'',
+            horarioDisponible:'',
             formActualizar: false,
             idActualizar: -1,
             nombreActualizar:'',
@@ -120,7 +120,8 @@ export default {
             tiempoEstimadoActualizar:'',
             costoActualizar:'',
             horarioDispoActualizar:'',
-            servicios:[]
+            servicios:[],
+            servicio:'',
         }        
     },
     methods:{
