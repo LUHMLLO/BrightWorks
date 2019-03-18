@@ -223,7 +223,7 @@ export default {
       z-index: 6;
   }
   .withNavOn{
-    margin: 22px auto auto 362px !important;
+    margin: 22px auto auto 334px !important;
   }
   
   #floating-nav-toggle i{
