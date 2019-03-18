@@ -12,8 +12,8 @@
               </div>
 
 
-              <div id="perfil-header-name">
-                  <h3></h3>
+              <div id="perfil-header-name" v-for="(user,userData) in userinfo" :key="userData">
+                  <h3>{{user.name}}</h3>
               </div>
 
 
@@ -23,7 +23,7 @@
                  <div id="perfil-header-bar" class="perfil-bottom-item">
                      <button class="mdl-button" v-on:click="showTimelineTab" v-bind:class="{ tabActive: TimelineTab }">Timeline</button>
                      <button class="mdl-button" v-on:click="showAboutTab" v-bind:class="{ tabActive: aboutTab }">About</button>
-                     <button class="mdl-button" v-on:click="showServiceTab" v-bind:class="{ tabActive: ServiceTab }">Services</button>
+                     <button class="mdl-button" v-on:click="showServiceTab" v-bind:class="{ tabActive: ServiceTab }" disabled>Services</button>
                      <button class="mdl-button" v-on:click="showHelpTab" v-bind:class="{ tabActive: HelpTab }">Help</button>
                  </div>
 
@@ -266,20 +266,22 @@ export default {
 
 
     created(){
-
+         let self = this;   
         //this.user = firebase.auth().currentUser
         //var usercollection = this.userinfo
 
 
         db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
         {
+           
                 console.log('Document data:', snapshot.data());
                 const data ={
                     'name': snapshot.data().name,
                     'phone': snapshot.data().phone,
-                }                    
+                }
+                self.userinfo.push(data)             
         })
-        this.userinfo.push()
+        
 
 
 
