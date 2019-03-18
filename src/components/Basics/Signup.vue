@@ -5,20 +5,15 @@
 
 
 
-  
-
-    <div class="floaties">
-        <router-link to="/login">
-          <button class="mdl-button mdl-shadow--2dp">I already have an account</button>
-        </router-link>
-    </div>
-
-
-
-
-
    <div id="form01" class="form-container"  :class="{ 'hidden': !form01 }">
      <div class="form-box mdl-shadow--16dp">
+
+       <div class="go-to-tab">
+         <router-link to="/login" class="go-to-tab-inactive"> SignIn </router-link>
+         <router-link to="/signup" class="go-to-tab-active"> SignUp </router-link>
+       </div>
+
+
        <h1>Sign up</h1>
 
       <div class="input-container">
@@ -341,7 +336,8 @@ export default {
     width:500px;
     background: white;
     border-radius:10px;
-    padding:22px;
+    padding-bottom:22px;
+    overflow: hidden;
   }
   .input-container{
     width: 76%;
@@ -379,6 +375,34 @@ export default {
     padding: 22px 0;
     margin: 22px 0;
   }
+  .go-to-tab{
+    margin:auto;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  .go-to-tab a{
+    padding:22px;
+    width:100%;
+    text-decoration: none !important;
+    color:#333;
+    outline:none !important;
+    border:none !important;
+    cursor: pointer;
+  }
+  .go-to-tab a:focus{
+    outline:none !important;
+    border:none !important;
+  }
+  .go-to-tab-active{
+    background:white;
+  }
+  .go-to-tab-inactive{
+    background: rgba(180,180,180,1);
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
 
 
   #form03-serviceimg{
@@ -395,23 +419,7 @@ export default {
   }
 
 
-   .floaties{
-     position:fixed;
-     top:0;
-     right:0;
-     left: 0;
-     padding:22px;
-     border-radius: 10px;
-     margin: 36px auto auto auto;
-     width: auto;
-   }
-   .floaties button{
-     background:white;
-   }
-   .floaties button:hover{
-     background:#5755d9 !important;
-     color: white !important;
-   }
+
 
 
  .account-type{

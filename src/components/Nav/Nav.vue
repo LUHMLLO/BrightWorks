@@ -39,6 +39,7 @@
 
       
 
+
          <div id="floating-nav-toggle" class='mdl-shadow--2dp' v-on:click="isNavOn = !isNavOn" v-bind:class="{ withNavOn: isNavOn }">
              <transition name="nav-btn-anim" enter-active-class="animated fadeIn" leave-active-class="animated FadeOut">
                  <i class='uil uil-apps' v-if="!isNavOn"></i>
@@ -209,7 +210,7 @@ export default {
   }
   #floating-nav-toggle{
       background:white;
-      border-radius:100px;
+      border-radius: 100px;
       width:50px;
       height:50px;
       justify-content: center;
@@ -218,7 +219,7 @@ export default {
       position:fixed;
       top:0;
       left: 0;
-      margin: 22px auto auto 22px;
+      margin: 10px auto auto 10px;
       transition: all 0.6s ease-in-out;
       z-index: 6;
   }

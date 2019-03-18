@@ -4,6 +4,14 @@
 
    <form class="form-container" method="post" v-on:submit.prevent>
      <div class="form-box mdl-shadow--16dp">
+       
+       <div class="go-to-tab">
+         <router-link to="/login" class="go-to-tab-active"> SignIn </router-link>
+         <router-link to="/signup" class="go-to-tab-inactive"> SignUp </router-link>
+       </div>
+
+       
+       
        <h1>Log in</h1>
 
       <div class="input-container">
@@ -20,18 +28,16 @@
        
        <br>
 
-       <a>forgot my password</a>
+       <a>forgot your password ?</a>
        <br><br>
     </div><!--fomr box -->
 
-    <div class="floaties">
-        <router-link to="/signup">
-          <button class="mdl-button mdl-shadow--2dp">I dont have an account</button>
-        </router-link>
-    </div>
+
+
+
+
      
    </form>
-
 </div>
 </template>
 
@@ -100,7 +106,8 @@ export default {
     width:500px;
     background: white;
     border-radius:10px;
-    padding:22px;
+    overflow: hidden;
+    padding-bottom:22px;
   }
   .input-container{
     width: 76%;
@@ -134,24 +141,40 @@ export default {
     font-size:22px;
     width: 10%;
   }
+  h1{
+    padding: 22px 0;
+    margin: 22px 0;
+  }
 
 
-   .floaties{
-     position:fixed;
-     top:0;
-     right:0;
-     left: 0;
-     padding:22px;
-     border-radius: 10px;
-     margin: 36px auto auto auto;
-     width: auto;
-   }
-   .floaties button{
-     background:white;
-   }
-   .floaties button:hover{
-     background:#5755d9 !important;
-     color: white !important;
-   }
+  .go-to-tab{
+    margin:auto;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  .go-to-tab a{
+    padding:22px;
+    width:100%;
+    text-decoration: none !important;
+    color:#333;
+    outline:none !important;
+    border:none !important;
+    cursor: pointer;
+  }
+  .go-to-tab a:focus{
+    outline:none !important;
+    border:none !important;
+  }
+  .go-to-tab-active{
+    background:white;
+  }
+  .go-to-tab-inactive{
+    background: rgba(180,180,180,1);
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+
 
 </style>
