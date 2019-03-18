@@ -191,9 +191,6 @@
 
 
 <script>
-const firebaseInit = require('../../firebaseInit.js')
-import db from '../../firebaseInit.js'
-
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
@@ -201,8 +198,6 @@ import { quillEditor } from 'vue-quill-editor'
 
 import Services from '../Modules/Services.vue'
 
-
-import firebase,{ firestore } from 'firebase'
 export default {
     name: "Perfil",
     components:{

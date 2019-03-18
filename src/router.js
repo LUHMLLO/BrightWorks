@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const firebase = require('./firebaseInit.js')
+import firebase from './firebaseConfig.js'
 
 
 import Cover from "./components/Basics/Cover.vue"
@@ -104,7 +104,7 @@ let router = new Router({
 
 
 router.beforeEach((to, from, next) => {
-  let currentUser = firebase.auth.currentUser
+  let currentUser = firebase.auth().currentUser
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
   if (requiresAuth && !currentUser) next('login')

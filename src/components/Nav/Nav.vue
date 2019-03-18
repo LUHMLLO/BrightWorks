@@ -65,7 +65,7 @@
 
 
 <script>
-import firebase from 'firebase'
+import firebase from '../../firebaseConfig.js'
 import mdl from 'material-design-lite'
 import Swal from 'sweetalert'
 

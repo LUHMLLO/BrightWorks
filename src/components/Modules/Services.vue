@@ -102,8 +102,8 @@
     </div>
 </template>
 <script>
-const firebaseInit = require('../../firebaseInit.js')
-import db from '../../firebaseInit.js'
+import {firebase, db }from '../../firebaseConfig.js'
+
 export default {
     name: "Services",
     data(){

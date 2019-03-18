@@ -16,8 +16,6 @@
 
 
 <script>
-import firebase from 'firebase'
-import mdl from 'material-design-lite'
 import Nav from './components/Nav/Nav.vue'
 
 
@@ -37,19 +35,14 @@ export default {
 
     
     methods:{
-       logout: function(){
-           firebase.auth().signOut().then(() =>{
-               this.$router.replace('/')
-           })
-       }
-   },
+
+    },
 
 
 
 
 
   mounted: function(){
-    componentHandler.upgradeAllRegistered();
   }
 
 

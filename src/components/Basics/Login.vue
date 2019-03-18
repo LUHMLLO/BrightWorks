@@ -36,9 +36,7 @@
 </template>
 
 <script>
-const firebaseInit = require('../../firebaseInit.js')
-import db from '../../firebaseInit.js'
-
+import firebase from '../../firebaseConfig.js'
 import Swal from 'sweetalert'
 
 export default {
@@ -57,7 +55,7 @@ export default {
   methods:{
 
     logIn: function(){
-      firebaseInit.auth.signInWithEmailAndPassword(this.email, this.password).then(
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
           Swal({ title: "Welcome back !" , text: "we miss you", icon: "success", button: "helloo!",}).then(() => {
             this.$router.replace("home")

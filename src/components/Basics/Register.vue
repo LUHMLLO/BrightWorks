@@ -38,7 +38,6 @@
     
 </template>
 <script>
-import db from '@/main'
 export default {
     name: 'Register',
     data(){

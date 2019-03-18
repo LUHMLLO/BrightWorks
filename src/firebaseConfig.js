@@ -1,7 +1,6 @@
-import firebase from 'firebase';
-import firestore from 'firebase';
-require ('firebase/firestore')
-require ('firebase/auth')
+import firebase from 'firebase'
+import 'firebase/firestore'
+import 'firebase/auth'
 
 
 
@@ -15,25 +14,17 @@ const config = {
   storageBucket: "brightworksvue.appspot.com",
   messagingSenderId: "198076410895"
 }
-const firebaseApp = firebase.initializeApp(config);
+firebase.initializeApp(config);
+
 
 
 
 
 
 const db = firebase.firestore()
-const auth = firebase.auth()
-
-
-
-
-
 export {
     db,
-    auth,
     firebase,
-    firebaseApp,
-    firestore,
 }
 
-export default firebaseApp.firestore()
+export default firebase
