@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div id="nav">
 
 
@@ -12,7 +12,7 @@
                  </div>
               
             <div id="sidebar-header" v-if="isLoggedIn">
-                <h4>luis.jr.melo@gmail</h4>
+                <h4>{{actualUser}}</h4>
 
                 <div id="sidebar-header-icons" class="mdl-grid">
                     <i class='uil uil-entry' v-on:click="logout"></i>
@@ -75,7 +75,7 @@ export default {
   data(){
     return{
 
-       //user: firebase.auth().currentUser,
+       actualUser: null,
        isLoggedIn: false,
        currentUser: false,
        isNavOn: false,
@@ -109,6 +109,12 @@ export default {
     }
   },
 
+  updated(){
+    if(firebase.auth().currentUser){
+        this.isLoggedIn = true
+        this.actualUser = firebase.auth().currentUser.email
+    }
+  },
   
   mounted: function(){
     componentHandler.upgradeAllRegistered()
