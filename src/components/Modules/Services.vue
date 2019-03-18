@@ -151,10 +151,8 @@ export default {
         },
 
     created(){
-        db.collection('services').get().then
-        (querySnapshot =>{
+        db.collection('services').get().then(querySnapshot =>{
             querySnapshot.forEach(doc => {
-                console.log(doc.data())
                 const data = {
                     'name': doc.data().name,
                     'description': doc.data().description

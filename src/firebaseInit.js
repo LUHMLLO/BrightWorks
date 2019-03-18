@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import firestore from 'firebase';
 require ('firebase/firestore')
 require ('firebase/auth')
 
@@ -32,6 +33,7 @@ export {
     auth,
     firebase,
     firebaseApp,
+    firestore,
 }
 
 export default firebaseApp.firestore()

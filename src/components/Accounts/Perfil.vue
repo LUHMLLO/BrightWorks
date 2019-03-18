@@ -13,7 +13,7 @@
 
 
               <div id="perfil-header-name">
-                  <h3>{{username}}</h3>
+                  <h3>user name here</h3>
               </div>
 
 
@@ -217,6 +217,8 @@ export default {
            HelpTab: false,
            isPostInMaking: false,
 
+           username: [],
+
 
            postsContent:'',
 
@@ -270,12 +272,7 @@ export default {
 
 
     created(){
-        db.collection('users').doc(firebase.auth().currentUser.uid,).get().then
-        (querySnapshot => {
-            const data = {
-                username: doc.data().name,
-            }
-        })
+
     },
 
 }
