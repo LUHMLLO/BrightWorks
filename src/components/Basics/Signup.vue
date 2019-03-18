@@ -7,14 +7,9 @@
 
   
 
-    <div class="floaties mdl-shadow--2dp">
+    <div class="floaties">
         <router-link to="/login">
-          <button class="mdl-button">I already have an account</button>
-          <br>
-            <p>{{email}}</p>
-            <p>{{password}}</p>
-            <p>{{name}}</p>
-            <p>{{phone}}</p>
+          <button class="mdl-button mdl-shadow--2dp">I already have an account</button>
         </router-link>
     </div>
 
@@ -22,7 +17,7 @@
 
 
 
-   <div id="form01" class="form-container"  :class="{ 'hidden': !NotSignedUpYet }">
+   <div id="form01" class="form-container"  :class="{ 'hidden': !form01 }">
      <div class="form-box mdl-shadow--16dp">
        <h1>Sign up</h1>
 
@@ -36,11 +31,11 @@
 
        <br>
 
-       <button @click="NotSignedUpYet = false" class="mdl-button">Sign up</button>
+       <button v-on:click="ContinueForm02" class="mdl-button">Sign up</button>
 
        <br><br>
     </div>
-   </div>
+   </div><!---form 01-->
 
 
 
@@ -51,25 +46,27 @@
 
 
 
-   <div id="form02" class="form-container"  :class="{ 'hidden': NotSignedUpYet }">
+   <div id="form02" class="form-container"  :class="{ 'hidden': !form02 }">
      <div class="form-box mdl-shadow--16dp">
-       <h3>Welcome to Bright Works</h3>
-       <h6>Let's setup your account so you can go surf</h6>
-       <br>
+       <div style="padding: 22px 0; margin: 22px 0;">
+         <h3>Welcome to Bright Works</h3>
+         <h6>Let's setup your account so you can go surf</h6>
+       </div>
+
 
       <div class="input-container">
-        <i class='uil uil-user'></i><input type="text" name="name" id="name" v-model="name" placeholder="name" required/> 
+        <i class='uil uil-user'></i><input type="text" name="name" id="name" v-model="name" placeholder="name"/> 
       </div>
       <div class="input-container">
-        <i class='uil uil-mobile-android'></i><input type="text" name="phone" id="phone" v-model="phone" placeholder="phone" required/>
+        <i class='uil uil-mobile-android'></i><input type="text" name="phone" id="phone" v-model="phone" placeholder="phone"/>
       </div>
       <br><br>
       <div class="mdl-grid">
-          <div class="account-type mdl-shadow--2dp mdl-button">
+          <div class="account-type mdl-shadow--2dp mdl-button" v-on:click="signService">
               <i class='uil uil-shop'></i>
               <p>Service</p>
           </div>
-          <div class="account-type mdl-shadow--2dp mdl-button">
+          <div class="account-type mdl-shadow--2dp mdl-button" v-on:click="signClient">
               <i class='uil uil-shopping-basket'></i>
               <p>Client</p>
           </div>
@@ -78,12 +75,57 @@
 
        <br><br>
 
-        <button @click="signUp" class="mdl-button">Finish Setup</button>
+        <button v-on:click="choose" class="mdl-button disabled-btn" v-if="IdontKnowWhatImGonnaBe">Setup</button>
+        <button v-on:click="signUp" class="mdl-button" v-if="ImmaBeAClient">Sign up as client</button>
+        <button v-on:click="ContinueForm03" class="mdl-button" v-if="ImmaBeAService">Continue to setup a service</button>
 
        <br>
 
     </div>    
-   </div>
+   </div><!---form 02-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <div id="form03" class="form-container"  :class="{ 'hidden': !form03 }">
+     <div class="form-box mdl-shadow--16dp">
+       <h1>Register a service</h1>
+
+       <transition enter-active-class="animated fadeIn" leave-active-class="fadeOut">
+        <div id="form03-serviceimg" class="mdl-shadow--2dp" v-if="serviceimg">
+          <img v-bind:src="serviceimg">
+        </div>
+       </transition>
+
+      <div class="input-container">
+        <i class='uil uil-scenery'></i><input type="text" name="serviceimg" id="serviceimg" v-model="serviceimg" placeholder="service img (insert img url)" /> 
+      </div>
+      <div class="input-container">
+        <i class='uil uil-users-alt'></i><input type="text" name="servicename" id="servicename" v-model="servicename" placeholder="service name" /> 
+      </div>
+      <div class="input-container">
+        <i class='uil uil-book-open'></i><input type="text" name="servicedescription" id="servicedescription" v-model="servicedescription" placeholder="service description" />
+      </div>
+
+
+       <br>
+
+       <button v-on:click="SignUpAsService" class="mdl-button">Sign up as service</button>
+
+       <br><br>
+    </div>
+   </div><!--form 03-->
 
 
 
@@ -99,6 +141,17 @@
 </div>
 </template>
 
+
+
+
+
+
+
+
+
+
+
+
 <script>
 import { firebase , db } from '../../firebaseConfig.js'
 import Swal from 'sweetalert'
@@ -113,8 +166,19 @@ export default {
       password: null,
       name: null,
       phone: null,
+      serviceimg:null,
+      servicename:null,
+      servicedescription:null,
 
-      NotSignedUpYet: true,
+
+      form01: true,
+      form02: false,
+      form03: false,
+
+
+      ImmaBeAClient: false,
+      ImmaBeAService: false,
+      IdontKnowWhatImGonnaBe: true,
 
 
     }
@@ -132,7 +196,7 @@ export default {
             phone: this.phone,
 
           }).then(() =>{
-              Swal({ title: "Congrats ! ", text: "Your account has been created", icon: "success", button: "let's goo!",}).then(() => {this.$router.replace("home")})
+              Swal({ title: "Congrats ! ", text: "Your client account has been created", icon: "success", button: "let's goo!",}).then(() => {this.$router.replace("home")})
           })
 
 
@@ -144,7 +208,61 @@ export default {
           Swal({ title: "Oops !", text: err.message, icon: "error", button: "let's try again",});
         }
       );
-    }
+    },
+
+    SignUpAsService: function(){
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+        (credentials) => { 
+
+
+          return db.collection('users').doc(credentials.user.uid).set({
+            name: this.name,
+            phone: this.phone,
+            serviceimg: this.serviceimg,
+            servicename: this.servicename,
+            servicedescription: this.servicedescription,
+
+          }).then(() =>{
+              Swal({ title: "Congrats ! ", text: "Your service account has been created", icon: "success", button: "let's goo!",}).then(() => {this.$router.replace("home")})
+          })
+
+
+
+
+
+        },
+        (err) => {
+          Swal({ title: "Oops !", text: err.message, icon: "error", button: "let's try again",});
+        }
+      );
+    },
+
+
+
+
+
+
+    ContinueForm02:function (){
+      this.form01 = false
+      this.form02 = true
+    },
+    ContinueForm03:function (){
+      this.form02 = false
+      this.form03 = true
+    },
+    choose: function(){
+      Swal({ title: "Slow down", text: "you need to select wich type of account you are gonna use", icon: "warning"})
+    },
+    signClient: function(){
+      this.ImmaBeAClient = true
+      this.ImmaBeAService = false
+      this.IdontKnowWhatImGonnaBe = false
+    },
+    signService: function(){
+      this.ImmaBeAClient = false
+      this.ImmaBeAService = true
+      this.IdontKnowWhatImGonnaBe = false
+    },
 
 
 
@@ -154,6 +272,23 @@ export default {
 
 }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <style scoped>
@@ -174,6 +309,20 @@ export default {
 
   #form02{
     background: url("https://cdn.dribbble.com/users/1803663/screenshots/5665285/home.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    box-shadow: inset 0 0 100px 2200px rgba(0, 0, 0, 0.5);
+    align-content: middle;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding:22px;
+  }
+  
+  #form03{
+    background: url("https://cdn.dribbble.com/users/63407/screenshots/5584539/dribbble_starry_night.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -226,16 +375,42 @@ export default {
     font-size:22px;
     width: 10%;
   }
+  h1{
+    padding: 22px 0;
+    margin: 22px 0;
+  }
+
+
+  #form03-serviceimg{
+    width: 200px;
+    height: 200px;
+    border-radius:100%;
+    overflow: hidden;
+    margin: auto;
+    border: solid 0.5px rgba(0, 0, 0, 0.1);
+  }
+  #form03-serviceimg img{
+    width:100%;
+    height: 100%;
+  }
 
 
    .floaties{
      position:fixed;
      top:0;
      right:0;
-     background:white;
+     left: 0;
      padding:22px;
      border-radius: 10px;
-     margin: 50px 100px auto auto;
+     margin: 36px auto auto auto;
+     width: auto;
+   }
+   .floaties button{
+     background:white;
+   }
+   .floaties button:hover{
+     background:#5755d9 !important;
+     color: white !important;
    }
 
 

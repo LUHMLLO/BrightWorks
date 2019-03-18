@@ -24,9 +24,9 @@
        <br><br>
     </div><!--fomr box -->
 
-    <div class="floaties mdl-shadow--2dp">
+    <div class="floaties">
         <router-link to="/signup">
-          <button class="mdl-button">I dont have an account</button>
+          <button class="mdl-button mdl-shadow--2dp">I dont have an account</button>
         </router-link>
     </div>
      
@@ -140,10 +140,18 @@ export default {
      position:fixed;
      top:0;
      right:0;
-     background:white;
+     left: 0;
      padding:22px;
      border-radius: 10px;
-     margin: 50px 100px auto auto;
+     margin: 36px auto auto auto;
+     width: auto;
+   }
+   .floaties button{
+     background:white;
+   }
+   .floaties button:hover{
+     background:#5755d9 !important;
+     color: white !important;
    }
 
 </style>

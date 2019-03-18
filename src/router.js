@@ -8,7 +8,6 @@ import NotFound from "./components/Basics/NotFound.vue"
 import Login from "./components/Basics/Login.vue"
 import Signup from "./components/Basics/Signup.vue"
 import Home from "./components/Home.vue"
-import Register from "./components/Basics/Register.vue"
 import Perfil from "./components/Accounts/Perfil.vue"
 import Search from "./components/Modules/Search.vue"
 
@@ -51,13 +50,6 @@ let router = new Router({
         path: '/signup',
         name: 'Signup',
         component: Signup
-      },
-
-
-      {
-        path: '/register',
-        name: 'Register',
-        component: Register
       },
 
 

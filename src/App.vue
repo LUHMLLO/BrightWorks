@@ -88,6 +88,10 @@ img{
   max-width: 100%;
 }
 
+.disabled-btn{
+  background: rgba(200,200,200,0.9) !important;
+  color:gray !important;
+}
 
 .mdl-grid {
   justify-content: center;
