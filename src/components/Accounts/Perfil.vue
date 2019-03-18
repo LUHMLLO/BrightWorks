@@ -13,7 +13,7 @@
 
 
               <div id="perfil-header-name">
-                  <h3>user name here</h3>
+                  <h3></h3>
               </div>
 
 
@@ -23,7 +23,7 @@
                  <div id="perfil-header-bar" class="perfil-bottom-item">
                      <button class="mdl-button" v-on:click="showTimelineTab" v-bind:class="{ tabActive: TimelineTab }">Timeline</button>
                      <button class="mdl-button" v-on:click="showAboutTab" v-bind:class="{ tabActive: aboutTab }">About</button>
-                     <button class="mdl-button" v-on:click="showServiceTab" v-bind:class="{ tabActive: ServiceTab }">Services</button>
+                     <button class="mdl-button" v-on:click="showServiceTab" v-bind:class="{ tabActive: ServiceTab }" disabled>Services</button>
                      <button class="mdl-button" v-on:click="showHelpTab" v-bind:class="{ tabActive: HelpTab }">Help</button>
                  </div>
 
@@ -43,9 +43,6 @@
 
                    <div id="perfil-timeline-action-bar">
                        <button class="mdl-button" v-on:click="isPostInMaking = true" v-bind:class="{tabActive: isPostInMaking}">Make a post</button>
-                       <button class="mdl-button">im an action</button>
-                       <button class="mdl-button">im an action</button>
-                       <button class="mdl-button">im an action</button>
                        <button class="mdl-button">im an action</button>
                        <button class="mdl-button">im an action</button>
                    </div>
@@ -88,10 +85,10 @@
                             <div class="post-footer">
                                 <div class="post-footer-top">
                                     <div class="post-footer-likes">
-                                        <i class='uil uil-thumbs-up'></i> <small>12 likes</small>
+                                        <i class='uil uil-thumbs-up'></i>
                                     </div>
                                     <div class="post-footer-comments">
-                                        <i class='uil uil-comment'></i> <small> 22 comments</small>
+                                        <i class='uil uil-comment'></i>
                                     </div>
                                 </div><!--footer header-->
 
@@ -191,6 +188,8 @@
 
 
 <script>
+import { firebase, db } from '../../firebaseConfig.js'
+
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
@@ -212,7 +211,7 @@ export default {
            HelpTab: false,
            isPostInMaking: false,
 
-           username: [],
+           userinfo:[],
 
 
            postsContent:'',
@@ -268,8 +267,25 @@ export default {
 
     created(){
 
-    },
+        //this.user = firebase.auth().currentUser
+        //var usercollection = this.userinfo
 
+
+        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
+        {
+                console.log('Document data:', snapshot.data());
+                const data ={
+                    'name': snapshot.data().name,
+                    'phone': snapshot.data().phone,
+                }
+                this.userinfo.push(data)                    
+        })
+
+
+
+
+
+    }
 }
 </script>
 
@@ -324,6 +340,9 @@ export default {
         display: flex;
         justify-content: space-between;
         align-content: center;
+        overflow: hidden;
+        white-space: nowrap;
+        overflow-y: auto;
     }
 
     .perfil-bottom-item{
@@ -340,7 +359,7 @@ export default {
     #perfil-header-bar button{
         display: inline-block;
         align-self: middle;
-        margin: auto 8px auto 8px;
+        margin: auto;
         border-radius: 100px;
     }
     #perfil-header-bar button:hover{
@@ -389,9 +408,11 @@ export default {
   #perfil-timeline-action-bar{
       margin: -112px auto auto auto;
       width:100%;
+      overflow: hidden;
+      white-space: nowrap;
   }
   #perfil-timeline-action-bar button{
-      margin: auto 22px auto 22px;
+      margin: auto;
       border-radius: 100px;
   }
 
@@ -434,12 +455,11 @@ export default {
 
 
   #perfil-timeline-posts{
-      width:80%;
+      width:100%;
       margin:100px auto auto auto;
-      padding:22px;
   }
   .perfil-timeline-post{
-      width:800px;
+      width:100%;
       margin: auto auto 52px auto;
       min-height: 100px;
   }
@@ -447,14 +467,14 @@ export default {
       width: 100%;
       display: flex;
       border-bottom: solid 0.5px rgba(0,0,0,0.2);
-      padding: 10px 0 10px 0;
+      padding: 14px;
   }
   .post-header-img{
-      width:80px;
-      height:80px;
+      width:80px !important;
+      height:80px !important;
       border-radius: 100px;
       overflow: hidden;
-      margin: auto;
+      margin: auto 22px auto auto;
       align-self: middle;
       display: inline-block;
   }
@@ -468,7 +488,7 @@ export default {
       align-self: middle;
       display: inline-block;
       text-align: left;
-      width:76%;
+      width:90%;
   }
   .post-header-text h5{
       font-size:18px;
@@ -487,22 +507,24 @@ export default {
   }
   .post-footer-top{
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       width:100%;
       padding: 10px 0;
   }
   .post-footer-likes , .post-footer-comments{
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       margin:auto;
       align-self: middle;
+      width:100%;
   }
+  
   .post-footer-middle{
       width:100%;
       padding:22px 0;
   }
   .post-footer-middle input{
-      width:400px;
+      width:95%;
       margin:auto;
       padding:22px;
       border:none;
