@@ -277,10 +277,9 @@ export default {
                 const data ={
                     'name': snapshot.data().name,
                     'phone': snapshot.data().phone,
-                }
-                this.userinfo.push(data)                    
+                }                    
         })
-
+        this.userinfo.push()
 
 
 
