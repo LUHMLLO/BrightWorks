@@ -48,7 +48,16 @@
          <h6>Let's setup your account so you can go surf</h6>
        </div>
 
+      <transition enter-active-class="animated fadeIn" leave-active-class="fadeOut">
+        <div class="forms-input-img mdl-shadow--2dp" v-if="img">
+          <img v-bind:src="img">
+        </div>
+      </transition>
 
+
+      <div class="input-container">
+        <i class='uil uil-scenery'></i><input type="text" name="img" id="img" v-model="img" placeholder="img (insert img url)" /> 
+      </div>
       <div class="input-container">
         <i class='uil uil-user'></i><input type="text" name="name" id="name" v-model="name" placeholder="name"/> 
       </div>
@@ -98,7 +107,7 @@
        <h1>Register a service</h1>
 
        <transition enter-active-class="animated fadeIn" leave-active-class="fadeOut">
-        <div id="form03-serviceimg" class="mdl-shadow--2dp" v-if="serviceimg">
+        <div class="forms-input-img mdl-shadow--2dp" v-if="serviceimg">
           <img v-bind:src="serviceimg">
         </div>
        </transition>
@@ -159,6 +168,7 @@ export default {
       
       email: null,
       password: null,
+      img:null,
       name: null,
       phone: null,
       serviceimg:null,
@@ -187,6 +197,7 @@ export default {
 
 
           return db.collection('users').doc(credentials.user.uid).set({
+            img: this.img,
             name: this.name,
             phone: this.phone,
 
@@ -211,6 +222,7 @@ export default {
 
 
           return db.collection('users').doc(credentials.user.uid).set({
+            img: this.img,
             name: this.name,
             phone: this.phone,
             serviceimg: this.serviceimg,
@@ -405,7 +417,7 @@ export default {
   }
 
 
-  #form03-serviceimg{
+  .forms-input-img{
     width: 200px;
     height: 200px;
     border-radius:100%;
@@ -413,7 +425,7 @@ export default {
     margin: auto;
     border: solid 0.5px rgba(0, 0, 0, 0.1);
   }
-  #form03-serviceimg img{
+  .forms-input-img img{
     width:100%;
     height: 100%;
   }
