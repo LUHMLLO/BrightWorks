@@ -112,7 +112,8 @@
                  
                <div id="perfil-info" class="perfil-section" v-if="aboutTab">
 
-                   <div id="perfil-info-serviceimg" v-if="accountType">
+                <div id="service-view" v-if="accountType">
+                   <div id="perfil-info-serviceimg">
                        <div id="perfil-info-img-bg"  v-bind:style="{ backgroundImage: 'url(' + user.serviceimg + ')' }"></div>
 
                        <div id="perfil-info-img" class="mdl-shadow--16dp">
@@ -122,8 +123,8 @@
                        <div id="perfil-info-add-a-detail" class="mdl-shadow--8dp"><i class='uil uil-plus'></i></div>
                    </div><!--perfil info img-->
                    
-                   <h1 v-if="accountType">{{user.servicename}}</h1>
-                   <p v-if="accountType">{{user.servicedescription}}</p>
+                   <h1>{{user.servicename}}</h1>
+                   <p>{{user.servicedescription}}</p>
 
                        
                        <div id="perfil-info-details" class="mdl-grid">
@@ -136,7 +137,7 @@
                                <i class='uil uil-schedule'></i><p>{{user.phone}}</p>
                            </div>
                            <div class="perfil-detail">
-                               <i class='uil uil-phone-alt'></i><p>{{user.phone}}</p>
+                               <i class='uil uil-envelope-alt'></i><p>{{user.email}}</p>
                            </div>
 
                            <div class="perfil-detail">
@@ -150,6 +151,23 @@
                                <i class='uil uil-phone-alt'></i><p>{{user.phone}}</p>
                            </div>                           
                        </div>
+                </div><!--service view-->
+
+
+
+
+                <div v-if="!accountType">
+                       <div id="perfil-info-details2" class="mdl-grid">
+                           
+                           <div class="perfil-detail">
+                               <i class='uil uil-envelope-alt'></i><p>{{user.email}}</p>
+                           </div>
+
+                           <div class="perfil-detail">
+                               <i class='uil uil-phone-alt'></i><p>{{user.phone}}</p>
+                           </div>                           
+                       </div>                    
+                </div><!--client view-->
 
 
                </div><!-- perfil info section-->
@@ -282,6 +300,7 @@ export default {
                     'img': snapshot.data().img,
                     'name': snapshot.data().name,
                     'phone': snapshot.data().phone,
+                    'email': snapshot.data().email,
                     'serviceimg': snapshot.data().serviceimg,
                     'servicename': snapshot.data().servicename,
                     'servicedescription': snapshot.data().servicedescription,
@@ -563,7 +582,7 @@ export default {
 
   #perfil-info-serviceimg{
       width:100%;
-      height: 56vh;
+      height: 64vh;
       overflow: hidden;
       margin:auto;
       position: relative;
@@ -638,12 +657,16 @@ export default {
       justify-content: center !important;
       align-content: center !important;
   }
+  #perfil-info-details2{
+      width:100%;
+      margin: -32px auto auto auto;
+      justify-content: center !important;
+      align-content: center !important;
+  }
   .perfil-detail{
       display: flex;
       align-content: center;
-      min-width:200px;
-      width:200px;
-      max-width:300px;
+      width:400px;  
       justify-content: center;
       margin:16px;
       align-self: center;
@@ -655,6 +678,14 @@ export default {
       margin:auto;
       align-self: middle;
       display: inline-block;
+  }
+  .perfil-detail i{
+      width:30%;
+      text-align: left;
+  }
+  .perfil-detail p{
+      text-align: left;
+      width:90%;
   }
 
 
