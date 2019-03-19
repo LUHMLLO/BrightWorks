@@ -1,24 +1,21 @@
 <template>
   <div id="services" class="container">
     <section class="form">
-      <form aclass="text-cent" @submit.prevent>
-        <input v-model="nombre" type="text" class="form-control" placeholder="Nombre">
-        <input v-model="descripcion" type="text" class="form-control" placeholder="Descripcion">
-        <input
-          v-model="tiempoEstimado"
-          type="text"
-          class="form-control"
-          placeholder="tiempoEstimado"
-        >
-        <input v-model="costo" type="text" class="form-control" placeholder="costo">
-        <input
-          v-model="horarioDisponible"
-          type="text"
-          class="form-control"
-          placeholder="horarioDisponible"
-        >
+      <form aclass="text-cent" @submit.prevent = 'createService'>
+          <label >ID</label>
+        <input v-model="serviceData.name_id" type="text" class="form-control">
+        <label >Name</label>
+        <input v-model="serviceData.name" type="text" class="form-control" >
+        <label >Description</label>
+        <input v-model="serviceData.description"    type="text" class="form-control" >
+        <label >Estimated Time</label>
+        <input v-model="serviceData.estimatedTime" type="text" class="form-control" >
+        <label >Price</label>
+        <input v-model="serviceData.price" type="text" class="form-control">
+        <label >Scherdule</label>
+        <input v-model="serviceData.scherdule" type="text" class="form-control">
         <!-- Button to submit -->
-        <button v-on:click="crearServicio" class="mdl-btn">Crear</button>
+        <button type="submit" class="btn btn-primary my-2">Crear</button>
       </form>
     </section>
 
@@ -27,84 +24,63 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Tiempo Estimado</th>
-            <th scope="col">costo</th>
-            <th scope="col">horario disponible</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Estimated Tim</th>
+            <th scope="col">Price</th>
+            <th scope="col">Scherdule</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(servicio, index) in servicios" :key="index">
-            <td>{{servicio.id}}</td>
-            <td>
-              <span v-if="formActualizar && idActualizar == index">
-                <!-- Formulario para actualizar -->
-                <input v-model="nombreActualizar" type="text" class="form-control">
-              </span>
-              <span v-else>
-                <!-- Dato nombre -->
-                {{ servicio.name }}
-              </span>
-            </td>
+          <tr v-for="(service) in sortedServices" :key="service.id">
+            <template v-if="editId == service.id">
+                <td><input v-model="editServiceData.name_id" type="text"></td>
+                <td><input v-model="editServiceData.name" type="text"></td>
+                <td><input v-model="editServiceData.description" type="text"></td>
+                <td><input v-model="editServiceData.estimatedTime" type="text"></td>
+                <td><input v-model="editServiceData.price" type="text"></td>
+                <td><input v-model="editServiceData.scherdule" type="text"></td>
+                <td>
+                    <span class="icon">
+                        <i @click="onEditSubmit(product.id)" class="fa fa-check"></i>
+                    </span>
+                    <span>
+                        <i @click="onCancel" class="fa fa-ban"></i>
+                    </span>
+                </td>
+            </template>
+            <template v-else>
+                <td>
+                    {{sercie.name_id}}
+                </td>
 
-            <td>
-              <span v-if="formActualizar && idActualizar == index">
-                <!-- Formulario para actualizar -->
-                <input v-model="descripcionActualizar" type="text" class="form-control">
-              </span>
-              <span v-else>
-                <!-- Dato descripcion -->
-                {{ servicio.description }}
-              </span>
-            </td>
+                <td>
+                    {{sercie.name}}
+                </td>
 
-            <td>
-              <span v-if="formActualizar && idActualizar == index">
-                <!-- Formulario para actualizar -->
-                <input v-model="tiempoEstimadoActualizar" type="text" class="form-control">
-              </span>
-              <span v-else>
-                <!-- Dato descripcion -->
-                {{ servicio.stimateTime }}
-              </span>
-            </td>
+                <td>
+                    {{sercie.description}}
+                </td>
 
-            <td>
-              <span v-if="formActualizar && idActualizar == index">
-                <!-- Formulario para actualizar -->
-                <input v-model="costoActualizar" type="text" class="form-control">
-              </span>
-              <span v-else>
-                <!-- Dato descripcion -->
-                {{ servicio.cost }}
-              </span>
-            </td>
+                <td>
+                    {{sercie.estimatedTime}}
+                </td>
 
-            <td>
-              <span v-if="formActualizar && idActualizar == index">
-                <!-- Formulario para actualizar -->
-                <input v-model="horarioDisponibleActualizar" type="text" class="form-control">
-              </span>
-              <span v-else>
-                <!-- Dato descripcion -->
-                {{ servicio.availableHours }}
-              </span>
-            </td>
+                <td>
+                    {{sercie.price}}
+                </td>
 
-            <td>
-              <!-- Botón para guardar la información actualizada -->
-              <span v-if="formActualizar && idActualizar == index">
-                <button @click="guardarActualizacion(index)" class="btn btn-success">Guardar</button>
-              </span>
-              <span v-else>
-                <!-- Botón para mostrar el formulario de actualizar -->
-                <button @click="verFormActualizar(index)" class="btn btn-warning">Actualizar</button>
-                <!-- Botón para borrar -->
-                <button @click="borrarServicio(index)" class="btn btn-danger">Borrar</button>
-              </span>
-            </td>
+                <td>
+                    {{sercie.scherdule}}
+                </td>
+
+                <td>
+                    <a href="#">
+                        <i @click="onEdit(service)" class="fa fa-pencil"></i>
+                    </a>
+                </td>
+            </template>
           </tr>
         </tbody>
       </table>
@@ -116,77 +92,168 @@ import { db } from "../../firebaseConfig.js";
 
 export default {
   name: "Services",
-  data() {
+  data() {      
     return {
-      nombre: "",
-      descripcion: "",
-      tiempoEstimado: "",
-      costo: "",
-      horarioDisponible: "",
-      formActualizar: false,
-      idActualizar: -1,
-      nombreActualizar: "",
-      descripcionActualizar: "",
-      tiempoEstimadoActualizar: "",
-      costoActualizar: "",
-      horarioDisponibleActualizar: "",
-      servicios: []
-    };
-  },
-  methods: {
-    crearServicio: function() {
-      var servicio = {};
-      servicio.name = this.nombre;
-      servicio.description = this.descripcion;
-      servicio.tiempoEstimado = this.stimateTime;
-      servicio.costo = this.cost;
-      servicio.horarioDisponible = this.availableHours;
-      this.servicios.push(servicio);
-    },
+        editId:'',
+        serviceData: {
 
-    verFormActualizar: function(servicio_id) {
-      this.idActualizar = servicio_id;
-      this.nombreActualizar = this.servicios[servicio_id].nombre;
-      this.descripcionActualizar = this.servicios[servicio_id].descripcion;
-      this.tiempoEstimadoActualizar = this.servicios[servicio_id].tiempoEstimado;
-      this.costoActualizar = this.servicios[servicio_id].costo;
-      this.horarioDisponibleActualizar = this.servicios[servicio_id].horarioDisponible;
-      this.formActualizar = true;
-    },
+      id: "",
+      name_id: "",
+      name: "",
+      description: "",
+      estimatedTime: "",
+      price: "",
+      scherdule: ""
 
-    borrarServicio: function(servicio_id) {
-      this.servicios.splice(servicio_id, 1);
-    },
+        },
 
-    guardarActualizacion: function(servicio_id) {
-      // Ocultamos nuestro formulario de actualizar
-      this.formActualizar = false;
-      // Actualizamos los datos
-      this.servicios[servicio_id].nombre = this.nombreActualizar;
-      this.servicios[servicio_id].descripcion = this.descripcionActualizar;
-      this.servicios[servicio_id].tiempoEstimado = this.tiempoEstimadoActualizar;
-      this.servicios[servicio_id].costo = this.costoActualizar;
-      this.servicios[servicio_id].horarioDisponible = this.horarioDisponibleActualizar;
+        editServiceData:{
 
+      id: "",
+      name: "",
+      name_id: "",
+      description: "",
+      estimatedTime: "",
+      price: "",
+      scherdule: ""    
+
+        },          
+      services: []
     }
   },
+  created(){
+      this.getService()
+  },
+  computed:{
+      sortedServices(){
+          return this.services.slice().sort((a,b)=>{
+              return a.name_id - b.name_id
+          })
+      }
+  },
+  methods: {
 
-  created() { 
-    db.collection("services")
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          const data = {
-            name: doc.data().name,
-            description: doc.data().description,
-            stimateTime: doc.data().estimateTime,
-            cost: doc.data().doc,
-            availableHours: doc.data().availableHours,
-            services: doc.data().services
-          };
-          this.servicios.push(data);
-        });
-      });
+      getService(){
+          db.collection('services')
+          .get()
+          .then(querySnapshot =>{
+              var services = {};
+              
+
+              var servicesArray = []
+              let i = 0
+              querySnapshot.forEach((doc)=>{
+                  servicesArray.push(doc.data())
+                  servicesArray[i].id = doc.id
+                  this.services.push(servicesArray[i])
+                  i++
+              })
+            this.services = services
+          })
+      },
+
+      createService(){
+          db.collection('services').add(this.serviceData).then(this.getService)
+          this.serviceData.name_id = ''
+          this.serviceData.name = ''
+          this.serviceData.description = ''
+          this.serviceData.estimatedTime = ''
+          this.serviceData.price = ''
+          this.serviceData.scherdule = ''
+      },
+
+          onDelete(id){
+           db.collection('services').doc(id).delete().then((data)=>{
+           this.getService()
+      })
+    },
+
+        onEdit(service){
+      this.editId = service.id
+      this.editServiceData.name_id = service.name_id
+      this.editServiceData.name = service.name
+      this.editServiceData.description = service.description
+      this.editServiceData.estimatedTime = service.estimatedTime
+      this.editServiceData.price = service.price
+      this.editServiceData.scherdule = service.scherdule
+          },
+
+        onCancel(){
+      this.editId = ''
+      this.editServiceData.name_id = ''
+      this.editServiceData.name = ''
+      this.editServiceData.description = ''
+      this.editServiceData.estimatedTime = ''
+      this.editServiceData.price = ''
+      this.editServiceData.scherdule = ''
+
+    },
+
+    onEditSubmit (id){
+      db.collection("services").doc(id).set(this.editServiceData).then(
+        this.getService)
+        this.editId = ''
+        this.editServiceData.name_id = ''
+        this.editServiceData.name = ''
+        this.editServiceData.description = ''
+        this.editServiceData.estimatedTime = ''
+        this.editServiceData.price = ''
+        this.editServiceData.scherdule = ''
+    }
+
+    // crearServicio: function() {
+    //   var servicio = {};
+    //   servicio.name = this.name;
+    //   servicio.description = this.description;
+    //   servicio.estimatedTime = this.estimatedTime;
+    //   servicio.cost = this.price;
+    //   servicio.availableHours = this.scherdule;
+    //   this.services.push(servicio);
+    },
+
+    // verFormActualizar: function(servicio_id) {
+    //   this.idActualizar = servicio_id;
+    //   this.nameActualizar = this.services[servicio_id].name;
+    //   this.descriptionActualizar = this.services[servicio_id].description;
+    //   this.estimatedTimeActualizar = this.services[servicio_id].estimatedTime;
+    //   this.priceActualizar = this.services[servicio_id].price;
+    //   this.scherduleActualizar = this.services[servicio_id].scherdule;
+    //   this.formActualizar = true;
+    // },
+
+    // borrarServicio: function(servicio_id) {
+    //   this.services.splice(servicio_id, 1);
+    // },
+
+    // guardarActualizacion: function(servicio_id) {
+    //   // Ocultamos nuestro formulario de actualizar
+    //   this.formActualizar = false;
+    //   // Actualizamos los datos
+    //   this.services[servicio_id].name = this.nameActualizar;
+    //   this.services[servicio_id].description = this.descriptionActualizar;
+    //   this.services[servicio_id].estimatedTime = this.estimatedTimeActualizar;
+    //   this.services[servicio_id].price = this.priceActualizar;
+    //   this.services[servicio_id].scherdule = this.scherduleActualizar;
+
+    // }
   }
-};
+
+//   created() { 
+//     db.collection("services")
+//       .get()
+//       .then(querySnapshot => {
+//         querySnapshot.forEach(doc => {
+//           const data = {
+//             name: doc.data().name,
+//             description: doc.data().description,
+//             estimatedTime: doc.data().estimatedTime,
+//             cost: doc.data().doc,
+//             availableHours: doc.data().availableHours,
+            
+//           };
+//           this.services.push(data);
+//         });
+//       });
+//   }
+// };
 </script>

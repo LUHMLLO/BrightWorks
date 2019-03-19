@@ -27,6 +27,7 @@
             </div>
               
 
+            <div id="sidebar-links">
               <router-link to="/home" class="mdl-button">
                <i class='uil uil-home-alt' style="width:50%;"></i><p>home</p>
               </router-link>
@@ -38,6 +39,8 @@
               <router-link to="/search" class="mdl-button"> 
                <i class='uil uil-search-alt' style="width:50%;"></i><p>Search</p>
               </router-link>
+
+            </div><!--sidebar links-->
 
         </div><!--sidebar-->
       </transition>
@@ -153,6 +156,11 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     z-index: 6;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  #sidebar::-webkit-scrollbar{
+    display: none;
   }
   #sidebar a{
     display: flex;
@@ -181,6 +189,11 @@ export default {
     font-size:22px;
   }
 
+  #sidebar-links{
+    width:100%;
+    margin:auto;
+  }
+
 
 
   #sidebar-route-buttons{
@@ -203,7 +216,7 @@ export default {
   #sidebar-header{
       width:100%;
       padding:22px 0px;
-      margin: 22px auto 22px auto;
+      margin: 22px auto -26px auto;
   }
 
   #sidebar-user-img{
