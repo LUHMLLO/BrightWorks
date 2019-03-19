@@ -112,7 +112,7 @@
                  
                <div id="perfil-info" class="perfil-section" v-if="aboutTab">
 
-                   <div id="perfil-info-serviceimg">
+                   <div id="perfil-info-serviceimg" v-if="accountType">
                        <div id="perfil-info-img-bg"  v-bind:style="{ backgroundImage: 'url(' + user.serviceimg + ')' }"></div>
 
                        <div id="perfil-info-img" class="mdl-shadow--16dp">
@@ -122,8 +122,8 @@
                        <div id="perfil-info-add-a-detail" class="mdl-shadow--8dp"><i class='uil uil-plus'></i></div>
                    </div><!--perfil info img-->
                    
-                   <h1>{{user.servicename}}</h1>
-                   <p>{{user.servicedescription}}</p>
+                   <h1 v-if="accountType">{{user.servicename}}</h1>
+                   <p v-if="accountType">{{user.servicedescription}}</p>
 
                        
                        <div id="perfil-info-details" class="mdl-grid">
