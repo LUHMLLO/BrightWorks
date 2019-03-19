@@ -12,7 +12,12 @@
                  </div>
               
             <div id="sidebar-header" v-if="isLoggedIn">
-                <h4>{{actualUser}}</h4>
+
+                <div id="sidebar-user-img">
+                  <img v-bind:src="userimg">
+                </div>
+
+                <h6>{{currentUser}}</h6>
 
                 <div id="sidebar-header-icons" class="mdl-grid">
                     <i class='uil uil-entry' v-on:click="logout"></i>
@@ -66,7 +71,7 @@
 
 
 <script>
-import firebase from '../../firebaseConfig.js'
+import {firebase,db} from '../../firebaseConfig.js'
 import mdl from 'material-design-lite'
 import Swal from 'sweetalert'
 
@@ -79,7 +84,7 @@ export default {
        isLoggedIn: false,
        currentUser: false,
        isNavOn: false,
-
+       userimg: null,
       }
     },
 
@@ -94,9 +99,6 @@ export default {
                if(letmeout){
                    firebase.auth().signOut().then(() =>{this.$router.replace('/')})
                }
-               else{
-
-               }
             })
        },
    },
@@ -107,12 +109,21 @@ export default {
         this.isLoggedIn = true
         this.currentUser = firebase.auth().currentUser.email
     }
+
+        let self = this;   
+        
+
+        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
+        {           
+                //console.log('Document data:', snapshot.data());
+                self.userimg = snapshot.data().img
+        })
   },
 
   updated(){
     if(firebase.auth().currentUser){
         this.isLoggedIn = true
-        this.actualUser = firebase.auth().currentUser.email
+        this.currentUser = firebase.auth().currentUser.email
     }
   },
   
@@ -193,6 +204,22 @@ export default {
       width:100%;
       padding:22px 0px;
       margin: 22px auto 22px auto;
+  }
+
+  #sidebar-user-img{
+    border-radius:100px;
+    width:150px;
+    height: 150px;
+    overflow: hidden;
+    margin:auto;
+  }
+  #sidebar-user-img img{
+    width:100%;
+    height: 100%;
+  }
+
+  #sidebar-header h6{
+    margin: 20px auto auto auto;
   }
 
   #sidebar-header-icons{
