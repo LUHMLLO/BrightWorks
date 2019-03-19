@@ -156,6 +156,11 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     z-index: 6;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  #sidebar::-webkit-scrollbar{
+    display: none;
   }
   #sidebar a{
     display: flex;
@@ -187,12 +192,6 @@ export default {
   #sidebar-links{
     width:100%;
     margin:auto;
-    height: 60vh;
-    overflow: hidden;
-    overflow-y: auto;
-  }
-  #sidebar-links::-webkit-scrollbar{
-    display: none;
   }
 
 
