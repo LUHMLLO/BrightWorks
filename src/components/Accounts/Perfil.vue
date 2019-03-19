@@ -111,45 +111,47 @@
 
                  
                <div id="perfil-info" class="perfil-section" v-if="aboutTab">
-                 <div id="perfil-info-welcome">
+
+                   <div id="perfil-info-serviceimg">
+                       <div id="perfil-info-img-bg"  v-bind:style="{ backgroundImage: 'url(' + user.serviceimg + ')' }"></div>
+
+                       <div id="perfil-info-img" class="mdl-shadow--16dp">
+                           <img v-bind:src="user.serviceimg">
+                       </div>
+
+                       <div id="perfil-info-add-a-detail" class="mdl-shadow--8dp"><i class='uil uil-plus'></i></div>
+                   </div><!--perfil info img-->
+                   
+                   <h1>{{user.servicename}}</h1>
+                   <p>{{user.servicedescription}}</p>
+
                        
-                    <div id="perfil-info-welcome-img">
-                       <img src="https://cdn.dribbble.com/users/1461762/screenshots/3826770/missing_summer.png">
-                    </div>
+                       <div id="perfil-info-details" class="mdl-grid">
+                           
+                           <div class="perfil-detail">
+                               <i class='uil uil-map-marker-alt'></i><p>{{user.phone}}</p>
+                           </div>
 
-                    <div id="perfil-info-welcome-text">
-                        <h3>Services Name goes here</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Praesentium aliquid neque vitae veritatis deserunt.
-                        Doloribus recusandae facilis at natus fugit asperiores unde molestias,
-                        aliquam tempore quasi suscipit accusamus incidunt modi?
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Debitis delectus, et voluptatibus aperiam odit ipsa eveniet
-                        ullam quae enim reprehenderit ratione, ipsam exercitationem.
-                        Aliquid soluta iste odit obcaecati voluptatibus suscipit.</p>
+                           <div class="perfil-detail">
+                               <i class='uil uil-schedule'></i><p>{{user.phone}}</p>
+                           </div>
+                           <div class="perfil-detail">
+                               <i class='uil uil-phone-alt'></i><p>{{user.phone}}</p>
+                           </div>
 
+                           <div class="perfil-detail">
+                               <i class='uil uil-phone-alt'></i><p>{{user.phone}}</p>
+                           </div>
+                           <div class="perfil-detail">
+                               <i class='uil uil-phone-alt'></i><p>{{user.phone}}</p>
+                           </div>
 
-
-                        <div id="perfil-info-welcome-details">
-                            <div class="perfil-info-welcome-detail">
-                                <i class='uil uil-location-point'></i><p>801 Plumb Branch Street Fairmont, WV 26554</p>
-                            </div><!--perfil info welcome detail-->
-                            <div class="perfil-info-welcome-detail">
-                                <i class='uil uil-phone'></i><p>801-123-26554</p>
-                            </div><!--perfil info welcome detail-->
-                            <div class="perfil-info-welcome-detail">
-                                <i class='uil uil-location-point'></i><p>801 Plumb Branch Street Fairmont, WV 26554</p>
-                            </div><!--perfil info welcome detail-->
-                            <div class="perfil-info-welcome-detail">
-                                <i class='uil uil-location-point'></i><p>801 Plumb Branch Street Fairmont, WV 26554</p>
-                            </div><!--perfil info welcome detail-->
-                            
-                        </div><!-- perfil info welcome details-->
+                           <div class="perfil-detail">
+                               <i class='uil uil-phone-alt'></i><p>{{user.phone}}</p>
+                           </div>                           
+                       </div>
 
 
-                    </div><!--perfil info welcome text-->
-
-                 </div><!---perfil info-welcome-->
                </div><!-- perfil info section-->
 
 
@@ -280,13 +282,16 @@ export default {
                     'img': snapshot.data().img,
                     'name': snapshot.data().name,
                     'phone': snapshot.data().phone,
+                    'serviceimg': snapshot.data().serviceimg,
+                    'servicename': snapshot.data().servicename,
+                    'servicedescription': snapshot.data().servicedescription,
                 }
                 self.userinfo.push(data)
         }),
         
         db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
         {           
-           // console.log(snapshot.data().AccountType)
+          // console.log(snapshot.data().servicedescription)
 
                     if(snapshot.data().AccountType == 'service'){
                         self.accountType = true
@@ -556,69 +561,107 @@ export default {
 
 
 
-
-
-
-
-
-
-
-  #perfil-info-welcome{
+  #perfil-info-serviceimg{
       width:100%;
-      padding:22px;
+      height: 56vh;
+      overflow: hidden;
+      margin:auto;
+      position: relative;
+      z-index: 1;
       display: flex;
       justify-content: center;
-      align-content: center;
-      text-align: left;
+      flex-direction: column;
   }
-  #perfil-info-welcome h3{
-      font-size:32px;
-      padding:22px;
-      margin: auto;
+  #perfil-info-img-bg{
+      position: absolute;
+      width:inherit;
+      height: inherit;
+      z-index: -1;
+      filter: blur(12px);
+      transform: scale(1.1);
+      top: 0;
+      left: 0;
+      right: 0;
+      box-shadow: inset 0 0 22000px 22000px rgba(0,0,0,0.3);
+      background-size:cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+
+  #perfil-info-img{
+      width:300px;
+      height: 300px;
+      overflow: hidden;
+      margin:auto;
+      z-index: 2;
+      border-radius: 300px;
       align-self: middle;
-      display: inline-block;
   }
-  #perfil-info-welcome p{
-      font-size:22px;
-      text-align: justify;
-      padding:16px;
-      margin: auto;
-      align-self: middle;
-      display: inline-block;
+  #perfil-info-img img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
   }
-
-  #perfil-info-welcome-img{
-      width:800px;
-  }
-  #perfil-info-welcome-text{
-      padding:52px 32px;
-      width:1080px;
-  }
-
-
-  #perfil-info-welcome-details{
-      width:70%;
-  }
-  .perfil-info-welcome-detail{
-      display: flex;
+  #perfil-info-add-a-detail{
+      position:absolute;
+      background:gray;
+      bottom:0;
+      left: 0;
+      margin: auto auto 22px 22px;
+      border-radius: 100px;
+      width:40px;
+      height:40px;
       justify-content: center;
       align-content: middle;
-      text-align: left;
-      width: 400px;
+      display: flex;
+      cursor: pointer;
   }
-  .perfil-info-welcome-detail p,i{
-      font-size:14px !important;
-      display: inline-block;
+  #perfil-info-add-a-detail i{
       align-self: middle;
+      justify-self: center;
       margin:auto;
-      padding: 0 22px;
+      font-size:20px;
   }
-  .perfil-info-welcome-detail p{
-      width:90%;
+
+  #perfil-info h1{
+      margin:auto;
+      padding:42px 0;
   }
-  .perfil-info-welcome-detail i{
-      width:10%;
+  #perfil-info p{
+      margin:auto;
   }
+  #perfil-info-details{
+      width:100%;
+      margin:auto;
+      padding: 62px 22px;
+      justify-content: center !important;
+      align-content: center !important;
+  }
+  .perfil-detail{
+      display: flex;
+      align-content: center;
+      min-width:200px;
+      width:200px;
+      max-width:300px;
+      justify-content: center;
+      margin:16px;
+      align-self: center;
+      padding:22px;
+      border-radius:100px;
+      border: solid 0.5px rgba(0,0,0,0.1);
+  }
+  .perfil-detail i,p{
+      margin:auto;
+      align-self: middle;
+      display: inline-block;
+  }
+
+
+
+
+
+ 
 
 
 
