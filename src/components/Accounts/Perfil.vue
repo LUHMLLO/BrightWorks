@@ -1,19 +1,18 @@
 <template>
-<div id="perfil">
-
-
+<div id="perfil" >
+<div id="perfil-view" v-for="(user,userData) in userinfo" :key="userData">
 
 
 
            <div id="perfil-header" class="mdl-shadow--2dp">
               
               <div id="perfil-img" class="mdl-shadow--3dp">
-                  <img src="https://cdn.dribbble.com/users/14268/screenshots/3953645/paper.png">
+                  <img v-bind:src="user.img">
               </div>
 
 
               <div id="perfil-header-name">
-                  <h3></h3>
+                  <h3>{{user.name}}</h3>
               </div>
 
 
@@ -23,7 +22,7 @@
                  <div id="perfil-header-bar" class="perfil-bottom-item">
                      <button class="mdl-button" v-on:click="showTimelineTab" v-bind:class="{ tabActive: TimelineTab }">Timeline</button>
                      <button class="mdl-button" v-on:click="showAboutTab" v-bind:class="{ tabActive: aboutTab }">About</button>
-                     <button class="mdl-button" v-on:click="showServiceTab" v-bind:class="{ tabActive: ServiceTab }">Services</button>
+                     <button class="mdl-button" v-on:click="showServiceTab" v-bind:class="{ tabActive: ServiceTab }" disabled>Services</button>
                      <button class="mdl-button" v-on:click="showHelpTab" v-bind:class="{ tabActive: HelpTab }">Help</button>
                  </div>
 
@@ -67,10 +66,10 @@
 
                             <div class="post-header">
                                 <div class="post-header-img">
-                                    <img src="https://cdn.dribbble.com/users/1461762/screenshots/3795063/google_material_illustration.png">
+                                    <img v-bind:src="user.img">
                                 </div>
                                 <div class="post-header-text">
-                                    <h5>user name</h5>
+                                    <h5>{{user.name}}</h5>
                                     <small>time 10ms ago</small>
                                 </div>
                             </div><!--post header-->
@@ -182,6 +181,7 @@
 
 
            </div><!--perfil-sections container-->
+</div><!--perfil view -->           
 </div>
 </template>
 
@@ -266,20 +266,23 @@ export default {
 
 
     created(){
-
+         let self = this;   
         //this.user = firebase.auth().currentUser
         //var usercollection = this.userinfo
 
 
         db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
         {
+           
                 console.log('Document data:', snapshot.data());
                 const data ={
+                    'img': snapshot.data().img,
                     'name': snapshot.data().name,
                     'phone': snapshot.data().phone,
-                }                    
+                }
+                self.userinfo.push(data)             
         })
-        this.userinfo.push()
+        
 
 
 
