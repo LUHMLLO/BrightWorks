@@ -22,8 +22,8 @@
                  <div id="perfil-header-bar" class="perfil-bottom-item">
                      <button class="mdl-button" v-on:click="showTimelineTab" v-bind:class="{ tabActive: TimelineTab }">Timeline</button>
                      <button class="mdl-button" v-on:click="showAboutTab" v-bind:class="{ tabActive: aboutTab }">About</button>
-                     <button class="mdl-button" v-on:click="showServiceTab" v-bind:class="{ tabActive: ServiceTab }">Services</button>
-                     <button class="mdl-button" v-on:click="showHelpTab" v-bind:class="{ tabActive: HelpTab }">Help</button>
+                     <button class="mdl-button" v-on:click="showServiceTab" v-bind:class="{ tabActive: ServiceTab }" v-if="accountType">Services</button>
+                     <button class="mdl-button" v-on:click="showHelpTab" v-bind:class="{ tabActive: HelpTab }" v-if="accountType">Help</button>
                  </div>
 
 
@@ -216,6 +216,8 @@ export default {
 
            postsContent:'',
 
+           accountType:false,
+
            
 
 
@@ -272,17 +274,28 @@ export default {
 
 
         db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
-        {
-           
-                console.log('Document data:', snapshot.data());
+        {           
+                //console.log('Document data:', snapshot.data());
                 const data ={
                     'img': snapshot.data().img,
                     'name': snapshot.data().name,
                     'phone': snapshot.data().phone,
                 }
-                self.userinfo.push(data)             
-        })
+                self.userinfo.push(data)
+        }),
         
+        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
+        {           
+           // console.log(snapshot.data().AccountType)
+
+                    if(snapshot.data().AccountType == 'service'){
+                        self.accountType = true
+                    }
+                    else if(snapshot.data().AccountType == 'client'){
+                        self.accountType = false
+                    }
+             
+        })
 
 
 

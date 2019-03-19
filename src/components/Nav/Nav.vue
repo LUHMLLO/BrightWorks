@@ -12,7 +12,7 @@
                  </div>
               
             <div id="sidebar-header" v-if="isLoggedIn">
-                <h4>{{actualUser}}</h4>
+                <h6>{{actualUser}}</h6>
 
                 <div id="sidebar-header-icons" class="mdl-grid">
                     <i class='uil uil-entry' v-on:click="logout"></i>

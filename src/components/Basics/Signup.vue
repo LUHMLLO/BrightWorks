@@ -200,6 +200,7 @@ export default {
             img: this.img,
             name: this.name,
             phone: this.phone,
+            AccountType: 'client',
 
           }).then(() =>{
               Swal({ title: "Congrats ! ", text: "Your client account has been created", icon: "success", button: "let's goo!",}).then(() => {this.$router.replace("home")})
@@ -225,6 +226,7 @@ export default {
             img: this.img,
             name: this.name,
             phone: this.phone,
+            AccountType: 'service',
             serviceimg: this.serviceimg,
             servicename: this.servicename,
             servicedescription: this.servicedescription,
@@ -423,7 +425,6 @@ export default {
     border-radius:100%;
     overflow: hidden;
     margin: auto;
-    border: solid 0.5px rgba(0, 0, 0, 0.1);
   }
   .forms-input-img img{
     width:100%;
