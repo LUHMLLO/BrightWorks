@@ -51,7 +51,44 @@
     
     <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
      <div id="cover-howitworks-tab" class="cover-tabs-section" v-if="isTab1Visible">
-       <h3>how it works</h3>
+  
+
+        <div class="how-it-works-item">
+           <div class="how-it-works-item-img mdl-shadow--2dp">
+             <img src="https://cdn.dribbble.com/users/302065/screenshots/5094907/search_gale.gif">
+           </div>
+           
+           <h3>Search</h3>
+           <p>Look for the most suitable option.</p>
+         </div>
+
+         <div class="how-it-works-item">
+           <div class="how-it-works-item-img mdl-shadow--2dp">
+             <img src="https://cdn.dribbble.com/users/729829/screenshots/3975065/galshir-click-lemonade.gif">
+           </div>
+
+           <h3>Click</h3>
+           <p>Select only the best.</p>
+         </div>
+
+         <div class="how-it-works-item">
+           <div class="how-it-works-item-img mdl-shadow--2dp">
+             <img src="https://cdn.dribbble.com/users/729829/screenshots/3986782/galshir-design-your-week.gif">
+           </div>
+
+           <h3>Book</h3>
+           <p>As easy as it sounds.</p>
+         </div>
+          
+         <div class="how-it-works-item">
+           <div class="how-it-works-item-img mdl-shadow--2dp">
+             <img src="https://cdn.dribbble.com/users/1813781/screenshots/5579105/okaymonday_meeditation_girl.gif">
+           </div>
+
+           <h3>Relax</h3>
+           <p>No need for stress.</p>
+         </div>
+
      </div>
     </transition>
 
@@ -86,9 +123,9 @@
              </div><!---feature img-->
 
              <div class="feature-content">
-               <h3>feature name</h3>
+               <h3>{{feature.name}}</h3>
                <div class="feature-text">
-                 <p>Lorem ipsum dolor sit amet  fuga distinctio neque laborum sit eos totam, deleniti minus obcaecati!</p>
+                 <p>{{feature.content}}</p>
                </div>
              </div>
 
@@ -119,7 +156,7 @@
 
 
    <div class="cover-text-random-divider">
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, inventore atque? Architecto dicta provident soluta explicabo facere sapiente similique ipsa facilis laudantium modi, necessitatibus minus, tempora temporibus nemo, quis distinctio!</p>
+    <p>Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.</p>
    </div>
 
 
@@ -133,35 +170,44 @@
 
 
    <div id="cover-cards">
-     <h4>Some fancy title here</h4> 
+     <h4>A little more about BrightWorks</h4> 
      <div class="mdl-grid">
 
 
-
-      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--2-col-phone">
-        <img src="https://cdn.dribbble.com/users/791530/screenshots/5660599/icons8_connection_lost_illustration.png">
-      </div> 
-      <div class="cover-cards-text mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit inventore nobis vel enim illo, cupiditate mollitia consectetur ullam voluptates quisquam debitis officia dolorum a accusantium adipisci, ipsa officiis, nisi unde.</p>
-      </div>
-
-
-
-      <div class="cover-cards-text mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, doloremque! Vel porro possimus excepturi illum. Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
-      </div>
-      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
-        <img src="https://cdn.dribbble.com/users/412478/screenshots/3673636/creative_dribble-08.png">
-      </div> 
-      
+     <div class="cover-card">
+       <div class="cover-card-img">
+         <img src="https://cdn.dribbble.com/users/791530/screenshots/5660599/icons8_connection_lost_illustration.png">
+       </div>
+       <!----->
+       <div class="cover-card-text">
+         <h3>Mission</h3>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, ntium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
+       </div>
+     </div><!--cover card-->
 
 
-      <div class="mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
-        <img src="https://cdn.dribbble.com/users/2323077/screenshots/4625711/01_jira-illos.png">
-      </div> 
-      <div class="cover-cards-text mdl-cell mdl-cell--5-col  mdl-cell--4-col-tablet  mdl-cell--4-col-phone">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit animi quasi quisquam debitis saepe asperiores sunt dicta, labore magnam totam dolorum, eum sit corrupti. Nemo perspiciatis sequi aperiam eveniet ad?</p>
-      </div>
+     <div class="cover-card">
+       <div class="cover-card-text">
+         <h3>Vision</h3>
+         <p>Loloremque! Vel porro possimus excepturi illum. Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
+       </div>
+       <!----->
+       <div class="cover-card-img">
+         <img src="https://cdn.dribbble.com/users/412478/screenshots/3673636/creative_dribble-08.png">
+       </div>
+     </div><!--cover card-->      
+
+
+     <div class="cover-card">
+       <div class="cover-card-img">
+         <img src="https://cdn.dribbble.com/users/2323077/screenshots/4625711/01_jira-illos.png">
+       </div>
+       <!----->
+       <div class="cover-card-text">
+         <h3>Values</h3>
+         <p>Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
+       </div>
+     </div><!--cover card-->
 
 
 
@@ -229,16 +275,76 @@ export default {
 
 
        features:[
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5268088/farmhouse1.png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5301137/image.png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5570301/mountain_house-1200-x-1600.png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5188624/cape-mudge-lighthouse..png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5371625/lighthouse_bovbjerg-lighthouse.png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/6080532/kerala_paddy_field.png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/6149997/nature-3.png'},
-         {img:'https://cdn.dribbble.com/users/63407/screenshots/4828797/dribbble_tea_medows.png'},
-         {img:'https://cdn.dribbble.com/users/63407/screenshots/5877615/dribbble_india_stories_detail.png'},
-         {img:'https://cdn.dribbble.com/users/63407/screenshots/5095176/dribbble_lotus_pond.png'},
+         {
+         name:'Secure data', 
+         content:'Your data stays in the platform and no where else.',
+         img:'https://cdn.dribbble.com/users/1803663/screenshots/5268088/farmhouse1.png'
+         },
+         
+         {
+           name:'Easy to use',
+           content:'Not time to lose with extensive learning curves.',
+           img:'https://cdn.dribbble.com/users/1803663/screenshots/5301137/image.png'
+         },
+         
+         {
+           name:'Accessible',
+           content:'Access to your platform from anywhere as long as you have internet.',
+           img:'https://cdn.dribbble.com/users/1803663/screenshots/5570301/mountain_house-1200-x-1600.png'
+         },
+
+         {
+          name:'Secure payments', 
+          content:'Every payments within the platform apply for refund.',
+          img:'https://cdn.dribbble.com/users/1803663/screenshots/5268088/farmhouse1.png'
+         },
+         
+         {
+           name:'Organize',
+           content:'Keep track of your work and schedule.',
+           img:'https://cdn.dribbble.com/users/1803663/screenshots/5188624/cape-mudge-lighthouse..png'
+         },
+         
+         {
+           name:'Increased renevue',
+           content:'Increase your income by expanding your borders.',
+           img:'https://cdn.dribbble.com/users/1803663/screenshots/5371625/lighthouse_bovbjerg-lighthouse.png'
+         },
+         
+         {
+           name:'Cost efficient',
+           content:'Do more for less.',
+           img:'https://cdn.dribbble.com/users/1803663/screenshots/6080532/kerala_paddy_field.png'
+         },
+         
+         {
+           name:'Free publicity',
+           content:'As long as you do a great work everyone will hear about you',
+           img:'https://cdn.dribbble.com/users/1803663/screenshots/6149997/nature-3.png'
+         },
+         
+         {
+           name:'World wide clients',
+           content:'Get clients from all over the planet',
+           img:'https://cdn.dribbble.com/users/63407/screenshots/4828797/dribbble_tea_medows.png'
+         },
+         
+         {
+           name:'Simple Booking',
+           content:'Make appointments with just a couple of clicks',
+           img:'https://cdn.dribbble.com/users/63407/screenshots/5877615/dribbble_india_stories_detail.png'
+         },
+         
+         {
+           name:'Manage your incoming',
+           content:'Track your earnings and learn how to improve them',
+           img:'https://cdn.dribbble.com/users/63407/screenshots/5095176/dribbble_lotus_pond.png'
+         },
+         {
+           name:'Schedule friendly',
+           content:'Work at the time that best suits you',
+           img:'https://cdn.dribbble.com/users/63407/screenshots/5095176/dribbble_lotus_pond.png'
+         },
        ],
 
 
@@ -371,6 +477,47 @@ export default {
 }
 
 
+.how-it-works-item{
+  width:100%;
+  margin: auto auto 100px auto;
+}
+.how-it-works-item-img{
+  width: 80%;
+  height: 300px;
+  margin: auto;
+  border-radius:30px;
+  overflow: hidden;
+}
+.how-it-works-item-img img{
+  width:100%;
+  height: 100%;
+}
+.how-it-works-item i{
+  margin:auto;
+  display: block;
+  align-self: middle;
+  justify-self: center;
+  font-size:40px;
+  padding:22px;
+}
+.how-it-works-item h3{
+  margin:auto;
+  display: block;
+  align-self: middle;
+  justify-self: center;
+  font-size:28px;
+  padding:22px 0;
+}
+.how-it-works-item p{
+  margin:auto;
+  display: block;
+  align-self: middle;
+  justify-self: center;
+  font-size:16px;
+  padding-bottom:22px;
+}
+
+
 .service{
   width: 230px;
   display: flex;
@@ -403,17 +550,17 @@ export default {
 
  .feature{
    display: flex;
-   width: 500px;
+   width: 400px;
    margin:32px;
    justify-content: center;
  }
  .feature-img{
-   width:140px;
-   height: 140px;
+   width:100px;
+   height: 100px;
    overflow: hidden;
    border-radius: 100px;
    display: inline-block;
-   margin:auto;
+   margin:auto 22px auto auto;
    align-self: middle;
  }
  .feature-img img{
@@ -421,7 +568,7 @@ export default {
    height: 100%;
  }
  .feature-content{
-   width: 320px;
+   width: 60%;
    display: inline-block;
    margin:auto;
    align-self: middle;
@@ -431,9 +578,11 @@ export default {
    display: inline-block;
    margin:auto;
    align-self: middle;
+   font-size:18px;
+   padding: 10px 0;
  }
  .feature-text p{
-   font-size:13px;
+   font-size:12px;
    display: inline-block;
    margin:auto;
    align-self: middle;
@@ -442,30 +591,53 @@ export default {
 
 
 #cover-cards{
-  padding:100px 22px 200px 22px;
+  padding:100px 0;
 }
 #cover-cards h4{
   padding:42px 22px;
   border-bottom: solid 1px rgba(0, 0, 0, 0.3);
-  margin:auto auto 52px auto;
+  margin:auto auto 100px auto;
   align-self: middle;
-  width: 50%;
+  width:90%;
 }
-.cover-cards-text{
-  display:flex;
-  justify-content: center;
+
+.cover-card{
+  width:100%;
+  display: flex;
+  margin: 22px auto;
+  justify-content: space-between;
   align-content: middle;
+  padding: 0;
 }
-#cover-cards p{
-  justify-self: center;
+.cover-card-img{
+  width:50%;
+  margin:auto;
   align-self: middle;
-  margin: auto;
-  display: inline-block;
-  font-size:22px;
-  line-height: 2.3rem;
-  text-align: center;
-  padding:22px;
 }
+.cover-card-img img{
+  width: 100%;
+  height: 100%;
+}
+.cover-card-text{
+  width: 50%;
+  margin:auto;
+  align-self: middle;
+}
+.cover-card-text h3{
+  font-size:42px;
+  margin: auto;
+  padding:22px 0;
+}
+.cover-card-text p{
+  font-size:16px;
+  margin: auto;
+  padding: 22px;
+  text-align: justify;
+  text-justify:distribute;
+  word-break: break-all;
+}
+
+
 
 
 

@@ -1,101 +1,179 @@
 <template>
-    <div id="search">
-  <div class="search-wrapper">
-    <input type="text" v-model="search" placeholder="Search title.."/>
-        <label>Search title:</label>
+  <div id="search">
+
+
+
+
+
+        <div id="search-header" class="global-header mdl-shadow--2dp">
+
+          <h3 class="global-header-title">Search</h3>
+
+          
+          <div id="search-input" class="global-search">
+            <i class='uil uil-search'></i>
+            <input type="text" placeholder="type something" v-model="search">
+            <i class='uil uil-filter'></i>
+          </div>
+
+
+        </div><!--search header-->
+
+
+
+
+
+
+        <div id="search-content" class="global-content">
+
+           <div class="global-grid mdl-grid">
+             
+               <div class="userORservice" v-for="(user,usersData) in users" :key="usersData">
+
+                 <div class="userORserviceIMG mdl-shadow--2dp">
+                   <img v-bind:src="user.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
+                 </div>
+
+                 <h4>{{user.name}}</h4>
+               </div>
+
+           </div><!--serach content-->
+
+        </div>
+
+
+
+
+
+
   </div>
-  <div class="wrapper mdl-grid">
-    <div class="card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" v-for="(post, index) in filteredList" :key="index">
-      <a v-bind:href="post.link" target="_blank">
-        <img v-bind:src="post.img"/>
-        <small>posted by: {{ post.author }}</small>
-        {{ post.title }}
-      </a>
-    </div>
-  </div>
-</div>
 </template>
+
 <script>
-
-class Post {
-  constructor(title, link, author, img) {
-    this.title = title;
-    this.link = link;
-    this.author = author;
-    this.img = img;
-  }
-}
+import {firebase,db} from '../../firebaseConfig.js'
 export default {
-    name: 'search',
-    data (){
-        return{
-            search: '',
-                postList : [
-                        new Post(
-                            'Vue.js', 
-                            'https://vuejs.org/', 
-                            'Chris', 
-                            'https://vuejs.org//images/logo.png'
-                        ),
-                        new Post(
-                            'React.js', 
-                            'https://facebook.github.io/react/', 
-                            'Tim',
-                            'https://daynin.github.io/clojurescript-presentation/img/react-logo.png'
-                        ),
-                        new Post(
-                            'Angular.js', 
-                            'https://angularjs.org/', 
-                            'Sam', 
-                            'https://angularjs.org/img/ng-logo.png'
-                        ),
-                        new Post(
-                            'Ember.js', 
-                            'http://emberjs.com/', 
-                            'Rachel',
-                            'http://www.gravatar.com/avatar/0cf15665a9146ba852bf042b0652780a?s=200'
-                        ),
-                        new Post(
-                            'Meteor.js', 
-                            'https://www.meteor.com/', 
-                            'Chris', 
-                            'http://hacktivist.in/introduction-to-nodejs-mongodb-meteor/img/meteor.png'
-                        ),
-                        new Post(
-                            'Aurelia', 
-                            'http://aurelia.io/', 
-                            'Tim',
-                            'https://cdn.auth0.com/blog/aurelia-logo.png'
-                        ),
-                        new Post(
-                            'Node.js', 
-                            'https://nodejs.org/en/', 
-                            'A. A. Ron',
-                            'https://code-maven.com/img/node.png'
-                        ),
-                        new Post(
-                            'Pusher', 
-                            'https://pusher.com/', 
-                            'Alex', 
-                            'https://avatars1.githubusercontent.com/u/739550?v=3&s=400'
-                        ),
-                        new Post(
-                            'Feathers.js', 
-                            'http://feathersjs.com/', 
-                            'Chuck',
-                            'https://cdn.worldvectorlogo.com/logos/feathersjs.svg'
-                        ),
-                    ] 
+  name: 'Search',
+  data(){
+    return{
 
-        }
-    },
-  
-  computed: {
-    filteredList() {
-      return this.postList.filter(post => {
-        return post.title.toLowerCase().includes(this.search.toLowerCase())
-      })
+      
+      users:[],
+      services:[],
+      search: null,
+
+
     }
-  }
+  },
+
+  created(){
+         let self = this;  
+
+          db.collection('users').get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) =>{
+              //console.log(doc.data().name) 
+                 const data ={
+                   'img': doc.data().img,
+                   'name': doc.data().name,
+                   'email': doc.data().email,
+                   'phone': doc.data().phone,
+                 }
+                   self.users.push(data)
+            })
+          });
+
+
+
+  },
+
+  computed:{
+
+    filteredUsersServices: function(){
+      return this.users.filter((user) => {
+        return user.name.match(this.search)
+      })
+    },
+
+  },
+
+
+
+
 }
 </script>
+
+
+
+<style scoped>
+  .global-header{
+    width:100%;
+    margin:auto;
+    min-height: 300px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .global-header-title{
+    margin:auto;
+    align-self: middle;
+    display: inline-block;
+  }
+
+  .global-search{
+    display: flex;
+    margin:auto;
+    align-self: middle;
+    justify-content: center;
+    border-bottom:solid 1px rgba(0,0,0,0.6);
+  }
+  .global-search i{
+    border: none;
+    margin:auto;
+    align-self: middle;
+    display: inline-block;
+    outline:none;
+  }
+  .global-search input{
+    border: none;
+    margin:auto;
+    align-self: middle;
+    display: inline-block;
+    padding:12px;
+    outline:none;
+  }
+
+
+  .global-content{
+    padding:22px;
+  }
+
+  .global-grid{
+    align-content: center;
+    justify-content: center;
+    width:100%;
+  }
+
+
+  .userORservice{
+    width:300px;
+    margin: 22px;
+    align-self: middle;
+    justify-self: center;
+  }
+  .userORserviceIMG{
+    border-radius:100px; 
+    overflow:hidden; 
+    width:200px; 
+    height:200px;
+    margin:auto;
+  }
+  .userORserviceIMG img{
+    width: 100%;
+    height: 100%;
+  }
+  .userORservice h4{
+    margin:auto;
+    padding:22px 0;
+  }
+</style>

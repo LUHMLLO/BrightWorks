@@ -108,19 +108,25 @@ export default {
 
 
   created(){
+    let self = this;  
+
     if(firebase.auth().currentUser){
         this.isLoggedIn = true
         this.currentUser = firebase.auth().currentUser.email
-    }
 
-        let self = this;   
-        
 
         db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
         {           
                 //console.log('Document data:', snapshot.data());
                 self.userimg = snapshot.data().img
         })
+
+    }
+
+         
+        
+
+
   },
 
   updated(){
