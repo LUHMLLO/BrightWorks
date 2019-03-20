@@ -276,8 +276,8 @@ export default {
 
        features:[
          {
-         name:'Security', 
-         content:'Your data, payments and relationships within the platform stays in the platform.',
+         name:'Secure data', 
+         content:'Your data stays in the platform and no where else.',
          img:'https://cdn.dribbble.com/users/1803663/screenshots/5268088/farmhouse1.png'
          },
          
@@ -289,54 +289,60 @@ export default {
          
          {
            name:'Accessible',
-           content:'access to your platform from anywhere as long as you have internet.',
+           content:'Access to your platform from anywhere as long as you have internet.',
            img:'https://cdn.dribbble.com/users/1803663/screenshots/5570301/mountain_house-1200-x-1600.png'
+         },
+
+         {
+          name:'Secure payments', 
+          content:'Every payments within the platform apply for refund.',
+          img:'https://cdn.dribbble.com/users/1803663/screenshots/5268088/farmhouse1.png'
          },
          
          {
            name:'Organize',
-           content:'facil manipulacion de sus reportes.',
+           content:'Keep track of your work and schedule.',
            img:'https://cdn.dribbble.com/users/1803663/screenshots/5188624/cape-mudge-lighthouse..png'
          },
          
          {
            name:'Increased renevue',
-           content:'aumente sus ingresos.',
+           content:'Increase your income by expanding your borders.',
            img:'https://cdn.dribbble.com/users/1803663/screenshots/5371625/lighthouse_bovbjerg-lighthouse.png'
          },
          
          {
            name:'Cost efficient',
-           content:'',
+           content:'Do more for less.',
            img:'https://cdn.dribbble.com/users/1803663/screenshots/6080532/kerala_paddy_field.png'
          },
          
          {
            name:'Free publicity',
-           content:'',
+           content:'As long as you do a great work everyone will hear about you',
            img:'https://cdn.dribbble.com/users/1803663/screenshots/6149997/nature-3.png'
          },
          
          {
            name:'World wide clients',
-           content:'',
+           content:'Get clients from all over the planet',
            img:'https://cdn.dribbble.com/users/63407/screenshots/4828797/dribbble_tea_medows.png'
          },
          
          {
            name:'Simple Booking',
-           content:'',
+           content:'Make appointments with just a couple of clicks',
            img:'https://cdn.dribbble.com/users/63407/screenshots/5877615/dribbble_india_stories_detail.png'
          },
          
          {
-           name:'Manage incoming',
-           content:'',
+           name:'Manage your incoming',
+           content:'Track your earnings and learn how to improve them',
            img:'https://cdn.dribbble.com/users/63407/screenshots/5095176/dribbble_lotus_pond.png'
          },
          {
            name:'Schedule friendly',
-           content:'',
+           content:'Work at the time that best suits you',
            img:'https://cdn.dribbble.com/users/63407/screenshots/5095176/dribbble_lotus_pond.png'
          },
        ],
