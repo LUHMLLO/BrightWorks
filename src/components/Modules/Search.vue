@@ -7,10 +7,13 @@
 
         <div id="search-header" class="global-header mdl-shadow--2dp">
 
+          <h3 class="global-header-title">Search</h3>
+
           
           <div id="search-input" class="global-search">
             <i class='uil uil-search'></i>
-            <input type="text" placeholder="type something">
+            <input type="text" placeholder="type something" v-model="search">
+            <i class='uil uil-filter'></i>
           </div>
 
 
@@ -56,6 +59,7 @@ export default {
       
       users:[],
       services:[],
+      search: null,
 
 
     }
@@ -80,6 +84,20 @@ export default {
 
 
   },
+
+  computed:{
+
+    filteredUsersServices: function(){
+      return this.users.filter((user) => {
+        return user.name.match(this.search)
+      })
+    },
+
+  },
+
+
+
+
 }
 </script>
 
@@ -94,6 +112,12 @@ export default {
     justify-content: center;
     display: flex;
     flex-direction: column;
+  }
+
+  .global-header-title{
+    margin:auto;
+    align-self: middle;
+    display: inline-block;
   }
 
   .global-search{
