@@ -115,9 +115,10 @@ export default {
   }
 
   .global-header-title{
-    margin:auto;
+    margin:auto auto -42px auto;
     align-self: middle;
     display: inline-block;
+    width:300px;
   }
 
   .global-search{

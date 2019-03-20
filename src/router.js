@@ -10,6 +10,7 @@ import Signup from "./components/Basics/Signup.vue"
 import Home from "./components/Home.vue"
 import Perfil from "./components/Accounts/Perfil.vue"
 import Search from "./components/Modules/Search.vue"
+import Settings from "./components/Modules/Settings.vue"
 
 
 Vue.use(Router)
@@ -81,6 +82,14 @@ let router = new Router({
         }
       },
 
+      {
+        path: '/settings',
+        name: 'Settings',
+        component: Settings,
+        meta:{
+          requiresAuth: true
+        }
+      },
       
 
 

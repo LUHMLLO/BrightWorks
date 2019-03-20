@@ -20,9 +20,9 @@
                 <h6>{{currentUser}}</h6>
 
                 <div id="sidebar-header-icons" class="mdl-grid">
-                    <i class='uil uil-entry' v-on:click="logout"></i>
-                    <i class='uil uil-bell'></i>
-                    <i class='uil uil-cog'></i>
+                    <i id="logoutbtn" class='uil uil-entry' v-on:click="logout"></i>
+                    <i id="notificationsbtn" class='uil uil-bell'></i>
+                    <i id="settingsbtn" class='uil uil-cog' v-on:click="openSettings"></i>
                 </div>
             </div>
               
@@ -104,6 +104,14 @@ export default {
                }
             })
        },
+
+       
+      openSettings: function(){
+        this.$router.replace('/settings')
+      },
+
+
+
    },
 
 
@@ -227,8 +235,8 @@ export default {
 
   #sidebar-user-img{
     border-radius:100px;
-    width:150px;
-    height: 150px;
+    width:180px;
+    height: 180px;
     overflow: hidden;
     margin:auto;
   }
@@ -298,4 +306,27 @@ export default {
       transform: scale(5);
       box-shadow: inset 0 0 22000px 22000px rgba(0,0,0,0.5);
   }
+
+
+
+  #logoutbtn{
+    transition: all 0.5s ease-in-out;
+  }
+  #notificationsbtn{
+    transition: all 0.5s ease-in-out;
+  }
+  #settingsbtn{
+    transition: all 0.5s ease-in-out;
+  }
+
+
+  #logoutbtn:hover{
+    color:#FF82A9;
+  }
+  #notificationsbtn:hover{
+    color:#FFC67B;
+  }
+  #settingsbtn:hover{
+    color:#71A9B5;
+  }  
 </style>
