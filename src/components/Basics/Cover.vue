@@ -181,7 +181,7 @@
        <!----->
        <div class="cover-card-text">
          <h3>Mission</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, doloremque! Vel porro possimus excepturi illum. Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, ntium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
        </div>
      </div><!--cover card-->
 
@@ -189,7 +189,7 @@
      <div class="cover-card">
        <div class="cover-card-text">
          <h3>Vision</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, doloremque! Vel porro possimus excepturi illum. Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
+         <p>Loloremque! Vel porro possimus excepturi illum. Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
        </div>
        <!----->
        <div class="cover-card-img">
@@ -205,7 +205,7 @@
        <!----->
        <div class="cover-card-text">
          <h3>Values</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, doloremque! Vel porro possimus excepturi illum. Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
+         <p>Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
        </div>
      </div><!--cover card-->
 
@@ -550,17 +550,17 @@ export default {
 
  .feature{
    display: flex;
-   width: 500px;
+   width: 400px;
    margin:32px;
    justify-content: center;
  }
  .feature-img{
-   width:140px;
-   height: 140px;
+   width:100px;
+   height: 100px;
    overflow: hidden;
    border-radius: 100px;
    display: inline-block;
-   margin:auto;
+   margin:auto 22px auto auto;
    align-self: middle;
  }
  .feature-img img{
@@ -568,7 +568,7 @@ export default {
    height: 100%;
  }
  .feature-content{
-   width: 320px;
+   width: 60%;
    display: inline-block;
    margin:auto;
    align-self: middle;
@@ -578,9 +578,11 @@ export default {
    display: inline-block;
    margin:auto;
    align-self: middle;
+   font-size:18px;
+   padding: 10px 0;
  }
  .feature-text p{
-   font-size:13px;
+   font-size:12px;
    display: inline-block;
    margin:auto;
    align-self: middle;
@@ -589,14 +591,14 @@ export default {
 
 
 #cover-cards{
-  padding:100px 22px;
+  padding:100px 0;
 }
 #cover-cards h4{
   padding:42px 22px;
   border-bottom: solid 1px rgba(0, 0, 0, 0.3);
   margin:auto auto 100px auto;
   align-self: middle;
-  width: 50%;
+  width:90%;
 }
 
 .cover-card{
@@ -605,9 +607,10 @@ export default {
   margin: 22px auto;
   justify-content: space-between;
   align-content: middle;
+  padding: 0;
 }
 .cover-card-img{
-  width:40%;
+  width:50%;
   margin:auto;
   align-self: middle;
 }
@@ -630,6 +633,8 @@ export default {
   margin: auto;
   padding: 22px;
   text-align: justify;
+  text-justify:distribute;
+  word-break: break-all;
 }
 
 
