@@ -52,6 +52,12 @@
     <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
      <div id="cover-howitworks-tab" class="cover-tabs-section" v-if="isTab1Visible">
        <h3>how it works</h3>
+       <h2>Click</h2>
+          <p>star earning benefit with one click.</p>
+       <h2>BOOK</h2>
+          <p>No bidding, haggling, or wating for calls. buy your service instantly just like shopping online.</p>
+        <h2></h2>
+          <p></p>  
      </div>
     </transition>
 
@@ -86,9 +92,9 @@
              </div><!---feature img-->
 
              <div class="feature-content">
-               <h3>feature name</h3>
+               <h3>{{feature.name}}</h3>
                <div class="feature-text">
-                 <p>Lorem ipsum dolor sit amet  fuga distinctio neque laborum sit eos totam, deleniti minus obcaecati!</p>
+                 <p>{{feature.content}}</p>
                </div>
              </div>
 
@@ -229,16 +235,16 @@ export default {
 
 
        features:[
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5268088/farmhouse1.png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5301137/image.png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5570301/mountain_house-1200-x-1600.png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5188624/cape-mudge-lighthouse..png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5371625/lighthouse_bovbjerg-lighthouse.png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/6080532/kerala_paddy_field.png'},
-         {img:'https://cdn.dribbble.com/users/1803663/screenshots/6149997/nature-3.png'},
-         {img:'https://cdn.dribbble.com/users/63407/screenshots/4828797/dribbble_tea_medows.png'},
-         {img:'https://cdn.dribbble.com/users/63407/screenshots/5877615/dribbble_india_stories_detail.png'},
-         {img:'https://cdn.dribbble.com/users/63407/screenshots/5095176/dribbble_lotus_pond.png'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5268088/farmhouse1.png',name:'Transparency', content:'information on the page it is loosely separated.'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5301137/image.png',name:'facilidad',content:'El usuario podran orden servicios y ver el estado del mismo.'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5570301/mountain_house-1200-x-1600.png',name:'Portabilidad',content:'tendra la herramienta de su aplicacion en todos lados'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5188624/cape-mudge-lighthouse..png',name:'organizacion',content:'facil manipulacion de sus reportes.'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/5371625/lighthouse_bovbjerg-lighthouse.png',name:'rentabilidad',content:'aumente sus ingresos.'},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/6080532/kerala_paddy_field.png',name:'',content:''},
+         {img:'https://cdn.dribbble.com/users/1803663/screenshots/6149997/nature-3.png',name:'',content:''},
+         {img:'https://cdn.dribbble.com/users/63407/screenshots/4828797/dribbble_tea_medows.png',name:'',content:''},
+         {img:'https://cdn.dribbble.com/users/63407/screenshots/5877615/dribbble_india_stories_detail.png',name:'',content:''},
+         {img:'https://cdn.dribbble.com/users/63407/screenshots/5095176/dribbble_lotus_pond.png',name:'',content:''},
        ],
 
 
