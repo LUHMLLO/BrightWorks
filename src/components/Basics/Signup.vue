@@ -200,6 +200,7 @@ export default {
             img: this.img,
             name: this.name,
             phone: this.phone,
+            email: this.email,
             AccountType: 'client',
 
           }).then(() =>{
@@ -226,6 +227,7 @@ export default {
             img: this.img,
             name: this.name,
             phone: this.phone,
+            email: this.email,
             AccountType: 'service',
             serviceimg: this.serviceimg,
             servicename: this.servicename,
