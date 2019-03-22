@@ -26,7 +26,7 @@
 
        <br>
 
-       <button v-on:click="ContinueForm02" class="mdl-button">Sign up</button>
+       <button v-on:click="ContinueForm02" class="mdl-button sombra">Sign up</button>
 
        <br><br>
     </div>
@@ -44,7 +44,7 @@
    <div id="form02" class="form-container"  :class="{ 'hidden': !form02 }">
      <div class="form-box mdl-shadow--16dp">
        <div style="padding: 22px 0; margin: 22px 0;">
-         <h6>Let's setup your account so you can go surf</h6>
+         <h6>Let's setup your account so you can go surf.</h6>
        </div>
 
       <transition enter-active-class="animated fadeIn" leave-active-class="fadeOut">
@@ -78,9 +78,9 @@
 
        <br><br>
 
-        <button v-on:click="choose" class="mdl-button disabled-btn" v-if="IdontKnowWhatImGonnaBe">Setup</button>
-        <button v-on:click="signUp" class="mdl-button" v-if="ImmaBeAClient">Sign up as client</button>
-        <button v-on:click="ContinueForm03" class="mdl-button" v-if="ImmaBeAService">Continue to setup a service</button>
+        <button v-on:click="choose" class="mdl-button disabled-btn sombra" v-if="IdontKnowWhatImGonnaBe">Setup</button>
+        <button v-on:click="signUp" class="mdl-button sombra" v-if="ImmaBeAClient">Sign up as client</button>
+        <button v-on:click="ContinueForm03" class="mdl-button sombra" v-if="ImmaBeAService">Continue to setup a service</button>
 
        <br>
 
@@ -124,7 +124,7 @@
 
        <br>
 
-       <button v-on:click="SignUpAsService" class="mdl-button">Sign up as service</button>
+       <button v-on:click="SignUpAsService" class="mdl-button sombra">Sign up as service</button>
 
        <br><br>
     </div>

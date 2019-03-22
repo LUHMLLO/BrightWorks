@@ -80,7 +80,7 @@ body::-webkit-scrollbar{
 
 
 .sombra{
-  box-shadow: 0 0 10.3px rgba(0,0,0,0.1) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
 }
 img{
   width: 100%;
@@ -105,7 +105,7 @@ img{
 
 
   .tabActive{
-       border:solid 0.5px rgba(87, 85, 217,0.2);
+       border:solid 0.5px rgba(87, 85, 217,0.2) !important;
   }
   .mdl-button:hover{
       background: rgba(87, 85, 217,0.1) !important;
