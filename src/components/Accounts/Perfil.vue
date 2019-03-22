@@ -20,7 +20,7 @@
              <div id="perfil-bottom-row">
                  
                  <div id="perfil-header-bar" class="perfil-bottom-item">
-                     <button class="mdl-button" v-on:click="showTimelineTab" v-bind:class="{ tabActive: TimelineTab }">Timeline</button>
+                     <button class="mdl-button" v-on:click="showTimelineTab" v-bind:class="{ tabActive: TimelineTab }" v-if="accountType">Timeline</button>
                      <button class="mdl-button" v-on:click="showAboutTab" v-bind:class="{ tabActive: aboutTab }">About</button>
                      <button class="mdl-button" v-on:click="showServiceTab" v-bind:class="{ tabActive: ServiceTab }" v-if="accountType">Services</button>
                      <button class="mdl-button" v-on:click="showHelpTab" v-bind:class="{ tabActive: HelpTab }" v-if="accountType">Help</button>
@@ -39,7 +39,7 @@
            <div id="perfil-sections-container">
 
 
-               <div id="perfil-timeline" class="perfil-section" v-if="TimelineTab">
+               <div id="perfil-timeline" class="perfil-section" v-if="TimelineTab && accountType">
 
 
                    <div id="perfil-timeline-action-bar">
