@@ -55,7 +55,7 @@
 
 
       <div class="input-container">
-        <i class='uil uil-scenery'></i><input type="file" name="img" id="img" accept="image/x-png,image/gif,image/jpeg" class="global-input-file"/> 
+        <i class='uil uil-scenery'></i><input type="text" name="img" id="img" v-model="img" accept="image/x-png,image/gif,image/jpeg" class="global-input-file" placeholder="img (insert url here)"/> 
       </div>
       <div class="input-container">
         <i class='uil uil-user'></i><input type="text" name="name" id="name" v-model="name" placeholder="name"/> 
@@ -112,7 +112,7 @@
        </transition>
 
       <div class="input-container">
-        <i class='uil uil-scenery'></i><input type="file" name="serviceimg" id="serviceimg" accept="image/x-png,image/gif,image/jpeg" class="global-input-file"/> 
+        <i class='uil uil-scenery'></i><input type="text" name="serviceimg" id="serviceimg" v-model="serviceimg" accept="image/x-png,image/gif,image/jpeg" class="global-input-file" placeholder="img (insert url here)"/> 
       </div>
       <div class="input-container">
         <i class='uil uil-users-alt'></i><input type="text" name="servicename" id="servicename" v-model="servicename" placeholder="service name" /> 
@@ -195,7 +195,7 @@ export default {
 
 
           return db.collection('users').doc(credentials.user.uid).set({
-            img: this.img,
+            img: this.image,
             name: this.name,
             phone: this.phone,
             email: this.email,
