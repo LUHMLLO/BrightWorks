@@ -24,6 +24,8 @@
                      <button class="mdl-button" v-on:click="showAboutTab" v-bind:class="{ tabActive: aboutTab }">About</button>
                      <button class="mdl-button" v-on:click="showServiceTab" v-bind:class="{ tabActive: ServiceTab }" v-if="accountType">Services</button>
                      <button class="mdl-button" v-on:click="showHelpTab" v-bind:class="{ tabActive: HelpTab }" v-if="accountType">Help</button>
+                     <button class="mdl-button" v-on:click="showHelpTab" v-bind:class="{ tabActive: HelpTab }" v-if="!accountType">Adquires</button>
+                     <button class="mdl-button" v-on:click="showHelpTab" v-bind:class="{ tabActive: HelpTab }" v-if="!accountType">Subscriptions</button>
                  </div>
 
 
