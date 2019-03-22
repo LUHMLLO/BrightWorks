@@ -112,7 +112,7 @@ export default {
            ServiceTab: false,
            HelpTab: false,
 
-           servicename:'green light',
+           RouteName: null,
 
            serviceimg: null,
            servicename: null,
@@ -168,23 +168,20 @@ export default {
 
 
     created(){
-         let self = this;   
+         //let self = this;   
         //this.user = firebase.auth().currentUser
         //var usercollection = this.userinfo
         
           db.collection('users').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) =>{
               //console.log(doc.data().name) 
-                 const data ={
-                    'serviceimg': doc.data().serviceimg,
-                    'servicename': doc.data().servicename,
-                    'servicedescription': doc.data().servicedescription,
-                    'email': doc.data().email,
-                    'phone': doc.data().phone,
-                 }
 
-                 if(doc.data().servicename == this.servicename){
-                   //self.userinfo.push(data)
+              if(doc.data().servicename == this.RouteName){
+                    this.serviceimg = doc.data().serviceimg
+                    this.servicename = doc.data().servicename
+                    this.servicedescription = doc.data().servicedescription
+                    this.email = doc.data().email
+                    this.phone = doc.data().phone
                  }
             })
           });

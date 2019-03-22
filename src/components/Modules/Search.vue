@@ -30,12 +30,12 @@
              
                <div class="userORservice" v-for="(user,usersData) in users" :key="usersData">
 
-                 <router-link v-bind:to="{name: 'Service',params:{servicename: servicename}}">
+                  <router-link v-bind:to="{ name: 'Service', params: {servicename: user.name}}">
                      <div class="userORserviceIMG mdl-shadow--2dp">
                         <img v-bind:src="user.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
                      </div>
-                 </router-link>
-
+                  </router-link>
+                 
                  <h4>{{user.name}}</h4>
                </div>
 
@@ -62,8 +62,6 @@ export default {
       users:[],
       services:[],
       search: null,
-      name:null,
-      servicename:'greenhouse',
 
 
     }
@@ -101,6 +99,9 @@ export default {
     },
 
   },
+
+  methods:{
+  }
 
 
 
