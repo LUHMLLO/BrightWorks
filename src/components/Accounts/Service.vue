@@ -46,9 +46,9 @@
 
 
          <div class="mdl-grid">
-             <div class="global-info-pill">
-                <i class='uil uil-umbrella'></i>
-                <span>this is an info detail pill</span>
+             <div class="global-info-pill" v-for="(Detail,serviceDetailsData) in serviceDetails" :key="serviceDetailsData">
+                <i v-bind:class='Detail.icon'></i>
+                <span>{{Detail.detail}}</span>
              </div><!--global info pill-->
          </div>  
             
@@ -112,14 +112,19 @@ export default {
            ServiceTab: false,
            HelpTab: false,
 
-           userinfo:[],
-           servicename:'green light',         
+           servicename:'green light',
 
-
-           timelinePosts:[
-               {content: 'hi, im a post'},
-
+           serviceimg: null,
+           servicename: null,
+           servicedescription: null,
+           serviceDetails:[
+               { 'icon': 'uil uil-phone-alt', 'detail': '809-345-9090'},
+               { 'icon': 'uil uil-envelope-alt', 'detail': 'service@something.com'},
+               { 'icon': 'uil uil-map-pin-alt', 'detail': 'location somewhere'},
+               { 'icon': 'uil uil-folder-info', 'detail': 'idkwatelse'},
            ],
+
+
 
         }
     },
@@ -179,7 +184,7 @@ export default {
                  }
 
                  if(doc.data().servicename == this.servicename){
-                   self.userinfo.push(data)
+                   //self.userinfo.push(data)
                  }
             })
           });
