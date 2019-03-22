@@ -15,11 +15,11 @@
         </p>
 
         <router-link to="/login">
-          <button class="mdl-button">Sign in</button>
+          <button class="mdl-button sombra">Sign in</button>
         </router-link>
 
         <router-link to="/signup">
-          <button class="mdl-button">Sign up</button>
+          <button class="mdl-button sombra">Sign up</button>
         </router-link>
       </div>
     </div><!--cover header ends herer--->

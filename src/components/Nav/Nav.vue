@@ -29,15 +29,15 @@
 
             <div id="sidebar-links">
               <router-link to="/home" class="mdl-button">
-               <i class='uil uil-home-alt' style="width:50%;"></i><p>home</p>
+               <i class='uil uil-home-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">home</p>
               </router-link>
 
               <router-link to="/perfil" class="mdl-button">
-               <i class='uil uil-user' style="width:50%;"></i><p>Perfil</p>
+               <i class='uil uil-user' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Perfil</p>
               </router-link>
               
               <router-link to="/search" class="mdl-button"> 
-               <i class='uil uil-search-alt' style="width:50%;"></i><p>Search</p>
+               <i class='uil uil-search-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Search</p>
               </router-link>
 
             </div><!--sidebar links-->
@@ -100,6 +100,7 @@ export default {
            Swal({ title: "Logging out" , text: "are you sure you wanna leave?", icon: "warning", buttons:["i changed my mind","see you later"],})
            .then((letmeout) => {
                if(letmeout){
+                  this.isNavOn = false
                    firebase.auth().signOut().then(() =>{this.$router.replace('/')})
                }
             })
@@ -107,6 +108,7 @@ export default {
 
        
       openSettings: function(){
+        this.isNavOn = false
         this.$router.replace('/settings')
       },
 
@@ -130,6 +132,9 @@ export default {
         })
 
     }
+    else{
+      this.isLoggedIn = false
+    }
 
          
         
@@ -141,6 +146,9 @@ export default {
     if(firebase.auth().currentUser){
         this.isLoggedIn = true
         this.currentUser = firebase.auth().currentUser.email
+    }
+    else{
+      this.isLoggedIn = false
     }
   },
   

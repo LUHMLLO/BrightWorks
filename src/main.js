@@ -2,6 +2,7 @@ import Vue from 'vue'
 import router from './router'
 import App from './App.vue'
 import firebase from './firebaseConfig.js'
+import { store } from './store.js'
 
 
 
@@ -18,6 +19,7 @@ firebase.auth().onAuthStateChanged(() => {
     app = new Vue({
       router,
       firebase,
+      store,
       render: h => h(App),
     }).$mount('#app');
   }

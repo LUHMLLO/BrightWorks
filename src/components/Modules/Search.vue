@@ -72,12 +72,15 @@ export default {
             querySnapshot.forEach((doc) =>{
               //console.log(doc.data().name) 
                  const data ={
-                   'img': doc.data().img,
-                   'name': doc.data().name,
+                   'img': doc.data().serviceimg,
+                   'name': doc.data().servicename,
                    'email': doc.data().email,
                    'phone': doc.data().phone,
                  }
+
+                 if(doc.data().AccountType == 'service'){
                    self.users.push(data)
+                 }
             })
           });
 
