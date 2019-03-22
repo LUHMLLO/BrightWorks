@@ -18,7 +18,6 @@
 <script>
 import Nav from './components/Nav/Nav.vue'
 
-
 export default {
   name: "app",
   data(){
@@ -40,12 +39,6 @@ export default {
 
 
 
-
-
-  mounted: function(){
-  }
-
-
 }
 </script>
 
@@ -54,6 +47,8 @@ export default {
 
 
 <style>
+@import './assets/global.css';
+
 #app {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -134,43 +129,6 @@ img{
 
 
 
-
-
- .global-input-file::-webkit-file-upload-button {
-  content: 'select an img (jpeg or png only)' !important;
-  display: inline-block;
-  align-self: middle !important;
-  margin: auto !important;
-  background: white;
-  border: solid 0.5px rgba(0,0,0,0.3);
-  border-radius: 22px;
-  padding: 7px 12px;
-  outline: none;
-  cursor: pointer;
-  width:100%;
-  text-align: center;
-  white-space: nowrap;
-  font-size:12px;
-  font-weight: 70;
-  display: none;
-}
- .global-input-file::before {
-  content: 'select an img (jpeg or png only)' !important;
-  display: inline-block;
-  align-self: middle !important;
-  margin: auto !important;
-  background: white;
-  border: solid 0.5px rgba(0,0,0,0.3);
-  border-radius: 22px;
-  padding: 7px 12px;
-  outline: none;
-  cursor: pointer;
-  width:100%;
-  text-align: center;
-  white-space: nowrap;
-  font-size:12px;
-  font-weight: 70;
-}
 
 
 

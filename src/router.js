@@ -9,6 +9,7 @@ import Login from "./components/Basics/Login.vue"
 import Signup from "./components/Basics/Signup.vue"
 import Home from "./components/Home.vue"
 import Perfil from "./components/Accounts/Perfil.vue"
+import Service from "./components/Accounts/Service.vue"
 import Search from "./components/Modules/Search.vue"
 import Settings from "./components/Modules/Settings.vue"
 
@@ -73,6 +74,16 @@ let router = new Router({
         }
       },
 
+      {
+        path: '/service/:servicename',
+        name: 'Service',
+        component: Service,
+        meta:{
+          requiresAuth: true
+        }
+      },
+
+      
       {
         path: '/search',
         name: 'Search',

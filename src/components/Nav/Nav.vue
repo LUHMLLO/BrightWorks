@@ -177,7 +177,7 @@ export default {
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    z-index: 6;
+    z-index: 90;
     overflow: hidden;
     overflow-y: auto;
   }
@@ -289,7 +289,7 @@ export default {
       left: 0;
       margin: 10px auto auto 10px;
       transition: all 0.6s ease-in-out;
-      z-index: 6;
+      z-index: 90;
   }
   .withNavOn{
     margin: 22px auto auto 334px !important;
@@ -309,7 +309,7 @@ export default {
       height: 100vh;
       background: rgba(0,0,0,0.3);
       position:fixed;
-      z-index: 3;
+      z-index: 89;
       filter:blur(8px);
       transform: scale(5);
       box-shadow: inset 0 0 22000px 22000px rgba(0,0,0,0.5);

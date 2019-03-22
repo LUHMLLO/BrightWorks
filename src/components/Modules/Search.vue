@@ -7,7 +7,7 @@
 
         <div id="search-header" class="global-header mdl-shadow--2dp">
 
-          <h3 class="global-header-title">Search</h3>
+          <h3 class="global-header-title-only">Search</h3>
 
           
           <div id="search-input" class="global-search">
@@ -30,9 +30,11 @@
              
                <div class="userORservice" v-for="(user,usersData) in users" :key="usersData">
 
-                 <div class="userORserviceIMG mdl-shadow--2dp">
-                   <img v-bind:src="user.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
-                 </div>
+                 <router-link v-bind:to="{name: 'Service',params:{servicename: servicename}}">
+                     <div class="userORserviceIMG mdl-shadow--2dp">
+                        <img v-bind:src="user.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
+                     </div>
+                 </router-link>
 
                  <h4>{{user.name}}</h4>
                </div>
@@ -60,6 +62,8 @@ export default {
       users:[],
       services:[],
       search: null,
+      name:null,
+      servicename:'greenhouse',
 
 
     }
@@ -101,63 +105,14 @@ export default {
 
 
 
+
+
 }
 </script>
 
 
 
 <style scoped>
-  .global-header{
-    width:100%;
-    margin:auto;
-    min-height: 300px;
-    align-content: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .global-header-title{
-    margin:auto auto -42px auto;
-    align-self: middle;
-    display: inline-block;
-    width:300px;
-  }
-
-  .global-search{
-    display: flex;
-    margin:auto;
-    align-self: middle;
-    justify-content: center;
-    border-bottom:solid 1px rgba(0,0,0,0.6);
-  }
-  .global-search i{
-    border: none;
-    margin:auto;
-    align-self: middle;
-    display: inline-block;
-    outline:none;
-  }
-  .global-search input{
-    border: none;
-    margin:auto;
-    align-self: middle;
-    display: inline-block;
-    padding:12px;
-    outline:none;
-  }
-
-
-  .global-content{
-    padding:22px;
-  }
-
-  .global-grid{
-    align-content: center;
-    justify-content: center;
-    width:100%;
-  }
-
 
   .userORservice{
     width:300px;
