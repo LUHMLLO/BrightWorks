@@ -44,7 +44,6 @@
    <div id="form02" class="form-container"  :class="{ 'hidden': !form02 }">
      <div class="form-box mdl-shadow--16dp">
        <div style="padding: 22px 0; margin: 22px 0;">
-         <h3>Welcome to Bright Works</h3>
          <h6>Let's setup your account so you can go surf</h6>
        </div>
 
