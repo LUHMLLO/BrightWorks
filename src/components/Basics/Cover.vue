@@ -155,8 +155,13 @@
 
 
 
-   <div class="cover-text-random-divider">
-    <p>Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.</p>
+   <div class="global-quotes-slider">
+    
+    <div v-for="(quote, InspQuotesData) in InsQuotes" :key="InspQuotesData" class="global-quote">
+        <h6>{{quote.content}}</h6>
+        <small> {{quote.author}} </small>
+    </div>
+    
    </div>
 
 
@@ -354,15 +359,26 @@ export default {
 
          services:[
            {img:'https://cdn.dribbble.com/users/94074/screenshots/3647324/the_guardian__crop_.jpg',name:'Gardening'},
-           {img:'https://cdn.dribbble.com/users/63407/screenshots/5462636/dribbble_taxi_cab_ride.png',name:'Rides'},
+           {img:'https://cdn.dribbble.com/users/63407/screenshots/5462636/dribbble_taxi_cab_ride.png',name:'Uber/Cab'},
            {img:'https://cdn.dribbble.com/users/788099/screenshots/4329668/soldering_iron_electronics_kit8-net.png',name:'Technician'},
            {img:'https://cdn.dribbble.com/users/788099/screenshots/3547692/barbecue_kit8-net.png',name:'Cooking'},
-           {img:'https://cdn.dribbble.com/users/1771554/screenshots/5205318/1_style_dribbble.jpg',name:'Developing'},
+           {img:'https://cdn.dribbble.com/users/1771554/screenshots/5205318/1_style_dribbble.jpg',name:'Develope'},
            {img:'https://cdn.dribbble.com/users/418188/screenshots/6005129/information_architecture_illustration_tubik.png',name:'Architecture'},
            {img:'https://cdn.dribbble.com/users/418188/screenshots/5381692/design_workspace_illustration_tubik.png',name:'Design'},
            {img:'https://cdn.dribbble.com/users/21928/screenshots/4051365/screen_shot_2017-12-28_at_3.27.52_pm.png',name:'Plumbing'},
-           {img:'https://cdn.dribbble.com/users/103909/screenshots/3671664/sensors-01.jpg',name:'Entrepreneurship'},
+           {img:'https://cdn.dribbble.com/users/103909/screenshots/3671664/sensors-01.jpg',name:'Entrepreneur'},
            
+         ],
+
+
+         InsQuotes:[
+           {'content': 'La mentalidad de ganador, es necesaria para el exito', 'author': 'author here'},
+           {'content': 'Si no puedes darte lo que quieres, no se lo puedes dar a nadie', 'author': 'author here'},
+           {'content': 'Escucha a las personas con experiencia, no a la toxica', 'author': 'author here'},
+           {'content': 'El que no arriesga, no gana', 'author': 'author here'},
+           {'content': 'El mediocre se enamora de los resultados y los ganadores se enamoran del proceso', 'author': 'author here'},
+           {'content': 'Los suenos son el motor de cualquier actividad', 'author': 'author here'},
+           {'content': 'Un hombre sin suenos no esta viviendo en este mundo', 'author': 'author here'},
          ],
 
 
@@ -454,27 +470,6 @@ export default {
 
 
 
-
-.cover-text-random-divider{
-  width:100%;
-  border: solid thin black;
-  margin:auto;
-  background:black;
-  color:white;
-  padding:22px;
-  text-align: center;
-  min-height: 20vh;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-}
-.cover-text-random-divider p{
-  font-size:18px;
-  align-self: middle;
-  margin:auto;
-  justify-self: center;
-  width:80%;
-}
 
 
 .how-it-works-item{

@@ -18,7 +18,6 @@
 <script>
 import Nav from './components/Nav/Nav.vue'
 
-
 export default {
   name: "app",
   data(){
@@ -40,12 +39,6 @@ export default {
 
 
 
-
-
-  mounted: function(){
-  }
-
-
 }
 </script>
 
@@ -54,6 +47,8 @@ export default {
 
 
 <style>
+@import './assets/global.css';
+
 #app {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -131,7 +126,6 @@ img{
     color: #333;
   }
   
-
 
 
 
