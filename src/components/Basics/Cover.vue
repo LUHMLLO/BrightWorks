@@ -155,8 +155,13 @@
 
 
 
-   <div class="cover-text-random-divider">
-    <p>Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.Inspirational Quote here.</p>
+   <div class="global-quotes-slider">
+    
+    <div v-for="(quote, InspQuotesData) in InsQuotes" :key="InspQuotesData" class="global-quote">
+        <h6>{{quote.content}}</h6>
+        <small> {{quote.author}} </small>
+    </div>
+    
    </div>
 
 
@@ -366,6 +371,17 @@ export default {
          ],
 
 
+         InsQuotes:[
+           {'content': 'La mentalidad de ganador, es necesaria para el exito', 'author': 'author here'},
+           {'content': 'Si no puedes darte lo que quieres, no se lo puedes dar a nadie', 'author': 'author here'},
+           {'content': 'Escucha a las personas con experiencia, no a la toxica', 'author': 'author here'},
+           {'content': 'El que no arriesga, no gana', 'author': 'author here'},
+           {'content': 'El mediocre se enamora de los resultados y los ganadores se enamoran del proceso', 'author': 'author here'},
+           {'content': 'Los suenos son el motor de cualquier actividad', 'author': 'author here'},
+           {'content': 'Un hombre sin suenos no esta viviendo en este mundo', 'author': 'author here'},
+         ],
+
+
 
     }
   },
@@ -454,27 +470,6 @@ export default {
 
 
 
-
-.cover-text-random-divider{
-  width:100%;
-  border: solid thin black;
-  margin:auto;
-  background:black;
-  color:white;
-  padding:22px;
-  text-align: center;
-  min-height: 20vh;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-}
-.cover-text-random-divider p{
-  font-size:18px;
-  align-self: middle;
-  margin:auto;
-  justify-self: center;
-  width:80%;
-}
 
 
 .how-it-works-item{

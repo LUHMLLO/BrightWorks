@@ -250,3 +250,30 @@
   .globalActiveTab{
     border: solid 0.5px rgba(87, 85, 217,0.4) !important;
   }
+
+
+
+
+  .global-quotes-slider{
+    width:100%;
+    align-content: center;
+    justify-content: center;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: auto;
+    background: black;
+    height: 20vh;
+    display: flex;
+    justify-content: space-between;
+  }
+  .global-quotes-slider::-webkit-scrollbar{
+    display:none;
+  }
+
+  .global-quote{
+    margin: auto 22px;
+    padding: 42px;
+    display: inline-block;
+    color:white;
+    align-self: middle;
+  }
