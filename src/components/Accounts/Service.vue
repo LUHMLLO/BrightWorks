@@ -15,7 +15,7 @@
           </div>
 
 
-          <h3 class="global-header-title">Im a service</h3>
+          <h3 class="global-header-title">service name here</h3>
           
 
       </div><!--header-->
@@ -174,7 +174,7 @@ export default {
         
           db.collection('users').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) =>{
-              //console.log(doc.data().name) 
+              //console.log(doc.data().servicename) 
 
               if(doc.data().servicename == this.RouteName){
                     this.serviceimg = doc.data().serviceimg
@@ -183,6 +183,7 @@ export default {
                     this.email = doc.data().email
                     this.phone = doc.data().phone
                  }
+                // console.log(this.servicename)
             })
           });
 
