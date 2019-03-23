@@ -59,35 +59,6 @@
 
 
 
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div>
 </template>
@@ -97,14 +68,12 @@
 
 
 <script>
-import { firebase, db } from '../../firebaseConfig.js'
-import Services from '../Modules/Services.vue'
+import { db } from '../../firebaseConfig.js'
+
 
 export default {
     name: "Service",
-    components:{
-        Services,
-    },
+    
     data(){
         return{
            TimelineTab: false,

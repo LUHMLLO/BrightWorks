@@ -75,7 +75,6 @@
 
 <script>
 import {firebase,db} from '../../firebaseConfig.js'
-import mdl from 'material-design-lite'
 import Swal from 'sweetalert'
 
 export default {
@@ -152,9 +151,7 @@ export default {
     }
   },
   
-  mounted: function(){
-    componentHandler.upgradeAllRegistered()
-  }
+  
 
 
 }
