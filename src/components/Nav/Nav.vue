@@ -126,8 +126,13 @@ export default {
 
         db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
         {           
-                //console.log('Document data:', snapshot.data());
-                self.userimg = snapshot.data().img
+                //console.log('Document data:', snapshot.data().img);
+                    if(snapshot.data().img == ''){
+                        self.userimg = 'https://cdn.dribbble.com/users/937082/screenshots/5516643/blob'
+                    }
+                    else{
+                        self.userimg = snapshot.data().img
+                    }
         })
 
     }

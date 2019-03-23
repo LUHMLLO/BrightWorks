@@ -1,18 +1,18 @@
 <template>
 <div id="perfil" >
-<div id="perfil-view" v-for="(user,userData) in userinfo" :key="userData">
+<div id="perfil-view">
 
 
 
            <div id="perfil-header" class="mdl-shadow--2dp">
               
               <div id="perfil-img" class="mdl-shadow--3dp">
-                  <img v-bind:src="user.img">
+                  <img v-bind:src="userimg">
               </div>
 
 
               <div id="perfil-header-name">
-                  <h3>{{user.name}}</h3>
+                  <h3>{{username}}</h3>
               </div>
 
 
@@ -68,10 +68,10 @@
 
                             <div class="post-header">
                                 <div class="post-header-img">
-                                    <img v-bind:src="user.img">
+                                    <img v-bind:src="userimg">
                                 </div>
                                 <div class="post-header-text">
-                                    <h5>{{user.name}}</h5>
+                                    <h5>{{username}}</h5>
                                     <small>time 10ms ago</small>
                                 </div>
                             </div><!--post header-->
@@ -116,41 +116,41 @@
 
                 <div id="service-view" v-if="accountType">
                    <div id="perfil-info-serviceimg">
-                       <div id="perfil-info-img-bg"  v-bind:style="{ backgroundImage: 'url(' + user.serviceimg + ')' }"></div>
+                       <div id="perfil-info-img-bg"  v-bind:style="{ backgroundImage: 'url(' + serviceimg + ')' }"></div>
 
                        <div id="perfil-info-img" class="mdl-shadow--16dp">
-                           <img v-bind:src="user.serviceimg">
+                           <img v-bind:src="serviceimg">
                        </div>
 
                        <div id="perfil-info-add-a-detail" class="mdl-shadow--8dp"><i class='uil uil-plus'></i></div>
                    </div><!--perfil info img-->
                    
-                   <h1>{{user.servicename}}</h1>
-                   <p>{{user.servicedescription}}</p>
+                   <h1>{{servicename}}</h1>
+                   <p>{{servicedescription}}</p>
 
                        
                        <div id="perfil-info-details" class="mdl-grid">
                            
                            <div class="perfil-detail">
-                               <i class='uil uil-map-marker-alt'></i><p>{{user.phone}}</p>
+                               <i class='uil uil-map-marker-alt'></i><p>{{userphone}}</p>
                            </div>
 
                            <div class="perfil-detail">
-                               <i class='uil uil-schedule'></i><p>{{user.phone}}</p>
+                               <i class='uil uil-schedule'></i><p>{{userphone}}</p>
                            </div>
                            <div class="perfil-detail">
-                               <i class='uil uil-envelope-alt'></i><p>{{user.email}}</p>
-                           </div>
-
-                           <div class="perfil-detail">
-                               <i class='uil uil-phone-alt'></i><p>{{user.phone}}</p>
-                           </div>
-                           <div class="perfil-detail">
-                               <i class='uil uil-phone-alt'></i><p>{{user.phone}}</p>
+                               <i class='uil uil-envelope-alt'></i><p>{{useremail}}</p>
                            </div>
 
                            <div class="perfil-detail">
-                               <i class='uil uil-phone-alt'></i><p>{{user.phone}}</p>
+                               <i class='uil uil-phone-alt'></i><p>{{userphone}}</p>
+                           </div>
+                           <div class="perfil-detail">
+                               <i class='uil uil-phone-alt'></i><p>{{userphone}}</p>
+                           </div>
+
+                           <div class="perfil-detail">
+                               <i class='uil uil-phone-alt'></i><p>{{userphone}}</p>
                            </div>                           
                        </div>
                 </div><!--service view-->
@@ -162,11 +162,11 @@
                        <div id="perfil-info-details2" class="mdl-grid">
                            
                            <div class="perfil-detail">
-                               <i class='uil uil-envelope-alt'></i><p>{{user.email}}</p>
+                               <i class='uil uil-envelope-alt'></i><p>{{useremail}}</p>
                            </div>
 
                            <div class="perfil-detail">
-                               <i class='uil uil-phone-alt'></i><p>{{user.phone}}</p>
+                               <i class='uil uil-phone-alt'></i><p>{{userphone}}</p>
                            </div>                           
                        </div>                    
                 </div><!--client view-->
@@ -240,6 +240,14 @@ export default {
 
            accountType:false,
 
+           userimg:null,
+           username:null,
+           userphone:null,
+           useremail:null,
+           serviceimg:null,
+           servicename:null,
+           servicedescription:null,
+
            
 
 
@@ -296,22 +304,22 @@ export default {
 
 
         db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
-        {           
-                //console.log('Document data:', snapshot.data());
-                const data ={
-                    'img': snapshot.data().img,
-                    'name': snapshot.data().name,
-                    'phone': snapshot.data().phone,
-                    'email': snapshot.data().email,
-                    'serviceimg': snapshot.data().serviceimg,
-                    'servicename': snapshot.data().servicename,
-                    'servicedescription': snapshot.data().servicedescription,
-                }
-                self.userinfo.push(data)
-        }),
-        
-        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
-        {           
+        {                       
+                    if(snapshot.data().img == ''){
+                        self.userimg = 'https://cdn.dribbble.com/users/937082/screenshots/5516643/blob'
+                    }
+                    else{
+                        self.userimg = snapshot.data().img
+                    }
+
+                    self.username = snapshot.data().name
+                    self.userphone = snapshot.data().phone
+                    self.useremail = snapshot.data().email
+                    self.serviceimg = snapshot.data().serviceimg
+                    self.servicename = snapshot.data().servicename
+                    self.servicedescription = snapshot.data().servicedescription
+
+
           // console.log(snapshot.data().servicedescription)
 
                     if(snapshot.data().AccountType == 'service'){
