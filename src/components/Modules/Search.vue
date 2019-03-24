@@ -28,15 +28,16 @@
 
            <div class="global-grid mdl-grid">
              
-               <div class="userORservice" v-for="(user,usersData) in users" :key="usersData">
+               <div class="userORservice" v-for="(user,usersData) in users" v-bind:key="usersData">
 
-                  <router-link v-bind:to="{ name: 'Service', params: {servicename: user.name}}">
+                  <router-link :to="{ name: 'Service', params: {userid: user.user_id}}">
                      <div class="userORserviceIMG mdl-shadow--2dp">
                         <img v-bind:src="user.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
                      </div>
                   </router-link>
                  
                  <h4>{{user.name}}</h4>
+                 <small>{{user.description}}</small>
                </div>
 
            </div><!--serach content-->
@@ -52,7 +53,7 @@
 </template>
 
 <script>
-import {firebase,db} from '../../firebaseConfig.js'
+import {db} from '../../firebaseConfig.js'
 export default {
   name: 'Search',
   data(){
@@ -63,6 +64,7 @@ export default {
       services:[],
       search: null,
       RouteName:null,
+      user_id:null,
 
 
     }
@@ -71,12 +73,14 @@ export default {
   created(){
          let self = this;  
 
-          db.collection('users').get().then((querySnapshot) => {
+          db.collection('users').orderBy('servicename').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) =>{
-              //console.log(doc.data().name) 
+              //console.log(doc.data().user_id) 
                  const data ={
+                   'user_id': doc.data().user_id,
                    'img': doc.data().serviceimg,
                    'name': doc.data().servicename,
+                   'description': doc.data().servicedescription,
                    'email': doc.data().email,
                    'phone': doc.data().phone,
                  }

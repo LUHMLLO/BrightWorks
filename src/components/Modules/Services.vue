@@ -52,27 +52,27 @@
             </template>
             <template v-else>
                 <td>
-                    {{sercie.name_id}}
+                    {{service.name_id}}
                 </td>
 
                 <td>
-                    {{sercie.name}}
+                    {{service.name}}
                 </td>
 
                 <td>
-                    {{sercie.description}}
+                    {{service.description}}
                 </td>
 
                 <td>
-                    {{sercie.estimatedTime}}
+                    {{service.estimatedTime}}
                 </td>
 
                 <td>
-                    {{sercie.price}}
+                    {{service.price}}
                 </td>
 
                 <td>
-                    {{sercie.scherdule}}
+                    {{service.scherdule}}
                 </td>
 
                 <td>
@@ -98,8 +98,8 @@ export default {
         serviceData: {
 
       id: "",
-      name_id: "",
       name: "",
+      name_id: "",      
       description: "",
       estimatedTime: "",
       price: "",
@@ -125,6 +125,7 @@ export default {
       this.getService()
   },
   computed:{
+    
       sortedServices(){
           return this.services.slice().sort((a,b)=>{
               return a.name_id - b.name_id
@@ -138,7 +139,7 @@ export default {
           .get()
           .then(querySnapshot =>{
               var services = {};
-              
+                           
 
               var servicesArray = []
               let i = 0
@@ -163,7 +164,7 @@ export default {
       },
 
           onDelete(id){
-           db.collection('services').doc(id).delete().then((data)=>{
+           db.collection('services').doc(id).delete().then(()=>{
            this.getService()
       })
     },
