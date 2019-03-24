@@ -341,3 +341,30 @@
     padding: 22px 0;
     margin: 22px auto;
   }
+
+
+
+
+  .global-floating-input{
+    border: solid thin black;
+    padding: 22px;
+    margin:12px;
+  }
+  .global-floating-input input{
+    border: none;
+    outline:none;
+  }
+
+
+
+  .global-button{
+    border-radius:100px;
+    align-content: center;
+    justify-content: center;
+    background:none;
+    padding: 8px 22px;
+    border: solid thin rgba(0,0,0,0.3);
+    align-self: middle;
+    margin: auto;
+    cursor: pointer;
+  }
