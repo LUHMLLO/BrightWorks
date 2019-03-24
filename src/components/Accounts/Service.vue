@@ -5,17 +5,17 @@
       <div class="global-header mdl-shadow--2dp">
 
           <div class="global-header-bg">
-              <img src="https://cdn.dribbble.com/users/1908682/screenshots/6219500/___________-_______-3.jpg">
+              <img v-bind:src="serviceimg">
           </div>
 
           <div class="global-header-bg-overlay"></div>
 
           <div class="global-header-img mdl-shadow--2dp">
-              <img src="https://cdn.dribbble.com/users/1908682/screenshots/6219500/___________-_______-3.jpg">
+              <img v-bind:src="serviceimg">
           </div>
 
 
-          <h3 class="global-header-title">service name here</h3>
+          <h3 class="global-header-title">{{servicename}}</h3>
           
 
       </div><!--header-->
@@ -40,8 +40,8 @@
         <div id="about" class="global-tab-content" v-if="aboutTab">
 
          <div id="about-presentation">
-             <h3>Im a service</h3>
-             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At consequuntur nisi dolorum minima suscipit iure, veritatis adipisci? Repellat veniam qui aliquam dolor animi laudantium eum eaque nobis? Dicta, sed aut.</p>
+             <h3>{{servicename}}</h3>
+             <p>{{servicedescription}}</p>
          </div>
 
 
@@ -81,11 +81,11 @@ export default {
            ServiceTab: false,
            HelpTab: false,
 
-           RouteName: null,
-
+           user_id: null,
            serviceimg: null,
            servicename: null,
            servicedescription: null,
+
            serviceDetails:[
                { 'icon': 'uil uil-phone-alt', 'detail': '809-345-9090'},
                { 'icon': 'uil uil-envelope-alt', 'detail': 'service@something.com'},
@@ -98,65 +98,40 @@ export default {
         }
     },
     
-    methods:{
-
-        showTimelineTab: function(){
-           this.TimelineTab = true
-           this.aboutTab = false
-           this.ServiceTab = false
-           this.HelpTab = false
-        },
-        showAboutTab: function(){
-           this.TimelineTab = false
-           this.aboutTab = true
-           this.ServiceTab = false
-           this.HelpTab = false
-        },
-        showServiceTab: function(){
-           this.TimelineTab = false
-           this.aboutTab = false
-           this.ServiceTab = true
-           this.HelpTab = false
-        },
-        showHelpTab: function(){
-           this.TimelineTab = false
-           this.aboutTab = false
-           this.ServiceTab = false
-           this.HelpTab = true
-        },
+ 
 
 
-         addPost() {
-            this.timelinePosts.push({content:this.postsContent});
-            this.postsContent = '';
-        },
+    beforeRouteEnter( to, from, next){        
+          db.collection('users').where('user_id' , '==' , to.params.userid).get().then((querySnapshot) => {
+            querySnapshot.forEach(doc => {
+              next(vm => {
+                    vm.user_id = doc.data().user_id
+                    vm.serviceimg = doc.data().serviceimg
+                    vm.servicename = doc.data().servicename
+                    vm.servicedescription = doc.data().servicedescription
+                    vm.email = doc.data().email
+                    vm.phone = doc.data().phone
 
-
-
+              })
+            })
+          })
     },
-
-
-    created(){
-         //let self = this;   
-        //this.user = firebase.auth().currentUser
-        //var usercollection = this.userinfo
-        
-          db.collection('users').get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) =>{
-              //console.log(doc.data().servicename) 
-
-              if(doc.data().servicename == this.RouteName){
+    watch: {
+      '$route': 'fetchData'
+    },
+    methods: {
+      fetchData (){
+        db.collection('users').where('user_id', '==' , this.$route.params.userid).get().then(querySnapshot =>{
+          querySnapshot.forEach(doc => {
+                    this.user_id = doc.data().user_id
                     this.serviceimg = doc.data().serviceimg
                     this.servicename = doc.data().servicename
                     this.servicedescription = doc.data().servicedescription
                     this.email = doc.data().email
                     this.phone = doc.data().phone
-                 }
-                // console.log(this.servicename)
-            })
-          });
-
-
+          })
+        })
+      }
 
 
     },

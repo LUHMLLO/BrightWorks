@@ -32,7 +32,7 @@
                <i class='uil uil-home-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">home</p>
               </router-link>
 
-              <router-link to="/perfil" class="mdl-button">
+              <router-link :to="{ name: 'ClientProfile', params: {userid: user_id}}" class="mdl-button">
                <i class='uil uil-user' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Perfil</p>
               </router-link>
               
@@ -87,6 +87,7 @@ export default {
        currentUser: false,
        isNavOn: false,
        userimg: null,
+       user_id:null,
       }
     },
 
@@ -133,6 +134,8 @@ export default {
                     else{
                         self.userimg = snapshot.data().img
                     }
+
+                    self.user_id = snapshot.data().user_id
         })
 
     }
