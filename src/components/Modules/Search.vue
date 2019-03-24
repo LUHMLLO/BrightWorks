@@ -26,7 +26,7 @@
 
         <div id="search-content" class="global-content">
 
-           <div class="global-grid mdl-grid">
+           <div class="global-grid">
              
                <div class="userORservice" v-for="(user,usersData) in users" v-bind:key="usersData">
 

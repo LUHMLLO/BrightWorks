@@ -14,7 +14,7 @@
 
    <div class="global-content">
 
-      <div class="global-grid mdl-grid">
+      <div class="global-grid">
            
 
 

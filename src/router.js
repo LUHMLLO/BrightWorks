@@ -9,7 +9,6 @@ import Login from "./components/Basics/Login.vue"
 import Signup from "./components/Basics/Signup.vue"
 import Home from "./components/Home.vue"
 
-import Perfil from "./components/Accounts/Perfil.vue"
 import ClientProfile from "./components/Accounts/ClientProfile.vue"
 import ServiceProfile from "./components/Accounts/ServiceProfile.vue"
 
@@ -69,15 +68,6 @@ let router = new Router({
         }
       },
 
-
-      {
-        path: '/perfil',
-        name: 'Pefil',
-        component: Perfil,
-        meta:{
-          requiresAuth: true
-        }
-      },
 
       {
         path: '/service/:userid',

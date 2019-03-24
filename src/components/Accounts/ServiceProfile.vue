@@ -38,13 +38,39 @@
 
 
 
+       <div id="manage-services" class="global-tab-content">
+           <ManageProvideServices/>
+       </div><!--manage services-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 </template>
 
 
 <script>
 import { firebase, db } from '../../firebaseConfig.js'
-import Swal from 'sweetalert'
+import ManageProvideServices from '../Modules/ManageProvideServices.vue'
 
 export default {
     name: 'ServiceProfile',
@@ -59,12 +85,16 @@ export default {
             
         }
     },
+
+    components:{
+        ManageProvideServices
+    },
     
     
     
     
     
-    created(){
+    beforeCreate(){
              
              let self = this; 
              
@@ -82,7 +112,7 @@ export default {
                     self.useremail = snapshot.data().email    
                     
                     if(snapshot.data().AccountType !== 'service'){
-                        Swal({ title: "You Shall Not Pass!" , text: "yes, this is kind of a breach, yes we are going to patch this, now go surf somewhere else.", icon: "warning", button: "guess i'll leave",}).then(() => { self.$router.replace('/home') })
+                        self.$router.replace('/home')
                     }                             
         })
         

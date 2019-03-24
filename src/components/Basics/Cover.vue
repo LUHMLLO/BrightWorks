@@ -95,7 +95,7 @@
 
     <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
       <div id="cover-services-tab" class="cover-tabs-section" v-if="isTab2Visible">
-            <div class="mdl-grid">
+            <div class="global-grid">
 
                 <div class="service" v-for="(service,servicesData) in services" :key="servicesData">
                   <div class="service-img mdl-shadow--4dp">
@@ -114,7 +114,7 @@
 
     <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
      <div id="cover-features-tab" class="cover-tabs-section" v-if="isTab3Visible">
-       <div class="mdl-grid">
+       <div class="global-grid">
 
 
            <div class="feature" v-for="(feature,featuresData) in features" :key="featuresData">
@@ -176,7 +176,7 @@
 
    <div id="cover-cards">
      <h4>A little more about BrightWorks</h4> 
-     <div class="mdl-grid">
+     <div class="global-grid">
 
 
      <div class="cover-card">
@@ -230,7 +230,7 @@
 
 
 
-   <div id="cover-demo" class="mdl-grid">
+   <div id="cover-demo" class="global-grid">
      <div id="cover-demo-window" class="mdl-cell  mdl-shadow--6dp">
 
 

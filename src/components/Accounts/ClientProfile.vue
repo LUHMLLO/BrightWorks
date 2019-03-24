@@ -25,12 +25,10 @@
 
        <div class="global-tabs-bar">
 
-           <button class="mdl-button global-button-round sombra">timeline</button>
            <button class="mdl-button global-button-round sombra">About</button>
-           <button class="mdl-button global-button-round sombra">Services</button>
-           <button class="mdl-button global-button-round sombra">Contact</button>
-           <button class="mdl-button global-button-round sombra">Reviews</button>
-           <button class="mdl-button global-button-round sombra">Portfolio</button>
+           <button class="mdl-button global-button-round sombra">Adquired services</button>
+           <button class="mdl-button global-button-round sombra">Subscriptions</button>
+           <button class="mdl-button global-button-round sombra">Made reviews</button>
 
        </div><!---options bar-->
 
@@ -44,7 +42,6 @@
 
 <script>
 import { firebase, db } from '../../firebaseConfig.js'
-import Swal from 'sweetalert'
 
 export default {
     name: 'ClientProfile',
@@ -64,7 +61,7 @@ export default {
     
     
     
-    created(){
+    beforeCreate(){
              
              let self = this; 
              
@@ -82,7 +79,7 @@ export default {
                     self.useremail = snapshot.data().email  
                     
                     if(snapshot.data().AccountType !== 'client'){
-                        Swal({ title: "You Shall Not Pass!" , text: "yes, this is kind of a breach, yes we are going to patch this, now go surf somewhere else.", icon: "warning", button: "guess i'll leave",}).then(() => { self.$router.replace('/home') })
+                      self.$router.replace('/home')
                     } 
         })
         

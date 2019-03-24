@@ -64,7 +64,7 @@
         <i class='uil uil-mobile-android'></i><input type="text" name="phone" id="phone" v-model="phone" placeholder="phone"/>
       </div>
       <br><br>
-      <div class="mdl-grid">
+      <div class="global-grid">
           <div class="account-type mdl-shadow--2dp mdl-button" v-on:click="signService">
               <i class='uil uil-shop'></i>
               <p>Service</p>

@@ -6,7 +6,7 @@
 
         <div id="sidebar" class="mdl-shadow--6dp" v-if="isNavOn">
                  
-                 <div id="sidebar-route-buttons" class="mdl-grid">
+                 <div id="sidebar-route-buttons" class="global-grid">
                      <i class='uil uil-arrow-left' @click="$router.go(-1)"></i>
                      <i class='uil uil-arrow-right' @click="$router.go(+1)"></i>
                  </div>
@@ -19,7 +19,7 @@
 
                 <h6>{{currentUser}}</h6>
 
-                <div id="sidebar-header-icons" class="mdl-grid">
+                <div id="sidebar-header-icons" class="global-grid">
                     <i id="logoutbtn" class='uil uil-entry' v-on:click="logout"></i>
                     <i id="notificationsbtn" class='uil uil-bell'></i>
                     <i id="settingsbtn" class='uil uil-cog' v-on:click="openSettings"></i>
