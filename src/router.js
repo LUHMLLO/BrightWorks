@@ -11,6 +11,8 @@ import Home from "./components/Home.vue"
 
 import Perfil from "./components/Accounts/Perfil.vue"
 import ClientProfile from "./components/Accounts/ClientProfile.vue"
+import ServiceProfile from "./components/Accounts/ServiceProfile.vue"
+
 import Service from "./components/Accounts/Service.vue"
 
 import Search from "./components/Modules/Search.vue"
@@ -94,7 +96,16 @@ let router = new Router({
         meta:{
           requiresAuth: true
         }
-      },      
+      },   
+
+      {
+        path: '/service/profile/:userid',
+        name: 'ServiceProfile',
+        component: ServiceProfile,
+        meta:{
+          requiresAuth: true
+        }
+      },    
 
       
       {

@@ -32,10 +32,15 @@
                <i class='uil uil-home-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">home</p>
               </router-link>
 
-              <router-link :to="{ name: 'ClientProfile', params: {userid: user_id}}" class="mdl-button">
+
+              <router-link :to="{ name: 'ClientProfile', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'client'">
                <i class='uil uil-user' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Perfil</p>
               </router-link>
-              
+              <router-link :to="{ name: 'ServiceProfile', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'service'">
+               <i class='uil uil-user' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Perfil</p>
+              </router-link>
+
+
               <router-link to="/search" class="mdl-button"> 
                <i class='uil uil-search-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Search</p>
               </router-link>
@@ -88,6 +93,7 @@ export default {
        isNavOn: false,
        userimg: null,
        user_id:null,
+       accountType:null,
       }
     },
 
@@ -127,7 +133,7 @@ export default {
 
         db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
         {           
-                //console.log('Document data:', snapshot.data().img);
+                //console.log('Document data:', snapshot.data().AccountType);
                     if(snapshot.data().img == ''){
                         self.userimg = 'https://cdn.dribbble.com/users/937082/screenshots/5516643/blob'
                     }
@@ -136,6 +142,8 @@ export default {
                     }
 
                     self.user_id = snapshot.data().user_id
+
+                    self.accountType = snapshot.data().AccountType
         })
 
     }

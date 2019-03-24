@@ -47,7 +47,7 @@ import { firebase, db } from '../../firebaseConfig.js'
 import Swal from 'sweetalert'
 
 export default {
-    name: 'ClientProfile',
+    name: 'ServiceProfile',
     data(){
         return{
 
@@ -79,11 +79,11 @@ export default {
 
                     self.username = snapshot.data().name
                     self.userphone = snapshot.data().phone
-                    self.useremail = snapshot.data().email  
+                    self.useremail = snapshot.data().email    
                     
-                    if(snapshot.data().AccountType !== 'client'){
+                    if(snapshot.data().AccountType !== 'service'){
                         Swal({ title: "You Shall Not Pass!" , text: "yes, this is kind of a breach, yes we are going to patch this, now go surf somewhere else.", icon: "warning", button: "guess i'll leave",}).then(() => { self.$router.replace('/home') })
-                    } 
+                    }                             
         })
         
     }
