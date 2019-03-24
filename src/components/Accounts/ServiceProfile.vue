@@ -3,7 +3,7 @@
 
 
 
-          <div class="global-header mdl-shadow--2dp">
+    <div class="global-header mdl-shadow--2dp">
 
           <div class="global-header-bg">
               <img v-bind:src="userimg">
@@ -19,7 +19,7 @@
           <h3 class="global-header-title">{{username}}</h3>
           
 
-      </div><!--header-->
+    </div><!--header-->
 
 
 
