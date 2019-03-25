@@ -210,10 +210,7 @@
        <!----->
        <div class="cover-card-text">
          <h3>Values</h3>
-         <ul><li>Customer Satisfaction</li>
-           <li> Creativity</li>
-            <li>Honesty</li>
-            <li>Leadership</li></ul>
+        <p>Customer Satisfaction; Creativity; Leadership.</p>
        </div>
      </div><!--cover card-->
 
