@@ -28,16 +28,16 @@
 
            <div class="global-grid">
              
-               <div class="userORservice" v-for="(user,usersData) in users" v-bind:key="usersData">
+               <div class="userORservice" v-for="(service,servicesData) in services" v-bind:key="servicesData">
 
-                  <router-link :to="{ name: 'Service', params: {userid: user.user_id}}">
+                  <router-link :to="{ name: 'Service', params: {userid: service.user_id}}">
                      <div class="userORserviceIMG mdl-shadow--2dp">
-                        <img v-bind:src="user.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
+                        <img v-bind:src="service.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
                      </div>
                   </router-link>
                  
-                 <h4>{{user.name}}</h4>
-                 <small>{{user.description}}</small>
+                 <h4>{{service.name}}</h4>
+                 <small>{{service.description}}</small>
                </div>
 
            </div><!--serach content-->
@@ -73,26 +73,18 @@ export default {
   created(){
          let self = this;  
 
-          db.collection('users').orderBy('servicename').get().then((querySnapshot) => {
+          db.collection('services').orderBy('name').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) =>{
               //console.log(doc.data().user_id) 
                  const data ={
                    'user_id': doc.data().user_id,
-                   'img': doc.data().serviceimg,
-                   'name': doc.data().servicename,
-                   'description': doc.data().servicedescription,
-                   'email': doc.data().email,
-                   'phone': doc.data().phone,
+                   'img': doc.data().img,
+                   'name': doc.data().name,
+                   'description': doc.data().description,
                  }
-
-                 if(doc.data().AccountType == 'service'){
-                   self.users.push(data)
-                 }
+                   self.services.push(data)
             })
           });
-
-
-
   },
 
   computed:{

@@ -100,7 +100,7 @@
 
 
 <script>
-import {db} from '../../firebaseConfig.js'
+import {firebase,db} from '../../firebaseConfig.js'
 
 export default {
     name: 'ManageProvideServices',
@@ -111,8 +111,14 @@ export default {
             newservicename:null,
             newservicedescription:null,
             newserviceprice:null,
+            owner_id:firebase.auth().currentUser.uid,
+            user_id:null,
+
+            currentUserUserID:null,
 
             services:[],
+
+            thisUserRightNow:firebase.auth().currentUser.uid,
 
         }
     },
@@ -121,6 +127,8 @@ export default {
 
         addService(){
             db.collection('services').add({
+                owner_id: this.owner_id,
+                user_id: this.user_id,
                 img: this.newserviceimg,
                 name: this.newservicename,
                 description: this.newservicedescription,
@@ -131,22 +139,56 @@ export default {
 
     },
 
-    created(){
-        let self = this;  
 
-          db.collection('services').orderBy('name').get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) =>{
-              //console.log(doc.data().name) 
-                 const data ={
+
+    created(){
+        let self = this;   
+
+          db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot){
+
+                self.user_id = snapshot.data().user_id
+                //console.log(self.user_id)
+
+        })
+
+
+
+          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                //console.log(self.user_id)
+                
+                const data ={
+                   'owner_id': doc.data().owner_id,
+                   'user_id': doc.data().user_id,
                    'img': doc.data().img,
                    'name': doc.data().name,
                    'description': doc.data().description,
                    'price': doc.data().price
                  }
                    self.services.push(data)
-  
-            })
-          });
+
+            })  
+        })
+    },
+
+    afterUpdate(){
+        let self = this; 
+
+          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                
+                const data ={
+                   'owner_id': doc.data().owner_id,
+                   'user_id': doc.data().user_id,
+                   'img': doc.data().img,
+                   'name': doc.data().name,
+                   'description': doc.data().description,
+                   'price': doc.data().price
+                 }
+                   self.services.push(data)
+
+            })  
+        })
     }
 
 

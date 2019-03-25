@@ -107,6 +107,8 @@ export default {
                         self.userimg = snapshot.data().img
                     }
 
+                    //console.log(snapshot.data().user_id)
+
                     self.username = snapshot.data().name
                     self.userphone = snapshot.data().phone
                     self.useremail = snapshot.data().email    
