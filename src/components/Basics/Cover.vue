@@ -186,7 +186,7 @@
        <!----->
        <div class="cover-card-text">
          <h3>Mission</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, ntium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
+         <p>Offer people a service in an innovative way to help start your business.</p>
        </div>
      </div><!--cover card-->
 
@@ -194,7 +194,7 @@
      <div class="cover-card">
        <div class="cover-card-text">
          <h3>Vision</h3>
-         <p>Loloremque! Vel porro possimus excepturi illum. Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
+         <p>Maintain leadership in the market and evolve as a leader in services and helping people to promote their business.</p>
        </div>
        <!----->
        <div class="cover-card-img">
@@ -210,7 +210,7 @@
        <!----->
        <div class="cover-card-text">
          <h3>Values</h3>
-         <p>Quod ab explicabo praesentium non quibusdam, modi quo recusandae, earum reiciendis magni eaque obcaecati quidem.</p>
+        <p>Customer Satisfaction; Creativity; Leadership.</p>
        </div>
      </div><!--cover card-->
 
