@@ -45,7 +45,7 @@
          </div>
 
 
-         <div class="mdl-grid">
+         <div class="global-grid">
              <div class="global-info-pill" v-for="(Detail,serviceDetailsData) in serviceDetails" :key="serviceDetailsData">
                 <i v-bind:class='Detail.icon'></i>
                 <span>{{Detail.detail}}</span>
