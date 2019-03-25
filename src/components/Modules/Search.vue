@@ -30,7 +30,7 @@
              
                <div class="userORservice" v-for="(service,servicesData) in services" v-bind:key="servicesData">
 
-                  <router-link :to="{ name: 'Service', params: {userid: service.user_id}}">
+                  <router-link :to="{ name: 'Service', params: {url_name: service.url_name}}">
                      <div class="userORserviceIMG mdl-shadow--2dp">
                         <img v-bind:src="service.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
                      </div>
@@ -65,6 +65,7 @@ export default {
       search: null,
       RouteName:null,
       user_id:null,
+      url_name:null,
 
 
     }
@@ -75,9 +76,10 @@ export default {
 
           db.collection('services').orderBy('name').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) =>{
-              //console.log(doc.data().user_id) 
+              //console.log(doc.data().url_name) 
                  const data ={
                    'user_id': doc.data().user_id,
+                   'url_name': doc.data().url_name,
                    'img': doc.data().img,
                    'name': doc.data().name,
                    'description': doc.data().description,
@@ -90,19 +92,6 @@ export default {
             })
           });
   },
-
-  computed:{
-
-    filteredUsersServices: function(){
-      return this.users.filter((user) => {
-        return user.name.match(this.search)
-      })
-    },
-
-  },
-
-  methods:{
-  }
 
 
 
