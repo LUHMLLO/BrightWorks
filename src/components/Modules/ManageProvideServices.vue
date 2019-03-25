@@ -62,6 +62,11 @@
                             <i class='uil uil-file-blank'></i>
                             <input type="text" name="" id="" v-model="newserviceimg" placeholder="img (url only)" required>
                         </div><!--global floating input-->
+
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="" id="" v-model="newserviceurlname" placeholder="url name" required>
+                        </div><!--global floating input-->                         
         
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
@@ -114,6 +119,7 @@ export default {
             owner_id:firebase.auth().currentUser.uid,
             user_id:null,
             availability:null,
+            newserviceurlname:null,
 
             currentUserUserID:null,
 
@@ -136,6 +142,7 @@ export default {
                 description: this.newservicedescription,
                 price: this.newserviceprice,
                 availability: true,
+                url_name: this.newserviceurlname,
             })
             .catch(error => alert(error))
         }
@@ -168,6 +175,7 @@ export default {
                    'description': doc.data().description,
                    'price': doc.data().price,
                    'availability': doc.data().availability,
+                   'url_name': doc.data().url_name,
                  }
 
                  if(doc.data().availability == true){

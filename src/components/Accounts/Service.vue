@@ -26,10 +26,10 @@
 
            <button class="mdl-button global-button-round sombra">timeline</button>
            <button class="mdl-button global-button-round sombra" v-bind:class="{ globalActiveTab: aboutTab }">About</button>
-           <button class="mdl-button global-button-round sombra">Services</button>
-           <button class="mdl-button global-button-round sombra">Contact</button>
+           <button class="mdl-button global-button-round sombra">Contract</button>
            <button class="mdl-button global-button-round sombra">Reviews</button>
-           <button class="mdl-button global-button-round sombra">Portfolio</button>
+           <button class="mdl-button global-button-round sombra">Other services by the same provider</button>
+           <button class="mdl-button global-button-round sombra">help</button>
 
        </div><!---options bar-->
 
@@ -82,6 +82,7 @@ export default {
            HelpTab: false,
 
            user_id: null,
+           url_name:null,
            serviceimg: null,
            servicename: null,
            servicedescription: null,
@@ -102,15 +103,14 @@ export default {
 
 
     beforeRouteEnter( to, from, next){        
-          db.collection('users').where('user_id' , '==' , to.params.userid).get().then((querySnapshot) => {
+          db.collection('services').where('url_name' , '==' , to.params.url_name).get().then((querySnapshot) => {
             querySnapshot.forEach(doc => {
               next(vm => {
                     vm.user_id = doc.data().user_id
-                    vm.serviceimg = doc.data().serviceimg
-                    vm.servicename = doc.data().servicename
-                    vm.servicedescription = doc.data().servicedescription
-                    vm.email = doc.data().email
-                    vm.phone = doc.data().phone
+                    vm.url_name = doc.data().url_name
+                    vm.serviceimg = doc.data().img
+                    vm.servicename = doc.data().name
+                    vm.servicedescription = doc.data().description
 
               })
             })
@@ -121,14 +121,13 @@ export default {
     },
     methods: {
       fetchData (){
-        db.collection('users').where('user_id', '==' , this.$route.params.userid).get().then(querySnapshot =>{
+        db.collection('services').where('url_name', '==' , this.$route.params.url_name).get().then(querySnapshot =>{
           querySnapshot.forEach(doc => {
                     this.user_id = doc.data().user_id
-                    this.serviceimg = doc.data().serviceimg
-                    this.servicename = doc.data().servicename
-                    this.servicedescription = doc.data().servicedescription
-                    this.email = doc.data().email
-                    this.phone = doc.data().phone
+                    this.url_name = doc.data().url_name
+                    this.serviceimg = doc.data().img
+                    this.servicename = doc.data().name
+                    this.servicedescription = doc.data().description
           })
         })
       }
