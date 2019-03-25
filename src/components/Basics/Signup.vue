@@ -195,6 +195,7 @@ export default {
 
 
           return db.collection('users').doc(credentials.user.uid).set({
+            user_id: credentials.user.uid,
             img: this.img,
             name: this.name,
             phone: this.phone,
@@ -222,6 +223,7 @@ export default {
 
 
           return db.collection('users').doc(credentials.user.uid).set({
+            user_id: credentials.user.uid,
             img: this.img,
             name: this.name,
             phone: this.phone,

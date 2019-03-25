@@ -82,7 +82,11 @@ export default {
                    'name': doc.data().name,
                    'description': doc.data().description,
                  }
+
+                 if(doc.data().availability == true){
                    self.services.push(data)
+                 }
+
             })
           });
   },

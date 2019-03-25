@@ -9,7 +9,7 @@
                 <h4>Available services</h4>
                 <div class="global-grid">
                     
-                    <div class="global-service-card mdl-shadow--3dp"   v-for="(service,servicesData) in services" :key="servicesData">
+                    <div class="global-service-card mdl-shadow--3dp"   v-for="(service,AvailableServicesData) in AvailableServices" :key="AvailableServicesData">
                         <div class="global-service-card-img">
                             <img v-bind:src="service.img">
                         </div><!-- global service card img-->
@@ -34,7 +34,7 @@
                 <h4>Not available services</h4>
                 <div class="global-grid">
                     
-                    <div class="global-service-card mdl-shadow--3dp"   v-for="(service,servicesData) in services" :key="servicesData">
+                    <div class="global-service-card mdl-shadow--3dp"   v-for="(service,UnavailableServicesData) in UnavailableServices" :key="UnavailableServicesData">
                         <div class="global-service-card-img">
                             <img v-bind:src="service.img">
                          </div><!-- global service card img-->
@@ -113,10 +113,12 @@ export default {
             newserviceprice:null,
             owner_id:firebase.auth().currentUser.uid,
             user_id:null,
+            availability:null,
 
             currentUserUserID:null,
 
-            services:[],
+            AvailableServices:[],
+            UnavailableServices:[],
 
             thisUserRightNow:firebase.auth().currentUser.uid,
 
@@ -133,6 +135,7 @@ export default {
                 name: this.newservicename,
                 description: this.newservicedescription,
                 price: this.newserviceprice,
+                availability: true,
             })
             .catch(error => alert(error))
         }
@@ -163,33 +166,21 @@ export default {
                    'img': doc.data().img,
                    'name': doc.data().name,
                    'description': doc.data().description,
-                   'price': doc.data().price
+                   'price': doc.data().price,
+                   'availability': doc.data().availability,
                  }
-                   self.services.push(data)
+
+                 if(doc.data().availability == true){
+                   self.AvailableServices.push(data)
+                 }
+                 else{
+                   self.UnavailableServices.push(data)
+                 }
 
             })  
         })
     },
 
-    afterUpdate(){
-        let self = this; 
-
-          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                
-                const data ={
-                   'owner_id': doc.data().owner_id,
-                   'user_id': doc.data().user_id,
-                   'img': doc.data().img,
-                   'name': doc.data().name,
-                   'description': doc.data().description,
-                   'price': doc.data().price
-                 }
-                   self.services.push(data)
-
-            })  
-        })
-    }
 
 
 }
