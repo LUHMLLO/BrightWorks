@@ -108,6 +108,15 @@ let router = new Router({
       },
 
       {
+        path: '/search/:search_service',
+        name: 'Search-service',
+        component: Search,
+        meta:{
+          requiresAuth: true
+        }
+      },
+
+      {
         path: '/settings',
         name: 'Settings',
         component: Settings,
