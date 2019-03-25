@@ -143,7 +143,9 @@ export default {
 
   
   #about-presentation{
-      text-align: justify;
+    padding: 42px 12px;
+    margin: auto auto 22px auto;
+    width:96%;
   }
 
 
