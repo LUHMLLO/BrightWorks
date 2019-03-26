@@ -286,9 +286,8 @@
     overflow: hidden;
     overflow-x: auto;
     background: black;
-    height: 20vh;
-    display: flex;
-    justify-content: space-between;
+    min-height: 20vh;
+    padding: 22px 0;
   }
   .global-quotes-slider::-webkit-scrollbar{
     display:none;
@@ -296,10 +295,26 @@
 
   .global-quote{
     margin: auto 22px;
-    padding: 42px;
+    align-self: middle;
+    padding: 22px;
     display: inline-block;
     color:white;
+    width:300px;
+    border:white solid thin;
+  }
+  .global-quote h6{
+    white-space: normal;
+    font-size:14px;
+    margin:auto;
     align-self: middle;
+    display: block;
+    text-align: left;
+  }
+  .global-quote small{
+    font-size:13px;
+    margin:auto;
+    align-self: middle;
+    display: block;
   }
 
 

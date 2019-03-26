@@ -33,10 +33,10 @@
               </router-link>
 
 
-              <router-link :to="{ name: 'ClientProfile', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'client'">
+              <router-link :to="{ name: 'ClientProfile', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'client' && isLoggedIn" >
                <i class='uil uil-user' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Perfil</p>
               </router-link>
-              <router-link :to="{ name: 'ServiceProfile', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'service'">
+              <router-link :to="{ name: 'ServiceProfile', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
                <i class='uil uil-user' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Perfil</p>
               </router-link>
 

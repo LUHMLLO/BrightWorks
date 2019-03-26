@@ -120,8 +120,8 @@ img{
     color: #333;
   }
   .swal-button.swal-button--cancel,.swal-button.swal-button--cancel:hover,.swal-button.swal-button--cancel:focus{
-    background: rgba(255,100,100,0.1) !important;
-    border: none !important;
+    background: none !important;
+    border: solid 0.5px rgba(0,0,0,0.2) !important;
     outline:none !important;
     color: #333;
   }

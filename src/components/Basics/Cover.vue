@@ -159,6 +159,7 @@
     
     <div v-for="(quote, InspQuotesData) in InsQuotes" :key="InspQuotesData" class="global-quote">
         <h6>{{quote.content}}</h6>
+        <br>
         <small> {{quote.author}} </small>
     </div>
     
@@ -372,13 +373,12 @@ export default {
 
 
          InsQuotes:[
-           {'content': 'La mentalidad de ganador, es necesaria para el exito', 'author': 'author here'},
-           {'content': 'Si no puedes darte lo que quieres, no se lo puedes dar a nadie', 'author': 'author here'},
-           {'content': 'Escucha a las personas con experiencia, no a la toxica', 'author': 'author here'},
-           {'content': 'El que no arriesga, no gana', 'author': 'author here'},
-           {'content': 'El mediocre se enamora de los resultados y los ganadores se enamoran del proceso', 'author': 'author here'},
-           {'content': 'Los suenos son el motor de cualquier actividad', 'author': 'author here'},
-           {'content': 'Un hombre sin suenos no esta viviendo en este mundo', 'author': 'author here'},
+           {'content': 'Without hard work, nothing grows but weeds.', 'author':'Gordon B. Hinckley.'},
+           {'content': 'Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing or learning to do.' ,'author':'Pele.'},
+           {'content': 'Be true to your work, your word, and your friend.', 'author':'John Boyle O Reilly.'},
+           {'content': 'Nothing ever comes to one, that is worth having, except as a result of hard work.', 'author': 'Booker T. Washington.'},
+           {'content': 'If you do what you love, youll never work a day in your life.', 'author':'Marc Anthony.'},
+           {'content' :'There is no higher religion than human service. To work for the common good is the greatest creed.', 'author': 'Woodrow Wilson.'},
          ],
 
 
