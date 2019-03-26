@@ -42,6 +42,8 @@
          <div id="about-presentation">
              <h3>{{servicename}}</h3>
              <p>{{servicedescription}}</p>
+             <p>{{serviceprice}}</p>
+             <p>{{servicescherdule}}</p>
          </div>
 
 
@@ -86,6 +88,8 @@ export default {
            serviceimg: null,
            servicename: null,
            servicedescription: null,
+           serviceprice: null,
+           servicescherdule: null,
 
            serviceDetails:[
                { 'icon': 'uil uil-phone-alt', 'detail': '809-345-9090'},
@@ -111,6 +115,8 @@ export default {
                     vm.serviceimg = doc.data().img
                     vm.servicename = doc.data().name
                     vm.servicedescription = doc.data().description
+                    vm.serviceprice = doc.data().price
+                    vm.servicescherdule = doc.data().scherdule
 
               })
             })
@@ -128,6 +134,8 @@ export default {
                     this.serviceimg = doc.data().img
                     this.servicename = doc.data().name
                     this.servicedescription = doc.data().description
+                    this.serviceprice = doc.data().price
+                    this.servicescherdule = doc.data().scherdule
           })
         })
       }

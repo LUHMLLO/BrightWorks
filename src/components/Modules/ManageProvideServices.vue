@@ -20,6 +20,7 @@
                             <div class="global-service-card-description">
                                 <p>{{service.description}}</p>
                                 <small>{{service.price}}</small>
+                                <small>{{service.scherdule}}</small>
                             </div>
                         </div><!---global service card content -->
                     </div><!--service card-->
@@ -45,6 +46,7 @@
                             <div class="global-service-card-description">
                                 <p>{{service.description}}</p>
                                 <small>{{service.price}}</small>
+                                <small>{{service.scherdule}}</small>
                             </div>
                         </div><!---global service card content -->
                     </div><!--service card-->
@@ -81,8 +83,16 @@
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
                             <input type="text" name="" id="" v-model="newserviceprice" placeholder="price" required>
-                        </div><!--global floating input-->              
+                        </div><!--global floating input-->  
+
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="" id="" v-model="newservicescherdule" placeholder="scherdule" required>
+                        </div><!--global floating input-->   
+
                   </div><!--global grid-->
+
+                  
                   
                   <br><br>
                   <button class="global-button" v-on:click="addService">Add new service</button>
@@ -116,6 +126,7 @@ export default {
             newservicename:null,
             newservicedescription:null,
             newserviceprice:null,
+            newservicescherdule: null,
             owner_id:firebase.auth().currentUser.uid,
             user_id:null,
             availability:null,
@@ -141,6 +152,7 @@ export default {
                 name: this.newservicename,
                 description: this.newservicedescription,
                 price: this.newserviceprice,
+                scherdule: this.newservicescherdule,
                 availability: true,
                 url_name: this.newserviceurlname,
             })
@@ -174,6 +186,7 @@ export default {
                    'name': doc.data().name,
                    'description': doc.data().description,
                    'price': doc.data().price,
+                   'scherdule': doc.data().scherdule,
                    'availability': doc.data().availability,
                    'url_name': doc.data().url_name,
                  }
