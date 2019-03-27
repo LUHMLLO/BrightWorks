@@ -16,6 +16,8 @@ import Service from "./components/Accounts/Service.vue"
 
 import Search from "./components/Modules/Search.vue"
 import Settings from "./components/Modules/Settings.vue"
+import ManageProvideServices_edit from "./components/Modules/ManageProvideServices_edit"
+import ManageProvideServices_view from "./components/Modules/ManageProvideServices_view"
 
 
 Vue.use(Router)
@@ -120,6 +122,24 @@ let router = new Router({
         path: '/settings',
         name: 'Settings',
         component: Settings,
+        meta:{
+          requiresAuth: true
+        }
+      },
+
+      {
+        path: '/edit/:userid',
+        name: 'edit-service',
+        component: ManageProvideServices_edit,
+        meta:{
+          requiresAuth: true
+        }
+      },
+
+      {
+        path: '/:userid',
+        name: 'view-service',
+        component: ManageProvideServices_view,
         meta:{
           requiresAuth: true
         }
