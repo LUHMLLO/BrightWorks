@@ -45,6 +45,10 @@
                <i class='uil uil-search-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Search</p>
               </router-link>
 
+              <router-link to="/manage_services" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
+               <i class='uil uil-folder' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Manage services</p>
+              </router-link>
+
             </div><!--sidebar links-->
 
         </div><!--sidebar-->

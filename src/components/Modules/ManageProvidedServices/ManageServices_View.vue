@@ -118,10 +118,10 @@
 
 
 <script>
-import {firebase,db} from '../../firebaseConfig.js'
+import {firebase,db} from '../../../firebaseConfig.js'
 
 export default {
-    name: 'ManageProvideServices',
+    name: 'ManageServices_View',
     data(){
         return{
 
