@@ -8,18 +8,19 @@
 
     <div id="cover-header">
       <div id="cover-header-content">
-        <h1>Bright Works</h1>
+        
+        <h1>Bright Works</h1>        
+        <p>Make the right choices.</p>
+        <br>
 
-        <p>A work and bussiness promoting platform with powerful tools to adquire clients and manage your work all in one place;
-          <br>A better way to connect people with the fittest and most qualified for work they might need them.
-        </p>
+
 
         <router-link to="/login">
-          <button class="mdl-button sombra">Sign in</button>
+          <button class="global-button mdl-button mdl-shadow--2dp">Sign in</button>
         </router-link>
 
         <router-link to="/signup">
-          <button class="mdl-button sombra">Sign up</button>
+          <button class="global-button mdl-button mdl-shadow--2dp">Sign up</button>
         </router-link>
       </div>
     </div><!--cover header ends herer--->
@@ -42,12 +43,31 @@
   <div id="cover-tabs">
 
       <div id="cover-tabs-nav">
+        <button class="mdl-button" v-on:click="showTab0" v-bind:class="{ tabActive: isTab0Visible }">About BrightWorks</button>
         <button class="mdl-button" v-on:click="showTab1" v-bind:class="{ tabActive: isTab1Visible }">How it Works</button>
         <button class="mdl-button" v-on:click="showTab2" v-bind:class="{ tabActive: isTab2Visible }">Services</button>
         <button class="mdl-button" v-on:click="showTab3" v-bind:class="{ tabActive: isTab3Visible }">Features</button>
       </div>
       <br>
       <br>
+
+    <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
+     <div id="about-tab" class="cover-tabs-section" v-if="isTab0Visible">
+
+
+          <div id="about-img">
+             <img src="../../assets/logo.png">
+          </div>
+
+        <p style="text-align:justify; width:60%; margin:auto;">
+          Bright works is a work platform where people can find and hire different services depending on what they need, without wasting a lot of time carrying out extensive searches or taking risks with services that do not have as much credibility, all this from any mobile device with Internet connection;
+           <br>
+          Bright works seeks to serve as home for those who wish to have a work platform to provide, promote and manage their business / service that they wish to provide, facilitating the acquisition of clients and also allowing them to manage their work from it, without requiring a very extensive learning curve but that meets the necessary functionalities to be useful.
+        </p>
+
+     </div>
+    </transition>
+
     
     <transition name="coverTabsAnim" enter-active-class="animated fadeIn" leave-active-class="fadeOut">
      <div id="cover-howitworks-tab" class="cover-tabs-section" v-if="isTab1Visible">
@@ -352,8 +372,8 @@ export default {
            img:'https://cdn.dribbble.com/users/63407/screenshots/5095176/dribbble_lotus_pond.png'
          },
        ],
-
-
+       
+        isTab0Visible: false,
         isTab1Visible: false,
         isTab2Visible: true,
         isTab3Visible: false,
@@ -390,17 +410,26 @@ export default {
 
 
   methods:{
+    showTab0:function(){
+      this.isTab0Visible = true
+      this.isTab1Visible = false
+      this.isTab2Visible = false
+      this.isTab3Visible = false
+    },
     showTab1:function(){
+      this.isTab0Visible = false
       this.isTab1Visible = true
       this.isTab2Visible = false
       this.isTab3Visible = false
     },
     showTab2:function(){
+      this.isTab0Visible = false
       this.isTab1Visible = false
       this.isTab2Visible = true
       this.isTab3Visible = false
     },
     showTab3:function(){
+      this.isTab0Visible = false
       this.isTab1Visible = false
       this.isTab2Visible = false
       this.isTab3Visible = true
@@ -415,6 +444,7 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 #cover-header {
   background: url("https://cdn.dribbble.com/users/1803663/screenshots/6080532/kerala_paddy_field.png");
@@ -439,13 +469,19 @@ export default {
   border-radius: 100px;
   margin: 10px 10px;
 }
+#cover-header-content h1{
+  font-family: 'Pacifico', cursive;
+  font-size:62px;
+}
+#cover-header-content p{
+  margin: auto;
+}
 
 
 
 
 #cover-tabs{
   width: 100%;
-  min-height: 100vh;
   padding:42px 0;
 }
 #cover-tabs-nav{
@@ -470,7 +506,10 @@ export default {
 
 
 
-
+#about-img{
+  width:348px;
+  margin:auto;
+}
 
 .how-it-works-item{
   width:100%;
@@ -627,9 +666,6 @@ export default {
   font-size:16px;
   margin: auto;
   padding: 22px;
-  text-align: justify;
-  text-justify:distribute;
-  word-break: break-all;
 }
 
 
