@@ -19,12 +19,13 @@
                             </div>
                             <div class="global-service-card-description">
                                 <p>{{service.description}}</p>
-                                <small>{{service.price}}</small>
+                                <small>{{service.price}}</small><br>
                                 <small>{{service.scherdule}}</small>
                             </div>
                         </div><!---global service card content -->
                     </div><!--service card-->
                 </div>
+                <button class="global-button">edit service</button>
             </div><!---available section-->
 
 
@@ -96,8 +97,10 @@
                   
                   <br><br>
                   <button class="global-button" v-on:click="addService">Add new service</button>
+                  
 
               </form>
+              
             </div><!---available section-->
 
 
@@ -146,6 +149,21 @@ export default {
 
         addService(){
             db.collection('services').add({
+                owner_id: this.owner_id,
+                user_id: this.user_id,
+                img: this.newserviceimg,
+                name: this.newservicename,
+                description: this.newservicedescription,
+                price: this.newserviceprice,
+                scherdule: this.newservicescherdule,
+                availability: true,
+                url_name: this.newserviceurlname,
+            })
+            .catch(error => alert(error))
+        },
+
+        updateService(){
+            db.collection('services').update({
                 owner_id: this.owner_id,
                 user_id: this.user_id,
                 img: this.newserviceimg,
