@@ -300,7 +300,6 @@
     display: inline-block;
     color:white;
     width:300px;
-    border:white solid thin;
   }
   .global-quote h6{
     white-space: normal;
@@ -315,6 +314,7 @@
     margin:auto;
     align-self: middle;
     display: block;
+    float: right;
   }
 
 

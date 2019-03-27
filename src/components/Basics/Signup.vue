@@ -1,6 +1,6 @@
 <template>
 <div id="signup">
-<form method="post" v-on:submit.prevent>
+<form method="post" v-on:submit.prevent name="form">
 
 
 

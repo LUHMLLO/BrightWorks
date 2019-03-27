@@ -158,9 +158,9 @@
    <div class="global-quotes-slider">
     
     <div v-for="(quote, InspQuotesData) in InsQuotes" :key="InspQuotesData" class="global-quote">
-        <h6>{{quote.content}}</h6>
+        <h6>"{{quote.content}}"</h6>
         <br>
-        <small> {{quote.author}} </small>
+        <small>- {{quote.author}}</small>
     </div>
     
    </div>
