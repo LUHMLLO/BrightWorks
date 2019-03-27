@@ -20,12 +20,16 @@
                             </div>
                             <div class="global-service-card-description">
                                 <p>{{service.description}}</p>
-                                <small>{{service.price}}</small><br>
-                                <small>{{service.scherdule}}</small>
+                                <p>{{service.schedule}}</p>
+                                <small>{{service.price}}</small>
                             </div>
                         </div><!---global service card content -->
 
-                        <div class="global-service-card-edit-button"><i class='uil uil-pen'></i></div>
+                        <div class="global-service-card-edit-button">
+                            <router-link :to="{ name: 'ManageServices_Edit', params: {url_name: service.url_name}}">
+                                <i class='uil uil-pen'></i>
+                            </router-link>
+                        </div>
                         
                     </div><!--service card-->
                 </div>
@@ -49,10 +53,15 @@
                             </div>
                             <div class="global-service-card-description">
                                 <p>{{service.description}}</p>
+                                <p>{{service.schedule}}</p>
                                 <small>{{service.price}}</small>
-                                <small>{{service.scherdule}}</small>
                             </div>
                         </div><!---global service card content -->
+                        <div class="global-service-card-edit-button">
+                            <router-link :to="{ name: 'ManageServices_Edit', params: {url_name: service.url_name}}">
+                                <i class='uil uil-pen'></i>
+                            </router-link>
+                        </div>                        
                     </div><!--service card-->
                 </div>
             </div><!---available section-->
@@ -98,7 +107,7 @@ export default {
 
           db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                //console.log(self.user_id)
+                //console.log(doc.data().schedule)
                 
                 const data ={
                    'owner_id': doc.data().owner_id,
@@ -107,9 +116,10 @@ export default {
                    'name': doc.data().name,
                    'description': doc.data().description,
                    'price': doc.data().price,
-                   'scherdule': doc.data().scherdule,
+                   'schedule': doc.data().schedule,
                    'availability': doc.data().availability,
                    'url_name': doc.data().url_name,
+                   'service_id': doc.data().service_id,
                  }
 
                  if(doc.data().availability == true){

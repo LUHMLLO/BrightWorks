@@ -392,6 +392,9 @@
     border: none;
     outline:none;
   }
+  .global-floating-input span{
+    margin: auto auto auto 12px;
+  }
 
 
 

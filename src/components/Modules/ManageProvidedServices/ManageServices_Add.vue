@@ -36,6 +36,11 @@
                             <input type="text" name="schedule" id="" v-model="schedule" placeholder="schedule" required>
                         </div><!--global floating input-->   
 
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="service_id" id="" v-model="service_id" placeholder="service_id" required>
+                        </div><!--global floating input-->   
+
                   </div><!--global grid-->
 
                   
@@ -67,6 +72,7 @@ export default {
             url:null,
             price:null,
             schedule: null,
+            service_id:null,
 
         }
     }
