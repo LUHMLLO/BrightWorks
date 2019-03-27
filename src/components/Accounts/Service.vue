@@ -24,12 +24,12 @@
 
        <div class="global-tabs-bar">
 
-           <button class="mdl-button global-button-round sombra">timeline</button>
-           <button class="mdl-button global-button-round sombra" v-bind:class="{ globalActiveTab: aboutTab }">About</button>
-           <button class="mdl-button global-button-round sombra">Contract</button>
-           <button class="mdl-button global-button-round sombra">Reviews</button>
-           <button class="mdl-button global-button-round sombra">Other services by the same provider</button>
-           <button class="mdl-button global-button-round sombra">help</button>
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:timelineTab}" v-on:click="ShowTimeline">timeline</button>
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:aboutTab }" v-on:click="ShowAbout">About</button>
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:contractTab}" v-on:click="ShowContract">Contract</button>
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:reviewsTab}" v-on:click="ShowReviews">Reviews</button>
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:othersTab}" v-on:click="ShowOthers">Other services by the same provider</button>
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:helptab}" v-on:click="ShowHelp">help</button>
 
        </div><!---options bar-->
 
@@ -62,6 +62,19 @@
 
 
 
+
+
+        <div id="contract" class="global-tab-content" v-if="contractTab">
+            
+        </div><!---global tab content-->
+
+
+
+
+
+
+
+
 </div>
 </template>
 
@@ -78,12 +91,13 @@ export default {
     
     data(){
         return{
-           TimelineTab: false,
+           timelineTab: false,
            aboutTab: true,
-           ServiceTab: false,
-           HelpTab: false,
+           contractTab: false,
+           reviewsTab: false,
+           othersTab:false,
+           helptab: false,
 
-           user_id: null,
            url_name:null,
            serviceimg: null,
            servicename: null,
@@ -138,7 +152,64 @@ export default {
                     this.servicescherdule = doc.data().scherdule
           })
         })
-      }
+      },
+
+
+
+
+
+     
+     ShowTimeline: function(){
+           this.timelineTab = true
+           this.aboutTab = false
+           this.contractTab = false
+           this.reviewsTab = false
+           this.othersTab =false
+           this.helptab = false
+     },
+     ShowAbout: function(){
+           this.timelineTab = false
+           this.aboutTab = true
+           this.contractTab = false
+           this.reviewsTab = false
+           this.othersTab =false
+           this.helptab = false
+     },
+     ShowContract: function(){
+           this.timelineTab = false
+           this.aboutTab = false
+           this.contractTab = true
+           this.reviewsTab = false
+           this.othersTab =false
+           this.helptab = false
+     },     
+     ShowReviews: function(){
+           this.timelineTab = false
+           this.aboutTab = false
+           this.contractTab = false
+           this.reviewsTab = true
+           this.othersTab =false
+           this.helptab = false
+     },
+     ShowOthers: function(){
+           this.timelineTab = false
+           this.aboutTab = false
+           this.contractTab = false
+           this.reviewsTab = false
+           this.othersTab =true
+           this.helptab = false
+     },
+     ShowHelp: function(){
+           this.timelineTab = false
+           this.aboutTab = false
+           this.contractTab = false
+           this.reviewsTab = false
+           this.othersTab =false
+           this.helptab = true
+     },
+
+
+
 
 
     },

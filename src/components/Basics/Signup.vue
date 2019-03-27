@@ -80,55 +80,13 @@
 
         <button v-on:click="choose" class="mdl-button disabled-btn sombra" v-if="IdontKnowWhatImGonnaBe">Setup</button>
         <button v-on:click="signUp" class="mdl-button sombra" v-if="ImmaBeAClient">Sign up as client</button>
-        <button v-on:click="ContinueForm03" class="mdl-button sombra" v-if="ImmaBeAService">Continue to setup a service</button>
+        <button v-on:click="SignUpAsService" class="mdl-button sombra" v-if="ImmaBeAService">Sign up as service</button>
 
        <br>
 
     </div>    
    </div><!---form 02-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   <div id="form03" class="form-container"  :class="{ 'hidden': !form03 }">
-     <div class="form-box mdl-shadow--16dp">
-       <h1>Register a service</h1>
-
-       <transition enter-active-class="animated fadeIn" leave-active-class="fadeOut">
-        <div class="forms-input-img mdl-shadow--2dp" v-if="serviceimg">
-          <img v-bind:src="serviceimg">
-        </div>
-       </transition>
-
-      <div class="input-container">
-        <i class='uil uil-scenery'></i><input type="text" name="serviceimg" id="serviceimg" v-model="serviceimg" accept="image/x-png,image/gif,image/jpeg" class="global-input-file" placeholder="img (insert url here)"/> 
-      </div>
-      <div class="input-container">
-        <i class='uil uil-users-alt'></i><input type="text" name="servicename" id="servicename" v-model="servicename" placeholder="service name" /> 
-      </div>
-      <div class="input-container">
-        <i class='uil uil-book-open'></i><input type="text" name="servicedescription" id="servicedescription" v-model="servicedescription" placeholder="service description" />
-      </div>
-
-
-       <br>
-
-       <button v-on:click="SignUpAsService" class="mdl-button sombra">Sign up as service</button>
-
-       <br><br>
-    </div>
-   </div><!--form 03-->
 
 
 
@@ -229,9 +187,6 @@ export default {
             phone: this.phone,
             email: this.email,
             AccountType: 'service',
-            serviceimg: this.serviceimg,
-            servicename: this.servicename,
-            servicedescription: this.servicedescription,
 
           }).then(() =>{
               Swal({ title: "Congrats ! ", text: "Your service account has been created", icon: "success", button: "let's goo!",}).then(() => {this.$router.replace("home")})

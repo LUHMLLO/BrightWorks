@@ -103,6 +103,7 @@ export default {
             availability:null,
             ServiceIsEnable: null,
             ServiceIsDisable: null,
+            service_id:null,
             
         }
     },
@@ -112,7 +113,7 @@ export default {
 
 
     beforeRouteEnter( to, from, next){        
-          db.collection('services').where('url_name' , '==' , to.params.url_name).get().then((querySnapshot) => {
+          db.collection('services').where('service_id' , '==' , to.params.service_id).get().then((querySnapshot) => {
             querySnapshot.forEach(doc => {
               next(vm => {
                     vm.url = doc.data().url_name
@@ -122,6 +123,7 @@ export default {
                     vm.price = doc.data().price
                     vm.schedule = doc.data().schedule
                     vm.availability = doc.data().availability
+                    vm.service_id = doc.data().service_id
 
                     
                     //console.log(doc.data().availability)
@@ -145,7 +147,7 @@ export default {
     methods: {
         
       fetchData (){
-        db.collection('services').where('url_name', '==' , this.$route.params.url_name).get().then(querySnapshot =>{
+        db.collection('services').where('service_id', '==' , this.$route.params.service_id).get().then(querySnapshot =>{
           querySnapshot.forEach(doc => {
                     this.url = doc.data().url_name
                     this.imh = doc.data().img
@@ -153,7 +155,8 @@ export default {
                     this.description = doc.data().description
                     this.price = doc.data().price
                     this.schedule = doc.data().schedule
-                    this.availability = doc.data().availability               
+                    this.availability = doc.data().availability      
+                    this.service_id = doc.data().service_id
                     
           })
         })
@@ -164,7 +167,7 @@ export default {
           Swal({ title: "Deleting service" , text: "Are you sure u want to remove this service from your list?", icon: "warning", buttons:["i changed my mind","yes, remove it"],})
           .then((deletethisservice) => {
             if(deletethisservice){
-                        db.collection('services').where('url_name', '==' , this.$route.params.url_name).get().then(querySnapshot =>{
+                        db.collection('services').where('service_id', '==' , this.$route.params.service_id).get().then(querySnapshot =>{
                         querySnapshot.forEach(doc => {
                             doc.ref.delete()
                             this.$router.push('/manage_services')
@@ -181,7 +184,7 @@ export default {
           Swal({ title: "Saving changes" , text: "Are you sure u want to save this changes?", icon: "warning", buttons:["i changed my mind","yes, save it"],})
           .then((deletethisservice) => {
             if(deletethisservice){
-                        db.collection('services').where('url_name', '==' , this.$route.params.url_name).get().then(querySnapshot =>{
+                        db.collection('services').where('service_id', '==' , this.$route.params.service_id).get().then(querySnapshot =>{
                         querySnapshot.forEach(doc => {
                             doc.ref.update({
                                 name: this.name,

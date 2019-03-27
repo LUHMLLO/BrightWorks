@@ -408,4 +408,5 @@
     align-self: middle;
     margin: auto;
     cursor: pointer;
+    outline:none;
   }

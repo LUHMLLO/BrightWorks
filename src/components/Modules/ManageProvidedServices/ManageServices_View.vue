@@ -26,7 +26,7 @@
                         </div><!---global service card content -->
 
                         <div class="global-service-card-edit-button">
-                            <router-link :to="{ name: 'ManageServices_Edit', params: {url_name: service.url_name}}">
+                            <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}">
                                 <i class='uil uil-pen'></i>
                             </router-link>
                         </div>
@@ -58,7 +58,7 @@
                             </div>
                         </div><!---global service card content -->
                         <div class="global-service-card-edit-button">
-                            <router-link :to="{ name: 'ManageServices_Edit', params: {url_name: service.url_name}}">
+                            <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}">
                                 <i class='uil uil-pen'></i>
                             </router-link>
                         </div>                        

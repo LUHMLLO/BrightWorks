@@ -138,7 +138,7 @@ let router = new Router({
       },
 
       {
-        path: '/manage_services/editservice/:url_name',
+        path: '/manage_services/editservice/:service_id',
         name: 'ManageServices_Edit',
         component: ManageServices_Edit,
         meta:{
