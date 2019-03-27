@@ -13,15 +13,24 @@
                         <div class="global-service-card-img">
                             <img v-bind:src="service.img">
                         </div><!-- global service card img-->
+
                         <div class="global-service-card-content">
                             <div class="global-service-card-name">
                                 <h4>{{service.name}}</h4>
                             </div>
                             <div class="global-service-card-description">
                                 <p>{{service.description}}</p>
+                                <p>{{service.schedule}}</p>
                                 <small>{{service.price}}</small>
                             </div>
                         </div><!---global service card content -->
+
+                        <div class="global-service-card-edit-button">
+                            <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}">
+                                <i class='uil uil-pen'></i>
+                            </router-link>
+                        </div>
+                        
                     </div><!--service card-->
                 </div>
             </div><!---available section-->
@@ -44,51 +53,22 @@
                             </div>
                             <div class="global-service-card-description">
                                 <p>{{service.description}}</p>
+                                <p>{{service.schedule}}</p>
                                 <small>{{service.price}}</small>
                             </div>
                         </div><!---global service card content -->
+                        <div class="global-service-card-edit-button">
+                            <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}">
+                                <i class='uil uil-pen'></i>
+                            </router-link>
+                        </div>                        
                     </div><!--service card-->
                 </div>
             </div><!---available section-->
 
 
 
-            <div id="unavailable-section" class="global-section">
-              <h4>Add a new service</h4>
-              
-              <form @submit.prevent>
-                  <div class="global-grid">
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="" id="" v-model="newserviceimg" placeholder="img (url only)" required>
-                        </div><!--global floating input-->
-
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="" id="" v-model="newserviceurlname" placeholder="url name" required>
-                        </div><!--global floating input-->                         
-        
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="" id="" v-model="newservicename" placeholder="name" required>
-                        </div><!--global floating input-->                
-
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="" id="" v-model="newservicedescription" placeholder="description" required>
-                        </div><!--global floating input-->
-        
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="" id="" v-model="newserviceprice" placeholder="price" required>
-                        </div><!--global floating input-->              
-                  </div><!--global grid-->
-                  
-                  <br><br>
-                  <button class="global-button" v-on:click="addService">Add new service</button>
-
-              </form>
-            </div><!---available section-->
+          
 
 
 
@@ -105,67 +85,29 @@
 
 
 <script>
-import {firebase,db} from '../../firebaseConfig.js'
+import {firebase,db} from '../../../firebaseConfig.js'
 
 export default {
-    name: 'ManageProvideServices',
+    name: 'ManageServices_View',
     data(){
         return{
-
-            newserviceimg:null,
-            newservicename:null,
-            newservicedescription:null,
-            newserviceprice:null,
-            owner_id:firebase.auth().currentUser.uid,
-            user_id:null,
-            availability:null,
-            newserviceurlname:null,
-
-            currentUserUserID:null,
-
+    
             AvailableServices:[],
             UnavailableServices:[],
 
-            thisUserRightNow:firebase.auth().currentUser.uid,
-
         }
     },
 
-    methods:{
-
-        addService(){
-            db.collection('services').add({
-                owner_id: this.owner_id,
-                user_id: this.user_id,
-                img: this.newserviceimg,
-                name: this.newservicename,
-                description: this.newservicedescription,
-                price: this.newserviceprice,
-                availability: true,
-                url_name: this.newserviceurlname,
-            })
-            .catch(error => alert(error))
-        }
-
-    },
 
 
 
     created(){
         let self = this;   
 
-          db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot){
-
-                self.user_id = snapshot.data().user_id
-                //console.log(self.user_id)
-
-        })
-
-
 
           db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                //console.log(self.user_id)
+                //console.log(doc.data().schedule)
                 
                 const data ={
                    'owner_id': doc.data().owner_id,
@@ -174,8 +116,10 @@ export default {
                    'name': doc.data().name,
                    'description': doc.data().description,
                    'price': doc.data().price,
+                   'schedule': doc.data().schedule,
                    'availability': doc.data().availability,
                    'url_name': doc.data().url_name,
+                   'service_id': doc.data().service_id,
                  }
 
                  if(doc.data().availability == true){

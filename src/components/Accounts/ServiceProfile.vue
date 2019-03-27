@@ -27,10 +27,7 @@
 
            <button class="mdl-button global-button-round sombra">timeline</button>
            <button class="mdl-button global-button-round sombra">About</button>
-           <button class="mdl-button global-button-round sombra">Services</button>
-           <button class="mdl-button global-button-round sombra">Contact</button>
            <button class="mdl-button global-button-round sombra">Reviews</button>
-           <button class="mdl-button global-button-round sombra">Portfolio</button>
 
        </div><!---options bar-->
 
@@ -38,9 +35,14 @@
 
 
 
-       <div id="manage-services" class="global-tab-content">
-           <ManageProvideServices/>
-       </div><!--manage services-->
+       <div id="timeline" class="global-tab-content">
+       </div><!--timeline tab-->
+
+       <div id="about" class="global-tab-content">
+       </div><!--about tab-->
+
+       <div id="reviews" class="global-tab-content">
+       </div><!--reviews tab-->
 
 
 
@@ -70,8 +72,6 @@
 
 <script>
 import { firebase, db } from '../../firebaseConfig.js'
-import ManageProvideServices from '../Modules/ManageProvideServices.vue'
-
 export default {
     name: 'ServiceProfile',
     data(){
@@ -84,10 +84,6 @@ export default {
 
             
         }
-    },
-
-    components:{
-        ManageProvideServices
     },
     
     
