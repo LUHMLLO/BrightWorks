@@ -1,10 +1,12 @@
 <template>
+<div>
 
+</div>
 </template>
 
 <script>
 export default {
-    name: 'ServiceEdit',
+    name: 'ManageServices_Edit',
     data(){
         return{
             

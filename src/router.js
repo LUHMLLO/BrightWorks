@@ -17,7 +17,7 @@ import Service from "./components/Accounts/Service.vue"
 import Search from "./components/Modules/Search.vue"
 import Settings from "./components/Modules/Settings.vue"
 
-import ManageServices_View from "./components/Modules/ManageProvidedServices/ManageServices_View.vue"
+import ManageServices_Main from "./components/Modules/ManageProvidedServices/ManageServices_Main.vue"
 
 Vue.use(Router)
 
@@ -129,8 +129,8 @@ let router = new Router({
 
       {
         path: '/manage_services',
-        name: 'ManageServices_View',
-        component: ManageServices_View,
+        name: 'ManageServices_Main',
+        component: ManageServices_Main,
         meta:{
           requiresAuth: true
         }

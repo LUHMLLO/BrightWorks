@@ -19,6 +19,14 @@
     text-shadow: 0 0 22px rgba(0,0,0,0.6);
     font-size:24px;
   }
+
+  .global-header-title-simple{
+    margin: auto;
+    align-self: middle;
+    width:100%;
+    z-index: 3;
+    font-size:24px;
+  }
   
   .global-header-title-only{
     margin:auto auto -42px auto;
@@ -324,6 +332,7 @@
     overflow: hidden;
     margin: 22px;
     width: 500px;
+    position: relative;
   }
   .global-service-card-img{
     overflow: hidden;
@@ -347,7 +356,21 @@
     margin: auto;
     font-size:16px;
   }
-
+  .global-service-card-edit-button{
+    border-radius:100px;
+    width:30px;
+    height:30px;
+    background:none;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right:0;
+    cursor: pointer;
+  }
+  .global-service-card-edit-button i{
+    align-self: middle;
+    margin: auto;
+  }
 
 
 
