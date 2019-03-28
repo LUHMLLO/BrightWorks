@@ -10,8 +10,8 @@
      
 
              <div id="available-section" class="global-section">
-                <h4 v-if="accountType == 'client' && isLoggedIn">Adquired services</h4>
-                <h4 v-if="accountType == 'service' && isLoggedIn">Available services</h4>
+                <h4 v-if="accountType == 'client'">Adquired services</h4>
+                <h4 v-if="accountType == 'service'">Available services</h4>
                 <div class="global-grid">
                     
                     <div class="global-service-card mdl-shadow--3dp"   v-for="(service,AvailableServicesData) in AvailableServices" :key="AvailableServicesData">
@@ -42,14 +42,14 @@
 
         
 
-            <button class="global-button">
-              <router-link to="/search" v-if="accountType == 'service'">
+            <button class="global-button" v-if="accountType == 'service'">
+              <router-link to="/search">
                 <a >Create a new service</a>
             </router-link>
             </button>
 
-            <button class="global-button">
-              <router-link to="/search" v-if="accountType == 'client'">
+            <button class="global-button" v-if="accountType == 'client'">
+              <router-link to="/search">
                 <a >Adquire a new service</a>
             </router-link>
             </button>
