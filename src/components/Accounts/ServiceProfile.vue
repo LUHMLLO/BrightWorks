@@ -13,7 +13,7 @@
 
 
             <div class="global-header-edit-button">
-                <router-link :to="{ name: 'EditYourAccount' , params: {userid: user_id}}">
+                <router-link :to="{ name: 'EditYourAccount', params: {user_id: user_id}}">
                     <i class='uil uil-pen'></i>
                 </router-link>
             </div>
