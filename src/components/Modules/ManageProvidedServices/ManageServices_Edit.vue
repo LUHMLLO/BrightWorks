@@ -182,8 +182,8 @@ export default {
 
       saveChangesForThisService: function(){
           Swal({ title: "Saving changes" , text: "Are you sure u want to save this changes?", icon: "warning", buttons:["i changed my mind","yes, save it"],})
-          .then((deletethisservice) => {
-            if(deletethisservice){
+          .then((savingChanges) => {
+            if(savingChanges){
                         db.collection('services').where('service_id', '==' , this.$route.params.service_id).get().then(querySnapshot =>{
                         querySnapshot.forEach(doc => {
                             doc.ref.update({

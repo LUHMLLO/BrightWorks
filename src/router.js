@@ -11,6 +11,7 @@ import Home from "./components/Home.vue"
 
 import ClientProfile from "./components/Accounts/ClientProfile.vue"
 import ServiceProfile from "./components/Accounts/ServiceProfile.vue"
+import EditYourAccount from "./components/Accounts/EditYourAccount.vue"
 
 import Service from "./components/Accounts/Service.vue"
 
@@ -99,6 +100,14 @@ let router = new Router({
         }
       },    
 
+      {
+        path: '/edit/profile/:userid',
+        name: 'EditYourAccount',
+        component: EditYourAccount,
+        meta:{
+          requiresAuth: true
+        }
+      },  
       
       {
         path: '/search',

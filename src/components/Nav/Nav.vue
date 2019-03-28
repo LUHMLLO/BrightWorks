@@ -11,11 +11,12 @@
                      <i class='uil uil-arrow-right' @click="$router.go(+1)"></i>
                  </div>
               
-            <div id="sidebar-header" v-if="isLoggedIn">
-
-                <div id="sidebar-user-img">
-                  <img v-bind:src="userimg">
-                </div>
+            <div id="sidebar-header" v-if="isLoggedIn">                
+                  
+                  
+                    <div id="sidebar-user-img">
+                      <img v-bind:src="userimg">
+                    </div>
 
                 <h6>{{currentUser}}</h6>
 

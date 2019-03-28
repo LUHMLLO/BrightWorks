@@ -54,9 +54,9 @@ export default {
 
             settings:[
                 {name: 'Switch themes', description: 'Switch between light and dark themes.'},
-                {name: 'Switch themes', description: 'Switch between light and dark themes.'},
-                {name: 'Switch themes', description: 'Switch between light and dark themes.'},
-                {name: 'Switch themes', description: 'Switch between light and dark themes.'},
+                {name: 'Switch sidebar background', description: 'Switch between flat color or traslucid blurred background.'},
+                {name: 'Switch sidebar style', description: 'Switch between hidden nav or semi hidden.'},
+                {name: 'Switch account type', description: 'Switch between client account and service.'},
             ],
 
         }
