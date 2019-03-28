@@ -43,13 +43,13 @@
         
 
             <button class="global-button">
-              <router-link to="/search" v-if="accountType == 'service' && isLoggedIn">
+              <router-link to="/search" v-if="accountType == 'service'">
                 <a >Create a new service</a>
             </router-link>
             </button>
 
             <button class="global-button">
-              <router-link to="/search" v-if="accountType == 'client' && isLoggedIn">
+              <router-link to="/search" v-if="accountType == 'client'">
                 <a >Adquire a new service</a>
             </router-link>
             </button>
@@ -70,7 +70,6 @@ export default {
       AvailableServices:[],
       UnavailableServices:[],
       services: [],
-      isLoggedIn: false,
       accountType:null,
 
     };
@@ -109,7 +108,7 @@ export default {
         })
 
         if(firebase.auth().currentUser){
-        this.isLoggedIn = true
+        
         this.currentUser = firebase.auth().currentUser.email
 
 
@@ -128,10 +127,8 @@ export default {
                     self.accountType = snapshot.data().AccountType
         })
 
-    }
-    else{
-      this.isLoggedIn = false
-    }
+      }
+    
     },
 
   
