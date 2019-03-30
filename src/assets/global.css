@@ -423,3 +423,46 @@
     cursor: pointer;
     outline:none;
   }
+
+
+
+  .global-horizontal-scroll{
+    width:100%;
+    align-content: center;
+    justify-content: center;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-x: auto; 
+  }
+  .global-horizontal-scroll::-webkit-scrollbar{
+    display: none;
+  }
+  .global-horizontal-position{
+    display: inline-block;
+  }
+
+
+
+
+  .global-card-small{
+    width:300px;
+    border-radius:8px;
+    padding:12px;
+    margin: 22px;
+  }
+  .global-card-small-middle{
+    width:300px;
+    border-radius:8px;
+    padding:12px;
+    margin: 22px auto;
+  }
+
+
+  .global-container{
+    margin: auto;
+    padding:12px;
+  }
+
+  .global-col{
+    margin: auto;
+  }
