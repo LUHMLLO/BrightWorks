@@ -128,7 +128,7 @@ export default {
    },
 
 
-  created(){
+  beforeCreate(){
     let self = this;  
 
     if(firebase.auth().currentUser){
@@ -156,21 +156,44 @@ export default {
       this.isLoggedIn = false
     }
 
-         
-        
-
 
   },
 
-  updated(){
+
+
+  beforeUpdate(){
+    let self = this;  
+
     if(firebase.auth().currentUser){
         this.isLoggedIn = true
         this.currentUser = firebase.auth().currentUser.email
+
+
+        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
+        {           
+                //console.log('Document data:', snapshot.data().AccountType);
+                    if(snapshot.data().img == ''){
+                        self.userimg = 'https://cdn.dribbble.com/users/937082/screenshots/5516643/blob'
+                    }
+                    else{
+                        self.userimg = snapshot.data().img
+                    }
+
+                    self.user_id = snapshot.data().user_id
+
+                    self.accountType = snapshot.data().AccountType
+        })
+
     }
     else{
       this.isLoggedIn = false
     }
+
+
   },
+
+  
+
   
   
 

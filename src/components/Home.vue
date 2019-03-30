@@ -1,161 +1,93 @@
 <template>
-  <div id="home">
-    <h1>Hi, Welcome home</h1>
-    <h2>{{user.email}}</h2>
-    <small>
-      now hosted at
-      <a href="https://brightworksvue.firebaseapp.com/"
-      >https://brightworksvue.firebaseapp.com/</a>
-    </small>
-     
+<div>
 
-             <div id="available-section" class="global-section">
-                <h4 v-if="accountType == 'client'">Adquired services</h4>
-                <h4 v-if="accountType == 'service'">Available services</h4>
-                <div class="global-grid">
-                    
-                    <div class="global-service-card mdl-shadow--3dp"   v-for="(service,AvailableServicesData) in AvailableServices" :key="AvailableServicesData">
-                        <div class="global-service-card-img">
-                            <img v-bind:src="service.img">
-                        </div><!-- global service card img-->
 
-                        <div class="global-service-card-content">
-                            <div class="global-service-card-name">
-                                <h4>{{service.name}}</h4>
-                            </div>
-                            <div class="global-service-card-description">
-                                <p>{{service.description}}</p>
-                                <p>{{service.schedule}}</p>
-                                <small>{{service.price}}</small>
-                            </div>
-                        </div><!---global service card content -->
+  <div class="global-horizontal-scroll">
+    <div class="global-card-small mdl-shadow--2dp global-horizontal-position" v-for="(topCard,topCardsData) in topCards" :key="topCardsData">
+      <i class='uil uil-chart-pie'></i>
+      <p>{{topCard.something}}</p>
+    </div>
+  </div><!---global-grid ends here-->
 
-                        <div class="global-service-card-edit-button">
-                            <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}">
-                                <i class='uil uil-pen'></i>
-                            </router-link>
-                        </div>
-                        
-                    </div><!--service card-->
-                </div>
-            </div><!---available section-->
 
-        
+   
 
-            <button class="global-button" v-if="accountType == 'service'">
-              <router-link to="/search">
-                <a >Create a new service</a>
-            </router-link>
-            </button>
 
-            <button class="global-button" v-if="accountType == 'client'">
-              <router-link to="/search">
-                <a >Adquire a new service</a>
-            </router-link>
-            </button>
-            
-  </div>
-       
+
+   <div id="dashboard" class="global-container mdl-shadow--2dp">
+      
+          <div class="global-col">
+            <h3>this module title here</h3>
+            <div class="global-container">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem quod maxime sapiente perferendis repellat officia, aliquid quos quibusdam blanditiis sequi voluptates voluptatum dolore quam, repudiandae iusto ipsa suscipit, labore dignissimos!</p>
+            </div>
+          </div>
+
+
+      <div class="global-grid">
+          
+            <div id="yourservices" class="global-col">
+              <h3>this module title here</h3>
+              <div class="global-container">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora vero ratione odio, quos dolore aliquid! Doloremque porro, dolorum minima recusandae quia officiis, aliquid, iusto corporis iste ad reprehenderit exercitationem non!</p>
+              </div>
+            </div>
+          <!------------>
+            <div id="somethingidk" class="global-col">
+              <h3>this module title here</h3>
+              <div class="global-container">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi illo odio asperiores quia? Cupiditate, necessitatibus velit nulla quibusdam ducimus, quas error odit numquam, excepturi tempora aliquid facere cumque. Alias, unde.</p>
+              </div>
+            </div>
+
+      </div><!---global grid-->
+   </div><!---global conteiner--->
+
+
+
+
+
+
+
+</div>      
 </template>
 
 <script>
-
-import firebase from "firebase";
-import {db} from '../firebaseConfig.js'
 export default {
   name: "Home",
   data() {
     return {
-      user: firebase.auth().currentUser,
-      AvailableServices:[],
-      UnavailableServices:[],
-      services: [],
-      accountType:null,
 
-    };
-  },
-  
-
-  created(){
-        let self = this;   
-
-
-          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                //console.log(doc.data().schedule)
-                
-                const data ={
-                   'owner_id': doc.data().owner_id,
-                   'user_id': doc.data().user_id,
-                   'img': doc.data().img,
-                   'name': doc.data().name,
-                   'description': doc.data().description,
-                   'price': doc.data().price,
-                   'schedule': doc.data().schedule,
-                   'availability': doc.data().availability,
-                   'url_name': doc.data().url_name,
-                   'service_id': doc.data().service_id,
-                 }
-
-                 if(doc.data().availability == true){
-                   self.AvailableServices.push(data)
-                 }
-                 else{
-                   self.UnavailableServices.push(data)
-                 }
-
-            })  
-        })
-
-        if(firebase.auth().currentUser){
-        
-        this.currentUser = firebase.auth().currentUser.email
-
-
-        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
-        {           
-                //console.log('Document data:', snapshot.data().AccountType);
-                    if(snapshot.data().img == ''){
-                        self.userimg = 'https://cdn.dribbble.com/users/937082/screenshots/5516643/blob'
-                    }
-                    else{
-                        self.userimg = snapshot.data().img
-                    }
-
-                    self.user_id = snapshot.data().user_id
-
-                    self.accountType = snapshot.data().AccountType
-        })
-
-      }
+      topCards:[
+        {'something': 'something in here idk'},
+        {'something': 'something in here idk'},
+        {'something': 'something in here idk'},
+        {'something': 'something in here idk'},       
+      ],
     
-    },
-
-  
-};
+    
+    
+    }
+  }
+} 
 </script>
 
 <style scoped>
+#dashboard{
+  text-align: left;
+  width:90%;
+  border-radius:8px;
+}
 
-  .userORservice{
-    width:300px;
-    margin: 22px;
-    align-self: middle;
-    justify-self: center;
-  }
-  .userORserviceIMG{
-    border-radius:100px; 
-    overflow:hidden; 
-    width:200px; 
-    height:200px;
-    margin:auto;
-  }
-  .userORserviceIMG img{
-    width: 100%;
-    height: 100%;
-  }
-  .userORservice h4{
-    margin:auto;
-    padding:22px 0;
-  }
+#somethingidk,#yourservices{
+  width:50%;
+}
+
+.global-col h3{
+  padding:22px;
+}
+.global-col{
+  padding:22px;
+}
+
 </style>
