@@ -2,9 +2,8 @@
 <div id="home">
 
 
-  <div class="global-horizontal-scroll">
-    <h3 class="global-horizontal-scroll-title">Latest reviews</h3>
-       
+  <h3 class="global-horizontal-scroll-title">Latest reviews</h3>
+  <div class="global-horizontal-scroll">      
       <div class="global-horizontal-position"  v-for="(topCard,topCardsData) in topCards" :key="topCardsData">
         <div class="global-card-small mdl-shadow--2dp">
           <div class="global-img-small mdl-shadow--2dp">
@@ -33,10 +32,10 @@
           <div id="stadistics" class="global-col">
             <div class="home-dashboard-panels-headers">
               <h3>A significant module in here</h3><button class="global-button">action</button>
-              <div style="width:100%; height:300px; overflow:hidden;">
+            </div>
+            <div style="width:100%; height:400px; overflow:hidden;">
                 <img src="https://cdn.dribbble.com/users/4368/screenshots/4540715/down.png" style="width:100%; height:100%;">
               </div>
-            </div>
           </div><!---------->
 
 
@@ -174,25 +173,29 @@ export default {
   margin: auto;
 }
 .home-dashboard-panels-headers{
-  padding:22px 22px 52px 22px;
+  padding:22px;
   border-bottom: solid 0.5px rgba(0,0,0,0.3);
   width:97%;
   margin: auto auto 12px auto;
+  display: flex;
+  justify-content: space-between;
 }
 .home-dashboard-panels-headers h3{
-  font-size:26px !important;
-  float: left;
+  font-size:20px !important;
+  text-align: left;
 }
-.home-dashboard-panels-headers button{
-  float: right;
+.home-dashboard-panels-headers h3,button{
+  margin:auto;
+  align-self: middle;
+  display: inline-block;
 }
 #stadistics{
   width:100%;
   margin: 12px auto;
 }
 #activeServices,#somethingidk{
-  width:50%;
-  min-width:300px;
+  width:700px;
+  min-width:360px;
   margin: 12px auto;
 }
 
