@@ -451,31 +451,44 @@
 
 
 
-  .global-card-small{
+  .global-minimal-card{
     width:300px;
-    border-radius:8px;
+    border-left: solid 5px rgba(0,0,0,0.3) !important;
     padding:12px;
     margin: 22px;
-    display: flex;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
   }
-  .global-card-content{
-    width:60%;
-    margin: auto;
+  .global-minimal-card-header{
+    width:100%;
+    margin: auto auto 3px auto;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
   }
-  .global-card-content h3{
+  .global-minimal-card-img{
+    width:80px;
+    height: 80px;
+    overflow: hidden;
+    border-radius:100%;
+    margin: auto;
+  }
+  .global-minimal-card-img img{
+    width:100%;
+    height: 100%;
+  }
+  .global-minimal-card-header h3{
+    margin: auto;
+    font-size:18px;
+    text-align: left;
+    width:60%;
+  }
+  .global-minimal-card-content{
     font-size:18px;
     margin:auto;
-  }
-  .global-card-content p{
-    font-size:12px;
-    margin: auto;
-  }
-  .global-card-small-middle{
-    width:300px;
-    border-radius:8px;
-    padding:12px;
-    margin: 22px auto;
+    width:100%;
+    padding:14px 10px;
+    text-align: left;
   }
 
 
@@ -491,38 +504,54 @@
 
 
 
-  .global-item-preview-rectangle{
-    display: flex;
-    padding:8px 10px;
-    border-radius:8px;
+  .global-box{
+    display: block;
+    border-radius:6px;
     width: 100%;
   }
-  .global-item-preview-rectangle-img{
-    width:100px;
-    height: 100px;
+  .global-box-header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 0.5px rgba(0,0,0,0.3);
+    padding:12px;
+    margin: auto auto 12px auto;  
+  }
+  .global-box-img{
+    width:80px;
+    height: 80px;
     overflow: hidden;
     border-radius:100%;
     margin: auto;
+    align-self: middle;
   }
   .global-item-preview-rectangle-img img{
     width: 100%;
     height: 100%;
   }
-  .global-item-preview-rectangle-content{
-    margin: auto auto auto 12px;
-    width: 70%;
+  .global-box-header-title{
+    margin: auto;
+    align-self: middle;
+    width:60%;
+  }
+  .global-box-header-title h3{
+    font-size:22px;
     text-align: left;
   }
-  .global-item-preview-rectangle-content h3{
-    font-size:18px !important;
-    margin:auto;
-    border-bottom:solid 0.5px rgba(0,0,0,0.3);
-    padding: 10px 0 !important;
+  .global-box-header-action{
+    margin: auto;
+    align-self: middle;
+  } 
+  .global-box-content{
+    margin: auto;
+    width: 100%;
+    text-align: left;
+    padding:5px;
   }
-  .global-item-preview-rectangle-content p{
-    font-size:12px;
-    margin:auto; 
-    padding: 12px !important;
+  .global-box-content-label{
+    padding:12px;
+  }
+  .global-box-content-description{
+    padding:22px;
   }
 
 
@@ -537,3 +566,23 @@
     width:100%;
     height:100%;
   }
+
+
+.tasks-card{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  padding:12px;
+  border-radius: 6px;
+  margin:auto auto 22px auto;
+}
+.tasks-card i{
+  margin: auto;
+  align-self: middle;
+}
+.task-card-content{
+  margin: auto;
+  align-self: middle;
+  width:80%;
+  text-align: left;
+}

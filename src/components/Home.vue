@@ -2,20 +2,33 @@
 <div id="home">
 
 
-  <h3 class="global-horizontal-scroll-title">Latest reviews</h3>
-  <div class="global-horizontal-scroll">      
+    <div class="home-dashboard-panels-headers">
+              <h3>Latest reviews</h3>
+              <button class="mdl-button" v-on:click="hideReviews" v-if="IsReviewsVisible"><i class='uil uil-angle-up'></i></button>
+              <button class="mdl-button" v-on:click="showReviews" v-if="!IsReviewsVisible"><i class='uil uil-angle-down'></i></button>              
+              <button class="global-button">action</button>
+    </div>  
+  <div class="global-horizontal-scroll" v-if="IsReviewsVisible">      
       <div class="global-horizontal-position"  v-for="(topCard,topCardsData) in topCards" :key="topCardsData">
-        <div class="global-card-small mdl-shadow--2dp">
-          <div class="global-img-small mdl-shadow--2dp">
-            <img src="https://cdn.dribbble.com/users/418188/screenshots/6005129/information_architecture_illustration_tubik.png">
+        
+        <div class="global-minimal-card mdl-shadow--2dp">
+
+          <div class="global-minimal-card-header">
+                <div class="global-minimal-card-img mdl-shadow--2dp">
+                  <img src="https://cdn.dribbble.com/users/418188/screenshots/6005129/information_architecture_illustration_tubik.png">
+                </div>       
+
+                <h3>user name</h3>     
           </div>
-          <div class="global-card-content">
-            <h3>user name</h3>
+
+          <div class="global-minimal-card-content">
+            
             <p>{{topCard.something}}</p>
 
           </div>
-        </div><!--global caard small--->
-      </div>
+        </div><!--global minimsl small--->
+
+      </div><!--global--horizontal position-->
 
   </div><!---global-grid ends here-->
   <br><br>
@@ -31,9 +44,12 @@
       
           <div id="stadistics" class="global-col">
             <div class="home-dashboard-panels-headers">
-              <h3>A significant module in here</h3><button class="global-button">action</button>
+              <h3>A significant module in here</h3>
+              <button class="mdl-button" v-on:click="hidethispanel" v-if="IsPanelVisible"><i class='uil uil-angle-up'></i></button>
+              <button class="mdl-button" v-on:click="showthispanel" v-if="!IsPanelVisible"><i class='uil uil-angle-down'></i></button>              
+              <button class="global-button">action</button>
             </div>
-            <div style="width:100%; height:400px; overflow:hidden;">
+            <div style="width:100%; height:400px; overflow:hidden;" v-if="IsPanelVisible">
                 <img src="https://cdn.dribbble.com/users/4368/screenshots/4540715/down.png" style="width:100%; height:100%;">
               </div>
           </div><!---------->
@@ -42,67 +58,76 @@
           <div id="activeServices" class="global-col">
             
             <div class="home-dashboard-panels-headers">
-              <h3>Services</h3><button class="global-button" v-on:click="addNewServiceFromHome">Add</button>
+              <h3>Services</h3>
+              <button class="mdl-button" v-on:click="hideServices" v-if="IsServicesVisible"><i class='uil uil-angle-up'></i></button>
+              <button class="mdl-button" v-on:click="showServices" v-if="!IsServicesVisible"><i class='uil uil-angle-down'></i></button>
+              <button class="global-button" v-on:click="addNewServiceFromHome"><i class='uil uil-plus'></i></button>
             </div>
 
-            <div id="viewActiveServicesHome" class="global-container global-grid" v-if="!addingNewService">
+            <div v-if="IsServicesVisible">
 
-                 <div class="global-item-preview-rectangle mdl-shadow--2dp" v-for="(service,activeServicesData) in activeServices" :key="activeServicesData">
-                   <div class="global-item-preview-rectangle-img mdl-shadow--2dp">
-                     <img v-bind:src="service.img">
-                   </div>
-                   <div class="global-item-preview-rectangle-content">
-                     <h3>{{service.name}}</h3>
-                     <p>{{service.description}}</p>
-                   </div>
+                <div id="viewActiveServicesHome" class="global-container global-grid" v-if="!addingNewService">
+
+                    <div class="global-box mdl-shadow--2dp" v-for="(service,activeServicesData) in activeServices" :key="activeServicesData">
+                      
+                      <div class="global-box-header">
+                          <div class="global-box-img mdl-shadow--2dp">
+                            <img v-bind:src="service.img">
+                          </div>
+                          <div class="global-box-header-title">
+                            <h3>{{service.name}}</h3>
+                          </div>
+                          <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}" class="global-box-header-action">
+                            <i class='uil uil-pen'></i>
+                          </router-link> 
+                      </div><!--global-box header-->
+
+                      <div class="global-box-content">
+                        <label class="global-box-content-label">Description:</label>
+                        <p class="global-box-content-description">{{service.description}}</p>
+                      </div>
+                      
                   
-                  <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}">
-                    <i class='uil uil-pen'></i>
-                  </router-link>                
-                 </div><!---->
+                    </div><!---global box--->
 
-            </div>
-            <div id="addNewServicesHome" class="global-container" v-if="addingNewService">
-              <h3>here its gonna be the crud</h3>
-              <button class="global-button" v-on:click="addNewServiceFromHomeFinish">okay</button>
+                </div>
+                <div id="addNewServicesHome" class="global-container" v-if="addingNewService">
+                  <h3>here its gonna be the crud</h3>
+                  <button class="global-button" v-on:click="addNewServiceFromHomeFinish">okay</button>
+                </div>
+ 
             </div>
           </div><!---------->
 
 
-          <div id="somethingidk" class="global-col">
+          <div id="HomeTasksList" class="global-col">
             <div class="home-dashboard-panels-headers">
-              <h3>module title here</h3><button class="global-button">action</button>
+              <h3>Tasks</h3>
+              <button class="mdl-button" v-on:click="hideTasks" v-if="IsTaskVisible"><i class='uil uil-angle-up'></i></button>
+              <button class="mdl-button" v-on:click="showTasks" v-if="!IsTaskVisible"><i class='uil uil-angle-down'></i></button>              
+              <button class="global-button"><i class='uil uil-plus'></i></button>
+            </div>
+            <div class="global-container global-grid" v-if="IsTaskVisible">
+            
+              <div class="tasks-card mdl-shadow--2dp" v-for="(task,TaskListHomeData) in TaskListHome" :key="TaskListHomeData">
+                <i class='uil uil-circle'></i>
+                <div class="task-card-content">
+                  <span>{{task.task}}</span>
+                </div>
+                <i class='uil uil-check-square'></i>
+              </div>
+            
             </div>
           </div><!---------->
 
 
 
       </div><!---global grid-->
+      <br><br><br><br><br>
 
 
 
 
-     <div class="global-grid">
-
-       
-       <div id="tasks">
-         <h3>tasks</h3>
-
-       </div>
-
-
-       <div id="">
-         <h3>modulenamehere</h3>
-
-       </div>
-
-
-       <div id="">
-         <h3>modulenamehere</h3>
-
-       </div>
-
-     </div><!--global--grid-->
 
 
 
@@ -139,9 +164,20 @@ export default {
       ],
 
       activeServices:[],
+      TaskListHome:[
+        {'task':'here goes your task'},
+        {'task':'here goes your to do'},
+        {'task':'yes this is a list'},
+        {'task':'this is a longer text inside a task just to see how it looks inside this div , if u know what i mean, this text is completely for testing only'},
+      ],
 
 
       addingNewService:false,
+      IsPanelVisible:true,
+
+      IsReviewsVisible:true,
+      IsServicesVisible:true,
+      IsTaskVisible:true,
     
     
     }
@@ -185,10 +221,46 @@ export default {
     methods:{
       addNewServiceFromHome:function(){
         this.addingNewService = true
+        this.IsPanelVisible = true
       },
       addNewServiceFromHomeFinish:function(){
         this.addingNewService = false
+      },
+
+
+
+      hidethispanel: function(){
+        this.IsPanelVisible = false
+      },
+      showthispanel: function(){
+        this.IsPanelVisible = true
+      },
+
+
+      hideServices: function(){
+        this.IsServicesVisible = false
+      },
+      showServices: function(){
+        this.IsServicesVisible = true
+      },
+
+      hideTasks: function(){
+        this.IsTaskVisible = false
+      },
+      showTasks: function(){
+        this.IsTaskVisible = true
+      },
+
+      hideReviews: function(){
+        this.IsReviewsVisible = false
+      },
+      showReviews: function(){
+        this.IsReviewsVisible = true
       }
+
+
+
+
     }
 
 
@@ -228,7 +300,7 @@ export default {
   width:100%;
   margin: 12px auto;
 }
-#activeServices,#somethingidk{
+#activeServices,#HomeTasksList{
   width:800px;
   min-width:360px;
   margin: 12px auto;
