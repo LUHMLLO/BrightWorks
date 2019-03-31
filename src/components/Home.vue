@@ -82,11 +82,46 @@
 
 
 
+     <div class="global-grid">
+
+       
+       <div id="tasks">
+         <h3>tasks</h3>
+
+       </div>
+
+
+       <div id="">
+         <h3>modulenamehere</h3>
+
+       </div>
+
+
+       <div id="">
+         <h3>modulenamehere</h3>
+
+       </div>
+
+     </div><!--global--grid-->
+
+
+
+
+
+
+
 
 
 
 </div>      
 </template>
+
+
+
+
+
+
+
 
 <script>
 import {firebase, db} from '../firebaseConfig.js'
@@ -194,7 +229,7 @@ export default {
   margin: 12px auto;
 }
 #activeServices,#somethingidk{
-  width:700px;
+  width:800px;
   min-width:360px;
   margin: 12px auto;
 }
