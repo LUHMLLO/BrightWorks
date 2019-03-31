@@ -440,6 +440,13 @@
   .global-horizontal-position{
     display: inline-block;
   }
+  .global-horizontal-scroll-title{
+    font-size:22px;
+    text-align: left;
+    padding:42px 22px;
+    width:90%;
+    margin: auto;
+  }
 
 
 
@@ -449,6 +456,20 @@
     border-radius:8px;
     padding:12px;
     margin: 22px;
+    display: flex;
+  }
+  .global-card-content{
+    width:60%;
+    margin: auto;
+    text-align: left;
+  }
+  .global-card-content h3{
+    font-size:18px;
+    margin:auto;
+  }
+  .global-card-content p{
+    font-size:12px;
+    margin: auto;
   }
   .global-card-small-middle{
     width:300px;
@@ -502,4 +523,17 @@
     font-size:12px;
     margin:auto; 
     padding: 12px !important;
+  }
+
+
+
+  .global-img-small{
+    width:80px;
+    height:80px;
+    overflow: hidden;
+    border-radius:100%;
+  }
+  .global-img-small img{
+    width:100%;
+    height:100%;
   }

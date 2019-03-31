@@ -3,12 +3,23 @@
 
 
   <div class="global-horizontal-scroll">
-    <h3>Latest reviews</h3>
-    <div class="global-card-small mdl-shadow--2dp global-horizontal-position" v-for="(topCard,topCardsData) in topCards" :key="topCardsData">
-      <i class='uil uil-chart-pie'></i>
-      <p>{{topCard.something}}</p>
-    </div>
+    <h3 class="global-horizontal-scroll-title">Latest reviews</h3>
+       
+      <div class="global-horizontal-position"  v-for="(topCard,topCardsData) in topCards" :key="topCardsData">
+        <div class="global-card-small mdl-shadow--2dp">
+          <div class="global-img-small mdl-shadow--2dp">
+            <img src="https://cdn.dribbble.com/users/418188/screenshots/6005129/information_architecture_illustration_tubik.png">
+          </div>
+          <div class="global-card-content">
+            <h3>user name</h3>
+            <p>{{topCard.something}}</p>
+
+          </div>
+        </div><!--global caard small--->
+      </div>
+
   </div><!---global-grid ends here-->
+  <br><br>
 
 
    
@@ -21,7 +32,10 @@
       
           <div id="stadistics" class="global-col">
             <div class="home-dashboard-panels-headers">
-              <h3>Stadistics</h3><button class="global-button">action</button>
+              <h3>A significant module in here</h3><button class="global-button">action</button>
+              <div style="width:100%; height:300px; overflow:hidden;">
+                <img src="https://cdn.dribbble.com/users/4368/screenshots/4540715/down.png" style="width:100%; height:100%;">
+              </div>
             </div>
           </div><!---------->
 
@@ -29,7 +43,7 @@
           <div id="activeServices" class="global-col">
             
             <div class="home-dashboard-panels-headers">
-              <h3>Services</h3><button class="global-button" v-on:click="addNewServiceFromHome">new service</button>
+              <h3>Services</h3><button class="global-button" v-on:click="addNewServiceFromHome">Add</button>
             </div>
 
             <div id="viewActiveServicesHome" class="global-container global-grid" v-if="!addingNewService">
