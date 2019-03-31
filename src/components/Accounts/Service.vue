@@ -36,41 +36,29 @@
 
 
 
+       <div id="timeline" class="global-tab-content" v-if="timelineTab">
+             <timeline v-bind:serviceurlname="url_name"/>
+       </div>
         
         <div id="about" class="global-tab-content" v-if="aboutTab">
-
-         <div id="about-presentation">
-             <h3>{{servicename}}</h3>
-             <p>{{servicedescription}}</p>
-             <p>{{serviceprice}}</p>
-             <p>{{servicescherdule}}</p>
-         </div>
-
-
-         <div class="global-grid">
-             <div class="global-info-pill" v-for="(Detail,serviceDetailsData) in serviceDetails" :key="serviceDetailsData">
-                <i v-bind:class='Detail.icon'></i>
-                <span>{{Detail.detail}}</span>
-             </div><!--global info pill-->
-         </div>  
-            
+            <about v-bind:serviceurlname="url_name"/>
         </div><!---global tab content-->
-
-
-
-
-
-
-
-
 
         <div id="contract" class="global-tab-content" v-if="contractTab">
-            
+            <contract v-bind:serviceurlname="url_name"/>
         </div><!---global tab content-->
 
+        <div id="reviews" class="global-tab-content" v-if="reviewsTab">
+            <reviews v-bind:serviceurlname="url_name"/>
+        </div><!---global tab content-->        
 
+        <div id="provider" class="global-tab-content" v-if="othersTab">
+            <provider v-bind:serviceurlname="url_name"/>
+        </div><!---global tab content-->
 
-
+        <div id="help" class="global-tab-content" v-if="helptab">
+            <help v-bind:serviceurlname="url_name"/>
+        </div><!---global tab content-->
 
 
 
@@ -85,14 +73,29 @@
 <script>
 import { db } from '../../firebaseConfig.js'
 
+import timeline from './serviceTabs/timeline.vue'
+import about from './serviceTabs/about.vue'
+import contract from './serviceTabs/contract.vue'
+import reviews from './serviceTabs/reviews.vue'
+import provider from './serviceTabs/provider.vue'
+import help from './serviceTabs/help.vue'
 
 export default {
     name: "Service",
+
+    components:{
+          timeline,
+          about,
+          contract,
+          reviews,
+          provider,
+          help,
+    },
     
     data(){
         return{
-           timelineTab: false,
-           aboutTab: true,
+           timelineTab: true,
+           aboutTab: false,
            contractTab: false,
            reviewsTab: false,
            othersTab:false,
@@ -101,9 +104,6 @@ export default {
            url_name:null,
            serviceimg: null,
            servicename: null,
-           servicedescription: null,
-           serviceprice: null,
-           servicescherdule: null,
 
            serviceDetails:[
                { 'icon': 'uil uil-phone-alt', 'detail': '809-345-9090'},
@@ -128,9 +128,6 @@ export default {
                     vm.url_name = doc.data().url_name
                     vm.serviceimg = doc.data().img
                     vm.servicename = doc.data().name
-                    vm.servicedescription = doc.data().description
-                    vm.serviceprice = doc.data().price
-                    vm.servicescherdule = doc.data().scherdule
 
               })
             })
@@ -147,9 +144,6 @@ export default {
                     this.url_name = doc.data().url_name
                     this.serviceimg = doc.data().img
                     this.servicename = doc.data().name
-                    this.servicedescription = doc.data().description
-                    this.serviceprice = doc.data().price
-                    this.servicescherdule = doc.data().scherdule
           })
         })
       },
@@ -220,12 +214,7 @@ export default {
 
 <style scoped>
 
-  
-  #about-presentation{
-    padding: 42px 12px;
-    margin: auto auto 22px auto;
-    width:96%;
-  }
+
 
 
 

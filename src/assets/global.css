@@ -420,7 +420,7 @@
     border: solid thin rgba(0,0,0,0.3);
     align-self: middle;
     margin: auto;
-    cursor: pointer;
+    cursor: pointer !important;
     outline:none;
   }
 
@@ -585,4 +585,36 @@
   align-self: middle;
   width:80%;
   text-align: left;
+}
+
+
+.global-information-container{
+  width:70%;
+  min-width:300px;
+  text-align: left;
+  margin: auto auto 32px auto;
+  padding:22px;
+  border-radius: 6px;
+}
+.global-information-container-detail{
+  margin: auto;
+}
+.global-information-container-description p{
+  font-size: 18px;
+}
+.global-information-container-price p{
+  margin: auto;
+  min-width: 300px;
+}
+
+
+
+.global-iframe{
+  min-width:300px;
+  width:100%;
+  max-width:800px;
+  max-height: 600px;
+  height: 100vh;
+  min-height:300px;
+  margin: 100px auto;
 }
