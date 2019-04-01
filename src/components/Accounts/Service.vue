@@ -95,7 +95,7 @@ export default {
     data(){
         return{
            timelineTab: false,
-           aboutTab: true,
+           aboutTab: false,
            contractTab: false,
            reviewsTab: false,
            othersTab:false,
@@ -133,6 +133,8 @@ export default {
                     vm.servicename = doc.data().name
                     vm.service_id = doc.data().service_id
 
+                    vm.timelineTab = true
+
               })
             })
           })
@@ -149,6 +151,8 @@ export default {
                     this.serviceimg = doc.data().img
                     this.servicename = doc.data().name
                     this.service_id = doc.data().service_id
+
+                    this.timelineTab = true
           })
         })
       },

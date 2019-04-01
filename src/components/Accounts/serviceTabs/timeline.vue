@@ -62,8 +62,15 @@ export default {
     },
 
 
+    beforeMount(){        
+         this.getProps()
+    },
+    created(){        
+         this.getProps()
+    },
 
-    created(){  
+    methods:{
+        getProps(){
         let self = this;      
           db.collection('posts').where('service_id' , '==' , this.$props.serviceid).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -80,7 +87,8 @@ export default {
 
             })
           })
-    },
+        },
+    }
     
 
 
