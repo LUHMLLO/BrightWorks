@@ -61,7 +61,7 @@
               <h3>Services</h3>
               <button class="mdl-button" v-on:click="hideServices" v-if="IsServicesVisible"><i class='uil uil-angle-up'></i></button>
               <button class="mdl-button" v-on:click="showServices" v-if="!IsServicesVisible"><i class='uil uil-angle-down'></i></button>
-              <button class="global-button" v-on:click="addNewServiceFromHome"><i class='uil uil-plus'></i></button>
+              <router-link to="/search"> <button class="global-button" v-on:click="addNewServiceFromHome"><i class='uil uil-plus'></i></button></router-link>
             </div>
 
             <div v-if="IsServicesVisible">

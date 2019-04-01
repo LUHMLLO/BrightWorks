@@ -62,7 +62,7 @@ export default {
     let self = this;  
 
     if(firebase.auth().currentUser){
-        this.isLoggedIn = true
+        
         this.currentUser = firebase.auth().currentUser.email
 
 
@@ -82,9 +82,7 @@ export default {
         })
 
     }
-    else{
-      this.isLoggedIn = false
-    }
+    
 
 
   },
