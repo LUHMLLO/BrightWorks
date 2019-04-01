@@ -36,41 +36,29 @@
 
 
 
+       <div id="timeline" class="global-tab-content" v-if="timelineTab">
+             <timeline v-bind:serviceid="service_id"/>
+       </div>
         
         <div id="about" class="global-tab-content" v-if="aboutTab">
-
-         <div id="about-presentation">
-             <h3>{{servicename}}</h3>
-             <p>{{servicedescription}}</p>
-             <p>{{serviceprice}}</p>
-             <p>{{servicescherdule}}</p>
-         </div>
-
-
-         <div class="global-grid">
-             <div class="global-info-pill" v-for="(Detail,serviceDetailsData) in serviceDetails" :key="serviceDetailsData">
-                <i v-bind:class='Detail.icon'></i>
-                <span>{{Detail.detail}}</span>
-             </div><!--global info pill-->
-         </div>  
-            
+            <about v-bind:serviceurlname="url_name"/>
         </div><!---global tab content-->
-
-
-
-
-
-
-
-
 
         <div id="contract" class="global-tab-content" v-if="contractTab">
-            
+            <contract v-bind:serviceurlname="url_name"/>
         </div><!---global tab content-->
 
+        <div id="reviews" class="global-tab-content" v-if="reviewsTab">
+            <reviews v-bind:serviceurlname="url_name"/>
+        </div><!---global tab content-->        
 
+        <div id="provider" class="global-tab-content" v-if="othersTab">
+            <provider v-bind:serviceurlname="url_name"/>
+        </div><!---global tab content-->
 
-
+        <div id="help" class="global-tab-content" v-if="helptab">
+            <help v-bind:serviceurlname="url_name"/>
+        </div><!---global tab content-->
 
 
 
@@ -85,14 +73,29 @@
 <script>
 import { db } from '../../firebaseConfig.js'
 
+import timeline from './serviceTabs/timeline.vue'
+import about from './serviceTabs/about.vue'
+import contract from './serviceTabs/contract.vue'
+import reviews from './serviceTabs/reviews.vue'
+import provider from './serviceTabs/provider.vue'
+import help from './serviceTabs/help.vue'
 
 export default {
     name: "Service",
+
+    components:{
+          timeline,
+          about,
+          contract,
+          reviews,
+          provider,
+          help,
+    },
     
     data(){
         return{
            timelineTab: false,
-           aboutTab: true,
+           aboutTab: false,
            contractTab: false,
            reviewsTab: false,
            othersTab:false,
@@ -101,9 +104,8 @@ export default {
            url_name:null,
            serviceimg: null,
            servicename: null,
-           servicedescription: null,
-           serviceprice: null,
-           servicescherdule: null,
+           owner_id:null,
+           service_id:null,
 
            serviceDetails:[
                { 'icon': 'uil uil-phone-alt', 'detail': '809-345-9090'},
@@ -124,13 +126,14 @@ export default {
           db.collection('services').where('url_name' , '==' , to.params.url_name).get().then((querySnapshot) => {
             querySnapshot.forEach(doc => {
               next(vm => {
-                    vm.user_id = doc.data().user_id
+                   // console.log(doc.data())
+                    vm.owner_id = doc.data().owner_id
                     vm.url_name = doc.data().url_name
                     vm.serviceimg = doc.data().img
                     vm.servicename = doc.data().name
-                    vm.servicedescription = doc.data().description
-                    vm.serviceprice = doc.data().price
-                    vm.servicescherdule = doc.data().scherdule
+                    vm.service_id = doc.data().service_id
+
+                    vm.timelineTab = true
 
               })
             })
@@ -143,13 +146,13 @@ export default {
       fetchData (){
         db.collection('services').where('url_name', '==' , this.$route.params.url_name).get().then(querySnapshot =>{
           querySnapshot.forEach(doc => {
-                    this.user_id = doc.data().user_id
+                    this.owner_id = doc.data().owner_id
                     this.url_name = doc.data().url_name
                     this.serviceimg = doc.data().img
                     this.servicename = doc.data().name
-                    this.servicedescription = doc.data().description
-                    this.serviceprice = doc.data().price
-                    this.servicescherdule = doc.data().scherdule
+                    this.service_id = doc.data().service_id
+
+                    this.timelineTab = true
           })
         })
       },
@@ -220,12 +223,7 @@ export default {
 
 <style scoped>
 
-  
-  #about-presentation{
-    padding: 42px 12px;
-    margin: auto auto 22px auto;
-    width:96%;
-  }
+
 
 
 

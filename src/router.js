@@ -17,9 +17,12 @@ import Service from "./components/Accounts/Service.vue"
 
 import Search from "./components/Modules/Search.vue"
 import Settings from "./components/Modules/Settings.vue"
+import Compose_a_post from "./components/Modules/Compose_a_post.vue"
 
 import ManageServices_Main from "./components/Modules/ManageProvidedServices/ManageServices_Main.vue"
 import ManageServices_Edit from "./components/Modules/ManageProvidedServices/ManageServices_Edit.vue"
+
+
 
 Vue.use(Router)
 
@@ -154,6 +157,16 @@ let router = new Router({
           requiresAuth: true
         }
       },
+
+
+      {
+        path: '/Compose',
+        name: 'Compose_a_post',
+        component: Compose_a_post,
+        meta:{
+          requiresAuth: true
+        }
+      },      
       
 
 
