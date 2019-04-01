@@ -34,9 +34,13 @@ import Cart from '../../Modules/ShoppingCart/Cart.vue'
 
 export default {
     name:'contract',
+<<<<<<< HEAD
     components:{
       Cart  
     },
+=======
+    props:['serviceurlname'],
+>>>>>>> c162569b0372a3b15f2d589d3c22ad3ddc4ef55b
     data(){
         return{
             activeServices:[],

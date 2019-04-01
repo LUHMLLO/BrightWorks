@@ -7,5 +7,11 @@
 <script>
 export default {
     name: 'timeline',
+    props:['serviceurlname'],
+    data(){
+        return{
+            
+        }
+    }
 }
 </script>

@@ -14,6 +14,7 @@
 <script>
 export default {
     name:'reviews',
+    props:['serviceurlname'],
     data(){
         return{
 

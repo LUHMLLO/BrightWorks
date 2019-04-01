@@ -588,33 +588,84 @@
 }
 
 
-.global-information-container{
-  width:70%;
-  min-width:300px;
-  text-align: left;
-  margin: auto auto 32px auto;
-  padding:22px;
-  border-radius: 6px;
-}
-.global-information-container-detail{
-  margin: auto;
-}
-.global-information-container-description p{
-  font-size: 18px;
-}
-.global-information-container-price p{
-  margin: auto;
-  min-width: 300px;
-}
 
 
 
 .global-iframe{
-  min-width:300px;
-  width:100%;
-  max-width:800px;
-  max-height: 600px;
-  height: 100vh;
-  min-height:300px;
   margin: 100px auto;
+  width:800px;
+  height:648px;
+  outline: none;
+  border:none;
+  overflow: hidden;
+}
+
+
+
+.global-about-card{
+  width:80%;
+  min-width: 300px;
+  margin: auto;
+  text-align: left;
+}
+.global-about-card-header{
+  display: flex;
+  justify-content: space-between;
+  align-content: middle;
+}
+.global-about-card-title{
+align-self: middle;
+}
+.global-about-card-schedule{
+  align-self: middle;
+}
+.global-about-card-content{
+  display: flex;
+  justify-content: space-between;
+}
+.global-about-card-description{
+  width:70%;
+  text-align: justify;
+}
+.global-about-card-price{
+  align-self: middle;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .global-about-card{
+    width:80%;
+    min-width: 300px;
+    margin: auto;
+    text-align: left;
+  }
+  .global-about-card-header{
+    display: block;
+    align-content: middle;
+  }
+  .global-about-card-title{
+   align-self: middle;
+   width: 100%;
+  }
+  .global-about-card-schedule{
+    align-self: middle;
+    width: 100%;
+  }
+  .global-about-card-content{
+    display: block;
+  }
+  .global-about-card-description{
+    width:100%;
+    text-align: justify;
+  }
+  .global-about-card-price{
+    widows: 100%;
+  }
+
+  .global-iframe{
+    margin: 100px auto;
+    width:100%;
+    height:320px;
+  }
 }

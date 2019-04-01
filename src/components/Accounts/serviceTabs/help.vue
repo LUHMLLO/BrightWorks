@@ -14,6 +14,7 @@
 <script>
 export default {
     name:'help',
+    props:['serviceurlname'],
     data(){
         return{
 
