@@ -62,9 +62,7 @@ export default {
     },
 
 
-    beforeMount(){        
-         this.getProps()
-    },
+
     created(){        
          this.getProps()
     },
