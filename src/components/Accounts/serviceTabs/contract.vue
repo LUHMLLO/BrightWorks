@@ -1,8 +1,8 @@
 <template>
 <div>
 
-<div class="global-box mdl-shadow--2dp" :isInCart="isInCart(service)" v-on:add-to-cart="addToCart(service)" v-for="(service,activeServicesData) in activeServices" :key="activeServicesData">
-<div class="global-card-pill">
+<div class="global-box global-grid" :isInCart="isInCart(service)" v-on:add-to-cart="addToCart(service)" v-for="(service,activeServicesData) in activeServices" :key="activeServicesData">
+<div class="global-card-pill mdl-shadow--2dp global-col global-container">
     <div class="card-body">
         <h5 class="global-card-pill-header">{{service.name}}</h5>
         <label class="global-box-content-label">Price:</label>
@@ -11,15 +11,15 @@
         <p class="global-card-pill-content">{{service.schedule}}</p>
 
 
-        <button v-if="accountType == 'client'" :disabled="isInCart" @click="$emit('add-to-cart', service)" class="btn global-button-round">
+        <button :disabled="isInCart" @click="$emit('add-to-cart', service)" class="btn global-button-round">
             {{isInCart ? 'Added to cart' : 'Add to cart'}}
         </button>
     </div>
 </div>
 </div>
 
-<div class="col-md-6 global-grid" v-if="accountType == 'client'">
-    <cart class="global-col" v-on:remove-from-cart="removeFromCart($event)" :items="cart"></cart>
+<div class="global-grid global-container">
+    <cart class="global-col global-container" v-on:remove-from-cart="removeFromCart($event)" :items="cart"></cart>
 </div>
 
 
