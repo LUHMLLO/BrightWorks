@@ -50,6 +50,7 @@ import { db } from '../../../firebaseConfig.js'
 export default {
     name: 'timeline',
     props:['serviceid'],
+    
     data(){
         return{
             posts:[
@@ -67,8 +68,18 @@ export default {
 
     created(){        
           db.collection('posts').where('service_id' , '==' , this.serviceid).get().then((querySnapshot) => {
-            querySnapshot.forEach(doc => {
+            querySnapshot.forEach((doc) => {
                 //console.log(doc.data())
+
+                const data={
+                    'publisher_name' : doc.data().publisher_name,
+                    'publisher_id' : doc.data().publisher_id
+
+                }
+
+                if(doc.data().availability == true){
+                   self.activeServices.push(data)
+                 }
 
             })
           })
