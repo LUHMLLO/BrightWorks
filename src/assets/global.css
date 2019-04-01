@@ -633,6 +633,72 @@ align-self: middle;
 
 
 
+
+
+.global-post-container{
+  width:85%;
+  margin: auto auto 60px auto;
+  position: relative;
+  border-left: solid 0.5px rgba(0,0,0,0.3);
+}
+.global-post-header{
+  display: flex;
+  justify-content: space-between;
+  padding:22px 12px;
+  border-bottom: solid 0.5px rgba(0,0,0,0.3);
+}
+.global-post-img{
+  width:80px;
+  height:80px;
+  overflow: hidden;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px auto auto -40px;
+}
+.global-post-img img{
+  width:100%;
+  height:100%;
+}
+.global-post-owner{
+  margin: auto;
+  width:100%;
+  padding: 0 52px;
+  text-align: left;
+}
+.global-post-owner h3{
+  font-size:18px;
+  margin: auto;
+}
+.global-post-content{
+  padding:42px 22px;
+  text-align: justify;
+}
+.global-post-status{
+  width: 100%;
+  border-top: solid 0.5px rgba(0,0,0,0.3);
+  border-bottom: solid 0.5px rgba(0,0,0,0.3);
+  padding:12px;
+}
+.global-post-comment{
+  width:100%;
+  padding:12px;
+  border-bottom: solid 0.5px rgba(0,0,0,0.3);
+}
+.global-post-comment input{
+  border:none;
+  outline: none;
+  border-bottom: solid 0.5px rgba(0,0,0,0.3);
+  width:90%;
+  padding:12px;
+  margin: 12px auto;
+}
+
+
+
+
+
 @media only screen and (max-width: 600px) {
   .global-about-card{
     width:80%;

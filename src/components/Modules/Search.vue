@@ -30,7 +30,7 @@
              
                <div class="userORservice" v-for="(service,servicesData) in services" v-bind:key="servicesData">
 
-                  <router-link :to="{ name: 'Service', params: {url_name: service.url_name}}">
+                  <router-link :to="{ name: 'Service', params: {url_name: service.url_name || 404}}">
                      <div class="userORserviceIMG mdl-shadow--2dp">
                         <img v-bind:src="service.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
                      </div>

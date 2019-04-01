@@ -37,7 +37,7 @@
 
 
        <div id="timeline" class="global-tab-content" v-if="timelineTab">
-             <timeline v-bind:serviceurlname="url_name"/>
+             <timeline v-bind:serviceid="service_id"/>
        </div>
         
         <div id="about" class="global-tab-content" v-if="aboutTab">
@@ -104,6 +104,8 @@ export default {
            url_name:null,
            serviceimg: null,
            servicename: null,
+           owner_id:null,
+           service_id:null,
 
            serviceDetails:[
                { 'icon': 'uil uil-phone-alt', 'detail': '809-345-9090'},
@@ -124,10 +126,12 @@ export default {
           db.collection('services').where('url_name' , '==' , to.params.url_name).get().then((querySnapshot) => {
             querySnapshot.forEach(doc => {
               next(vm => {
-                    vm.user_id = doc.data().user_id
+                   // console.log(doc.data())
+                    vm.owner_id = doc.data().owner_id
                     vm.url_name = doc.data().url_name
                     vm.serviceimg = doc.data().img
                     vm.servicename = doc.data().name
+                    vm.service_id = doc.data().service_id
 
               })
             })
@@ -140,10 +144,11 @@ export default {
       fetchData (){
         db.collection('services').where('url_name', '==' , this.$route.params.url_name).get().then(querySnapshot =>{
           querySnapshot.forEach(doc => {
-                    this.user_id = doc.data().user_id
+                    this.owner_id = doc.data().owner_id
                     this.url_name = doc.data().url_name
                     this.serviceimg = doc.data().img
                     this.servicename = doc.data().name
+                    this.service_id = doc.data().service_id
           })
         })
       },
