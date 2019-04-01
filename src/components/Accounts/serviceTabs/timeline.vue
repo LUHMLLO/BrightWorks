@@ -21,7 +21,7 @@
 
      <div class="global-post-content">
 
-         <p>{{post.content}}</p>
+         <p v-html="post.content"></p>
 
      </div><!--content-->
 
