@@ -94,8 +94,8 @@ export default {
     
     data(){
         return{
-           timelineTab: true,
-           aboutTab: false,
+           timelineTab: false,
+           aboutTab: true,
            contractTab: false,
            reviewsTab: false,
            othersTab:false,

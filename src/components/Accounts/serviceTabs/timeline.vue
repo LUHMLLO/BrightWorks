@@ -7,12 +7,12 @@
      <div class="global-post-header">
          
          <div class="global-post-img mdl-shadow--2dp">
-             <img v-bind:src="publisher_img">
+             <img v-bind:src="post.publisher_img">
          </div><!---img--->
 
 
          <div class="global-post-owner">
-             <h3>{{publisher_name}}</h3>
+             <h3>{{post.publisher_name}}</h3>
          </div><!--owner or publisher-->
 
 
@@ -53,10 +53,7 @@ export default {
     
     data(){
         return{
-            posts:[
-                {'content':'this is a posts template'},
-                {'content':'it can hold lots of texts and keep its minimal interface'},
-                ],
+            posts:[],
 
             publisher_img:null,
             publisher_name:null,
@@ -66,20 +63,20 @@ export default {
 
 
 
-    created(){        
-          db.collection('posts').where('service_id' , '==' , this.serviceid).get().then((querySnapshot) => {
+    created(){  
+        let self = this;      
+          db.collection('posts').where('service_id' , '==' , this.$props.serviceid).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 //console.log(doc.data())
 
                 const data={
                     'publisher_name' : doc.data().publisher_name,
-                    'publisher_id' : doc.data().publisher_id
+                    'publisher_id' : doc.data().publisher_id,
+                    'publisher_img': doc.data().publisher_img,
+                    'content': doc.data().content,
 
                 }
-
-                if(doc.data().availability == true){
-                   self.activeServices.push(data)
-                 }
+                   self.posts.push(data)
 
             })
           })
