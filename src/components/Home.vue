@@ -85,6 +85,10 @@
                       <div class="global-box-content">
                         <label class="global-box-content-label">Description:</label>
                         <p class="global-box-content-description">{{service.description}}</p>
+                        <label class="global-box-content-label">Price:</label>
+                        <p class="global-box-content-description">{{service.price}}</p>
+                        <label class="global-box-content-label">Scherdule:</label>
+                        <p class="global-box-content-description">{{service.schedule}}</p>
                       </div>
                       
                   

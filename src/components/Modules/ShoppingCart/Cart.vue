@@ -1,54 +1,25 @@
 <template>
-<div>
+    <ul class="global-grid">
+        <h4>Cart</h4>
+        <li class="global-col" v-for="(service,activeServicesData) in activeServices" :key="activeServicesData">
+            {{service.name}} - ${{service.price}}
 
-<div class="global-box mdl-shadow--2dp" :isInCart="isInCart(service)" v-on:add-to-cart="addToCart(service)" v-for="(service,activeServicesData) in activeServices" :key="activeServicesData">
-<div class="global-card-pill">
-    <div class="card-body">
-        <h5 class="global-card-pill-header">{{service.name}}</h5>
-        <label class="global-box-content-label">Price:</label>
-        <p class="global-card-pill-content">{{service.price}}</p>
-        <label class="global-box-content-label">Scherdule:</label>
-        <p class="global-card-pill-content">{{service.schedule}}</p>
-
-
-        <button v-if="accountType == 'client'" :disabled="isInCart" @click="$emit('add-to-cart', service)" class="btn global-button-round">
-            {{isInCart ? 'Added to cart' : 'Add to cart'}}
-        </button>
-    </div>
-</div>
-</div>
-
-<div class="col-md-6 global-grid" v-if="accountType == 'client'">
-    <cart class="global-col" v-on:remove-from-cart="removeFromCart($event)" :items="cart"></cart>
-</div>
-
-
-</div>
+            <button @click="$emit('remote-from-cart', service)" class="global-button float- right">Remove from cart</button>
+        </li>
+    </ul>
 </template>
-
-
 
 <script>
 import {firebase, db} from '@/firebaseConfig.js'
-import Cart from '../../Modules/ShoppingCart/Cart.vue'
-
 export default {
-    name:'contract',
-    components:{
-      Cart  
-    },
+    name:'cart',
+    
     data(){
         return{
             activeServices:[],
             cart:[],
 
-            addingNewService:false,
-            IsPanelVisible:true,
-            IsReviewsVisible:true,
-            IsServicesVisible:true,
-            IsTaskVisible:true,
-            accountType:null,
-
+            
         }
     },
 
@@ -111,24 +82,6 @@ export default {
         })
     },
 
-    methods:{
-
-        addToCart(service){
-            this.cart.push(service)            
-        },
-
-        isInCart(service){
-            const item = this.cart.find(item => item.service_id = service.service_id)
-            if(item){
-                return true
-            }
-            return false
-        },
-
-        removeFromCart(service){
-            this.cart = this.cart.filter(item => item.service_id !== service.service_id)
-        }
-    }
+     
 }
 </script>
-
