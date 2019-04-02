@@ -62,7 +62,7 @@ import { db } from '../../../firebaseConfig.js'
 
 export default {
     name:'about',
-    props:['serviceurlname'],
+    props:['serviceid'],
     data(){
         return{
             user_id:null,
@@ -92,7 +92,7 @@ export default {
 
 
   created(){
-          db.collection('services').where('url_name', '==' , this.$props.serviceurlname).get().then(querySnapshot =>{
+          db.collection('services').where('service_id', '==' , this.$props.serviceid).get().then(querySnapshot =>{
           querySnapshot.forEach(doc => {
                     this.user_id = doc.data().user_id
                     this.url_name = doc.data().url_name

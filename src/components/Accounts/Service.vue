@@ -41,11 +41,11 @@
        </div>
         
         <div id="about" class="global-tab-content" v-if="aboutTab">
-            <about v-bind:serviceurlname="url_name"/>
+            <about v-bind:serviceid="service_id"/>
         </div><!---global tab content-->
 
         <div id="contract" class="global-tab-content" v-if="contractTab">
-            <contract v-bind:serviceurlname="url_name"/>
+            <contract v-bind:serviceid="service_id"/>
         </div><!---global tab content-->
 
         <div id="reviews" class="global-tab-content" v-if="reviewsTab">
