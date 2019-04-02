@@ -251,7 +251,7 @@
 
 
 
-   <div id="cover-demo" class="global-grid">
+   <div id="cover-demo" class="global-grid" v-if="hidethisfornow">
      <div id="cover-demo-window" class="mdl-cell  mdl-shadow--6dp">
 
 
@@ -297,6 +297,7 @@ export default {
   data() {
     return {
 
+      hidethisfornow: false,
 
 
 
@@ -485,8 +486,10 @@ export default {
   padding:42px 0;
 }
 #cover-tabs-nav{
-  width:100%;
+  width:95%;
   margin:auto;
+  padding:22px 0;
+  border-bottom: solid 0.5px rgba(0, 0, 0, 0.3);
 }
 #cover-tabs-nav button{
   border-radius: 100px;

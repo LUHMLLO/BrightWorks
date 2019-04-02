@@ -28,7 +28,7 @@
         
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
-                            <input type="text" name="price" id="" v-model="price" placeholder="price" required>
+                            <input type="number" name="price" id="" v-model="price" placeholder="price" required>
                         </div><!--global floating input-->  
 
                         <div class="global-floating-input">

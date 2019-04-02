@@ -11,10 +11,21 @@
 
         <div class="global-content">
 
-            <button v-on:click="publish">publish</button>
+            <div class="global-attachable-header">
+                
+                <select name="serviceIDs" id="" class="global-attachable-select">
+                    <option v-bind:value="myservice.service_id"  v-for="(myservice,myservicesData) in myservices" :key="myservicesData">{{myservice.service_name}}</option>
+                </select>
+
+
+
+                <button v-on:click="publish" class="global-button">publish</button>
+            </div><!---attachable header-->
+
+            
              
              <div id="editor" style="width:80%; height:auto; margin:auto; padding:0px;">
-                 <quill-editor v-model="content"/>
+                 <editor v-model="content"/>
              </div>
 
          <br><br><br><br><br>
@@ -29,10 +40,7 @@
 </template>
 
 <script>
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-import { quillEditor } from 'vue-quill-editor'
+import { Editor } from '@toast-ui/vue-editor'
 
 
 import Swal from 'sweetalert'
@@ -43,7 +51,7 @@ import {firebase, db} from '../../firebaseConfig.js'
 export default {
     name: 'Compose_a_post',
     components: {
-        quillEditor
+        Editor
     },
     data(){
         return{
@@ -52,6 +60,7 @@ export default {
             publisher_id:null,
             publisher_img:null,
             service_id:null,
+            myservices:[],
         }
     },
 
@@ -68,7 +77,22 @@ export default {
                     self.publisher_id = firebase.auth().currentUser.uid
                     self.publisher_img = snapshot.data().img
                            
-        })
+        }),
+
+          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                //console.log(doc.data().schedule)
+                
+                const data ={
+                  
+                   'service_id': doc.data().service_id,
+                   'service_name': doc.data().name
+                 }
+                   self.myservices.push(data)
+
+
+            })  
+        })        
 
     },
 
