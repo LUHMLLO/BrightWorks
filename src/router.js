@@ -18,6 +18,7 @@ import Service from "./components/Accounts/Service.vue"
 import Search from "./components/Modules/Search.vue"
 import Settings from "./components/Modules/Settings.vue"
 import Compose_a_post from "./components/Modules/Compose_a_post.vue"
+import Cart from './components/Modules/ShoppingCart/Cart.vue';
 
 import ManageServices_Main from "./components/Modules/ManageProvidedServices/ManageServices_Main.vue"
 import ManageServices_Edit from "./components/Modules/ManageProvidedServices/ManageServices_Edit.vue"
@@ -166,7 +167,16 @@ let router = new Router({
         meta:{
           requiresAuth: true
         }
-      },      
+      },
+      
+      {
+        path: '/cart',
+        name: 'Cart',
+        component: Cart,
+        meta:{
+          requiresAuth: true
+        }
+      },
       
 
 

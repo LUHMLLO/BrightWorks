@@ -1,27 +1,24 @@
 <template>
-<div>
-
-<div class="global-box global-grid" :isInCart="isInCart(service)" v-on:add-to-cart="addToCart(service)" v-for="(service,activeServicesData) in activeServices" :key="activeServicesData">
-<div class="global-card-pill mdl-shadow--2dp global-col global-container">
-    <div class="card-body">
-        <h5 class="global-card-pill-header">{{service.name}}</h5>
-        <label class="global-box-content-label">Price:</label>
-        <p class="global-card-pill-content">{{service.price}}</p>
-        <label class="global-box-content-label">Scherdule:</label>
-        <p class="global-card-pill-content">{{service.schedule}}</p>
-
-
-        <button :disabled="isInCart" @click="$emit('add-to-cart', service)" class="btn global-button-round">
-            {{isInCart ? 'Added to cart' : 'Add to cart'}}
-        </button>
+<div class="container" :class="{loadingItem: isProductLoading}">
+  <div class="row text-center" v-if="isProductLoading">
+    <grid-loader :loading="isProductLoading" :color="loaderColor" :size="loaderSize"></grid-loader>
+  </div>
+  <div v-else class="row action-panel">
+    <div class="col-xs-12">
+      <div class="btn-group pull-right">
+				<a id="list" class="btn btn-default btn-sm" @click.prevent="changeDisplay(true)">
+					<span class="glyphicon glyphicon-th-list"></span>List
+				</a>
+				<a id="grid" class="btn btn-default btn-sm" @click.prevent="changeDisplay(false)">
+					<span class="glyphicon glyphicon-th"></span>Grid
+				</a>
+      </div>
     </div>
-</div>
-</div>
+  </div>
 
-<div class="global-grid global-container">
-    <cart class="global-col global-container" v-on:remove-from-cart="removeFromCart($event)" :items="cart"></cart>
-</div>
-
+  <div class="is-flex" v-if="!isProductLoading">
+    <app-product-item v-for="prod in products" :item="prod" :key="prod.id" :displayList="displayList"></app-product-item>
+  </div>
 
 </div>
 </template>
@@ -29,110 +26,30 @@
 
 
 <script>
-import {firebase, db} from '@/firebaseConfig.js'
-import Cart from '../../Modules/ShoppingCart/Cart.vue'
+import { mapGetters } from 'vuex'
+// import ProductItem from '../../components/Modules/ShoppingCart/ProductItem.vue';
+import GridLoader from 'vue-spinner/src/GridLoader.vue';
 
 export default {
-    name:'contract',
-
-    components:{
-      Cart  
-    },
-
-    props:['serviceurlname'],
-
-    
-
-    data(){
-        return{
-            activeServices:[],
-            cart:[],
-
-            addingNewService:false,
-            IsPanelVisible:true,
-            IsReviewsVisible:true,
-            IsServicesVisible:true,
-            IsTaskVisible:true,
-            accountType:null,
-
-        }
-    },
-
-    beforeCreate(){
-    let self = this;  
-
-    if(firebase.auth().currentUser){
-        
-        this.currentUser = firebase.auth().currentUser.email
-
-
-        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
-        {           
-                //console.log('Document data:', snapshot.data().AccountType);
-                    if(snapshot.data().img == ''){
-                        self.userimg = 'https://cdn.dribbble.com/users/937082/screenshots/5516643/blob'
-                    }
-                    else{
-                        self.userimg = snapshot.data().img
-                    }
-
-                    self.user_id = snapshot.data().user_id
-
-                    self.accountType = snapshot.data().AccountType
-        })
-
+  data() {
+    return {
+      loaderColor: "#5cb85c",
+      loaderSize: "50px",
+      displayList: false
     }
-    
-
-
   },
-
-    created(){
-        let self = this;
-
-          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                //console.log(doc.data().schedule)
-                
-                const data ={
-                  
-                   'service_id': doc.data().service_id,
-                   'owner_id': doc.data().owner_id,
-                   'img': doc.data().img,
-                   'name': doc.data().name,
-                   'description': doc.data().description,
-                   'price': doc.data().price,
-                   'schedule': doc.data().schedule,
-                   'availability': doc.data().availability,
-                   'url_name': doc.data().url_name,
-                 }
-
-                 if(doc.data().availability == true){
-                   self.activeServices.push(data)
-                 }
-
-            })  
-        })
-    },
-
-    methods:{
-
-        addToCart(service){
-            this.cart.push(service)            
-        },
-
-        isInCart(service){
-            const item = this.cart.find(item => item.service_id = service.service_id)
-            if(item){
-                return true
-            }
-            return false
-        },
-
-        removeFromCart(service){
-            this.cart = this.cart.filter(item => item.service_id !== service.service_id)
-        }
+  computed: {
+    ...mapGetters(['products', 'isProductLoading']),
+  },
+  components: {
+    
+    GridLoader
+  },
+  methods: {
+    changeDisplay(isList) {
+      this.displayList = isList;
     }
+  }
 }
 </script>
 
