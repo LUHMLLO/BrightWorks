@@ -1,26 +1,81 @@
 <template>
 <div>
+       <div class="global-grid">
 
-<div class="global-box global-grid" :isInCart="isInCart(service)" v-on:add-to-cart="addToCart(service)" v-for="(service,activeServicesData) in activeServices" :key="activeServicesData">
-<div class="global-card-pill mdl-shadow--2dp global-col global-container">
-    <div class="card-body">
-        <h5 class="global-card-pill-header">{{service.name}}</h5>
-        <label class="global-box-content-label">Price:</label>
-        <p class="global-card-pill-content">{{service.price}}</p>
-        <label class="global-box-content-label">Scherdule:</label>
-        <p class="global-card-pill-content">{{service.schedule}}</p>
+           <div class="global-price-col mdl-shadow--2dp" v-for="(Plan,availablePlansData) in availablePlans" :key="availablePlansData">
+
+               <div class="global-price-col-header">
+                   <div class="global-price-col-header-title">
+                       <h3>{{Plan.name}}</h3>
+                   </div><!---title--->
+
+                   <div class="global-price-col-header-price">
+                       <h4>{{Plan.price}}</h4>
+                       <span>/{{Plan.time}}</span>
+                   </div>
+               </div><!---header--->
 
 
-        <button :disabled="isInCart" @click="$emit('add-to-cart', service)" class="btn global-button-round">
-            {{isInCart ? 'Added to cart' : 'Add to cart'}}
-        </button>
-    </div>
-</div>
-</div>
+               <div class="global-price-col-content">
 
-<div class="global-grid global-container">
-    <cart class="global-col global-container" v-on:remove-from-cart="removeFromCart($event)" :items="cart"></cart>
-</div>
+                   <p>{{Plan.description}}</p>
+
+                
+                  <div class="global-price-col-details">
+                      <div class="global-price-col-details-detail">
+                          <i class='uil uil-minus'></i><span>detail</span>
+                      </div><!---detail--->
+                  </div><!--details-->
+               </div><!--content--->
+
+
+
+               <button class="global-button">Select</button>
+           </div><!----global price col--->
+
+       </div><!---grid-->
+
+              
+              <br><br><br>
+
+            
+
+
+            <form @submit.prevent class="mdl-shadow--2dp global-form">
+                 
+                 <div class="global-form-header">
+                     <h3>choose your payment method</h3>
+                 </div><!---header-->
+
+                 <div class="global-form-content">
+                       
+                       <div class="global-form-selector">
+                           <p>Paypal</p>
+                       </div><!--form selectoor--->
+
+
+                       <div class="global-form-description">
+                           
+                               <div class="global-form-payment-election">
+                                   <p>selected option title here</p>
+                                   <p>price</p>
+                               </div><!---election-->
+
+                       </div><!---description-->
+
+
+                       <button class="global-button">checkout</button>
+
+                 </div><!---content--->
+
+            </form><!---payment wizard form-->
+
+
+
+
+
+
+
 
 
 </div>
@@ -29,110 +84,54 @@
 
 
 <script>
-import {firebase, db} from '@/firebaseConfig.js'
-import Cart from '../../Modules/ShoppingCart/Cart.vue'
+import {db} from '@/firebaseConfig.js'
 
 export default {
     name:'contract',
-
-    components:{
-      Cart  
-    },
-
-    props:['serviceurlname'],
-
-    
-
+    props:['serviceid'], 
     data(){
         return{
-            activeServices:[],
-            cart:[],
 
-            addingNewService:false,
-            IsPanelVisible:true,
-            IsReviewsVisible:true,
-            IsServicesVisible:true,
-            IsTaskVisible:true,
-            accountType:null,
+               
+          availablePlans:[],
+  
 
         }
     },
 
-    beforeCreate(){
-    let self = this;  
-
-    if(firebase.auth().currentUser){
-        
-        this.currentUser = firebase.auth().currentUser.email
 
 
-        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
-        {           
-                //console.log('Document data:', snapshot.data().AccountType);
-                    if(snapshot.data().img == ''){
-                        self.userimg = 'https://cdn.dribbble.com/users/937082/screenshots/5516643/blob'
-                    }
-                    else{
-                        self.userimg = snapshot.data().img
-                    }
 
-                    self.user_id = snapshot.data().user_id
-
-                    self.accountType = snapshot.data().AccountType
-        })
-
-    }
-    
-
-
-  },
-
-    created(){
-        let self = this;
-
-          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                //console.log(doc.data().schedule)
-                
-                const data ={
-                  
-                   'service_id': doc.data().service_id,
-                   'owner_id': doc.data().owner_id,
-                   'img': doc.data().img,
-                   'name': doc.data().name,
-                   'description': doc.data().description,
-                   'price': doc.data().price,
-                   'schedule': doc.data().schedule,
-                   'availability': doc.data().availability,
-                   'url_name': doc.data().url_name,
-                 }
-
-                 if(doc.data().availability == true){
-                   self.activeServices.push(data)
-                 }
-
-            })  
-        })
+    created(){        
+         this.getProps()
     },
 
     methods:{
+        getProps(){
+        let self = this;      
+          db.collection('plans').where('service_id' , '==' , this.$props.serviceid).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                //console.log(doc.data())
 
-        addToCart(service){
-            this.cart.push(service)            
+                const data ={
+                   'name': doc.data().name,
+                   'description': doc.data().description,
+                   'price':  doc.data().price,
+                   'service_id': doc.data().service_id,
+                   'time': doc.data().time,
+                 }
+                   self.availablePlans.push(data)
+
+            })
+          })
         },
+    },
 
-        isInCart(service){
-            const item = this.cart.find(item => item.service_id = service.service_id)
-            if(item){
-                return true
-            }
-            return false
-        },
 
-        removeFromCart(service){
-            this.cart = this.cart.filter(item => item.service_id !== service.service_id)
-        }
-    }
+
+
+
+   
 }
 </script>
 

@@ -29,7 +29,7 @@
                   <div class="global-grid">
                         <div class="global-floating-input">
                             <i class='uil uil-scenery'></i>
-                            <input type="text" name="img" id="" v-model="img" placeholder="img (url only)" required>
+                            <input type="url" name="img" id="" v-model="img" placeholder="img (url only)" required>
                         </div><!--global floating input-->                       
         
                         <div class="global-floating-input">
@@ -39,7 +39,7 @@
 
                         <div class="global-floating-input">
                             <i class='uil uil-mobile-android'></i>
-                            <input type="text" name="phone" id="" v-model="phone" placeholder="phone" required>
+                            <input type="number" name="phone" id="" v-model="phone" placeholder="phone" required>
                         </div><!--global floating input-->
 
                   </div><!--global grid-->

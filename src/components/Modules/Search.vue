@@ -28,17 +28,21 @@
 
            <div class="global-grid">
              
-               <div class="userORservice" v-for="(service,servicesData) in services" v-bind:key="servicesData">
+             
+             
+              <div class="global-search-result" v-for="(service,servicesData) in services" v-bind:key="servicesData">
+                <router-link :to="{ name: 'Service', params: {url_name: service.url_name || 404}}">
+                        <div class="global-search-result-img mdl-shadow--2dp">
+                          <img v-bind:src="service.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
+                        </div>
+                    <div class="global-search-result-text mdl-shadow--2dp">
+                      <h3>{{service.name}}</h3>
+                      <p>{{service.description}}</p>
+                    </div><!---content--->
+                </router-link>
+              </div><!---global-search-result--->
 
-                  <router-link :to="{ name: 'Service', params: {url_name: service.url_name || 404}}">
-                     <div class="userORserviceIMG mdl-shadow--2dp">
-                        <img v-bind:src="service.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
-                     </div>
-                  </router-link>
-                 
-                 <h4>{{service.name}}</h4>
-                 <small>{{service.description}}</small>
-               </div>
+             
 
            </div><!--serach content-->
 

@@ -8,7 +8,7 @@
                   <div class="global-grid">
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
-                            <input type="text" name="img" id="" v-model="img" placeholder="img (url only)" required>
+                            <input type="url" name="img" id="" v-model="img" placeholder="img (url only)" required>
                         </div><!--global floating input-->
 
                         <div class="global-floating-input">
@@ -28,13 +28,19 @@
         
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
-                            <input type="text" name="price" id="" v-model="price" placeholder="price" required>
+                            <input type="text" name="price" id="" @keypress="stripTheGarbage($event)" @blur="formatDollars()" v-model="price" placeholder="price" required>
+                            <span class="currency-symbol">$</span>
                         </div><!--global floating input-->  
 
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
-                            <input type="text" name="schedule" id="" v-model="schedule" placeholder="schedule" required>
+                            <input type="date" name="schedule" id="" v-model="schedule" placeholder="schedule" required>
                         </div><!--global floating input-->
+
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="date" name="schedule_end" id="" v-model="schedule_end" placeholder="schedule_end" required>
+                        </div><!--global floating input-->    
 
                   </div><!--global grid-->
 
@@ -69,6 +75,7 @@ export default {
             url:null,
             price:null,
             schedule: null,
+            schedule_end: null
 
         }
     }
@@ -83,6 +90,7 @@ export default {
                 description: this.description,
                 price: this.price,
                 schedule: this.schedule,
+                schedule_end: this.schedule_end,
                 availability: true,
                 url_name: this.url,
             })
@@ -96,6 +104,7 @@ export default {
                 description: self.description,
                 price: self.price,
                 schedule: self.schedule,
+                schedule_end: self.schedule_end,
                 availability: true,
                 url_name: self.url,
                 })
@@ -104,6 +113,41 @@ export default {
             })
             .catch(error => Swal(error))
         },
+
+        stripTheGarbage(e) {
+      if (e.keyCode < 48 && e.keyCode !== 46 || e.keyCode > 59) {
+        e.preventDefault()
+      }
+    },
+
+    formatDollars() {
+            if (this.price != '') {
+                    var num = this.price;
+                    
+                    num = Number(num);
+                            
+                    var countDecimals = function (value) {
+                    if(Math.floor(value) === value) return 0;
+                    return value.toString().split(".")[1].length || 0; 
+                    }
+                    
+                    var decimal = countDecimals(num);
+                    
+                    if (decimal < 2) {
+                    num = num.toFixed(2)
+                    }
+                    
+                    if (decimal > 2) {
+                    num = num.toFixed(decimal)
+                    }
+                    
+                    if (parseInt(num) < 1) {
+                    num = "." + String(num).split(".")[1];
+                    }
+
+                    this.price = num;
+                }
+            }
     },
 }
 </script>

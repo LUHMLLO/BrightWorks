@@ -54,7 +54,7 @@
                             <div class="global-service-card-description">
                                 <p>{{service.description}}</p>
                                 <p>{{service.schedule}}</p>
-                                <small>{{service.price}}</small>
+                                <small>{{service.price }}</small>
                             </div>
                         </div><!---global service card content -->
                         <div class="global-service-card-edit-button">
@@ -131,6 +131,8 @@ export default {
 
             })  
         })
+        
+            
     },
 
 

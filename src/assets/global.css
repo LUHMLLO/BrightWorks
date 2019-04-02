@@ -508,6 +508,7 @@
     display: block;
     border-radius:6px;
     width: 100%;
+    margin: auto auto 22px auto;
   }
   .global-box-header{
     display: flex;
@@ -694,6 +695,193 @@ align-self: middle;
   padding:12px;
   margin: 12px auto;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.global-attachable-header{
+  display: flex;
+  justify-content: space-between;
+  padding:22px 0px;
+}
+
+
+.global-attachable-select{
+  min-width: 300px;
+  padding:7.4px;
+  border: solid 0.5px rgba(0,0,0,0.3);
+  outline:none;
+  border-radius:100px;
+  margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.global-price-col{
+  padding: 22px;
+  border-radius:6px;
+  width: 300px;
+  margin: 22px;
+}
+.global-price-col-header{
+  margin: auto;
+  width:100%;
+  text-align: left;
+  border-bottom: solid 0.5px rgba(0,0,0,0.3);
+}
+.global-price-col-header-title{
+  padding: auto;
+}
+.global-price-col-header-title h3{
+  font-size:20px;
+  margin: auto;
+}
+.global-price-col-header-price{
+  padding: 22px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.global-price-col-header-price h4{
+  font-size:18px;
+}
+.global-price-col-header-price span{
+  font-size:16px;
+}
+.global-price-col-content{
+  padding:22px 0px;
+  margin: auto;
+}
+.global-price-col-content p{
+  text-align: justify;
+  width:100%;
+  margin: auto;
+}
+.global-price-col-details{
+  width: 100%;
+  margin: auto;
+  padding: 22px 0;
+  text-align: left;
+}
+.global-price-col-details-detail{
+ width: 100%;
+ margin: auto auto 16px auto; 
+}
+
+
+
+
+
+.global-form{
+  width:300px;
+  margin: auto;
+  padding: 22px 22px 8px 22px;
+  border-radius:6px;
+}
+.global-form-header{
+  width: 100%;
+  text-align: left;
+}
+.global-form-content{
+  padding: 22px 0;
+}
+.global-form-selector{
+  border: solid 0.5px rgba(0,0,0,0.3);
+  margin: auto;
+  border-radius: 6px;
+}
+.global-form-selector p{
+  margin: auto;
+  padding:12px 0;
+  cursor: pointer;
+}
+.global-form-description{
+  margin: 22px auto;
+  text-align: left;
+  padding:22px 12px;
+}
+.global-form-description p{
+  margin: 5px auto;
+}
+
+
+
+
+
+
+
+.global-search-result{
+  width:300px;
+  margin: 42px 22px;
+  border-radius: 8px;
+  display: block;
+  text-decoration: none !important;
+}
+.global-search-result-img{
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  margin: auto auto 12px auto;
+  border-radius: 10px;
+}
+.global-search-result-img img{
+  width: 100%;
+  height: 100%;
+}
+
+.global-search-result-text{
+  width:100%;
+  text-align: left;
+  color: #202124 !important;
+  margin: auto;
+  text-decoration: none !important;
+  padding:22px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.global-search-result-text h3{
+  text-align: left;
+  color: #202124 !important;
+  margin: auto;
+  font-size:22spx !important;
+  text-decoration: none !important;
+}
+.global-search-result-text p{
+  text-align: left;
+  color: #202124 !important;
+  margin: auto;
+  text-decoration: none !important;
+  font-size:13px;
+}
+
+
+
+
+
+
 
 
 

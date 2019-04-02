@@ -11,10 +11,21 @@
 
         <div class="global-content">
 
-            <button v-on:click="publish">publish</button>
+            <div class="global-attachable-header">
+                
+                <select name="serviceIDs" id="" class="global-attachable-select" v-model="Selected_service_id" required>
+                    <option v-bind:value="myservice.service_id"  v-for="(myservice,myservicesData) in myservices" :key="myservicesData">{{myservice.service_name}}</option>
+                </select>
+
+
+
+                <button v-on:click="publish" class="global-button">publish</button>
+            </div><!---attachable header-->
+
+            
              
-             <div id="editor" style="width:80%; height:auto; margin:auto; padding:0px;">
-                 <quill-editor v-model="content"/>
+             <div style="width:80%; height:auto; margin:auto; padding:0px;">
+                 <Editor id="editor" v-model="content"/>
              </div>
 
          <br><br><br><br><br>
@@ -29,29 +40,25 @@
 </template>
 
 <script>
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-import { quillEditor } from 'vue-quill-editor'
-
-
-import Swal from 'sweetalert'
+import Editor from '@tinymce/tinymce-vue';
 
 import {firebase, db} from '../../firebaseConfig.js'
-
+import Swal from 'sweetalert'
 
 export default {
     name: 'Compose_a_post',
     components: {
-        quillEditor
+        Editor,
     },
     data(){
         return{
             content:'',
             publisher_name:null,
-            publisher_id:null,
+            publisher_id:firebase.auth().currentUser.uid,
             publisher_img:null,
             service_id:null,
+            myservices:[],
+            Selected_service_id:null,
         }
     },
 
@@ -60,16 +67,41 @@ export default {
 
     created(){
         let self = this;
-        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
-        {                       
-            //console.log(snapshot.data())
 
-                    self.publisher_name = snapshot.data().name
-                    self.publisher_id = firebase.auth().currentUser.uid
-                    self.publisher_img = snapshot.data().img
-                           
-        })
 
+          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                //console.log(doc.data().schedule)
+                
+                const data ={
+                  
+                   'service_id': doc.data().service_id,
+                   'service_name':doc.data().name,
+                 }
+                   self.myservices.push(data)
+
+
+            })  
+        })      
+               
+
+    },
+
+
+    updated(){
+        let self = this;
+        //console.log(this.Selected_service_id)
+          db.collection('services').where('service_id','==',self.Selected_service_id).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                //console.log(self.service_name)
+
+                  
+                   self.publisher_name = doc.data().name
+                   self.publisher_img = doc.data().img
+
+
+            })  
+        })          
     },
 
 
@@ -87,10 +119,10 @@ export default {
                 publisher_img: self.publisher_img,
                 publisher_name: self.publisher_name,
                 content: self.content,
-                service_id: self.service_id,
+                service_id: self.Selected_service_id,
                 })
 
-                Swal({ title: "Congrats ! ", text: "Your service has been created", icon: "success", button: "yaas!",}).then(() => {self.$router.replace("manage_services")})
+                Swal({ title: "Congrats ! ", text: "Your posts has been published", icon: "success", button: "nice!",}).then(() => {self.$router.replace("Compose")})
             })
             .catch(error => Swal(error))
         },
@@ -100,20 +132,20 @@ export default {
 </script>
 
 <style scoped>
-#editor{
+#editor,.quill-editor,.ql-editor,.ql-blank,.ql-editor.ql-blank,.ql-container,.ql-snow,.ql-container.ql-snow{
+    width:100% !important;
+    min-width: 100%;
     max-height: 100% !important;
     min-height: 400px !important;
     height:auto !important;
-}
-.quill-editor{
-    width:100% !important;
-    min-width: 100%;
-    min-height: 100% !important;
-    height: 100%;
-    max-height: 100% !important;
     margin: auto !important;
     border:none !important;
     outline:none !important;
 }
+
+.tox-notifications-container,.tox-notification,.tox-notification--in,.tox-notification--warning,.tox-statusbar{
+    display: none !important;
+}
+
 
 </style>
