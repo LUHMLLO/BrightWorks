@@ -48,13 +48,19 @@
                     
                                     <div class="global-floating-input">
                                         <i class='uil uil-file-blank'></i>
-                                        <input type="number" name="price" id="" v-model="price" placeholder="price" required>
-                                    </div><!--global floating input-->  
+                                        <input type="text" name="price" id="" @keypress="stripTheGarbage($event)" @blur="formatDollars()" v-model="price" placeholder="price" required>
+                                        <span class="currency-symbol">$</span>
+                                     </div><!--global floating input-->  
 
                                     <div class="global-floating-input">
                                         <i class='uil uil-file-blank'></i>
-                                        <input type="text" name="schedule" id="" v-model="schedule" placeholder="schedule" required>
-                                    </div><!--global floating input-->   
+                                        <input type="date" name="schedule" id="" v-model="schedule_start" placeholder="schedule_start" required>
+                                    </div><!--global floating input-->
+
+                                    <div class="global-floating-input">
+                                        <i class='uil uil-file-blank'></i>
+                                        <input type="date" name="schedule_end" id="" v-model="schedule_end" placeholder="schedule_end" required>
+                                    </div><!--global floating input-->    
 
                                     <div class="global-floating-input">
                                         <div v-if="ServiceIsEnable" v-on:click="DisableService"><i class='uil uil-toggle-on'></i><span>available</span></div>
@@ -100,6 +106,7 @@ export default {
             url:null,
             price:null,
             schedule: null,
+            schedule_end: null,
             availability:null,
             ServiceIsEnable: null,
             ServiceIsDisable: null,
@@ -122,6 +129,7 @@ export default {
                     vm.description = doc.data().description
                     vm.price = doc.data().price
                     vm.schedule = doc.data().schedule
+                    vm.schedule_end = doc.data().schedule_end
                     vm.availability = doc.data().availability
                     vm.service_id = doc.data().service_id
 
@@ -155,6 +163,7 @@ export default {
                     this.description = doc.data().description
                     this.price = doc.data().price
                     this.schedule = doc.data().schedule
+                    this.schedule = doc.data().schedule_end
                     this.availability = doc.data().availability      
                     this.service_id = doc.data().service_id
                     
@@ -191,6 +200,7 @@ export default {
                                 description: this.description,
                                 price: this.price,
                                 schedule: this.schedule,
+                                schedule_end: this.schedule_end,
                                 url_name: this.url,
                                 img: this.img,
                                 availability: this.availability,
@@ -213,6 +223,43 @@ export default {
             this.ServiceIsEnable = false
             this.ServiceIsDisable = true
       },
+
+      stripTheGarbage(e) {
+      if (e.keyCode < 48 && e.keyCode !== 46 || e.keyCode > 59) {
+        e.preventDefault()
+      }
+    },
+
+    formatDollars() {
+            if (this.price != '') {
+                    var num = this.price;
+                    
+                    num = Number(num);
+                            
+                    var countDecimals = function (value) {
+                    if(Math.floor(value) === value) return 0;
+                    return value.toString().split(".")[1].length || 0; 
+                    }
+                    
+                    var decimal = countDecimals(num);
+                    
+                    if (decimal < 2) {
+                    num = num.toFixed(2)
+                    }
+                    
+                    if (decimal > 2) {
+                    num = num.toFixed(decimal)
+                    }
+                    
+                    if (parseInt(num) < 1) {
+                    num = "." + String(num).split(".")[1];
+                    }
+
+                    this.price = num;
+                }
+            }
+
+      
 
 
     },
