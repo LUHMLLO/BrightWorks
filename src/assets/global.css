@@ -737,6 +737,110 @@ align-self: middle;
 
 
 
+
+
+
+
+.global-price-col{
+  padding: 22px;
+  border-radius:6px;
+  width: 300px;
+}
+.global-price-col-header{
+  margin: auto;
+  width:100%;
+  text-align: left;
+  border-bottom: solid 0.5px rgba(0,0,0,0.3);
+}
+.global-price-col-header-title{
+  padding: auto;
+}
+.global-price-col-header-title h3{
+  font-size:20px;
+  margin: auto;
+}
+.global-price-col-header-price{
+  padding: 22px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.global-price-col-header-price h4{
+  font-size:18px;
+}
+.global-price-col-header-price span{
+  font-size:16px;
+}
+.global-price-col-content{
+  padding:22px 0px;
+  margin: auto;
+}
+.global-price-col-content p{
+  text-align: justify;
+  width:100%;
+  margin: auto;
+}
+.global-price-col-details{
+  width: 100%;
+  margin: auto;
+  padding: 22px 0;
+  text-align: left;
+}
+.global-price-col-details-detail{
+ width: 100%;
+ margin: auto auto 16px auto; 
+}
+
+
+
+
+
+.global-form{
+  width:300px;
+  margin: auto;
+  padding: 22px 22px 8px 22px;
+  border-radius:6px;
+}
+.global-form-header{
+  width: 100%;
+  text-align: left;
+}
+.global-form-content{
+  padding: 22px 0;
+}
+.global-form-selector{
+  border: solid 0.5px rgba(0,0,0,0.3);
+  margin: auto;
+  border-radius: 6px;
+}
+.global-form-selector p{
+  margin: auto;
+  padding:12px 0;
+  cursor: pointer;
+}
+.global-form-description{
+  margin: 22px auto;
+  text-align: left;
+  padding:22px 12px;
+}
+.global-form-description p{
+  margin: 5px auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width: 600px) {
   .global-about-card{
     width:80%;
