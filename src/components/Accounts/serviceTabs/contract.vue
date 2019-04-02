@@ -2,23 +2,23 @@
 <div>
        <div class="global-grid">
 
-           <div class="global-price-col mdl-shadow--2dp">
+           <div class="global-price-col mdl-shadow--2dp" v-for="(Plan,availablePlansData) in availablePlans" :key="availablePlansData">
 
                <div class="global-price-col-header">
                    <div class="global-price-col-header-title">
-                       <h3>option title here</h3>
+                       <h3>{{Plan.name}}</h3>
                    </div><!---title--->
 
                    <div class="global-price-col-header-price">
-                       <h4>price</h4>
-                       <span>/monthly/year</span>
+                       <h4>{{Plan.price}}</h4>
+                       <span>/{{Plan.time}}</span>
                    </div>
                </div><!---header--->
 
 
                <div class="global-price-col-content">
 
-                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus, enim at ex placeat quae et minus voluptate cumque alias libero dolorem repudiandae similique exercitationem incidunt! Repudiandae a laboriosam tempora iure.</p>
+                   <p>{{Plan.description}}</p>
 
                   <div class="global-price-col-details">
                       <div class="global-price-col-details-detail">
@@ -87,12 +87,48 @@ import {db} from '@/firebaseConfig.js'
 
 export default {
     name:'contract',
-    props:['serviceurlname'], 
+    props:['serviceid'], 
     data(){
         return{
 
+               
+          availablePlans:[],
+  
+
         }
     },
+
+
+
+
+    created(){        
+         this.getProps()
+    },
+
+    methods:{
+        getProps(){
+        let self = this;      
+          db.collection('plans').where('service_id' , '==' , this.$props.serviceid).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                //console.log(doc.data())
+
+                const data ={
+                   'name': doc.data().name,
+                   'description': doc.data().description,
+                   'price': doc.data().price,
+                   'service_id': doc.data().service_id,
+                   'time': doc.data().time,
+                 }
+                   self.availablePlans.push(data)
+
+            })
+          })
+        },
+    },
+
+
+
+
 
    
 }
