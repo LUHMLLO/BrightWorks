@@ -20,6 +20,7 @@
 
                    <p>{{Plan.description}}</p>
 
+                
                   <div class="global-price-col-details">
                       <div class="global-price-col-details-detail">
                           <i class='uil uil-minus'></i><span>detail</span>
@@ -115,7 +116,7 @@ export default {
                 const data ={
                    'name': doc.data().name,
                    'description': doc.data().description,
-                   'price': doc.data().price,
+                   'price':  doc.data().price,
                    'service_id': doc.data().service_id,
                    'time': doc.data().time,
                  }

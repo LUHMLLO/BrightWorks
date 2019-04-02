@@ -833,6 +833,51 @@ align-self: middle;
 
 
 
+.global-search-result{
+  width:300px;
+  margin: 42px 22px;
+  border-radius: 8px;
+  display: block;
+  text-decoration: none !important;
+}
+.global-search-result-img{
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  margin: auto auto 12px auto;
+  border-radius: 10px;
+}
+.global-search-result-img img{
+  width: 100%;
+  height: 100%;
+}
+
+.global-search-result-text{
+  width:100%;
+  text-align: left;
+  color: #202124 !important;
+  margin: auto;
+  text-decoration: none !important;
+  padding:22px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.global-search-result-text h3{
+  text-align: left;
+  color: #202124 !important;
+  margin: auto;
+  font-size:22spx !important;
+  text-decoration: none !important;
+}
+.global-search-result-text p{
+  text-align: left;
+  color: #202124 !important;
+  margin: auto;
+  text-decoration: none !important;
+  font-size:13px;
+}
+
+
 
 
 
