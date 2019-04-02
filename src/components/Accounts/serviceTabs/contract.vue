@@ -1,6 +1,5 @@
 <template>
 <div>
-
        <div class="global-grid">
 
            <div class="global-price-col mdl-shadow--2dp">
