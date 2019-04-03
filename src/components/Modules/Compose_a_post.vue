@@ -25,7 +25,7 @@
             
              
              <div style="width:80%; height:auto; margin:auto; padding:0px;">
-                 <Editor id="editor" v-model="content"/>
+                   <Editor apiKey='920o3ky6asz7pmn04nlzx2h02et91cbclb49ux2af3emnqa4' v-model="content" plugins="image imagetools"/>
              </div>
 
          <br><br><br><br><br>
@@ -47,12 +47,15 @@ import Swal from 'sweetalert'
 
 export default {
     name: 'Compose_a_post',
-    components: {
+    components:{
         Editor,
     },
     data(){
         return{
-            content:'',
+
+
+            content:null,
+
             publisher_name:null,
             publisher_id:firebase.auth().currentUser.uid,
             publisher_img:null,
@@ -128,24 +131,11 @@ export default {
         },
 
     },
+
+
 }
 </script>
 
 <style scoped>
-#editor,.quill-editor,.ql-editor,.ql-blank,.ql-editor.ql-blank,.ql-container,.ql-snow,.ql-container.ql-snow{
-    width:100% !important;
-    min-width: 100%;
-    max-height: 100% !important;
-    min-height: 400px !important;
-    height:auto !important;
-    margin: auto !important;
-    border:none !important;
-    outline:none !important;
-}
-
-.tox-notifications-container,.tox-notification,.tox-notification--in,.tox-notification--warning,.tox-statusbar{
-    display: none !important;
-}
-
 
 </style>

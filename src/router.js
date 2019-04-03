@@ -79,7 +79,7 @@ let router = new Router({
 
 
       {
-        path: '/service/:url_name',
+        path: '/service/:service_id',
         name: 'Service',
         component: Service,
         meta:{
