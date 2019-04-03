@@ -31,7 +31,12 @@
 
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
-                            <input type="text" name="time" id="" v-model="time" placeholder="time" required>
+                            <select name="time" id="" v-model="time" required style="outline:none;border:none;">
+                                <option value="Annual">Annual</option>
+                                <option value="Monthly">Monthly</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Daily">Daily</option>
+                            </select>                             
                         </div><!--global floating input-->  
 
                   </div><!--global grid-->

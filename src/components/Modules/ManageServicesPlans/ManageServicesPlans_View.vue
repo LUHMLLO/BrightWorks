@@ -26,12 +26,6 @@
 
                    <p>{{Plan.description}}</p>
 
-                
-                  <div class="global-price-col-details">
-                      <div class="global-price-col-details-detail">
-                          <i class='uil uil-minus'></i><span>detail</span>
-                      </div><!---detail--->
-                  </div><!--details-->
                </div><!--content--->
 
                <router-link :to="{ name: 'ManageServicesPlans_Edit', params: {service_id: Plan.plan_id}}">
