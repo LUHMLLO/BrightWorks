@@ -50,6 +50,10 @@
                <i class='uil uil-folder' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Manage services</p>
               </router-link>
 
+              <router-link to="/manage_plans" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
+               <i class='uil uil-folder' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Manage Plans</p>
+              </router-link>
+
               <router-link to="/Compose" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
                <i class='uil uil-postcard' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Posts</p>
               </router-link>

@@ -374,9 +374,9 @@ export default {
          },
        ],
        
-        isTab0Visible: false,
+        isTab0Visible: true,
         isTab1Visible: false,
-        isTab2Visible: true,
+        isTab2Visible: false,
         isTab3Visible: false,
 
          services:[
