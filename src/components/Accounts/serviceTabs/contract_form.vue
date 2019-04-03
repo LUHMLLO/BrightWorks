@@ -9,41 +9,44 @@
        </div><!--background image-->
        <div class="global-form-background-img-overlay"></div>
 
-
-
+              
+           
             <form @submit.prevent class="mdl-shadow--8dp global-form">
                  
                  <div class="global-form-header">
-                     <h3>Select your payment method</h3>
+                     <h3>Lets check you out</h3>
                  </div><!---header-->              
 
                  <div class="global-form-content">
                        
                        <div class="global-form-selector">
-                           <p>Paypal</p>
+                           <p>Powered by Paypal</p>
                        </div><!--form selectoor--->
 
 
                        <div class="global-form-description">
                            
                                <div class="global-form-payment-election">
+                                   <label>Service:</label>
+                                   <h6>{{this.$props.servicename}}</h6>
+                                   <br>
                                    <label>Selected plan:</label>
-                                   <h4>{{selected_option_title}}</h4>
+                                   <h6>{{selected_option_title}}</h6>
                                    <br>
                                    <label>Price:</label>
-                                   <p>{{selected_option_price}}</p>
+                                   <h6>{{selected_option_price}}</h6>
                                    <br>
                                    <label>Description:</label>
-                                   <p>{{selected_option_description}}</p>
+                                   <h6>{{selected_option_description}}</h6>
                                    <br>                                   
                                    <label>Time:</label>
-                                   <p>{{selected_option_time}}</p>
+                                   <h6>{{selected_option_time}}</h6>
                                </div><!---election-->
 
                        </div><!---description-->
 
 
-                       <button class="global-button">checkout</button>
+                       <button class="global-button">checkout with paypal</button>
 
                  </div><!---content--->
 
@@ -59,7 +62,7 @@
 import { db } from '../../../firebaseConfig.js'
 export default {
     name: 'contract_form',
-    props:['selectedPlan','serviceimg'],
+    props:['selectedPlan','serviceimg','servicename'],
     data(){
         return{
           selected_option_title:null,

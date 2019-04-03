@@ -28,7 +28,7 @@
 
 
        <div class="global-grid" v-if="showForm">
-           <contract_form v-bind:selectedPlan="choosen_plan_id" v-bind:serviceimg="serviceimg"/>
+           <contract_form v-bind:selectedPlan="choosen_plan_id" v-bind:serviceimg="serviceimg" v-bind:servicename="servicename"/>
        </div>
 
             
@@ -67,6 +67,7 @@ export default {
           choosen_plan_id:null,
           showForm: false,
           serviceimg:null,
+          servicename:null,
           
 
         }
@@ -118,6 +119,7 @@ export default {
             querySnapshot.forEach((doc) => {
                 //console.log(doc.data())
                    this.serviceimg = doc.data().img
+                   this.servicename = doc.data().name
 
             })
           })
