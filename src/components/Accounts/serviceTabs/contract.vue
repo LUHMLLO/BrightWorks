@@ -28,7 +28,7 @@
 
 
        <div class="global-grid" v-if="showForm">
-           <contract_form v-bind:selectedPlan="choosen_plan_id"/>
+           <contract_form v-bind:selectedPlan="choosen_plan_id" v-bind:serviceimg="serviceimg"/>
        </div>
 
             
@@ -66,6 +66,8 @@ export default {
           availablePlans:[],
           choosen_plan_id:null,
           showForm: false,
+          serviceimg:null,
+          
 
         }
     },
@@ -100,13 +102,30 @@ export default {
 
             })
           })
+
+
+
+
         },
 
 
         SelectThisPlan(value){
             this.choosen_plan_id = value
             //console.log(this.choosen_plan_id)
-            this.showForm = true
+            
+
+          db.collection('services').where('service_id' , '==' , this.$props.serviceid).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                //console.log(doc.data())
+                   this.serviceimg = doc.data().img
+
+            })
+          })
+
+
+          this.showForm = true
+
+
         },
 
 
