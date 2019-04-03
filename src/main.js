@@ -8,9 +8,6 @@ Vue.config.productionTip = false
 
 
 
-
-
-
 let app;
 firebase.auth().onAuthStateChanged(() => {
   if(!app){
@@ -21,7 +18,6 @@ firebase.auth().onAuthStateChanged(() => {
     }).$mount('#app');
   }
 })
-    
 
 
 

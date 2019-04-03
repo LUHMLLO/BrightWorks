@@ -31,7 +31,7 @@
              
              
               <div class="global-search-result" v-for="(service,servicesData) in services" v-bind:key="servicesData">
-                <router-link :to="{ name: 'Service', params: {url_name: service.url_name || 404}}">
+                <router-link :to="{ name: 'Service', params: {service_id: service.service_id || 404}}">
                         <div class="global-search-result-img mdl-shadow--2dp">
                           <img v-bind:src="service.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
                         </div>
@@ -83,7 +83,7 @@ export default {
               //console.log(doc.data().url_name) 
                  const data ={
                    'user_id': doc.data().user_id,
-                   'url_name': doc.data().url_name,
+                   'service_id': doc.data().service_id,
                    'img': doc.data().img,
                    'name': doc.data().name,
                    'description': doc.data().description,

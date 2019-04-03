@@ -23,6 +23,8 @@ import Cart from './components/Modules/ShoppingCart/Cart.vue';
 import ManageServices_Main from "./components/Modules/ManageProvidedServices/ManageServices_Main.vue"
 import ManageServices_Edit from "./components/Modules/ManageProvidedServices/ManageServices_Edit.vue"
 
+import ManageServicesPlans_Main from "./components/Modules/ManageServicesPlans/ManageServicesPlans_Main.vue"
+import ManageServicesPlans_Edit from "./components/Modules/ManageServicesPlans/ManageServicesPlans_Edit.vue"
 
 
 Vue.use(Router)
@@ -77,7 +79,7 @@ let router = new Router({
 
 
       {
-        path: '/service/:url_name',
+        path: '/service/:service_id',
         name: 'Service',
         component: Service,
         meta:{
@@ -158,6 +160,27 @@ let router = new Router({
           requiresAuth: true
         }
       },
+
+
+      {
+        path: '/manage_plans',
+        name: 'ManageServicesPlans_Main',
+        component: ManageServicesPlans_Main,
+        meta:{
+          requiresAuth: true
+        }
+      },
+
+      {
+        path: '/manage_plans/editservice/:service_id',
+        name: 'ManageServicesPlans_Edit',
+        component: ManageServicesPlans_Edit,
+        meta:{
+          requiresAuth: true
+        }
+      },
+      
+      
 
 
       {
