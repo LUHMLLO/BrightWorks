@@ -111,6 +111,7 @@ export default {
             ServiceIsEnable: null,
             ServiceIsDisable: null,
             service_id:null,
+            plan_id:null,
             
         }
     },
@@ -120,7 +121,7 @@ export default {
 
 
     beforeRouteEnter( to, from, next){        
-          db.collection('services').where('service_id' , '==' , to.params.service_id).get().then((querySnapshot) => {
+          db.collection('plans').where('plan_id' , '==' , to.params.plan_id).get().then((querySnapshot) => {
             querySnapshot.forEach(doc => {
               next(vm => {
                     vm.url = doc.data().url_name
@@ -155,7 +156,7 @@ export default {
     methods: {
         
       fetchData (){
-        db.collection('services').where('service_id', '==' , this.$route.params.service_id).get().then(querySnapshot =>{
+        db.collection('plans').where('plan_id', '==' , this.$route.params.plan_id).get().then(querySnapshot =>{
           querySnapshot.forEach(doc => {
                     this.url = doc.data().url_name
                     this.imh = doc.data().img

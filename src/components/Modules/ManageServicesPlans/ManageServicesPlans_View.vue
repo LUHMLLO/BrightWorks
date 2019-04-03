@@ -34,9 +34,10 @@
                   </div><!--details-->
                </div><!--content--->
 
+               <router-link :to="{ name: 'ManageServicesPlans_Edit', params: {service_id: Plan.plan_id}}">
+                  <button class="global-button">edit</button>
+               </router-link>
 
-
-               <button class="global-button">edit</button>
            </div><!----global price col--->
 
        </div><!---grid-->
@@ -84,11 +85,13 @@ export default {
                 //console.log(doc.data())
                 
                 const data ={
+                   'plan_id': doc.data().plan_id,
                    'creator_id': doc.data().creator_id,
                    'service_id': doc.data().service_id,
                    'description':doc.data().description,
                    'name':doc.data().name,
                    'price':doc.data().price,
+                   'time': doc.data().time,
                  }
                    self.AvailablePlans.push(data)
                  
