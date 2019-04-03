@@ -5,21 +5,19 @@
               <h4>Add a new service</h4>
               
               <form @submit.prevent>
-                  <div class="global-grid">
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="url" name="img" id="" v-model="img" placeholder="img (url only)" required>
-                        </div><!--global floating input-->
-
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="url" id="" v-model="url" placeholder="url name (easily url typing)" required>
-                        </div><!--global floating input-->                         
+                  <div class="global-grid">                   
         
+                        <div class="global-floating-input">
+                            <select name="serviceIDs" id="" v-model="Selected_service_id" required style="outline:none;border:none;">
+                                <option v-bind:value="myservice.service_id"  v-for="(myservice,myservicesData) in myservices" :key="myservicesData">{{myservice.service_name}}</option>
+                            </select>                            
+                        </div><!--global floating input-->                
+
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
                             <input type="text" name="name" id="" v-model="name" placeholder="name" required>
                         </div><!--global floating input-->                
+
 
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
@@ -27,27 +25,21 @@
                         </div><!--global floating input-->
         
                         <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
+                            <i class='uil uil-dollar-alt'></i>
                             <input type="text" name="price" id="" @keypress="stripTheGarbage($event)" @blur="formatDollars()" v-model="price" placeholder="price" required>
-                            <span class="currency-symbol">$</span>
                         </div><!--global floating input-->  
 
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
-                            <input type="date" name="schedule" id="" v-model="schedule" placeholder="schedule" required>
-                        </div><!--global floating input-->
-
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="date" name="schedule_end" id="" v-model="schedule_end" placeholder="schedule_end" required>
-                        </div><!--global floating input-->    
+                            <input type="text" name="time" id="" v-model="time" placeholder="time" required>
+                        </div><!--global floating input-->  
 
                   </div><!--global grid-->
 
                   
                   
                   <br><br>
-                  <button class="global-button" v-on:click="addService">Add new service</button>
+                  <button class="global-button" v-on:click="AddPlan">Add new plan</button>
                   
 
               </form>
@@ -70,46 +62,82 @@ export default {
             service_id:null,
 
             name:null,
-            img:null,
             description:null,
-            url:null,
             price:null,
-            schedule: null,
-            schedule_end: null
+            time:null,
+
+            Selected_service_id:null,
+
+            myservices:[],
+
 
         }
-    }
-    ,
+    },
+
+
+
+
+
+
+    created(){
+        let self = this;
+
+
+          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                //console.log(doc.data().schedule)
+                
+                const data ={
+                  
+                   'service_id': doc.data().service_id,
+                   'service_name':doc.data().name,
+                 }
+                   self.myservices.push(data)
+
+
+            })  
+        })      
+               
+
+    },
+
+
+    updated(){
+        let self = this;
+        //console.log(this.Selected_service_id)
+          db.collection('services').where('service_id','==',self.Selected_service_id).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                //console.log(self.service_name)
+
+                  
+                   self.service_id = doc.data().service_id
+
+
+            })  
+        })          
+    },
+
+
+
+
     methods: {
-        addService(){
+        AddPlan(){
             let self = this;
-            db.collection('services').add({
-                owner_id: this.owner_id,
-                img: this.img,
-                name: this.name,
-                description: this.description,
-                price: this.price,
-                schedule: this.schedule,
-                schedule_end: this.schedule_end,
-                availability: true,
-                url_name: this.url,
+            db.collection('plans').add({
             })
             .then(function(docRef) {
                 
-                db.collection('services').doc(docRef.id).set({
-                service_id: docRef.id,
-                owner_id: self.owner_id,
-                img: self.img,
+                db.collection('plans').doc(docRef.id).set({
+                plan_id: docRef.id,
+                creator_id: self.owner_id,
+                service_id: self.service_id,
                 name: self.name,
                 description: self.description,
                 price: self.price,
-                schedule: self.schedule,
-                schedule_end: self.schedule_end,
-                availability: true,
-                url_name: self.url,
+                time: self.time,
                 })
 
-                Swal({ title: "Congrats ! ", text: "Your service has been created", icon: "success", button: "yaas!",}).then(() => {self.$router.replace("manage_services")})
+                Swal({ title: "Congrats ! ", text: "Your payment plan has been added to your service", icon: "success", button: "nice!",}).then(() => {self.$router.go("manage_plans")})
             })
             .catch(error => Swal(error))
         },
