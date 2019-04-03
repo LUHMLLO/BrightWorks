@@ -25,12 +25,12 @@
 
      </div><!--content-->
 
-     <div class="global-post-status">
+     <div class="global-post-status" v-if="disablethis">
 
      </div><!---status-->
 
 
-     <div class="global-post-comment">
+     <div class="global-post-comment" v-if="disablethis">
          <input type="text" placeholder="make a comment">
      </div><!---comment-->
 
@@ -58,6 +58,8 @@ export default {
             publisher_img:null,
             publisher_name:null,
             publisher_id:null,
+
+            disablethis:false,
         }
     },
 
