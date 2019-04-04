@@ -257,7 +257,9 @@ export default {
 
                     this.price = num;
                 }
-            }
+            },
+
+            
 
       
 
