@@ -73,21 +73,7 @@ export default {
       );
     },
 
-    restorePassword: function(){
-            var user = firebase.auth().currentUser;
-            let newPassword = getASecureRandomPassword();
-
-            user.updatePassword(newPassword).then(function() {
-               Swal({ title: "Update Succesful !", icon: "success"})
-            }).catch(function(error) {
-               Swal({ title: "Oops !", text: error.message, icon: "error"})
-            });
-
-            auth.sendPasswordResetEmail(emailAddress)
-            .then(function() {
-              // Email sent.
-            });
-    },
+    
 
   },
 
