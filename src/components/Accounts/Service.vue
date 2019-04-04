@@ -123,7 +123,7 @@ export default {
 
 
     beforeRouteEnter( to, from, next){        
-          db.collection('services').where('url_name' , '==' , to.params.url_name).get().then((querySnapshot) => {
+          db.collection('services').where('service_id' , '==' , to.params.service_id).get().then((querySnapshot) => {
             querySnapshot.forEach(doc => {
               next(vm => {
                    // console.log(doc.data())
@@ -144,7 +144,7 @@ export default {
     },
     methods: {
       fetchData (){
-        db.collection('services').where('url_name', '==' , this.$route.params.url_name).get().then(querySnapshot =>{
+        db.collection('services').where('service_id', '==' , this.$route.params.service_id).get().then(querySnapshot =>{
           querySnapshot.forEach(doc => {
                     this.owner_id = doc.data().owner_id
                     this.url_name = doc.data().url_name

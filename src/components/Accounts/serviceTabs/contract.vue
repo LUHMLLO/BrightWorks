@@ -1,6 +1,6 @@
 <template>
 <div>
-       <div class="global-grid">
+       <div class="global-grid"  v-if="!showForm">
 
            <div class="global-price-col mdl-shadow--2dp" v-for="(Plan,availablePlansData) in availablePlans" :key="availablePlansData">
 
@@ -17,58 +17,24 @@
 
 
                <div class="global-price-col-content">
-
                    <p>{{Plan.description}}</p>
-
-                
-                  <div class="global-price-col-details">
-                      <div class="global-price-col-details-detail">
-                          <i class='uil uil-minus'></i><span>detail</span>
-                      </div><!---detail--->
-                  </div><!--details-->
                </div><!--content--->
-
-
-
-               <button class="global-button">Select</button>
+               <button class="global-button" v-bind:value="Plan.plan_id" v-on:click="SelectThisPlan(Plan.plan_id)">Select</button>
            </div><!----global price col--->
 
        </div><!---grid-->
 
-              
-              <br><br><br>
+
+
+
+       <div class="global-grid" v-if="showForm">
+           <contract_form v-bind:selectedPlan="choosen_plan_id" v-bind:serviceimg="serviceimg" v-bind:servicename="servicename"/>
+       </div>
 
             
 
 
-            <form @submit.prevent class="mdl-shadow--2dp global-form">
-                 
-                 <div class="global-form-header">
-                     <h3>choose your payment method</h3>
-                 </div><!---header-->
 
-                 <div class="global-form-content">
-                       
-                       <div class="global-form-selector">
-                           <p>Paypal</p>
-                       </div><!--form selectoor--->
-
-
-                       <div class="global-form-description">
-                           
-                               <div class="global-form-payment-election">
-                                   <p>selected option title here</p>
-                                   <p>price</p>
-                               </div><!---election-->
-
-                       </div><!---description-->
-
-
-                       <button class="global-button">checkout</button>
-
-                 </div><!---content--->
-
-            </form><!---payment wizard form-->
 
 
 
@@ -84,17 +50,25 @@
 
 
 <script>
-import {db} from '@/firebaseConfig.js'
+import { db } from '../../../firebaseConfig.js'
+import contract_form from './contract_form.vue'
 
 export default {
     name:'contract',
     props:['serviceid'], 
+    components:{
+        contract_form,
+    },
     data(){
         return{
 
                
           availablePlans:[],
-  
+          choosen_plan_id:null,
+          showForm: false,
+          serviceimg:null,
+          servicename:null,
+          
 
         }
     },
@@ -102,8 +76,12 @@ export default {
 
 
 
-    created(){        
-         this.getProps()
+    created(){     
+        this.getProps()
+            //console.log(this.choosen_plan_id)
+
+
+
     },
 
     methods:{
@@ -119,13 +97,44 @@ export default {
                    'price':  doc.data().price,
                    'service_id': doc.data().service_id,
                    'time': doc.data().time,
+                   'plan_id': doc.data().plan_id,
                  }
                    self.availablePlans.push(data)
 
             })
           })
+
+
+
+
         },
+
+
+        SelectThisPlan(value){
+            this.choosen_plan_id = value
+            //console.log(this.choosen_plan_id)
+            
+
+          db.collection('services').where('service_id' , '==' , this.$props.serviceid).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                //console.log(doc.data())
+                   this.serviceimg = doc.data().img
+                   this.servicename = doc.data().name
+
+            })
+          })
+
+
+          this.showForm = true
+
+
+        },
+
+
+
+
     },
+
 
 
 

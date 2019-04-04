@@ -9,12 +9,7 @@
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
                             <input type="url" name="img" id="" v-model="img" placeholder="img (url only)" required>
-                        </div><!--global floating input-->
-
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="url" id="" v-model="url" placeholder="url name (easily url typing)" required>
-                        </div><!--global floating input-->                         
+                        </div><!--global floating input-->                      
         
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
@@ -25,21 +20,15 @@
                             <i class='uil uil-file-blank'></i>
                             <input type="text" name="description" id="" v-model="description" placeholder="description" required>
                         </div><!--global floating input-->
-        
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="price" id="" @keypress="stripTheGarbage($event)" @blur="formatDollars()" v-model="price" placeholder="price" required>
-                            <span class="currency-symbol">$</span>
-                        </div><!--global floating input-->  
 
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
-                            <input type="date" name="schedule" id="" v-model="schedule" placeholder="schedule" required>
+                            <input type="text" name="schedule" id="" v-model="time_start" placeholder="start hour" required>
                         </div><!--global floating input-->
 
                         <div class="global-floating-input">
                             <i class='uil uil-file-blank'></i>
-                            <input type="date" name="schedule_end" id="" v-model="schedule_end" placeholder="schedule_end" required>
+                            <input type="text" name="schedule_end" id="" v-model="time_end" placeholder="end hour" required>
                         </div><!--global floating input-->    
 
                   </div><!--global grid-->
@@ -68,14 +57,12 @@ export default {
 
             owner_id:firebase.auth().currentUser.uid,
             service_id:null,
-
             name:null,
             img:null,
             description:null,
-            url:null,
-            price:null,
-            schedule: null,
-            schedule_end: null
+            time_start:null,
+            time_end:null,
+            availability:true,
 
         }
     }
@@ -84,15 +71,6 @@ export default {
         addService(){
             let self = this;
             db.collection('services').add({
-                owner_id: this.owner_id,
-                img: this.img,
-                name: this.name,
-                description: this.description,
-                price: this.price,
-                schedule: this.schedule,
-                schedule_end: this.schedule_end,
-                availability: true,
-                url_name: this.url,
             })
             .then(function(docRef) {
                 
@@ -102,14 +80,12 @@ export default {
                 img: self.img,
                 name: self.name,
                 description: self.description,
-                price: self.price,
-                schedule: self.schedule,
-                schedule_end: self.schedule_end,
+                time_start: self.time_start,
+                time_end: self.time_end,
                 availability: true,
-                url_name: self.url,
                 })
 
-                Swal({ title: "Congrats ! ", text: "Your service has been created", icon: "success", button: "yaas!",}).then(() => {self.$router.replace("manage_services")})
+                Swal({ title: "Congrats ! ", text: "Your service has been created", icon: "success", button: "nice!",}).then(() => {self.$router.go("manage_services")})
             })
             .catch(error => Swal(error))
         },

@@ -9,7 +9,7 @@
          </div><!---title-->
 
          <div class="global-about-card-schedule">
-             <h3>{{schedule}}</h3>
+             <h3>{{time_start}} - {{time_end}}</h3>
          </div><!--schedule--->
 
      </div><!---header-->
@@ -24,7 +24,7 @@
 
 
         <div class="global-about-card-price">
-            <p>{{price}}</p>
+            <p>timezone here</p>
         </div><!---price-->
 
 
@@ -43,11 +43,9 @@
   </div><!---global grid--->
 
 
-
-   <iframe class="global-iframe mdl-shadow--2dp" v-bind:src="video" v-if="yesThisIsMyVideo">
-
-   </iframe>
-
+   <div v-if="yesThisIsMyVideo">
+     <iframe class="global-iframe mdl-shadow--2dp" v-bind:src="video"></iframe>
+   </div>
 
 
 
@@ -65,15 +63,13 @@ export default {
     props:['serviceid'],
     data(){
         return{
-            user_id:null,
-            url_name:null,
             img:null,
             name:null,
-            schedule:null,
             description:null,
-            price:null,
+            time_start:null,
+            time_end:null,
             video:null,
-            yesThisIsMyVideo:null,
+            yesThisIsMyVideo:false,
 
             Details:[
                 {'detail':'user detail in here'},
@@ -94,15 +90,13 @@ export default {
   created(){
           db.collection('services').where('service_id', '==' , this.$props.serviceid).get().then(querySnapshot =>{
           querySnapshot.forEach(doc => {
-                    this.user_id = doc.data().user_id
-                    this.url_name = doc.data().url_name
                     this.img = doc.data().img
                     this.name = doc.data().name
-                    this.schedule = doc.data().schedule
                     this.description = doc.data().description
-                    this.price = doc.data().price
+                    this.time_start = doc.data().time_start
+                    this.time_end = doc.data().time_end
 
-                    if(doc.data().video == ''){
+                    if(doc.data().video == null || doc.data().video == ''){
                         this.yesThisIsMyVideo = false
                     }
                     else{
