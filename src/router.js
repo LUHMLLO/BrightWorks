@@ -172,7 +172,7 @@ let router = new Router({
       },
 
       {
-        path: '/manage_plans/editservice/:service_id',
+        path: '/manage_plans/editplan/:plan_id',
         name: 'ManageServicesPlans_Edit',
         component: ManageServicesPlans_Edit,
         meta:{

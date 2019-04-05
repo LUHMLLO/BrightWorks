@@ -28,7 +28,7 @@
 
                </div><!--content--->
 
-               <router-link :to="{ name: 'ManageServicesPlans_Edit', params: {service_id: Plan.plan_id}}">
+               <router-link :to="{ name: 'ManageServicesPlans_Edit', params: {plan_id: Plan.plan_id}}">
                   <button class="global-button">edit</button>
                </router-link>
 

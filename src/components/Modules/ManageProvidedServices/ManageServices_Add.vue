@@ -31,6 +31,26 @@
                             <input type="text" name="schedule_end" id="" v-model="time_end" placeholder="end hour" required>
                         </div><!--global floating input-->    
 
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="phone" id="" v-model="phone" placeholder="phone" required>
+                        </div><!--global floating input--> 
+
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="email" id="" v-model="email" placeholder="email" required>
+                        </div><!--global floating input--> 
+
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="location" id="" v-model="location" placeholder="location" required>
+                        </div><!--global floating input--> 
+
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="video" id="" v-model="video" placeholder="video about this service" required>
+                        </div><!--global floating input--> 
+
                   </div><!--global grid-->
 
                   
@@ -63,6 +83,10 @@ export default {
             time_start:null,
             time_end:null,
             availability:true,
+            phone:null,
+            email:null,
+            location:null,
+            video:null,
 
         }
     }
@@ -83,6 +107,10 @@ export default {
                 time_start: self.time_start,
                 time_end: self.time_end,
                 availability: true,
+                phone: self.phone,
+                email: self.email,
+                location: self.location,
+                video: self.video,
                 })
 
                 Swal({ title: "Congrats ! ", text: "Your service has been created", icon: "success", button: "nice!",}).then(() => {self.$router.go("manage_services")})

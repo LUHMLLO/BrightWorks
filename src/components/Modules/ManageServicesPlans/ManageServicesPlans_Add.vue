@@ -36,6 +36,7 @@
                                 <option value="Monthly">Monthly</option>
                                 <option value="Weekly">Weekly</option>
                                 <option value="Daily">Daily</option>
+                                <option value="Daily">One pay</option>
                             </select>                             
                         </div><!--global floating input-->  
 
@@ -55,7 +56,7 @@
 </template>
 
 <script>
-import {firebase,db} from '../../../firebaseConfig.js'
+import {firebase, db} from '../../../firebaseConfig.js'
 import Swal from 'sweetalert'
 
 export default {
@@ -63,7 +64,6 @@ export default {
     data(){
         return{
 
-            owner_id:firebase.auth().currentUser.uid,
             service_id:null,
 
             name:null,

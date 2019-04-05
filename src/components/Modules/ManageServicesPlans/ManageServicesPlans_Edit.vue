@@ -1,45 +1,22 @@
 <template>
 <div>
 
-
-      <div class="global-header mdl-shadow--2dp">
-
-          <div class="global-header-bg">
-              <img v-bind:src="img">
-          </div>
-
-          <div class="global-header-bg-overlay"></div>
-
-          <div class="global-header-img mdl-shadow--2dp">
-              <img v-bind:src="img">
-          </div>
-
-
-          <h3 class="global-header-title">{{name}}</h3>
-          
-
-      </div><!--header-->
+        <div id="manage-services-header" class="global-header mdl-shadow--2dp">
+          <h3 class="global-header-title-simple" style="">Edit this plan</h3>
+        </div><!--manage services header-->
 
 
             <div id="asd-section" class="global-section">
                         <h4>Edit or delete this service</h4>
                         
                         <form @submit.prevent>
-                            <div class="global-grid">
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="text" name="img" id="" v-model="img" placeholder="img (url only)" required>
-                                    </div><!--global floating input-->
+                            <div class="global-grid">             
 
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="text" name="url" id="" v-model="url" placeholder="url name" required>
-                                    </div><!--global floating input-->                         
-                    
                                     <div class="global-floating-input">
                                         <i class='uil uil-file-blank'></i>
                                         <input type="text" name="name" id="" v-model="name" placeholder="name" required>
                                     </div><!--global floating input-->                
+
 
                                     <div class="global-floating-input">
                                         <i class='uil uil-file-blank'></i>
@@ -47,25 +24,20 @@
                                     </div><!--global floating input-->
                     
                                     <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
+                                        <i class='uil uil-dollar-alt'></i>
                                         <input type="text" name="price" id="" @keypress="stripTheGarbage($event)" @blur="formatDollars()" v-model="price" placeholder="price" required>
-                                        <span class="currency-symbol">$</span>
-                                     </div><!--global floating input-->  
+                                    </div><!--global floating input-->  
 
                                     <div class="global-floating-input">
                                         <i class='uil uil-file-blank'></i>
-                                        <input type="date" name="schedule" id="" v-model="schedule_start" placeholder="schedule_start" required>
-                                    </div><!--global floating input-->
-
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="date" name="schedule_end" id="" v-model="schedule_end" placeholder="schedule_end" required>
-                                    </div><!--global floating input-->    
-
-                                    <div class="global-floating-input">
-                                        <div v-if="ServiceIsEnable" v-on:click="DisableService"><i class='uil uil-toggle-on'></i><span>available</span></div>
-                                        <div v-if="ServiceIsDisable" v-on:click="EnableService"><i class='uil uil-toggle-off'></i><span>disabled</span></div>
-                                    </div><!--global floating input-->
+                                        <select name="time" id="" v-model="time" required style="outline:none;border:none;">
+                                            <option value="Annual">Annual</option>
+                                            <option value="Monthly">Monthly</option>
+                                            <option value="Weekly">Weekly</option>
+                                            <option value="Daily">Daily</option>
+                                            <option value="Daily">One pay</option>
+                                        </select>                             
+                                    </div><!--global floating input-->  
 
                             </div><!--global grid-->
 
@@ -93,30 +65,50 @@
 </template>
 
 <script>
-import {db} from '../../../firebaseConfig.js'
+import {firebase ,db} from '../../../firebaseConfig.js'
 import Swal from 'sweetalert'
 export default {
     name: 'ManageServicesPlans_Edit',
     data(){
         return{
 
-            name:null,
-            img:null,
-            description:null,
-            url:null,
-            price:null,
-            schedule: null,
-            schedule_end: null,
-            availability:null,
-            ServiceIsEnable: null,
-            ServiceIsDisable: null,
             service_id:null,
-            plan_id:null,
+
+            name:null,
+            description:null,
+            price:null,
+            time:null,
+
+            Selected_service_id:null,
+
+            myservices:[],
             
         }
     },
 
 
+
+    created(){
+        let self = this;
+
+
+          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                //console.log(doc.data().schedule)
+                
+                const data ={
+                  
+                   'service_id': doc.data().service_id,
+                   'service_name':doc.data().name,
+                 }
+                   self.myservices.push(data)
+
+
+            })  
+        })      
+               
+
+    },
 
 
 
@@ -124,27 +116,14 @@ export default {
           db.collection('plans').where('plan_id' , '==' , to.params.plan_id).get().then((querySnapshot) => {
             querySnapshot.forEach(doc => {
               next(vm => {
-                    vm.url = doc.data().url_name
-                    vm.img = doc.data().img
                     vm.name = doc.data().name
                     vm.description = doc.data().description
                     vm.price = doc.data().price
-                    vm.schedule = doc.data().schedule
-                    vm.schedule_end = doc.data().schedule_end
-                    vm.availability = doc.data().availability
+                    vm.time = doc.data().time
                     vm.service_id = doc.data().service_id
-
-                    
-                    //console.log(doc.data().availability)
-
-                    if (doc.data().availability === true){
-                        vm.ServiceIsEnable = true
-                        vm.ServiceIsDisable = false
-                    }
-                    if (doc.data().availability === false){
-                        vm.ServiceIsEnable = false
-                        vm.ServiceIsDisable = true
-                    }    
+                    vm.plan_id = doc.data().plan_id
+                    vm.creator_id = doc.data().creator_id
+                    vm.time = doc.data().time
 
               })
             })
@@ -158,72 +137,60 @@ export default {
       fetchData (){
         db.collection('plans').where('plan_id', '==' , this.$route.params.plan_id).get().then(querySnapshot =>{
           querySnapshot.forEach(doc => {
-                    this.url = doc.data().url_name
-                    this.imh = doc.data().img
                     this.name = doc.data().name
                     this.description = doc.data().description
                     this.price = doc.data().price
-                    this.schedule = doc.data().schedule
-                    this.schedule = doc.data().schedule_end
-                    this.availability = doc.data().availability      
+                    this.time = doc.data().time
                     this.service_id = doc.data().service_id
+                    this.plan_id = doc.data().plan_id
+                    this.creator_id = doc.data().creator_id
+                    this.time = doc.data().time
                     
           })
         })
       },
 
 
-      DeleteThisService: function(){
+      DeleteThisService(){
           Swal({ title: "Deleting service" , text: "Are you sure u want to remove this service from your list?", icon: "warning", buttons:["i changed my mind","yes, remove it"],})
           .then((deletethisservice) => {
             if(deletethisservice){
-                        db.collection('services').where('service_id', '==' , this.$route.params.service_id).get().then(querySnapshot =>{
+                        db.collection('plans').where('plan_id', '==' , this.$route.params.plan_id).get().then(querySnapshot =>{
                         querySnapshot.forEach(doc => {
                             doc.ref.delete()
-                            this.$router.push('/manage_services')
+                            this.$router.push('/manage_plans')
                         })
                         })
              }
             })
       },
-      goBackCancelEdit: function() {
-            this.$router.push('/manage_services')          
+      goBackCancelEdit() {
+            this.$router.push('/manage_plans')          
       },
 
-      saveChangesForThisService: function(){
+      saveChangesForThisService(){
           Swal({ title: "Saving changes" , text: "Are you sure u want to save this changes?", icon: "warning", buttons:["i changed my mind","yes, save it"],})
           .then((savingChanges) => {
             if(savingChanges){
-                        db.collection('services').where('service_id', '==' , this.$route.params.service_id).get().then(querySnapshot =>{
+                        db.collection('plans').where('plan_id', '==' , this.$route.params.plan_id).get().then(querySnapshot =>{
                         querySnapshot.forEach(doc => {
                             doc.ref.update({
                                 name: this.name,
                                 description: this.description,
                                 price: this.price,
-                                schedule: this.schedule,
-                                schedule_end: this.schedule_end,
-                                url_name: this.url,
-                                img: this.img,
-                                availability: this.availability,
+                                time: this.time,
                             })
                         })
                         })
              }
-             this.$router.push('/manage_services')
+             this.$router.push('/manage_plans')
             })          
       },
 
 
-      EnableService: function(){
-            this.availability = true
-            this.ServiceIsEnable = true
-            this.ServiceIsDisable = false
-      },
-      DisableService: function(){
-            this.availability = false
-            this.ServiceIsEnable = false
-            this.ServiceIsDisable = true
-      },
+
+
+
 
       stripTheGarbage(e) {
       if (e.keyCode < 48 && e.keyCode !== 46 || e.keyCode > 59) {
