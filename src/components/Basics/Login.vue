@@ -2,7 +2,7 @@
 <div id="login">
 
 
-   <form class="form-container" method="post" v-on:submit.prevent>
+   <form id="form01" class="form-container" method="post" v-on:submit.prevent v-if="form01">
      <div class="form-box mdl-shadow--16dp">
        
        <div class="go-to-tab">
@@ -24,20 +24,41 @@
 
        <br>
 
-       <button @click="logIn" class="mdl-button sombra">Sign in</button>
+       <button v-on:click="logIn" class="mdl-button sombra">Sign in</button>
        
        <br>
 
-       <a><button @click="restorePassword">forgot your password ?</button> </a>
+       <a v-on:click="showForm02" style="cursor:pointer;">forgot your password ?</a>
        <br><br>
-    </div><!--fomr box -->
+    </div>
+   </form><!--fomr box -->
 
 
 
 
 
-     
+   <form id="form02" class="form-container" method="post" v-on:submit.prevent v-if="form02">
+     <div class="form-box mdl-shadow--16dp">       
+       
+       <h1>Forgot my password</h1>
+
+      <div class="input-container">
+        <i class='uil uil-envelope-alt'></i><input type="text" name="email" id="emailAddress" v-model="email" placeholder="email" required/> 
+      </div>
+
+
+       <br>
+
+       <button v-on:click="forgotPassword" class="mdl-button sombra">Send password reset email</button>
+       
+       <br>
+    </div><!--fomr box -->  
    </form>
+
+
+
+
+
 </div>
 </template>
 
@@ -52,6 +73,12 @@ export default {
       
       email:'',
       password:'',
+
+      form01: true,
+      form02: false,
+
+
+      emailAddress:'',
 
 
     }
@@ -73,6 +100,25 @@ export default {
       );
     },
 
+    forgotPassword: function(){
+      let emailAddress = this.email
+      let self = this;
+      firebase.auth().sendPasswordResetEmail(emailAddress).then(function() {
+          Swal({ title: "Check your email!" , text: "we sent you an email with the steps to recover your account", icon: "success", button: "thanks!",}).then(() => {
+            self.$router.go("login")
+            self.form01 = true
+            self.form02 = false
+          })
+        }).catch(function(error) {
+          Swal({ title: "Oops !", text: error.message, icon: "error"})
+          });
+    },
+
+    showForm02: function(){
+      this.form01 = false
+      this.form02 = true
+    }
+
     
 
   },
@@ -84,8 +130,21 @@ export default {
 <style scoped>
 
   
-  form{
+  #form01{
     background: url("https://cdn.dribbble.com/users/63407/screenshots/5834137/dribbble_tea_haytruck.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    box-shadow: inset 0 0 100px 2200px rgba(0, 0, 0, 0.5);
+    align-content: middle;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding:22px;
+  }
+  #form02{
+    background: url("https://cdn.dribbble.com/users/902546/screenshots/5815440/on-dribble1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
