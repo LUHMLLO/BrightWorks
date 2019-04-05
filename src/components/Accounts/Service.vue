@@ -49,15 +49,15 @@
         </div><!---global tab content-->
 
         <div id="reviews" class="global-tab-content" v-if="reviewsTab">
-            <reviews v-bind:serviceurlname="url_name"/>
+            <reviews v-bind:serviceid="service_id"/>
         </div><!---global tab content-->        
 
         <div id="provider" class="global-tab-content" v-if="othersTab">
-            <provider v-bind:serviceurlname="url_name"/>
+            <provider v-bind:provider="owner_id"/>
         </div><!---global tab content-->
 
         <div id="help" class="global-tab-content" v-if="helptab">
-            <help v-bind:serviceurlname="url_name"/>
+            <help v-bind:serviceid="service_id"/>
         </div><!---global tab content-->
 
 

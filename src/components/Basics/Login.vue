@@ -28,7 +28,7 @@
        
        <br>
 
-       <a>forgot your password ?</a>
+       <a><button @click="restorePassword">forgot your password ?</button> </a>
        <br><br>
     </div><!--fomr box -->
 
@@ -71,13 +71,11 @@ export default {
           Swal({ title: "Oops !", text: err.message, icon: "error"})
         }
       );
-    }
+    },
 
-
+    
 
   },
-
-
 
 }
 </script>

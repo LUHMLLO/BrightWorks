@@ -26,46 +26,56 @@
                         
                         <form @submit.prevent>
                             <div class="global-grid">
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="url" name="img" id="" v-model="img" placeholder="img (url only)" required>
+                        </div><!--global floating input-->                      
+        
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="name" id="" v-model="name" placeholder="name" required>
+                        </div><!--global floating input-->                
+
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="description" id="" v-model="description" placeholder="description" required>
+                        </div><!--global floating input-->
+
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="schedule" id="" v-model="time_start" placeholder="start hour" required>
+                        </div><!--global floating input-->
+
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="schedule_end" id="" v-model="time_end" placeholder="end hour" required>
+                        </div><!--global floating input-->   
+                                    
                                     <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="text" name="img" id="" v-model="img" placeholder="img (url only)" required>
+                                        <div v-if="ServiceIsEnable" v-on:click="DisableService"  style="cursor:pointer;"><i class='uil uil-toggle-on'></i><span>available</span></div>
+                                        <div v-if="ServiceIsDisable" v-on:click="EnableService"  style="cursor:pointer;"><i class='uil uil-toggle-off'></i><span>disabled</span></div>
                                     </div><!--global floating input-->
 
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="text" name="url" id="" v-model="url" placeholder="url name" required>
-                                    </div><!--global floating input-->                         
-                    
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="text" name="name" id="" v-model="name" placeholder="name" required>
-                                    </div><!--global floating input-->                
 
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="text" name="description" id="" v-model="description" placeholder="description" required>
-                                    </div><!--global floating input-->
-                    
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="text" name="price" id="" @keypress="stripTheGarbage($event)" @blur="formatDollars()" v-model="price" placeholder="price" required>
-                                        <span class="currency-symbol">$</span>
-                                     </div><!--global floating input-->  
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="phone" id="" v-model="phone" placeholder="phone" required>
+                        </div><!--global floating input--> 
 
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="date" name="schedule" id="" v-model="schedule_start" placeholder="schedule_start" required>
-                                    </div><!--global floating input-->
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="email" id="" v-model="email" placeholder="email" required>
+                        </div><!--global floating input--> 
 
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="date" name="schedule_end" id="" v-model="schedule_end" placeholder="schedule_end" required>
-                                    </div><!--global floating input-->    
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="location" id="" v-model="location" placeholder="location" required>
+                        </div><!--global floating input--> 
 
-                                    <div class="global-floating-input">
-                                        <div v-if="ServiceIsEnable" v-on:click="DisableService"><i class='uil uil-toggle-on'></i><span>available</span></div>
-                                        <div v-if="ServiceIsDisable" v-on:click="EnableService"><i class='uil uil-toggle-off'></i><span>disabled</span></div>
-                                    </div><!--global floating input-->
+                        <div class="global-floating-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="video" id="" v-model="video" placeholder="video about this service" required>
+                        </div><!--global floating input--> 
 
                             </div><!--global grid-->
 
@@ -100,17 +110,21 @@ export default {
     data(){
         return{
 
+
+            service_id:null,
             name:null,
             img:null,
             description:null,
-            url:null,
-            price:null,
-            schedule: null,
-            schedule_end: null,
+            time_start:null,
+            time_end:null,
             availability:null,
-            ServiceIsEnable: null,
-            ServiceIsDisable: null,
-            service_id:null,
+            ServiceIsEnable:null,
+            ServiceIsDisable:null,
+            phone:null,
+            email:null,
+            location:null,
+            video:null,
+            
             
         }
     },
@@ -123,15 +137,17 @@ export default {
           db.collection('services').where('service_id' , '==' , to.params.service_id).get().then((querySnapshot) => {
             querySnapshot.forEach(doc => {
               next(vm => {
-                    vm.url = doc.data().url_name
                     vm.img = doc.data().img
                     vm.name = doc.data().name
                     vm.description = doc.data().description
-                    vm.price = doc.data().price
-                    vm.schedule = doc.data().schedule
-                    vm.schedule_end = doc.data().schedule_end
+                    vm.time_start = doc.data().time_start
+                    vm.time_end = doc.data().time_end
                     vm.availability = doc.data().availability
                     vm.service_id = doc.data().service_id
+                    vm.phone = doc.data().phone
+                    vm.email = doc.data().email
+                    vm.location = doc.data().location
+                    vm.video = doc.data().video
 
                     
                     //console.log(doc.data().availability)
@@ -157,15 +173,17 @@ export default {
       fetchData (){
         db.collection('services').where('service_id', '==' , this.$route.params.service_id).get().then(querySnapshot =>{
           querySnapshot.forEach(doc => {
-                    this.url = doc.data().url_name
-                    this.imh = doc.data().img
+                    this.img = doc.data().img
                     this.name = doc.data().name
                     this.description = doc.data().description
-                    this.price = doc.data().price
-                    this.schedule = doc.data().schedule
-                    this.schedule = doc.data().schedule_end
+                    this.time_start = doc.data().time_start
+                    this.time_end = doc.data().time_end
                     this.availability = doc.data().availability      
                     this.service_id = doc.data().service_id
+                    this.phone = doc.data().phone
+                    this.email = doc.data().email
+                    this.location = doc.data().location
+                    this.video = doc.data().video
                     
           })
         })
@@ -198,12 +216,14 @@ export default {
                             doc.ref.update({
                                 name: this.name,
                                 description: this.description,
-                                price: this.price,
-                                schedule: this.schedule,
-                                schedule_end: this.schedule_end,
-                                url_name: this.url,
+                                time_start: this.time_start,
+                                time_end: this.time_end,
                                 img: this.img,
                                 availability: this.availability,
+                                phone: this.phone,
+                                email: this.email,
+                                location: this.location,
+                                video: this.video,
                             })
                         })
                         })
@@ -230,34 +250,9 @@ export default {
       }
     },
 
-    formatDollars() {
-            if (this.price != '') {
-                    var num = this.price;
-                    
-                    num = Number(num);
-                            
-                    var countDecimals = function (value) {
-                    if(Math.floor(value) === value) return 0;
-                    return value.toString().split(".")[1].length || 0; 
-                    }
-                    
-                    var decimal = countDecimals(num);
-                    
-                    if (decimal < 2) {
-                    num = num.toFixed(2)
-                    }
-                    
-                    if (decimal > 2) {
-                    num = num.toFixed(decimal)
-                    }
-                    
-                    if (parseInt(num) < 1) {
-                    num = "." + String(num).split(".")[1];
-                    }
 
-                    this.price = num;
-                }
-            }
+
+            
 
       
 

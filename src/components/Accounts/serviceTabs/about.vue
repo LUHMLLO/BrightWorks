@@ -36,16 +36,25 @@
 
 
   <div class="global-grid">
-        <div class="global-info-pill" v-for="(detail,DetailsData) in Details" :key="DetailsData">
+        <div class="global-info-pill" v-if="phone">
             <i class='uil uil-phone'></i>
-            <span>{{detail.detail}}</span>
+            <span>{{phone}}</span>
         </div>
+        <div class="global-info-pill" v-if="email">
+            <i class='uil uil-envelope-alt'></i>
+            <span>{{email}}</span>
+        </div>
+        <div class="global-info-pill" v-if="location">
+            <i class='uil uil-map-pin-alt'></i>
+            <span>{{location}}</span>
+        </div>        
   </div><!---global grid--->
 
 
-   <div v-if="yesThisIsMyVideo">
-     <iframe class="global-iframe mdl-shadow--2dp" v-bind:src="video"></iframe>
-   </div>
+     <video class="global-iframe" controls  v-if="video">
+         <source v-bind:src="video">
+     </video>
+
 
 
 
@@ -69,6 +78,9 @@ export default {
             time_start:null,
             time_end:null,
             video:null,
+            phone:null,
+            email:null,
+            location:null,
             yesThisIsMyVideo:false,
 
             Details:[
@@ -95,14 +107,10 @@ export default {
                     this.description = doc.data().description
                     this.time_start = doc.data().time_start
                     this.time_end = doc.data().time_end
-
-                    if(doc.data().video == null || doc.data().video == ''){
-                        this.yesThisIsMyVideo = false
-                    }
-                    else{
-                        this.yesThisIsMyVideo = true
-                        this.video = doc.data().video
-                    }
+                    this.phone = doc.data().phone
+                    this.email = doc.data().email
+                    this.location = doc.data().location
+                    this.video = doc.data().video
                     
           })
         })
