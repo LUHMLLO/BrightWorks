@@ -2,12 +2,13 @@
 <div>
 
 
+
            <div class="global-grid">
              
              
              
               <div class="global-search-result" v-for="(service,servicesData) in services" v-bind:key="servicesData">
-                <router-link :to="{ name: 'Service', params: {service_id: service.service_id}}">
+                <router-link :to="{ name: 'Service', params: {service_id: service.service_id || 404}}">
                         <div class="global-search-result-img mdl-shadow--2dp">
                           <img v-bind:src="service.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
                         </div>
@@ -28,17 +29,15 @@
 </template>
 
 
-
 <script>
-import { db } from '../../../firebaseConfig.js'
+import { firebase, db } from '../../../firebaseConfig.js'
 export default {
-    name:'provider',
-    props:['provider'],
+    name: 'allmyservices',
+    props:[],
     data(){
         return{
 
-      services:[],
-
+            services:[],
 
         }
     },
@@ -46,10 +45,12 @@ export default {
 
 
 
+
+
   created(){
          let self = this;  
 
-          db.collection('services').where('owner_id', '==', this.$props.provider).get().then((querySnapshot) => {
+          db.collection('services').where('owner_id', '==', firebase.auth().currentUser.uid).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) =>{
               //console.log(doc.data().url_name) 
                  const data ={
@@ -67,6 +68,8 @@ export default {
             })
           });
   },
+
+
 
 
 

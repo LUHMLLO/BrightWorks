@@ -31,36 +31,26 @@
 
        <div class="global-tabs-bar">
 
-           <button class="mdl-button global-button-round sombra">timeline</button>
-           <button class="mdl-button global-button-round sombra">About</button>
-           <button class="mdl-button global-button-round sombra">Reviews</button>
+        <!---   <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:aboutTab }" v-on:click="ShowAbout">About</button>  --->
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:servicesTab }" v-on:click="ShowServices">All my services</button>
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:questionsTab }" v-on:click="ShowQuestions">Questions asked from my services</button>
 
        </div><!---options bar-->
 
 
 
 
-
-       <div id="timeline" class="global-tab-content">
-       </div><!--timeline tab-->
-
-       <div id="about" class="global-tab-content">
+       <div id="about" class="global-tab-content" v-if="aboutTab">
+           <aboutme/>
        </div><!--about tab-->
 
-       <div id="reviews" class="global-tab-content">
+       <div id="allmyservices" class="global-tab-content" v-if="servicesTab">
+           <allmyservices/>
+       </div><!--about tab-->
+
+       <div id="questions" class="global-tab-content" v-if="questionsTab">
+           <Questions_from_services/>
        </div><!--reviews tab-->
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -77,9 +67,18 @@
 
 
 <script>
+import Questions_from_services from './ProfileServicesTabs/Questions_from_services.vue'
+import aboutme from './ProfileServicesTabs/aboutme.vue'
+import allmyservices from './ProfileServicesTabs/allmyservices.vue'
+
 import { firebase, db } from '../../firebaseConfig.js'
 export default {
     name: 'ServiceProfile',
+    components:{
+        Questions_from_services,
+        aboutme,
+        allmyservices,
+    },
     data(){
         return{
 
@@ -88,6 +87,10 @@ export default {
             useremail:null,
             userphone:null,
             user_id:null,
+
+            aboutTab:true,
+            servicesTab: false,
+            questionsTab:false,
 
             
         }
@@ -124,6 +127,30 @@ export default {
                     }                             
         })
         
+    },
+
+
+
+    methods:{
+
+        ShowAbout:function(){
+            this.aboutTab = true
+            this.servicesTab = false
+            this.questionsTab = false
+        },
+
+        ShowQuestions:function(){
+            this.aboutTab = false
+            this.servicesTab = false
+            this.questionsTab = true
+        },
+
+        ShowServices:function(){
+            this.aboutTab = false
+            this.servicesTab = true
+            this.questionsTab = false
+        }
+
     },
     
 

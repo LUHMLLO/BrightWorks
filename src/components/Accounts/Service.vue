@@ -134,6 +134,11 @@ export default {
                     vm.service_id = doc.data().service_id
 
                     vm.timelineTab = true
+                    vm.aboutTab = false
+                    vm.contractTab = false
+                    vm.reviewsTab = false
+                    vm.othersTab = false
+                    vm.helptab = false
 
               })
             })
@@ -153,6 +158,12 @@ export default {
                     this.service_id = doc.data().service_id
 
                     this.timelineTab = true
+                    this.aboutTab = false
+                    this.contractTab = false
+                    this.reviewsTab = false
+                    this.othersTab = false
+                    this.helptab = false
+
           })
         })
       },
