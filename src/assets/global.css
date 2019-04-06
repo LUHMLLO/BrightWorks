@@ -679,6 +679,17 @@ align-self: middle;
   text-align: left;
   width:100%;
 }
+.global-post-content-question{
+  padding:38px 12px;
+  text-align: center;
+  width:100%;
+}
+.global-post-content-question h3{
+  font-size:28px;
+}
+.global-post-content-question p{
+  font-size:18px;
+}
 .global-post-content img{
   border-radius:8px;
 }
@@ -715,6 +726,29 @@ align-self: middle;
 
 
 
+
+.global-questions-make{
+  width:90%;
+  padding:15px 22px 18px 22px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  border-radius:16px;
+}
+.global-questions-make i{
+  margin: auto;
+}
+.global-questions-make-input{
+  width:96%;
+}
+.global-questions-make-input input{
+  width:100%;
+  outline:none !important;
+  border:none !important;
+  padding: 8px;
+  margin: auto;
+}
 
 
 

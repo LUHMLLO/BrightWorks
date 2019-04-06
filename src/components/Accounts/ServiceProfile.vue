@@ -39,7 +39,6 @@
 
 
 
-
        <div id="about" class="global-tab-content" v-if="aboutTab">
            <aboutme/>
        </div><!--about tab-->
@@ -88,8 +87,8 @@ export default {
             userphone:null,
             user_id:null,
 
-            aboutTab:true,
-            servicesTab: false,
+            aboutTab:false,
+            servicesTab: true,
             questionsTab:false,
 
             
