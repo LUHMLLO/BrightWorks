@@ -1,14 +1,16 @@
 <template>
 <div>
 
-
+    <br>
+   <h4>Ask something</h4>
   <div class="global-questions-make mdl-shadow--2dp">
+      
       <div class="global-questions-make-input">
-          <input type="text" name="" id="" placeholder="Title">
-          <input type="text" name="" id="" placeholder="Content...">
+          <input type="text" name="" id="" placeholder="Title" v-model="title">
+          <input type="text" name="" id="" placeholder="Content..." v-model="content">
       </div><!---make questions input--->
 
-      <i class='uil uil-message'></i>
+      <i class='uil uil-message' v-on:click="PostAQuestion" style="cursor:pointer;"></i>
   </div><!--- make questions -->
 
   <br><br><br><br><br><br><br>
@@ -49,7 +51,8 @@
 
 
 <script>
-import {db} from '../../../firebaseConfig.js'
+import {firebase,db} from '../../../firebaseConfig.js'
+import Swal from 'sweetalert'
 export default {
     name:'help',
     props:['serviceid'],
@@ -58,6 +61,14 @@ export default {
 
 
            questions:[],
+
+           title:null,
+           content:null,
+
+           publisher_name:null,
+           publisher_id:firebase.auth().currentUser.uid,
+           publisher_img:null,
+           service_id:null,
 
 
         }
@@ -88,10 +99,52 @@ export default {
 
             })
           })
+
+
+          
+        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
+        {                       
+
+                        self.publisher_img = snapshot.data().img
+                        self.publisher_name = snapshot.data().name                         
+        })
+
+
+
         },
-    },
+
+   
 
 
-}
+        PostAQuestion: function(){
+            let self = this;
+            db.collection('questions').add({
+            })
+            .then(function(docRef) {
+                
+                db.collection('questions').doc(docRef.id).set({
+                question_id: docRef.id,
+                publisher_id: self.publisher_id,
+                publisher_img: self.publisher_img,
+                publisher_name: self.publisher_name,
+                title: self.title,
+                content: self.content,
+                questioned_service: self.$props.serviceid,
+                })
+
+                Swal({ title: "Congrats ! ", text: "Your questions has been posted", icon: "success", button: "nice!",})
+            })
+            .catch(error => Swal(error))
+        },
+     },
+
+
+
+
+
+    }
+
+
+
 </script>
 
