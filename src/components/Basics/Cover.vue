@@ -59,7 +59,7 @@
              <img src="../../assets/logo.png">
           </div>
 
-        <p style="text-align:justify; width:60%; margin:auto;">
+        <p style="text-align:justify; padding: 22px; margin:auto;">
           Bright works is a work platform where people can find and hire different services depending on what they need, without wasting a lot of time carrying out extensive searches or taking risks with services that do not have as much credibility, all this from any mobile device with Internet connection;
            <br>
           Bright works seeks to serve as home for those who wish to have a work platform to provide, promote and manage their business / service that they wish to provide, facilitating the acquisition of clients and also allowing them to manage their work from it, without requiring a very extensive learning curve but that meets the necessary functionalities to be useful.
