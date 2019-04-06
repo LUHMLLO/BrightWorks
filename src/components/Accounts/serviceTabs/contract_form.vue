@@ -46,7 +46,7 @@
                        </div><!---description-->
 
 
-                       <button class="global-button">checkout with paypal</button>
+                       <button class="global-button" @click="AddPlan">checkout with paypal</button>
 
                  </div><!---content--->
 
@@ -60,6 +60,7 @@
 
 <script>
 import { db } from '../../../firebaseConfig.js'
+import Swal from 'sweetalert'
 export default {
     name: 'contract_form',
     props:['selectedPlan','serviceimg','servicename'],
@@ -107,6 +108,31 @@ export default {
 
 
         },
+
+        AddPlan(){
+            let self = this;
+            db.collection('plans_adquired').add({
+            })
+            .then(function(docRef) {
+                
+                db.collection('plans_adquired').doc(docRef.id).set({
+                
+                selected_option_title: self.selected_option_title,
+                selected_option_price: self.selected_option_price,
+                selected_option_description: self.selected_option_description,
+                selected_option_time: self.selected_option_time
+                })
+
+                Swal({ title: "Congrats ! ", text: "Thanks for your purchase !!", icon: "success", button: "nice!",}).then(() => {self.$router.go("manage_plans")})
+            })
+            
+        },
+
+        stripTheGarbage(e) {
+      if (e.keyCode < 48 && e.keyCode !== 46 || e.keyCode > 59) {
+        e.preventDefault()
+      }
+    },
 
 
     }
