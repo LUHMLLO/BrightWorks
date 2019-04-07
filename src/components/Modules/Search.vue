@@ -30,7 +30,7 @@
              
              
              
-              <div class="global-search-result" v-for="(service,servicesData) in services" v-bind:key="servicesData">
+              <div class="global-search-result" v-for="(service,servicesData) in filteredItems" v-bind:key="servicesData">
                 <router-link :to="{ name: 'Service', params: {service_id: service.service_id || 404}}">
                         <div class="global-search-result-img mdl-shadow--2dp">
                           <img v-bind:src="service.img || 'https://cdn.dribbble.com/users/1047810/screenshots/4739092/2.png'"/>
@@ -78,7 +78,7 @@ export default {
   created(){
          let self = this;  
 
-          db.collection('services').orderBy('name').get().then((querySnapshot) => {
+          db.collection('services').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) =>{
               //console.log(doc.data().url_name) 
                  const data ={
@@ -96,6 +96,26 @@ export default {
             })
           });
   },
+
+
+
+  computed: {
+    filteredItems: function() {
+        let result = this.services
+
+        if(!this.search){
+          return result
+        }
+
+        const filterValue = this.search.toLowerCase()
+        
+        const filter = event => 
+            event.name.toLowerCase().includes(filterValue) ||
+            event.state.toLowerCase().includes(filterValue) ||
+            event.tags.some(tag => tag.toLowerCase().includes(filterValue))
+        return result.filter(filter)
+      }
+    },
 
 
 

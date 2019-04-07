@@ -27,6 +27,12 @@ import ManageServicesPlans_Main from "./components/Modules/ManageServicesPlans/M
 import ManageServicesPlans_Edit from "./components/Modules/ManageServicesPlans/ManageServicesPlans_Edit.vue"
 
 
+
+
+import dashboard_S from "./components/DashboardService/dashboard_S.vue"
+import dashboard_C from "./components/DashboardClient/dashboard_C.vue"
+
+
 Vue.use(Router)
 
 
@@ -192,8 +198,26 @@ let router = new Router({
         }
       },
       
+
+
+
+      {
+        path: '/service/dashboard/:userid',
+        name: 'dashboard_S',
+        component: dashboard_S,
+        meta:{
+          requiresAuth: true
+        }
+      },      
       
-      
+      {
+        path: '/client/dashboard:/userid',
+        name: 'dashboard_C',
+        component: dashboard_C,
+        meta:{
+          requiresAuth: true
+        }
+      },     
 
 
 

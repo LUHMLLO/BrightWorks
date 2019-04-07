@@ -2,98 +2,86 @@
 <div>
 
 
-      <div class="global-header mdl-shadow--2dp">
+<div class="global-form-background">
 
-          <div class="global-header-bg">
-              <img v-bind:src="img">
-          </div>
-
-          <div class="global-header-bg-overlay"></div>
-
-          <div class="global-header-img mdl-shadow--2dp">
-              <img v-bind:src="img">
-          </div>
+        <div class="global-form-background-img">
+           <img v-bind:src="img">
+       </div><!--background image-->
+       <div class="global-form-background-img-overlay"></div>
 
 
-          <h3 class="global-header-title">{{name}}</h3>
-          
-
-      </div><!--header-->
 
 
-            <div id="asd-section" class="global-section">
-                        <h4>Edit or delete this service</h4>
-                        
-                        <form @submit.prevent>
-                            <div class="global-grid">
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
+              <form @submit.prevent class="global-rounded-form mdl-shadow--2dp">
+
+                  
+              <h3>Add a new service</h3>
+                  
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-scenery'></i>
                             <input type="url" name="img" id="" v-model="img" placeholder="img (url only)" required>
                         </div><!--global floating input-->                      
         
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-label'></i>
                             <input type="text" name="name" id="" v-model="name" placeholder="name" required>
                         </div><!--global floating input-->                
 
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-tag'></i>
                             <input type="text" name="description" id="" v-model="description" placeholder="description" required>
                         </div><!--global floating input-->
 
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="schedule" id="" v-model="time_start" placeholder="start hour" required>
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-clock-two'></i>
+                            <input type="text" name="schedule" id="" v-model="time_start" placeholder="start hour (depends)">
                         </div><!--global floating input-->
 
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="schedule_end" id="" v-model="time_end" placeholder="end hour" required>
-                        </div><!--global floating input-->   
-                                    
-                                    <div class="global-floating-input">
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-clock-nine'></i>
+                            <input type="text" name="schedule_end" id="" v-model="time_end" placeholder="end hour (depends)">
+                        </div><!--global floating input-->    
+
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-phone-alt'></i>
+                            <input type="text" name="phone" id="" v-model="phone" placeholder="phone (optional)">
+                        </div><!--global floating input--> 
+
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-envelope-alt'></i>
+                            <input type="text" name="email" id="" v-model="email" placeholder="email (optional)">
+                        </div><!--global floating input--> 
+
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-map-pin-alt'></i>
+                            <input type="text" name="location" id="" v-model="location" placeholder="location (optional)">
+                        </div><!--global floating input--> 
+
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-video'></i>
+                            <input type="text" name="video" id="" v-model="video" placeholder="video about this service (url only) (optional)">
+                        </div><!--global floating input--> 
+
+                        
+                  
+                                    <div class="global-rounded-form-input">
                                         <div v-if="ServiceIsEnable" v-on:click="DisableService"  style="cursor:pointer;"><i class='uil uil-toggle-on'></i><span>available</span></div>
                                         <div v-if="ServiceIsDisable" v-on:click="EnableService"  style="cursor:pointer;"><i class='uil uil-toggle-off'></i><span>disabled</span></div>
                                     </div><!--global floating input-->
 
-
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="phone" id="" v-model="phone" placeholder="phone" required>
-                        </div><!--global floating input--> 
-
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="email" id="" v-model="email" placeholder="email" required>
-                        </div><!--global floating input--> 
-
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="location" id="" v-model="location" placeholder="location" required>
-                        </div><!--global floating input--> 
-
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <input type="text" name="video" id="" v-model="video" placeholder="video about this service" required>
-                        </div><!--global floating input--> 
-
-                            </div><!--global grid-->
-
                             
                             
                             <br><br>
-                            <button class="global-button" v-on:click="goBackCancelEdit">Cancel</button>
-                            <button class="global-button" v-on:click="saveChangesForThisService">Save changes</button>
-                            <button class="global-button" v-on:click="DeleteThisService">Delete</button>
+
+                            <div class="global-horizontal-scroll">
+                                <button class="global-button" v-on:click="goBackCancelEdit">Cancel</button>
+                                <button class="global-button" v-on:click="saveChangesForThisService">Save changes</button>
+                                <button class="global-button" v-on:click="DeleteThisService">Delete</button>  
+                            </div>
                             
 
-                        </form>
-                        
-                        </div><!---available section-->
-
-
-
-
+              </form>
+</div><!---global from wrapper-->
 
 
 
@@ -197,14 +185,14 @@ export default {
                         db.collection('services').where('service_id', '==' , this.$route.params.service_id).get().then(querySnapshot =>{
                         querySnapshot.forEach(doc => {
                             doc.ref.delete()
-                            this.$router.push('/manage_services')
+                            this.$router.go(-1)
                         })
                         })
              }
             })
       },
       goBackCancelEdit: function() {
-            this.$router.push('/manage_services')          
+            this.$router.go(-1)          
       },
 
       saveChangesForThisService: function(){
@@ -228,7 +216,7 @@ export default {
                         })
                         })
              }
-             this.$router.push('/manage_services')
+             this.$router.go(-1)
             })          
       },
 

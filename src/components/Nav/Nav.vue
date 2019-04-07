@@ -5,33 +5,24 @@
       <transition name="nav-anim" enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">
 
         <div id="sidebar" class="mdl-shadow--6dp" v-if="isNavOn">
-                 
-                 <div id="sidebar-route-buttons" class="global-grid">
-                     <i class='uil uil-arrow-left' @click="$router.go(-1)"></i>
-                     <i class='uil uil-arrow-right' @click="$router.go(+1)"></i>
-                 </div>
               
-            <div id="sidebar-header" v-if="isLoggedIn">                
-                  
-                  
+            <div id="sidebar-header" v-if="isLoggedIn">                                 
                     <div id="sidebar-user-img">
                       <img v-bind:src="userimg">
                     </div>
 
-                <h6>{{currentUser}}</h6>
-
-                <div id="sidebar-header-icons" class="global-grid">
-                    <i id="logoutbtn" class='uil uil-entry' v-on:click="logout"></i>
-                    <i id="notificationsbtn" class='uil uil-bell'></i>
-                    <i id="settingsbtn" class='uil uil-cog' v-on:click="openSettings"></i>
-                </div>
+                <h6>{{username}}</h6>
             </div>
               
 
             <div id="sidebar-links">
-              <router-link to="/home" class="mdl-button">
-               <i class='uil uil-home-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">home</p>
+
+              <router-link :to="{ name: 'dashboard_C', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'client' && isLoggedIn" >
+               <i class='uil uil-home-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Home</p>
               </router-link>
+              <router-link :to="{ name: 'dashboard_S', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
+               <i class='uil uil-home-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Home</p>
+              </router-link>              
 
 
               <router-link :to="{ name: 'ClientProfile', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'client' && isLoggedIn" >
@@ -47,17 +38,24 @@
               </router-link>
 
               <router-link to="/manage_services" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
-               <i class='uil uil-folder' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Manage services</p>
+               <i class='uil uil-folder' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Services</p>
               </router-link>
 
               <router-link to="/manage_plans" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
-               <i class='uil uil-wallet' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Manage Plans</p>
+               <i class='uil uil-wallet' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Payments</p>
               </router-link>
 
               <router-link to="/Compose" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
                <i class='uil uil-postcard' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Posts</p>
               </router-link>
-                            
+
+              <router-link to="/settings" class="mdl-button">
+                <i class='uil uil-cog' style="width:50%;"></i><p>Settings</p>
+              </router-link>
+
+              <router-link to="/" class="mdl-button">
+                <i class='uil uil-entry' v-on:click="logout" style="width:50%;"></i><p>Log out</p>
+              </router-link>                            
 
             </div><!--sidebar links-->
 
@@ -108,6 +106,7 @@ export default {
        userimg: null,
        user_id:null,
        accountType:null,
+       username:null,
       }
     },
 
@@ -125,12 +124,6 @@ export default {
                }
             })
        },
-
-       
-      openSettings: function(){
-        this.isNavOn = false
-        this.$router.replace('/settings')
-      },
 
 
 
@@ -158,6 +151,8 @@ export default {
                     self.user_id = snapshot.data().user_id
 
                     self.accountType = snapshot.data().AccountType
+
+                    self.username = snapshot.data().name
         })
 
     }
@@ -191,6 +186,8 @@ export default {
                     self.user_id = snapshot.data().user_id
 
                     self.accountType = snapshot.data().AccountType
+
+                    self.username = snapshot.data().name
         })
 
     }
@@ -217,11 +214,11 @@ export default {
 <style scoped>
 #sidebar{
     height: 100vh;
-    width: 300px;
+    width: 250px;
     position: fixed;
     top:0;
     left: 0;
-    padding:22px;
+    padding:5px 22px 100px 22px;
     background: #ffffff;
     display: block;
     font-family: 'Roboto', sans-serif;
@@ -240,7 +237,7 @@ export default {
     align-content: middle;
     color: #202124;
     width:100%;
-    padding:12px 22px;
+    padding:12px 10px;
     border-radius: 8px;
     margin:22px auto 22px auto;
     cursor: pointer;
@@ -254,7 +251,7 @@ export default {
   }
   #sidebar p{
     font-size:16px;
-    width:60%;
+    width:80%;
     text-align: left;
   }
   #sidebar i{
@@ -287,14 +284,14 @@ export default {
 
   #sidebar-header{
       width:100%;
-      padding:22px 0px;
-      margin: 22px auto -26px auto;
+      padding:22px 0px 0px 0px;
+      margin: auto;
   }
 
   #sidebar-user-img{
     border-radius:100px;
-    width:180px;
-    height: 180px;
+    width:200px;
+    height: 200px;
     overflow: hidden;
     margin:auto;
   }
@@ -304,7 +301,7 @@ export default {
   }
 
   #sidebar-header h6{
-    margin: 20px auto auto auto;
+    margin: 32px auto;
   }
 
   #sidebar-header-icons{
@@ -342,7 +339,7 @@ export default {
       z-index: 90;
   }
   .withNavOn{
-    margin: 22px auto auto 334px !important;
+    margin: 22px auto auto 280px !important;
   }
   
   #floating-nav-toggle i{
