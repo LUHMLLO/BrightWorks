@@ -11,7 +11,7 @@
                       <img v-bind:src="userimg">
                     </div>
 
-                <h6>{{currentUser}}</h6>
+                <h6>{{username}}</h6>
             </div>
               
 
@@ -106,6 +106,7 @@ export default {
        userimg: null,
        user_id:null,
        accountType:null,
+       username:null,
       }
     },
 
@@ -150,6 +151,8 @@ export default {
                     self.user_id = snapshot.data().user_id
 
                     self.accountType = snapshot.data().AccountType
+
+                    self.username = snapshot.data().name
         })
 
     }
@@ -183,6 +186,8 @@ export default {
                     self.user_id = snapshot.data().user_id
 
                     self.accountType = snapshot.data().AccountType
+
+                    self.username = snapshot.data().name
         })
 
     }
@@ -232,7 +237,7 @@ export default {
     align-content: middle;
     color: #202124;
     width:100%;
-    padding:12px 22px;
+    padding:12px 10px;
     border-radius: 8px;
     margin:22px auto 22px auto;
     cursor: pointer;
@@ -246,7 +251,7 @@ export default {
   }
   #sidebar p{
     font-size:16px;
-    width:60%;
+    width:80%;
     text-align: left;
   }
   #sidebar i{
@@ -279,7 +284,7 @@ export default {
 
   #sidebar-header{
       width:100%;
-      padding:22px 0px;
+      padding:22px 0px 0px 0px;
       margin: auto;
   }
 
@@ -296,7 +301,7 @@ export default {
   }
 
   #sidebar-header h6{
-    margin: 20px auto auto auto;
+    margin: 32px auto;
   }
 
   #sidebar-header-icons{

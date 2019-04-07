@@ -126,6 +126,7 @@ mounted(){
   display: flex;
   justify-content: center;
   flex-direction: column;
+  z-index: 300;
 }
 
 #welcome{
@@ -141,7 +142,7 @@ mounted(){
   display: flex;
   justify-content: center;
   flex-direction: column;
-  z-index: 2;
+  z-index: 310;
 }
 
 #welcome h1,p{
@@ -170,7 +171,7 @@ mounted(){
 
 #welcome-wrapper-background{
   position: fixed;
-  z-index: 1;
+  z-index: 305;
   width: 100%;
   top: 0;
   right: 0;
