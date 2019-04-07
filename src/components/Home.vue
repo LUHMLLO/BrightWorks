@@ -2,22 +2,41 @@
 <div id="home">
 
 
- <h1>welcome to bright works</h1>
+<div id="welcome-wrapper">
+
+
+  <div id="welcome-wrapper-background">
+    <img v-bind:src="userimg">
+  </div>
+
+ 
+   <div id="welcome" class="mdl-shadow--16dp">
+       
+
+       <h1>Welcome to bright works</h1>
+       <br>
+
+       <p>we are preparing everything for you.</p>
+       <br><br>
+
+
+              <router-link :to="{ name: 'dashboard_C', params: {userid: user_id}}"  v-if="accountType == 'client'" class="welcome-a">
+                <p>click when you feel ready go</p>
+              </router-link>
+
+               <router-link :to="{ name: 'dashboard_S', params: {userid: user_id}}"  v-if="accountType == 'service'" class="welcome-a">
+                <p>click when you feel ready go</p>
+              </router-link>             
+
+       
+     
+
+
+   </div><!---weloome-->
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+</div><!---welcome wrapper-->
 
 </div>      
 </template>
@@ -36,119 +55,63 @@ export default {
   name: "Home",
   data() {
     return {
-
-      topCards:[
-        {'something': 'something in here idk'},
-        {'something': 'something in here idk'},
-        {'something': 'something in here idk'},
-        {'something': 'something in here idk'},       
-      ],
-
-      activeServices:[],
-      TaskListHome:[
-        {'task':'here goes your task'},
-        {'task':'here goes your to do'},
-        {'task':'yes this is a list'},
-        {'task':'this is a longer text inside a task just to see how it looks inside this div , if u know what i mean, this text is completely for testing only'},
-      ],
-
-
-      addingNewService:false,
-
-      IsPanelVisible:true,
-      IsReviewsVisible:true,
-      IsServicesVisible:true,
-      IsTaskVisible:true,
     
-    
+      userimg:null,
+      accountType:null,
+      user_id:null,
+
     }
   },
 
 
 
+created(){
+  let self = this;
 
 
 
+        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
+        {           
+                //console.log('Document data:', snapshot.data().AccountType);
+                    if(snapshot.data().img == ''){
+                        self.userimg = 'https://cdn.dribbble.com/users/937082/screenshots/5516643/blob'
+                    }
+                    else{
+                        self.userimg = snapshot.data().img
+                    }
 
-  created(){
-        let self = this;
+                    self.user_id = snapshot.data().user_id
 
-          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                //console.log(doc.data().schedule)
-                
-                const data ={
-                  
-                   'service_id': doc.data().service_id,
-                   'owner_id': doc.data().owner_id,
-                   'img': doc.data().img,
-                   'name': doc.data().name,
-                   'description': doc.data().description,
-                   'price': doc.data().price,
-                   'schedule': doc.data().schedule,
-                   'availability': doc.data().availability,
-                   'url_name': doc.data().url_name,
-                 }
-
-                 if(doc.data().availability == true){
-                   self.activeServices.push(data)
-                 }
-
-            })  
+                    self.accountType = snapshot.data().AccountType
         })
-    },
-
-
-    methods:{
-      addNewServiceFromHome:function(){
-        this.addingNewService = true
-        this.IsPanelVisible = true
-      },
-      addNewServiceFromHomeFinish:function(){
-        this.addingNewService = false
-      },
 
 
 
-      hidethispanel: function(){
-        this.IsPanelVisible = false
-      },
-      showthispanel: function(){
-        this.IsPanelVisible = true
-      },
+},
 
-
-      hideServices: function(){
-        this.IsServicesVisible = false
-      },
-      showServices: function(){
-        this.IsServicesVisible = true
-      },
-
-      hideTasks: function(){
-        this.IsTaskVisible = false
-      },
-      showTasks: function(){
-        this.IsTaskVisible = true
-      },
-
-      hideReviews: function(){
-        this.IsReviewsVisible = false
-      },
-      showReviews: function(){
-        this.IsReviewsVisible = true
-      }
+mounted(){
+  let self = this;
 
 
 
+        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
+        {           
+                //console.log('Document data:', snapshot.data().AccountType);
+                    if(snapshot.data().img == ''){
+                        self.userimg = 'https://cdn.dribbble.com/users/937082/screenshots/5516643/blob'
+                    }
+                    else{
+                        self.userimg = snapshot.data().img
+                    }
 
-    }
+                    self.user_id = snapshot.data().user_id
+
+                    self.accountType = snapshot.data().AccountType
+        })
 
 
 
-
-
-
+},
 
 
 
@@ -156,36 +119,70 @@ export default {
 </script>
 
 <style scoped>
-#dashboard{
-  width: 96%;
-  margin: auto;
-}
-.home-dashboard-panels-headers{
-  padding:22px;
-  border-bottom: solid 0.5px rgba(0,0,0,0.3);
-  width:97%;
-  margin: auto auto 12px auto;
-  display: flex;
-  justify-content: space-between;
-}
-.home-dashboard-panels-headers h3{
-  font-size:20px !important;
-  text-align: left;
-}
-.home-dashboard-panels-headers h3,button{
-  margin:auto;
-  align-self: middle;
-  display: inline-block;
-}
-#stadistics{
+
+
+#welcome-wrapper{
   width:100%;
-  margin: 12px auto;
-}
-#activeServices,#HomeTasksList{
-  width:800px;
-  min-width:360px;
-  margin: 12px auto;
+  min-height: 100vh;
+  background:white;
+  padding:44px;
+  display: flex;
+  justify-content: center;
+    flex-direction: column;
 }
 
+#welcome{
+  min-width: 300px;
+  max-width:1080px;
+  margin: auto;
+  align-self: middle;
+  background: #69A2F2;
+  border-radius:12px;
+  padding:100px;
+  color:white;
+  text-shadow: 0 0 22px rgba(0,0,0,0.3);
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 2;
+}
+
+
+.welcome-a{
+  border: solid white 0.5px !important;
+  color: white !important;
+  width:300px;
+  margin: auto;
+  border-radius:100px;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+}
+.welcome-a p{
+  margin: auto;
+  align-self: middle;
+  padding:10px;
+}
+
+
+#welcome-wrapper-background{
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  height: 100vh;
+  filter: blur(12px);
+  transform: scale(1.1);
+  object-fit: cover !important;
+}
+#welcome-wrapper-background img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+}
 
 </style>

@@ -439,7 +439,7 @@
     display: none;
   }
   .global-horizontal-position{
-    display: inline-block;
+    display: inline-block !important;
   }
   .global-horizontal-scroll-title{
     font-size:20px;
@@ -1018,6 +1018,8 @@ align-self: middle;
 .global-detailed-task-header{
   border-bottom: solid 0.5px rgba(0,0,0,0.3);
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
 .global-detailed-task-header-title{
@@ -1026,12 +1028,11 @@ align-self: middle;
   padding:0 0 0 12px;
   overflow: hidden;
 }
+.global-detailed-task-header-title h3{
+  font-size:18px;
+}
 .global-detailed-task-header-options{
   width:30%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 8px -27px auto auto;
 }
 .global-detailed-task-header-options i{
   margin: auto 5px;

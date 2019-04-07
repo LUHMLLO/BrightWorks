@@ -2,10 +2,15 @@
 <div>
 
 
+
+
+
+
+
+
+
  <div class="global-horizontal-scroll">
-   <div class="global-horizontal-position">
      <taskmodule/>
-   </div><!--horizontal position--->
  </div><!---horizontal scroll--->
 
 
