@@ -14,10 +14,8 @@
        
 
        <h1>Welcome to bright works</h1>
-       <br>
-
+       
        <p>we are preparing everything for you.</p>
-       <br><br>
 
 
               <router-link :to="{ name: 'dashboard_C', params: {userid: user_id}}"  v-if="accountType == 'client'" class="welcome-a">
@@ -123,22 +121,20 @@ mounted(){
 
 #welcome-wrapper{
   width:100%;
-  min-height: 100vh;
+  height: 100vh;
   background:white;
-  padding:44px;
   display: flex;
   justify-content: center;
-    flex-direction: column;
+  flex-direction: column;
 }
 
 #welcome{
-  min-width: 300px;
-  max-width:1080px;
+  width: 500px;
   margin: auto;
   align-self: middle;
   background: #69A2F2;
   border-radius:12px;
-  padding:100px;
+  padding:52px;
   color:white;
   text-shadow: 0 0 22px rgba(0,0,0,0.3);
   height: 300px;
@@ -148,6 +144,12 @@ mounted(){
   z-index: 2;
 }
 
+#welcome h1,p{
+  margin: auto;
+}
+#welcome h1{
+  font-size: 32px !important;
+}
 
 .welcome-a{
   border: solid white 0.5px !important;
@@ -158,11 +160,11 @@ mounted(){
   align-content: center;
   justify-content: center;
   display: flex;
+  padding:8px 0;
 }
 .welcome-a p{
   margin: auto;
   align-self: middle;
-  padding:10px;
 }
 
 
@@ -174,7 +176,7 @@ mounted(){
   right: 0;
   left: 0;
   margin: auto;
-  height: 100vh;
+  height: inherit;
   filter: blur(12px);
   transform: scale(1.1);
   object-fit: cover !important;
@@ -183,6 +185,40 @@ mounted(){
   width: 100%;
   height: 100%;
   object-fit: cover !important;
+}
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+
+ #welcome{
+   width:300px;
+   height: 280px;
+  padding:10px;
+ }
+ #welcome h1{
+   font-size:20px !important;
+ }
+ #welcome p{
+   font-size:14px ;
+ }
+ .welcome-a{
+   width: 200px;
+   margin: auto;
+ }
+ .welcome-a p{
+   font-size: 11px !important;
+ }
+
+
+
 }
 
 </style>
