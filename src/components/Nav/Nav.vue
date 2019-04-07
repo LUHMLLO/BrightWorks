@@ -16,9 +16,13 @@
               
 
             <div id="sidebar-links">
-              <router-link to="/home" class="mdl-button">
-               <i class='uil uil-home-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">home</p>
+
+              <router-link :to="{ name: 'dashboard_C', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'client' && isLoggedIn" >
+               <i class='uil uil-home-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Home</p>
               </router-link>
+              <router-link :to="{ name: 'dashboard_S', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
+               <i class='uil uil-home-alt' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Home</p>
+              </router-link>              
 
 
               <router-link :to="{ name: 'ClientProfile', params: {userid: user_id}}" class="mdl-button" v-if="accountType == 'client' && isLoggedIn" >
@@ -205,7 +209,7 @@ export default {
 <style scoped>
 #sidebar{
     height: 100vh;
-    width: 300px;
+    width: 250px;
     position: fixed;
     top:0;
     left: 0;
@@ -330,7 +334,7 @@ export default {
       z-index: 90;
   }
   .withNavOn{
-    margin: 22px auto auto 334px !important;
+    margin: 22px auto auto 280px !important;
   }
   
   #floating-nav-toggle i{

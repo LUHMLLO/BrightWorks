@@ -1001,6 +1001,72 @@ align-self: middle;
 
 
 
+
+
+
+
+
+.global-detailed-task{
+  min-width:300px;
+  max-width:400px;
+  border-radius:12px;
+  padding:10px;
+  overflow: hidden;
+  white-space: normal;
+  margin: 22px;
+}
+.global-detailed-task-header{
+  border-bottom: solid 0.5px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.global-detailed-task-header-title{
+  text-align: left;
+  width:80%;
+  padding:0 0 0 12px;
+  overflow: hidden;
+}
+.global-detailed-task-header-options{
+  width:30%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 8px -27px auto auto;
+}
+.global-detailed-task-header-options i{
+  margin: auto 5px;
+}
+
+.global-detailed-task-content{
+  padding:15px 10px;
+  text-align: left;
+}
+.global-detailed-task-footer{
+  display: flex;
+  justify-content: space-between;
+  font-size:12px;
+  padding:0 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width: 600px) {
   .global-about-card{
     width:80%;
