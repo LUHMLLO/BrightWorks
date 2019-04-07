@@ -3,7 +3,7 @@
 
 
 
-   <div class="global-horizontal-position"  v-for="(service, servicesData) in filteredServices" :key="servicesData">
+   <div class="global-horizontal-position"  v-for="(service, servicesData) in filteredservices" :key="servicesData">
 
     
 
@@ -25,8 +25,15 @@
 
 
         <div class="global-detailed-service-actions">
-            <button class="global-button">edit</button>
-            <button class="global-button">visit</button>
+            <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}">
+              <button class="global-button">edit</button>
+            </router-link>
+            
+            <router-link :to="{ name: 'Service', params: {service_id: service.service_id || 404}}">
+              <button class="global-button">visit</button>
+            </router-link>
+
+    
         </div><!----actions-->
 
 
@@ -83,16 +90,12 @@ export default {
 
 
   computed: {
-    filteredServices: function() {
+    filteredservices: function() {
         let result = this.services
           return result
     }
 
   },
-
-  updated(){
-         this.filteredServices()
-  }
 
 
 }

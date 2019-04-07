@@ -204,7 +204,7 @@ export default {
             })
       },
       goBackCancelEdit: function() {
-            this.$router.push('/manage_services')          
+            this.$router.go(-1)          
       },
 
       saveChangesForThisService: function(){

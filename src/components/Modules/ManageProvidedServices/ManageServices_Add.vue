@@ -113,7 +113,7 @@ export default {
                 video: self.video,
                 })
 
-                Swal({ title: "Congrats ! ", text: "Your service has been created", icon: "success", button: "nice!",}).then(() => {self.$router.go("manage_services")})
+                Swal({ title: "Congrats ! ", text: "Your service has been created", icon: "success", button: "nice!",}).then(() => {self.$router.go(-1)})
             })
             .catch(error => Swal(error))
         },

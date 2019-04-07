@@ -1039,6 +1039,7 @@ align-self: middle;
 }
 .global-detailed-task-header-options i{
   margin: auto 5px;
+  cursor: pointer;
 }
 
 .global-detailed-task-content{
