@@ -290,8 +290,8 @@ export default {
 
   #sidebar-user-img{
     border-radius:100px;
-    width:180px;
-    height: 180px;
+    width:200px;
+    height: 200px;
     overflow: hidden;
     margin:auto;
   }

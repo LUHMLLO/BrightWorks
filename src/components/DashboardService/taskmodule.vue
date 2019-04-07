@@ -58,6 +58,9 @@ export default {
                 {'title':'finish this project', 'content':'deadline its tomorrow', 'priority': 'fucking high', 'date':'april 7 2019'},
                 {'title':'finish this project', 'content':'deadline its tomorrow', 'priority': 'fucking high', 'date':'april 7 2019'},
                 {'title':'finish this project', 'content':'deadline its tomorrow', 'priority': 'fucking high', 'date':'april 7 2019'},
+                {'title':'finish this project', 'content':'deadline its tomorrow', 'priority': 'fucking high', 'date':'april 7 2019'},
+                {'title':'finish this project', 'content':'deadline its tomorrow', 'priority': 'fucking high', 'date':'april 7 2019'},
+                {'title':'finish this project', 'content':'deadline its tomorrow', 'priority': 'fucking high', 'date':'april 7 2019'},
             ],
 
 
