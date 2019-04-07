@@ -31,12 +31,45 @@
 
        <div class="global-tabs-bar">
 
-           <button class="mdl-button global-button-round sombra">About</button>
-           <button class="mdl-button global-button-round sombra">Adquired services</button>
-           <button class="mdl-button global-button-round sombra">Subscriptions</button>
-           <button class="mdl-button global-button-round sombra">Made reviews</button>
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:aboutTab }" v-on:click="showAbout">About</button>
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:adquiredTab }" v-on:click="showAdquired">Adquired services</button>
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:subscriptionsTab }" v-on:click="showSubscriptions">Subscriptions</button>
+           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:reviewsTab }" v-on:click="showReviews">Made reviews</button>
 
        </div><!---options bar-->
+
+
+
+
+
+
+
+
+
+
+       <div id="about" class="global-tab-content" v-if="aboutTab">
+           <h1>about</h1>
+       </div><!--about tab-->
+
+       <div id="adquired" class="global-tab-content" v-if="adquiredTab">
+           <AdquiredServices/>
+       </div><!--about tab-->
+
+       <div id="subscriptions" class="global-tab-content" v-if="subscriptionsTab">
+           <h1>subscription</h1>
+       </div><!--reviews tab-->
+
+       <div id="reviews" class="global-tab-content" v-if="reviewsTab">
+           <h1>reviews</h1>
+       </div><!--reviews tab-->       
+
+
+
+
+
+
+
+
 
 
 
@@ -48,9 +81,13 @@
 
 <script>
 import { firebase, db } from '../../firebaseConfig.js'
+import AdquiredServices from './ClientTabs/AdquiredServices.vue'
 
 export default {
     name: 'ClientProfile',
+    components:{
+        AdquiredServices,
+    },
     data(){
         return{
 
@@ -59,6 +96,12 @@ export default {
             useremail:null,
             userphone:null,
             user_id:null,
+
+
+            aboutTab:true,
+            adquiredTab:false,
+            subscriptionsTab:false,
+            reviewsTab:false,
 
             
         }
@@ -93,6 +136,39 @@ export default {
                     } 
         })
         
+    },
+
+
+
+    methods:{
+
+       
+        showAbout:function(){
+            this.aboutTab = true
+            this.adquiredTab = false
+            this.subscriptionsTab = false
+            this.reviewsTab = false
+        },
+        showAdquired:function(){
+            this.aboutTab = false
+            this.adquiredTab = true
+            this.subscriptionsTab = false
+            this.reviewsTab = false
+        },
+        showSubscriptions:function(){
+            this.aboutTab = false
+            this.adquiredTab = false
+            this.subscriptionsTab = true
+            this.reviewsTab = false
+        },
+        showReviews:function(){
+            this.aboutTab = false
+            this.adquiredTab = false
+            this.subscriptionsTab = false
+            this.reviewsTab = true
+        },
+
+
     }
 
 
