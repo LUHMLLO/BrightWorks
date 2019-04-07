@@ -7,31 +7,45 @@
 
             <div id="available-section" class="global-section">
                 <h4>Available services</h4>
-                <div class="global-grid">
-                    
-                    <div class="global-service-card mdl-shadow--3dp"   v-for="(service,AvailableServicesData) in AvailableServices" :key="AvailableServicesData">
-                        <div class="global-service-card-img">
-                            <img v-bind:src="service.img">
-                        </div><!-- global service card img-->
+                <div class="global-horizontal-scroll">
+                                        
 
-                        <div class="global-service-card-content">
-                            <div class="global-service-card-name">
-                                <h4>{{service.name}}</h4>
-                            </div>
-                            <div class="global-service-card-description">
-                                <p>{{service.description}}</p>
-                                <p>{{service.schedule}}</p>
-                                <small>{{service.price}}</small>
-                            </div>
-                        </div><!---global service card content -->
+                    <div class="global-horizontal-position"  v-for="(service,AvailableServicesData) in filteredAvailableServices" :key="AvailableServicesData">
 
-                        <div class="global-service-card-edit-button">
-                            <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}">
-                                <i class='uil uil-pen'></i>
-                            </router-link>
-                        </div>
-                        
-                    </div><!--service card-->
+                            <div class="global-detailed-service mdl-shadow--2dp">
+                                
+                                <div class="global-detailed-service-header">
+                                <div class="global-detailed-service-header-img mdl-shadow--2dp">
+                                    <img v-bind:src="service.img">
+                                </div>
+                                
+                                <div class="global-detailed-service-header-title">
+                                    <h3>{{service.name}}</h3>
+                                </div>
+                                </div><!---header-->
+
+                                <div class="global-detailed-service-content">
+                                    <p>{{service.description}}</p>
+                                </div><!---content--->
+
+
+                                <div class="global-detailed-service-actions">
+                                    <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}">
+                                    <button class="global-button">edit</button>
+                                    </router-link>
+                                    
+                                    <router-link :to="{ name: 'Service', params: {service_id: service.service_id || 404}}">
+                                    <button class="global-button">visit</button>
+                                    </router-link>
+
+                            
+                                </div><!----actions-->
+
+
+                            </div><!---detailed service--->
+
+                    </div>
+                            
                 </div>
             </div><!---available section-->
 
@@ -41,28 +55,44 @@
 
             <div id="unavailable-section" class="global-section">
                 <h4>Not available services</h4>
-                <div class="global-grid">
+                <div class="global-horizontal-scroll"> 
                     
-                    <div class="global-service-card mdl-shadow--3dp"   v-for="(service,UnavailableServicesData) in UnavailableServices" :key="UnavailableServicesData">
-                        <div class="global-service-card-img">
-                            <img v-bind:src="service.img">
-                         </div><!-- global service card img-->
-                        <div class="global-service-card-content">
-                            <div class="global-service-card-name">
-                                <h4>{{service.name}}</h4>
-                            </div>
-                            <div class="global-service-card-description">
-                                <p>{{service.description}}</p>
-                                <p>{{service.schedule}}</p>
-                                <small>{{service.price }}</small>
-                            </div>
-                        </div><!---global service card content -->
-                        <div class="global-service-card-edit-button">
-                            <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}">
-                                <i class='uil uil-pen'></i>
-                            </router-link>
-                        </div>                        
-                    </div><!--service card-->
+                        <div class="global-horizontal-position"  v-for="(service,UnavailableServicesData) in filteredUNAvailableServices" :key="UnavailableServicesData">
+                                            
+                                <div class="global-detailed-service mdl-shadow--2dp">
+                                    
+                                    <div class="global-detailed-service-header">
+                                    <div class="global-detailed-service-header-img mdl-shadow--2dp">
+                                        <img v-bind:src="service.img">
+                                    </div>
+                                    
+                                    <div class="global-detailed-service-header-title">
+                                        <h3>{{service.name}}</h3>
+                                    </div>
+                                    </div><!---header-->
+
+                                    <div class="global-detailed-service-content">
+                                        <p>{{service.description}}</p>
+                                    </div><!---content--->
+
+
+                                    <div class="global-detailed-service-actions">
+                                        <router-link :to="{ name: 'ManageServices_Edit', params: {service_id: service.service_id}}">
+                                        <button class="global-button">edit</button>
+                                        </router-link>
+                                        
+                                        <router-link :to="{ name: 'Service', params: {service_id: service.service_id || 404}}">
+                                        <button class="global-button">visit</button>
+                                        </router-link>
+
+                                
+                                    </div><!----actions-->
+
+
+                                </div><!---detailed service--->
+
+                        </div><!--horizontal position-->    
+                        
                 </div>
             </div><!---available section-->
 
@@ -103,6 +133,9 @@ export default {
 
     created(){
         let self = this;   
+        
+      this.filteredAvailableServices
+      this.filteredUNAvailableServices
 
 
           db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
@@ -134,6 +167,21 @@ export default {
         
             
     },
+
+
+  computed: {
+    filteredAvailableServices: function() {
+        let result = this.AvailableServices
+          return result
+    },
+    filteredUNAvailableServices: function() {
+        let result = this.UnavailableServices
+          return result
+    }   
+
+  },
+
+
 
 
 
