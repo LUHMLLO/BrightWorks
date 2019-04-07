@@ -5,26 +5,13 @@
       <transition name="nav-anim" enter-active-class="animated slideInLeft" leave-active-class="animated slideOutLeft">
 
         <div id="sidebar" class="mdl-shadow--6dp" v-if="isNavOn">
-                 
-                 <div id="sidebar-route-buttons" class="global-grid">
-                     <i class='uil uil-arrow-left' @click="$router.go(-1)"></i>
-                     <i class='uil uil-arrow-right' @click="$router.go(+1)"></i>
-                 </div>
               
-            <div id="sidebar-header" v-if="isLoggedIn">                
-                  
-                  
+            <div id="sidebar-header" v-if="isLoggedIn">                                 
                     <div id="sidebar-user-img">
                       <img v-bind:src="userimg">
                     </div>
 
                 <h6>{{currentUser}}</h6>
-
-                <div id="sidebar-header-icons" class="global-grid">
-                    <i id="logoutbtn" class='uil uil-entry' v-on:click="logout"></i>
-                    <i id="notificationsbtn" class='uil uil-bell'></i>
-                    <i id="settingsbtn" class='uil uil-cog' v-on:click="openSettings"></i>
-                </div>
             </div>
               
 
@@ -57,7 +44,14 @@
               <router-link to="/Compose" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
                <i class='uil uil-postcard' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Posts</p>
               </router-link>
-                            
+
+              <router-link to="/settings" class="mdl-button">
+                <i class='uil uil-cog' style="width:50%;"></i><p>Settings</p>
+              </router-link>
+
+              <router-link to="/" class="mdl-button">
+                <i class='uil uil-entry' v-on:click="logout" style="width:50%;"></i><p>Log out</p>
+              </router-link>                            
 
             </div><!--sidebar links-->
 
@@ -125,12 +119,6 @@ export default {
                }
             })
        },
-
-       
-      openSettings: function(){
-        this.isNavOn = false
-        this.$router.replace('/settings')
-      },
 
 
 
@@ -221,7 +209,7 @@ export default {
     position: fixed;
     top:0;
     left: 0;
-    padding:22px;
+    padding:5px 22px 100px 22px;
     background: #ffffff;
     display: block;
     font-family: 'Roboto', sans-serif;
@@ -288,7 +276,7 @@ export default {
   #sidebar-header{
       width:100%;
       padding:22px 0px;
-      margin: 22px auto -26px auto;
+      margin: auto;
   }
 
   #sidebar-user-img{
