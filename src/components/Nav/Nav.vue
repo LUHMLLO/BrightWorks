@@ -47,11 +47,11 @@
               </router-link>
 
               <router-link to="/manage_services" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
-               <i class='uil uil-folder' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Manage services</p>
+               <i class='uil uil-folder' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Services</p>
               </router-link>
 
               <router-link to="/manage_plans" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
-               <i class='uil uil-wallet' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Manage Plans</p>
+               <i class='uil uil-wallet' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Payments</p>
               </router-link>
 
               <router-link to="/Compose" class="mdl-button" v-if="accountType == 'service' && isLoggedIn">
