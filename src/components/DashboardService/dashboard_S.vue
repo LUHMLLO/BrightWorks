@@ -47,6 +47,8 @@
 
 <script>
 
+import {firebase,db} from '../../firebaseConfig.js'
+
 import taskmodule from './taskmodule.vue'
 import myservices from './myservices.vue'
 
@@ -56,6 +58,30 @@ export default {
       taskmodule,
       myservices,
     },
+    data(){
+      return{
+
+      }
+    },
+
+
+
+    
+    beforeCreate(){
+             
+             let self = this; 
+             
+        db.collection('users').doc(firebase.auth().currentUser.uid).get().then(function(snapshot)
+        {                          
+                    if(snapshot.data().AccountType !== 'service'){
+                        self.$router.go(-1)
+                    }                             
+        })
+        
+    },
+
+
+
 }
 </script>
 

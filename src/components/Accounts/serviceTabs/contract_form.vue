@@ -59,11 +59,11 @@
 </template>
 
 <script>
-import { db } from '../../../firebaseConfig.js'
+import { firebase, db } from '../../../firebaseConfig.js'
 import Swal from 'sweetalert'
 export default {
     name: 'contract_form',
-    props:['selectedPlan','serviceimg','servicename'],
+    props:['selectedPlan','serviceimg','servicename','hidethiscontractform'],
     data(){
         return{
           selected_option_title:null,
@@ -79,7 +79,7 @@ export default {
 
 
 
-    mounted(){
+    created(){
 
      
      this.fetchPlanId()
@@ -120,7 +120,9 @@ export default {
                 selected_option_title: self.selected_option_title,
                 selected_option_price: self.selected_option_price,
                 selected_option_description: self.selected_option_description,
-                selected_option_time: self.selected_option_time
+                selected_option_time: self.selected_option_time,
+                buyer_id: firebase.auth().currentUser.uid,
+                service_plan_parent: self.$props.servicename,
                 })
 
                 Swal({ title: "Congrats ! ", text: "Thanks for your purchase !!", icon: "success", button: "nice!",}).then(() => {self.$router.go("manage_plans")})
@@ -128,14 +130,14 @@ export default {
             
         },
 
-        stripTheGarbage(e) {
-      if (e.keyCode < 48 && e.keyCode !== 46 || e.keyCode > 59) {
-        e.preventDefault()
-      }
+                    stripTheGarbage(e) {
+                if (e.keyCode < 48 && e.keyCode !== 46 || e.keyCode > 59) {
+                    e.preventDefault()
+                }
+                },
+
     },
 
-
-    }
 
 
 

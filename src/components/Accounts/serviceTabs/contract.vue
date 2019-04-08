@@ -27,11 +27,20 @@
 
 
 
-       <div class="global-grid" v-if="showForm">
-           <contract_form v-bind:selectedPlan="choosen_plan_id" v-bind:serviceimg="serviceimg" v-bind:servicename="servicename"/>
+       <div id="contract-form-box" class="global-grid" v-if="showForm"> 
+           <contract_form v-bind:selectedPlan="choosen_plan_id" v-bind:serviceimg="serviceimg" v-bind:servicename="servicename" v-bind:hidethiscontractform="showForm"/>
+       
+          <div id="gobackfombutton"  v-on:click="nevermind"  class="mdl-shadow--2dp">
+              <i  class='uil uil-corner-up-left-alt' v-on:click="nevermind"></i>
+          </div>
+           
+       
+
+
        </div>
 
             
+           
 
 
 
@@ -110,6 +119,11 @@ export default {
         },
 
 
+        nevermind:function(){
+            this.showForm = false
+        },
+
+
         SelectThisPlan(value){
             this.choosen_plan_id = value
             //console.log(this.choosen_plan_id)
@@ -144,3 +158,27 @@ export default {
 }
 </script>
 
+
+
+<style scoped>
+#gobackfombutton{
+    z-index: 200;
+    font-size:22px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    cursor: pointer;
+    margin: 100px auto auto auto;
+    background:white;
+    border-radius:100px;
+    padding:10px 22px;
+    display:flex;
+    justify-content: center;
+    width:300px;
+}
+#gobackfombutton i{
+    margin: auto;
+    align-self: middle;
+}
+</style>
