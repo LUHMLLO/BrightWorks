@@ -20,6 +20,18 @@
     font-size:24px;
   }
 
+  .manage-services-header-small{
+    width:100%;
+    margin:auto;
+    max-height: 100px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
   .global-header-title-simple{
     margin: auto;
     align-self: middle;
@@ -291,7 +303,7 @@
 
 
   .globalActiveTab{
-    border: solid 0.5px rgba(87, 85, 217,0.4) !important;
+    border: solid 1px rgba(87, 85, 217,0.5) !important;
   }
 
 
@@ -1173,6 +1185,12 @@ align-self: middle;
   padding:8px;
   outline: none;
   border: none;
+}
+.global-rounded-form-buttons button{
+  display:inline-block; 
+  margin:22px;
+  font-size:12px;
+  padding: 10px 22px;
 }
 .global-rounded-form-input i{
   width: 10%;

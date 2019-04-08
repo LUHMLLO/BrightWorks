@@ -1,71 +1,65 @@
 <template>
 <div>
+<div class="global-form-background">
 
-        <div id="manage-services-header" class="global-header mdl-shadow--2dp">
-          <h3 class="global-header-title-simple" style="">Edit this plan</h3>
-        </div><!--manage services header-->
+        <div class="global-form-background-img">
+           <img v-bind:src="img">
+       </div><!--background image-->
+       <div class="global-form-background-img-overlay"></div>
+
+              
+              <form @submit.prevent class="global-rounded-form mdl-shadow--2dp">
+
+                  
+                <h3>Add a new payment</h3>              
+                 
+
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="name" id="" v-model="name" placeholder="name" required>
+                        </div><!--global floating input-->                
 
 
-            <div id="asd-section" class="global-section">
-                        <h4>Edit or delete this service</h4>
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-file-blank'></i>
+                            <input type="text" name="description" id="" v-model="description" placeholder="description" required>
+                        </div><!--global floating input-->
+        
+                        <div class="global-rounded-form-input">
+                            <i class='uil uil-dollar-alt'></i>
+                            <input type="text" name="price" id="" @keypress="stripTheGarbage($event)" @blur="formatDollars()" v-model="price" placeholder="price" required>
+                        </div><!--global floating input-->  
+
+                        <div class="global-rounded-form-buttons" style="border-bottom: none !important">
+                            
+                              
+                          <button type="radio" value="Annual"  v-on:click="timeAnnualIsSelected('Annual')"    class="global-button"  v-bind:class="{globalActiveTab:timeAnnual}">Annual</button>
+                          <button type="radio" value="Monthly" v-on:click="timeMonthlyIsSelected('Monthly')"  class="global-button"  v-bind:class="{globalActiveTab:timeMonthly}">Monthly</button>
+                          <button type="radio" value="Weekly"  v-on:click="timeWeeklyIsSelected('Weekly')"    class="global-button"  v-bind:class="{globalActiveTab:timeWeekly}">Weekly</button>
+                          <button type="radio" value="Once"    v-on:click="timeOnceIsSelected('Once')"        class="global-button"  v-bind:class="{globalActiveTab:timeOnce}">Once</button>
                         
-                        <form @submit.prevent>
-                            <div class="global-grid">             
+                        
+                        
+                        </div><!--global floating input-->  
 
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="text" name="name" id="" v-model="name" placeholder="name" required>
-                                    </div><!--global floating input-->                
-
-
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <input type="text" name="description" id="" v-model="description" placeholder="description" required>
-                                    </div><!--global floating input-->
-                    
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-dollar-alt'></i>
-                                        <input type="text" name="price" id="" @keypress="stripTheGarbage($event)" @blur="formatDollars()" v-model="price" placeholder="price" required>
-                                    </div><!--global floating input-->  
-
-                                    <div class="global-floating-input">
-                                        <i class='uil uil-file-blank'></i>
-                                        <select name="time" id="" v-model="time" required style="outline:none;border:none;">
-                                            <option value="Annual">Annual</option>
-                                            <option value="Monthly">Monthly</option>
-                                            <option value="Weekly">Weekly</option>
-                                            <option value="Daily">Daily</option>
-                                            <option value="Daily">One pay</option>
-                                        </select>                             
-                                    </div><!--global floating input-->  
-
-                            </div><!--global grid-->
-
-                            
-                            
-                            <br><br>
+                  
+                  
+                  <br><br>
+                  
                             <button class="global-button" v-on:click="goBackCancelEdit">Cancel</button>
                             <button class="global-button" v-on:click="saveChangesForThisService">Save changes</button>
                             <button class="global-button" v-on:click="DeleteThisService">Delete</button>
-                            
+                  
 
-                        </form>
-                        
-                        </div><!---available section-->
+              </form>
 
 
-
-
-
-
-
-
-
+</div><!---form background--->
 </div>
 </template>
 
 <script>
-import {firebase ,db} from '../../../firebaseConfig.js'
+import {db} from '../../../firebaseConfig.js'
 import Swal from 'sweetalert'
 export default {
     name: 'ManageServicesPlans_Edit',
@@ -79,36 +73,22 @@ export default {
             price:null,
             time:null,
 
+            img:null,
+
             Selected_service_id:null,
 
             myservices:[],
+
+            timeAnnual: false,
+            timeMonthly: false,
+            timeWeekly:false,
+            timeOnce: false,            
             
         }
     },
 
 
 
-    created(){
-        let self = this;
-
-
-          db.collection('services').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                //console.log(doc.data().schedule)
-                
-                const data ={
-                  
-                   'service_id': doc.data().service_id,
-                   'service_name':doc.data().name,
-                 }
-                   self.myservices.push(data)
-
-
-            })  
-        })      
-               
-
-    },
 
 
 
@@ -124,6 +104,7 @@ export default {
                     vm.plan_id = doc.data().plan_id
                     vm.creator_id = doc.data().creator_id
                     vm.time = doc.data().time
+                    vm.img = doc.data().service_img
 
               })
             })
@@ -145,9 +126,11 @@ export default {
                     this.plan_id = doc.data().plan_id
                     this.creator_id = doc.data().creator_id
                     this.time = doc.data().time
+                    this.img = doc.data().img
                     
           })
         })
+
       },
 
 
@@ -158,7 +141,7 @@ export default {
                         db.collection('plans').where('plan_id', '==' , this.$route.params.plan_id).get().then(querySnapshot =>{
                         querySnapshot.forEach(doc => {
                             doc.ref.delete()
-                            this.$router.push('/manage_plans')
+                            this.$router.go(-1)
                         })
                         })
              }
@@ -183,7 +166,7 @@ export default {
                         })
                         })
              }
-             this.$router.push('/manage_plans')
+             this.$router.go(-1)
             })          
       },
 
@@ -225,8 +208,41 @@ export default {
 
                     this.price = num;
                 }
-            }
+            },
 
+
+        timeAnnualIsSelected(value){
+            this.time = value
+            //console.log(this.time)
+            this.timeAnnual = true
+            this.timeMonthly = false
+            this.timeWeekly = false
+            this.timeOnce = false
+        },
+        timeMonthlyIsSelected(value){
+            this.time = value
+            //console.log(this.time)
+            this.timeAnnual = false
+            this.timeMonthly = true
+            this.timeWeekly = false
+            this.timeOnce = false
+        },
+        timeWeeklyIsSelected(value){
+            this.time = value
+            //console.log(this.time)
+            this.timeAnnual = false
+            this.timeMonthly = false
+            this.timeWeekly = true
+            this.timeOnce = false
+        },        
+        timeOnceIsSelected(value){
+            this.time = value
+            //console.log(this.time)
+            this.timeAnnual = false
+            this.timeMonthly = false
+            this.timeWeekly = false
+            this.timeOnce = true
+        },
       
 
 
