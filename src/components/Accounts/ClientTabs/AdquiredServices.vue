@@ -88,7 +88,9 @@ export default {
                    'description': doc.data().selected_option_description,
 
                  }
-                   self.AvailablePlans.push(data)
+                 if(doc.data().selected_option_time == 'Once'){
+                    self.AvailablePlans.push(data)
+                 }
                  
 
             })  
