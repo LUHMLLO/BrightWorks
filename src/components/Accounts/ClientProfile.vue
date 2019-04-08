@@ -31,10 +31,8 @@
 
        <div class="global-tabs-bar">
 
-           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:aboutTab }" v-on:click="showAbout">About</button>
            <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:adquiredTab }" v-on:click="showAdquired">Adquired services</button>
            <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:subscriptionsTab }" v-on:click="showSubscriptions">Subscriptions</button>
-           <button class="mdl-button global-button-round sombra" v-bind:class="{globalActiveTab:reviewsTab }" v-on:click="showReviews">Made reviews</button>
 
        </div><!---options bar-->
 
@@ -47,21 +45,13 @@
 
 
 
-       <div id="about" class="global-tab-content" v-if="aboutTab">
-           <h1>about</h1>
-       </div><!--about tab-->
-
        <div id="adquired" class="global-tab-content" v-if="adquiredTab">
            <AdquiredServices/>
        </div><!--about tab-->
 
        <div id="subscriptions" class="global-tab-content" v-if="subscriptionsTab">
-           <h1>subscription</h1>
-       </div><!--reviews tab-->
-
-       <div id="reviews" class="global-tab-content" v-if="reviewsTab">
-           <h1>reviews</h1>
-       </div><!--reviews tab-->       
+           <AdquiredSubscriptions/>
+       </div><!--reviews tab-->      
 
 
 
@@ -82,11 +72,13 @@
 <script>
 import { firebase, db } from '../../firebaseConfig.js'
 import AdquiredServices from './ClientTabs/AdquiredServices.vue'
+import AdquiredSubscriptions from './ClientTabs/AdquiredSubscriptions.vue'
 
 export default {
     name: 'ClientProfile',
     components:{
         AdquiredServices,
+        AdquiredSubscriptions
     },
     data(){
         return{
@@ -98,10 +90,8 @@ export default {
             user_id:null,
 
 
-            aboutTab:true,
-            adquiredTab:false,
+            adquiredTab:true,
             subscriptionsTab:false,
-            reviewsTab:false,
 
             
         }
