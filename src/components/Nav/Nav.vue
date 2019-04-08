@@ -54,7 +54,7 @@
               </router-link> -->
 
               <router-link to="/" class="mdl-button">
-                <i class='uil uil-entry' v-on:click="logout" style="width:50%;"></i><p>Log out</p>
+                <i class='uil uil-entry' v-on:click="logout" style="width:50%;"></i><p v-on:click="logout">Log out</p>
               </router-link>                            
 
             </div><!--sidebar links-->
