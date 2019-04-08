@@ -66,6 +66,7 @@ export default {
         return{
     
             AvailablePlans:[],
+            nah:[],
 
         }
     },
@@ -89,13 +90,9 @@ export default {
 
                  }
 
-                 if(doc.data().time == 'Once'){
-                 }
-                 else{
-                     
+                 if(doc.data().selected_option_time !== 'Once'){
                      self.AvailablePlans.push(data)
                  }
-                   
                  
 
             })  
