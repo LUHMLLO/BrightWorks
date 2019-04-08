@@ -211,7 +211,7 @@ let router = new Router({
       },      
       
       {
-        path: '/client/dashboard:/userid',
+        path: '/client/dashboard/:userid',
         name: 'dashboard_C',
         component: dashboard_C,
         meta:{
