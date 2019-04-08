@@ -34,10 +34,7 @@
               <i  class='uil uil-corner-up-left-alt' v-on:click="nevermind"></i>
           </div>
            
-       
-
-
-       </div>
+       </div><!---diiiv--->
 
             
            

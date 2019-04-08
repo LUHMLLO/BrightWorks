@@ -1,46 +1,45 @@
 <template>
 <div>
 
-      <div id="asd-section" class="global-section">
-              <h4>Add a new service</h4>
               
-              <form @submit.prevent>
-                  <div class="global-grid">                   
+              <form @submit.prevent class="global-rounded-form mdl-shadow--2dp">
+
+                  
+                <h3>Add a new payment</h3>              
         
-                        <div class="global-floating-input">
+                        <div class="global-rounded-form-input">
                             <select name="serviceIDs" id="" v-model="Selected_service_id" required style="outline:none;border:none;">
                                 <option v-bind:value="myservice.service_id"  v-for="(myservice,myservicesData) in myservices" :key="myservicesData">{{myservice.service_name}}</option>
                             </select>                            
                         </div><!--global floating input-->                
 
-                        <div class="global-floating-input">
+                        <div class="global-rounded-form-input">
                             <i class='uil uil-file-blank'></i>
                             <input type="text" name="name" id="" v-model="name" placeholder="name" required>
                         </div><!--global floating input-->                
 
 
-                        <div class="global-floating-input">
+                        <div class="global-rounded-form-input">
                             <i class='uil uil-file-blank'></i>
                             <input type="text" name="description" id="" v-model="description" placeholder="description" required>
                         </div><!--global floating input-->
         
-                        <div class="global-floating-input">
+                        <div class="global-rounded-form-input">
                             <i class='uil uil-dollar-alt'></i>
                             <input type="text" name="price" id="" @keypress="stripTheGarbage($event)" @blur="formatDollars()" v-model="price" placeholder="price" required>
                         </div><!--global floating input-->  
 
-                        <div class="global-floating-input">
-                            <i class='uil uil-file-blank'></i>
-                            <select name="time" id="" v-model="time" required style="outline:none;border:none;">
-                                <option value="Annual">Annual</option>
-                                <option value="Monthly">Monthly</option>
-                                <option value="Weekly">Weekly</option>
-                                <option value="Daily">Daily</option>
-                                <option value="Daily">One pay</option>
-                            </select>                             
+                        <div class="global-rounded-form-buttons" style="border-bottom: none !important">
+                            
+                              
+                          <button type="radio" value="Annual"  v-on:click="timeAnnualIsSelected('Annual')"    class="global-button"  v-bind:class="{globalActiveTab:timeAnnual}">Annual</button>
+                          <button type="radio" value="Monthly" v-on:click="timeMonthlyIsSelected('Monthly')"  class="global-button"  v-bind:class="{globalActiveTab:timeMonthly}">Monthly</button>
+                          <button type="radio" value="Weekly"  v-on:click="timeWeeklyIsSelected('Weekly')"    class="global-button"  v-bind:class="{globalActiveTab:timeWeekly}">Weekly</button>
+                          <button type="radio" value="Once"    v-on:click="timeOnceIsSelected('Once')"        class="global-button"  v-bind:class="{globalActiveTab:timeOnce}">Once</button>
+                        
+                        
+                        
                         </div><!--global floating input-->  
-
-                  </div><!--global grid-->
 
                   
                   
@@ -50,8 +49,6 @@
 
               </form>
               
-            </div><!---available section-->
-
 </div>
 </template>
 
@@ -71,9 +68,18 @@ export default {
             price:null,
             time:null,
 
+            owner_id:firebase.auth().currentUser.uid,
+
             Selected_service_id:null,
+            service_img:null,
 
             myservices:[],
+
+
+            timeAnnual: false,
+            timeMonthly: false,
+            timeWeekly:false,
+            timeOnce: false,
 
 
         }
@@ -116,6 +122,7 @@ export default {
 
                   
                    self.service_id = doc.data().service_id
+                   self.service_img = doc.data().img
 
 
             })  
@@ -126,6 +133,41 @@ export default {
 
 
     methods: {
+
+        timeAnnualIsSelected(value){
+            this.time = value
+            //console.log(this.time)
+            this.timeAnnual = true
+            this.timeMonthly = false
+            this.timeWeekly = false
+            this.timeOnce = false
+        },
+        timeMonthlyIsSelected(value){
+            this.time = value
+            //console.log(this.time)
+            this.timeAnnual = false
+            this.timeMonthly = true
+            this.timeWeekly = false
+            this.timeOnce = false
+        },
+        timeWeeklyIsSelected(value){
+            this.time = value
+            //console.log(this.time)
+            this.timeAnnual = false
+            this.timeMonthly = false
+            this.timeWeekly = true
+            this.timeOnce = false
+        },        
+        timeOnceIsSelected(value){
+            this.time = value
+            //console.log(this.time)
+            this.timeAnnual = false
+            this.timeMonthly = false
+            this.timeWeekly = false
+            this.timeOnce = true
+        },
+
+
         AddPlan(){
             let self = this;
             db.collection('plans').add({
@@ -134,12 +176,13 @@ export default {
                 
                 db.collection('plans').doc(docRef.id).set({
                 plan_id: docRef.id,
-                creator_id: self.owner_id,
+                owner_id: self.owner_id,
                 service_id: self.service_id,
                 name: self.name,
                 description: self.description,
                 price: self.price,
                 time: self.time,
+                service_img: self.service_img
                 })
 
                 Swal({ title: "Congrats ! ", text: "Your payment plan has been added to your service", icon: "success", button: "nice!",}).then(() => {self.$router.go("manage_plans")})

@@ -2,7 +2,7 @@
 <div>
 
         <div id="manage-services-header" class="global-header mdl-shadow--2dp">
-          <h3 class="global-header-title-simple" style="">Manage Services Plans</h3>
+          <h3 class="global-header-title-simple" style="">Manage services payment options</h3>
         </div><!--manage services header-->
 
 

@@ -74,7 +74,7 @@ export default {
         let self = this;   
 
 
-          db.collection('plans').where('creator_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
+          db.collection('plans').where('owner_id','==',firebase.auth().currentUser.uid).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 //console.log(doc.data())
                 
