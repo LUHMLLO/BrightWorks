@@ -49,9 +49,9 @@
                <i class='uil uil-postcard' style="width:50%;" v-on:click="isNavOn = false"></i><p v-on:click="isNavOn = false">Posts</p>
               </router-link>
 
-              <router-link to="/settings" class="mdl-button">
+              <!-- <router-link to="/settings" class="mdl-button">
                 <i class='uil uil-cog' style="width:50%;"></i><p>Settings</p>
-              </router-link>
+              </router-link> -->
 
               <router-link to="/" class="mdl-button">
                 <i class='uil uil-entry' v-on:click="logout" style="width:50%;"></i><p>Log out</p>

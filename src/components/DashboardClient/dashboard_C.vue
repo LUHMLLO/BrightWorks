@@ -114,7 +114,7 @@
 
 <script>
 
-import {firebase,db} from '../../firebaseConfig.js'
+import {db} from '../../firebaseConfig.js'
 
 export default {
     name: 'dashboard_C',    
