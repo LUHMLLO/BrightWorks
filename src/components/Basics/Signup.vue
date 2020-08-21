@@ -48,15 +48,18 @@
        </div>
 
       <transition enter-active-class="animated fadeIn" leave-active-class="fadeOut">
-        <div class="forms-input-img mdl-shadow--2dp" v-if="img">
-          <img v-bind:src="img">
+        <div class="forms-input-img mdl-shadow--2dp" v-if="localuserimg">
+          <img v-bind:src="localuserimg">
         </div>
       </transition>
 
 
+
       <div class="input-container">
-        <i class='uil uil-scenery'></i><input type="text" name="img" id="img" v-model="img" accept="image/x-png,image/gif,image/jpeg" class="global-input-file" placeholder="img (insert url here)"/> 
+        <i class='uil uil-scenery'></i>
+        <input id="userimg" name="userimg" type="file" accept="image/x-png,image/gif,image/jpeg" class="global-input-file" v-on:change="PreviewImage"  />
       </div>
+
       <div class="input-container">
         <i class='uil uil-user'></i><input type="text" name="name" id="name" v-model="name" placeholder="name"/> 
       </div>
@@ -114,7 +117,7 @@
 
 
 <script>
-import { firebase , db } from '../../firebaseConfig.js'
+import { firebase , db , ref } from '../../firebaseConfig.js'
 import Swal from 'sweetalert'
 
 
@@ -123,9 +126,11 @@ export default {
   data() {
     return {
       
+      ActualUserCredentials: null,
       email: null,
       password: null,
-      img:null,
+      localuserimg:null,
+      userimg:null,
       name: null,
       phone: null,
       serviceimg:null,
@@ -141,33 +146,75 @@ export default {
       ImmaBeAService: false,
       IdontKnowWhatImGonnaBe: true,
 
+      UploadImage: this.UploadImageLogic,
+
 
     }
   },
 
   
   methods:{
+
+
+    PreviewImage(){
+        const inputfile = document.getElementById('userimg');
+        const file = inputfile.files[0];
+        //console.log(URL.createObjectURL(file))
+        this.localuserimg = URL.createObjectURL(file)
+    },
+    UploadImageLogic(){
+        const inputfile = document.getElementById('userimg');
+        const file = inputfile.files[0];
+        let selectedFile = ref.child('ProfilePics/'+file.name)
+      
+        selectedFile.put(file).then(response =>{
+
+          //var progress = (response.bytesTransferred / response.totalBytes) * 100;
+          //console.log('Upload is ' + progress + '% done');        
+          response.ref.getDownloadURL().then((downloadURL) => {
+              this.userimg = downloadURL
+              //console.log("uploaded img url :" + this.userimg)
+          }).then(
+            db.collection('users').where('user_id', '==' , this.ActualUserCredentials).get().then(querySnapshot =>{
+              querySnapshot.forEach(doc => {
+                doc.ref.update({
+                  img: this.userimg,
+                })
+              })
+            }).then(
+                
+              Swal({ 
+                title: "Congrats ! ", 
+                text: "Your account has been created", 
+                icon: "success", 
+                button: "let's go!",
+              }).then(()=> {this.$router.replace("home")})
+
+            )
+          )
+
+        }).catch(err => 
+          console.log(err)
+        );
+    },
+      
+
+
+
     signUp: function(){
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-        (credentials) => { 
-
+        (credentials) => {
 
           return db.collection('users').doc(credentials.user.uid).set({
             user_id: credentials.user.uid,
-            img: this.img,
             name: this.name,
             phone: this.phone,
             email: this.email,
             AccountType: 'client',
-
           }).then(() =>{
-              Swal({ title: "Congrats ! ", text: "Your client account has been created", icon: "success", button: "let's goo!",}).then(() => {this.$router.replace("home")})
+            this.ActualUserCredentials = credentials.user.uid,
+            this.UploadImage()
           })
-
-
-
-
-
         },
         (err) => {
           Swal({ title: "Oops !", text: err.message, icon: "error", button: "let's try again",});
@@ -177,25 +224,17 @@ export default {
 
     SignUpAsService: function(){
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-        (credentials) => { 
-
-
+        (credentials) => {
           return db.collection('users').doc(credentials.user.uid).set({
             user_id: credentials.user.uid,
-            img: this.img,
             name: this.name,
             phone: this.phone,
             email: this.email,
             AccountType: 'service',
-
           }).then(() =>{
-              Swal({ title: "Congrats ! ", text: "Your service account has been created", icon: "success", button: "let's goo!",}).then(() => {this.$router.replace("home")})
+            this.ActualUserCredentials = credentials.user.uid,
+            this.UploadImage()
           })
-
-
-
-
-
         },
         (err) => {
           Swal({ title: "Oops !", text: err.message, icon: "error", button: "let's try again",});
