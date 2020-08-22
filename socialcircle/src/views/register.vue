@@ -32,7 +32,7 @@
                 <i class="form-icon"></i>
                 <span class="color-grey-darken-2">Creating an account means you´re okay with our Terms of Service and Our Privacy Policy</span>
             </label>
-            <button class="round-3 bg-green-lighten-2 border-transparent font-size-14 color-grey-lighten-5 text-align-center">Create Account</button>
+            <button class="round-3 bg-green-lighten-2 border-transparent font-size-14 color-grey-lighten-5 text-align-center" @click="signUp">Create Account</button>
 
         </form>
 
