@@ -25,6 +25,7 @@ const ref = firebase.storage().ref()
 
 // collection references
 const usersCollection = db.collection('users')
+const postsCollection = db.collection("posts")
 
 
 export {
@@ -32,5 +33,6 @@ export {
     auth,
     ref,
     firebase,
-    usersCollection
+    usersCollection,
+    postsCollection,
 }

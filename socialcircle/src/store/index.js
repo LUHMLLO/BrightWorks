@@ -5,13 +5,14 @@ import router from '../router/index'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
 
 
 
 /*/////////////////////////////////////////////////////////////////////////////////////////*/
   state: {
-    userProfile: {}
+    userProfile: {},
+    posts: []
   },
 /*/////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -21,6 +22,9 @@ export default new Vuex.Store({
   mutations: {
     setUserProfile(state, val) {
       state.userProfile = val
+    },
+    setPosts(state, val) {
+      state.posts = val
     }
   },
 
@@ -45,10 +49,14 @@ export default new Vuex.Store({
     async fetchUserProfile({ commit }, user) {
       // fetch user profile
       const userProfile = await fb.usersCollection.doc(user.uid).get()
+    
       // set user profile in state
       commit('setUserProfile', userProfile.data())
+    
       // change route to dashboard
-      router.push('/')
+      if (router.currentRoute.path === '/login') {
+        router.push('/')
+      }
     },
 
 
@@ -72,8 +80,21 @@ export default new Vuex.Store({
       // clear userProfile and redirect to /login
       commit('setUserProfile', {})
       router.push('/login')
-    }
+    },
 
+
+
+    async createPost({ state }, post) {
+      await fb.postsCollection.add({
+        createdOn: new Date(),
+        content: post.content,
+        userId: fb.auth.currentUser.uid,
+        userName: state.userProfile.name,
+        userActivity: state.userProfile.activity,
+      })
+    },
+
+    
 
 
   },
@@ -86,4 +107,23 @@ export default new Vuex.Store({
   }
   
 /*/////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+
 })
+
+fb.postsCollection.orderBy('createdOn', 'desc').onSnapshot(snapshot => {
+  let postsArray = []
+
+  snapshot.forEach(doc => {
+    let post = doc.data()
+    post.id = doc.id
+
+    postsArray.push(post)
+  })
+
+  store.commit('setPosts', postsArray)
+})
+
+
+export default store
