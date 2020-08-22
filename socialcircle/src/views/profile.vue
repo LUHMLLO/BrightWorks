@@ -3,7 +3,7 @@
     <div class="row">
 
 
-      <div class="col-2 md:col-12">
+      <div class="col-3 md:col-12">
         <div class="image-wrapper height-350 round-3 margin-bottom-15">
           <img src="https://images.unsplash.com/photo-1531384441138-2736e62e0919" alt="">
         </div>
@@ -27,9 +27,9 @@
       </div>
 
 
-      <div class="col-10 md:col-12 padding-left-50 md:padding-left-15">
+      <div class="col-9 md:col-12 padding-left-50 md:padding-left-15">
         <h4 class="font-bolder">Stories</h4>
-        <div class="d-flex w-100 overflow-hidden margin-bottom-50">
+        <div class="d-flex w-100 overflow-hidden margin-bottom-50 scrollable-x">
           <div class="col-2 padding-0 margin-right-15">
             <div class="image-wrapper height-150 margin-0 round-3 image-overlay image-blur-5">
               <img src="https://images.unsplash.com/photo-1597232465681-1a311e8f16fe" alt="">
