@@ -1,12 +1,11 @@
 <template>
     <div>
         <Navbar />
-        <div class="row debug vh-100">
-            <Sidebar class="col-1 h-100" />
-            <div class="col-9 h-100">
+        <div class="row bg-grey-lighten-4 vh-100">
+            <Sidebar class="col-2 md:col-3 h-100 bg-grey-lighten-3" />
+            <div class="col-10 md:col-9 h-100 padding-25 bg-grey-lighten-5 depth-1">
                 <slot/>
             </div>
-            <Sidebar class="col-2 h-100" />
         </div>
     </div>
 </template>
