@@ -6,17 +6,11 @@
         </div>
 
         <form @submit.prevent class="col-4 sm:col-8 depth-3 padding-25 bg-grey-lighten-5 round-3">
-            <h2 class="color-grey-darken-3">Sign Up</h2>
+            <h2 class="color-grey-darken-3">Sign In</h2>
             <p class="color-grey-darken-2 font-size-14 margin-0">Get started and join the others in the platform</p>
 
             <div class="row row-adjust  margin-y-25">
-                <div class="col-6 sm:col-12">
-                    <p class="margin-0 d-block font-size-14 color-grey-darken-2">Name</p>
-                    <input v-model="name" name="name" type="text" 
-                    class="border-grey border-solid w-100 round-3 padding-y-5 padding-x-10">
-                    <small class="color-grey-lighten-1">Example:. Carl, Mary, Martin..</small>
-                </div>
-                <div class="col-6 sm:col-12">
+                <div class="col-12">
                     <p class="margin-0 d-block font-size-14 color-grey-darken-2">Email</p>
                     <input v-model="email" name="email" type="text" class="border-grey border-solid w-100 round-3 padding-y-5 padding-x-10">
                     <small class="color-grey-lighten-1">Example:. yourname@email.com</small>
@@ -27,12 +21,8 @@
                     <small class="color-grey-lighten-1">Must have 8+ characters</small>
                 </div>
             </div>
-            <label class="form-checkbox">
-                <input type="checkbox">
-                <i class="form-icon"></i>
-                <span class="color-grey-darken-2">Creating an account means you´re okay with our Terms of Service and Our Privacy Policy</span>
-            </label>
-            <button class="round-3 bg-green-lighten-2 border-transparent font-size-14 color-grey-lighten-5 text-align-center" @click="signup()">Create Account</button>
+
+            <button class="round-3 bg-green-lighten-2 border-transparent font-size-14 color-grey-lighten-5 text-align-center" @click="login()">Enter</button>
 
         </form>
 
@@ -41,20 +31,18 @@
 
 <script>
 export default {
-    name: "register",
+    name: "login",
     data(){
         return{
-            name:null,
             email:null,
             password:null,
         }
     },
     methods:{
-        signup() {
-            this.$store.dispatch('signup', {
-                name: this.name,
+        login() {
+            this.$store.dispatch('login', {
                 email: this.email,
-                password: this.password,
+                password: this.password
             })
         }
     }

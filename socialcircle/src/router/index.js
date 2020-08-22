@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import firebase from '../firebaseConfig.js'
+import {auth} from '../firebaseConfig.js'
 
 Vue.use(VueRouter)
 const routes = [
   {
-    path: '/',
-    alias: 'home',
+    alias: '/',
+    path: '/home',
     name: 'home',
     component: () => import(/* webpackChunkName: "home" */ '../views/home.vue'),
     meta: {
@@ -22,9 +22,14 @@ const routes = [
     }
   },
   {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/login.vue'),
+  },
+  {
     path: '/register',
     name: 'register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/register.vue')
+    component: () => import(/* webpackChunkName: "register" */ '../views/register.vue'),
   },
 ]
 
@@ -35,19 +40,14 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  let currentUser = firebase.auth().currentUser
-  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
 
-  if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('home')
-  else next()
+  if (requiresAuth && !auth.currentUser) {
+    next('/login')
+  } else {
+    next()
+  }
 })
-
-
-
-
-
-
 
 
 
