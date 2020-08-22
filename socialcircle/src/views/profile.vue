@@ -1,6 +1,6 @@
 <template>
   <facebook_layout :id="this.$options.name">
-    <h1>This is a home page</h1>
+    <h1>This is a profile page</h1>
   </facebook_layout>
 </template>
 

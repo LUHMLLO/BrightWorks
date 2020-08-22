@@ -3,7 +3,7 @@
         <div class="d-flex flex-column margin-bottom-10" v-for="(sections,index) in sections" :key="index">
             <h6 class="font-bolder font-size-11 color-grey-darken-2 padding-x-25">{{sections.name}}</h6>
 
-            <router-link :to="'/'+direction.name" 
+            <router-link to="/" 
                 class="color-grey-darken-1 color-green-lighten-2-hover bg-grey-lighten-5-hover depth-1-hover d-flex padding-x-25 
                 margin-0 border-left-solid border-left-transparent border-left-green-lighten-2-hover" 
                 v-for="(direction,index) in sections.directions" :key="index">
@@ -34,7 +34,11 @@
                             },
                             {
                                 name: "Events",
-                                icon: "uil uil-calender",
+                                icon: "uil uil-calendar-alt",
+                            },
+                            {
+                                name: "Rooms",
+                                icon: "uil uil-presentation",
                             },
                         ],
                     },
