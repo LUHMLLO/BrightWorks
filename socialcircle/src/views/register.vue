@@ -64,8 +64,10 @@ export default {
                         Swal.fire({
                             type: 'success',
                             title: 'Your account has been registered',
-                            text: "Start browsing the page"
-                        }).then( ()=> this.$router.replace("home"))
+                            text: 'Start browsing the page',
+                        }).then( 
+                            ()=> this.$router.replace("home")
+                        )
                     )
                 },
                 (err) => {

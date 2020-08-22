@@ -20,7 +20,7 @@
 
         <i class="uil uil-bell font-size-16 color-grey-darken-1 margin-left-10 color-green-lighten-2-hover"></i>
         <i class="uil uil-cog font-size-16 color-grey-darken-1 margin-left-10 color-green-lighten-2-hover"></i>
-        <i class="uil uil-sign-out-alt font-size-16 color-grey-darken-1 margin-left-10 color-green-lighten-2-hover"></i>
+        <i class="uil uil-sign-out-alt font-size-16 color-grey-darken-1 margin-left-10 color-green-lighten-2-hover" @click="logout"></i>
       </div>
 
     </div>
@@ -28,7 +28,27 @@
 </template>
 
 <script>
+import { firebase } from '../firebaseConfig.js'
+import Swal from 'sweetalert2'
 export default {
   name: 'Navbar',
+  methods:{
+    
+       logout: function(){
+          Swal.fire({
+              type: 'warning',
+              title: 'Closing session',
+              text: 'are you sure you wanna leave?',
+              showCancelButton: true,
+              cancelButtonColor: '#000000',
+              confirmButtonText: 'Yes, I would like to sign out',
+              confirmButtonColor: '#000000',
+          }).then((result) => {
+            if (result.value) {
+              firebase.auth().signOut().then(() =>{this.$router.replace('/register')})
+            }
+          })
+       },
+  }
 }
 </script>
