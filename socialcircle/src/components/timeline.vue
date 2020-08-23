@@ -3,17 +3,30 @@
       
           <div class="d-flex flex-between margin-bottom-25">
             <h4 class="font-bolder margin-y-0">Timeline</h4>
-            <button class="font-bolder font-size-10 padding-10 bg-green-lighten-2-hover border-transparent color-grey-lighten-5-hover margin-y-0">Add to your timeline</button>
+            <button class="font-bolder font-size-10 padding-10 bg-green-lighten-2-hover border-transparent color-grey-lighten-5-hover margin-y-0" @click="addToTimeline = true">Add to your timeline</button>
           </div>
 
 
 
-          <div class="depth-3 w-100 margin-bottom-25">
+          <div class="depth-3 w-100 margin-bottom-25" v-if="addToTimeline">
               <div class="w-100 padding-x-20 padding-top-15 margin-bottom-15">
                 <textarea v-model.trim="content" name="add_timeline_text" class="margin-y-0 font-size-12 height-100 border-transparent color-grey-darken-2 bg-grey-lighten-3 padding-x-15 padding-y-10"></textarea>
               </div>
               <div class="w-100 padding-x-20 padding-bottom-15 d-flex flex-end">
-                  <button class="font-bolder font-size-10 padding-10 bg-green-lighten-2 border-transparent color-grey-lighten-5 margin-y-0"  @click="createPost()">Publish</button>
+
+                <button 
+                    class="font-bolder font-size-10 padding-10 border-transparent margin-y-0"  
+                    @click="createPost()" 
+                    :disabled="this.content === ''" 
+                    :class="{
+                        'bg-grey-lighten-2' : this.content == '',  
+                        'color-grey' : this.content == '',
+                        'bg-green-lighten-2' : this.content !== '',  
+                        'color-grey-lighten-5' : this.content !== '',
+                    }
+                ">Publish
+                </button>
+
               </div>
           </div>
 
@@ -59,7 +72,8 @@ export default {
     name: "timeline",
     data() {
         return {
-            content: "",
+            content: '',
+            addToTimeline: false,
         }
     },
     computed: {
@@ -70,6 +84,7 @@ export default {
             console.log("posted")
             this.$store.dispatch('createPost', { content: this.content })
             this.content = ''
+            this.addToTimeline = false
         }
     },
     filters: {
