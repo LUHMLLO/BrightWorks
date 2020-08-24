@@ -88,6 +88,7 @@ const store = new Vuex.Store({
       await fb.postsCollection.add({
         createdOn: new Date(),
         content: post.content,
+        attachment: post.attachment,
         userId: fb.auth.currentUser.uid,
         userName: state.userProfile.name,
         userActivity: state.userProfile.activity,
@@ -125,5 +126,31 @@ fb.postsCollection.orderBy('createdOn', 'desc').onSnapshot(snapshot => {
   store.commit('setPosts', postsArray)
 })
 
+
+
+/*
+PreviewImage(){
+  const inputfile = document.getElementById('userimg');
+  const file = inputfile.files[0];
+  //console.log(URL.createObjectURL(file))
+  this.localuserimg = URL.createObjectURL(file)
+}
+
+UploadImageLogic(){
+  const inputfile = document.getElementById('userimg');
+  const file = inputfile.files[0];
+  let selectedFile = ref.child('ProfilePics/'+file.name)
+
+  selectedFile.put(file).then(response =>{
+    response.ref.getDownloadURL().then((downloadURL) => {
+        this.userimg = downloadURL
+        //console.log("uploaded img url :" + this.userimg)
+    })
+
+  }).catch(err => 
+    console.log(err)
+  );
+}
+*/
 
 export default store
